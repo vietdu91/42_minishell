@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:38:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/03 14:44:09 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/03 15:00:14 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	is_lower(char c)
 	return (0);
 }
 
-int	is_alphanumeric(char c)
+int	is_alphanum(char c)
 {
 	if (!is_alpha(c) && !is_digit(c))
 		return (0);

@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkers.h                                         :+:      :+:    :+:   */
+/*   utils_write.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 13:37:14 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/03 15:12:39 by emtran           ###   ########.fr       */
+/*   Created: 2022/01/03 15:15:47 by emtran            #+#    #+#             */
+/*   Updated: 2022/01/03 15:16:22 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKERS_H
-# define CHECKERS_H
+#include "../../includes/minishell.h"
 
-# define DIGITS "0123456789"
-# define LOW_ALPHA "qwertyuiopasdfghjklzxcvbnm"
-# define UPP_ALPHA "QWERTYUIOPASDFGHJKLZXCVBNM"
-# define SPACES " \f\r\t\v" // newline non inlus
+void	ft_putnbr(int nb, int fd)
+{
+	if (nb < 0)
+	{
+		ft_putchar('-', fd);
+		nb *= -1;
+	}
+	if (nb >= 10)
+		ft_putnbr(nb / 10, fd);
+	ft_putchar(nb % 10 + 48, fd);
+}
 
-/*		IS_WHAT_STR.C		*/
+void	ft_putstr(char *str, int fd)
+{
+	int	a;
 
-int	is_alpha(char c);
-int	is_upper(char c);
-int	is_lower(char c);
-int	is_alphanum(char c);
+	a = ft_strlen(str);
+	write(fd, str, a);
+	a++;
+}
 
-/*		IS_WHAT_OTHERS.C		*/
-
-int	is_digit(char c);
-int	is_space(char c);
-
-#endif
+void	ft_putchar(char c, int fd)
+{
+	write(fd, &c, 1);
+}

@@ -6,23 +6,11 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:47:49 by emtran            #+#    #+#             */
-/*   Updated: 2021/12/30 18:48:22 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/03 15:16:11 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	ft_putnbr(int nb, int fd)
-{
-	if (nb < 0)
-	{
-		ft_putchar('-', fd);
-		nb *= -1;
-	}
-	if (nb >= 10)
-		ft_putnbr(nb / 10, fd);
-	ft_putchar(nb % 10 + 48, fd);
-}
 
 long int	ft_atoi(const char *str)
 {

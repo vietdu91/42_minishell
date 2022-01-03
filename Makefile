@@ -9,7 +9,8 @@ SRCS		= 	coucou.c \
 				checkers/is_what_others.c \
 				checkers/is_what_str.c \
 				utils/utils_str.c \
-				utils/utils_digits.c
+				utils/utils_digits.c \
+				utils/utils_write.c
 
 INCLUDES 	= 	includes/minishell.h
 
