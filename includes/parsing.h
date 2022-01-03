@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coucou.c                                           :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/03 14:40:17 by emtran           ###   ########.fr       */
+/*   Created: 2022/01/03 13:37:14 by emtran            #+#    #+#             */
+/*   Updated: 2022/01/03 14:50:49 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef PARSING_H
+# define PARSING_H
 
-int	main(void)
-{
-	char	*str;
-	int		a;
+# define DIGITS "0123456789"
+# define LOW_ALPHA "qwertyuiopasdfghjklzxcvbnm"
+# define UPP_ALPHA "QWERTYUIOPASDFGHJKLZXCVBNM"
+# define SPACES " \f\n\r\t\v"
 
-	a = -1;
-	str = "205615dfdggdSFGZFz53656fd1";
-	while (str[++a])
-	{
-		if (is_alphanumeric(str[a]) == 0)
-		{
-			printf("MAIS NON");
-			return (0);
-		}
-	}
-	printf("MAIS OUI");
-	return (0);
-}
+/*		IS_WHAT_STR.C		*/
+
+int	is_alpha(char c);
+int	is_upper(char c);
+int	is_lower(char c);
+int	is_alphanumeric(char c);
+
+/*		IS_WHAT_OTHERS.C		*/
+
+int	is_digit(char c);
+int	is_space(char c);
+
+#endif

@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coucou.c                                           :+:      :+:    :+:   */
+/*   is_what_others.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/03 14:40:17 by emtran           ###   ########.fr       */
+/*   Created: 2022/01/03 14:42:38 by emtran            #+#    #+#             */
+/*   Updated: 2022/01/03 14:50:44 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(void)
+int	is_digit(char c)
 {
-	char	*str;
-	int		a;
+	int			a;
+	const char	*str = DIGITS;
 
 	a = -1;
-	str = "205615dfdggdSFGZFz53656fd1";
-	while (str[++a])
+	while (str[++a] != '\0')
 	{
-		if (is_alphanumeric(str[a]) == 0)
-		{
-			printf("MAIS NON");
-			return (0);
-		}
+		if (str[a] == c)
+			return (1);
 	}
-	printf("MAIS OUI");
+	return (0);
+}
+
+int	is_space(char c)
+{
+	int			a;
+	const char	*str = SPACES;
+
+	a = -1;
+	while (str[++a] != '\0')
+	{
+		if (str[a] == c)
+			return (1);
+	}
 	return (0);
 }

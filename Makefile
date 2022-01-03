@@ -6,6 +6,8 @@ COMPILER	= 	clang
 
 	# Variables #
 SRCS		= 	coucou.c \
+				checkers/is_what_others.c \
+				checkers/is_what_str.c \
 				utils/utils_str.c \
 				utils/utils_digits.c
 
