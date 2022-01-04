@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 14:42:38 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/03 14:50:44 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/04 13:48:45 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@ int	is_space(char c)
 {
 	int			a;
 	const char	*str = SPACES;
+
+	a = -1;
+	while (str[++a] != '\0')
+	{
+		if (str[a] == c)
+			return (1);
+	}
+	return (0);
+}
+
+int	is_meta(char c)
+{
+	int			a;
+	const char	*str = METACHAR;
 
 	a = -1;
 	while (str[++a] != '\0')

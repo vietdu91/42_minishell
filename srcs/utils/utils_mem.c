@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coucou.c                                           :+:      :+:    :+:   */
+/*   utils_mem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/04 13:53:09 by emtran           ###   ########.fr       */
+/*   Created: 2022/01/04 13:50:51 by emtran            #+#    #+#             */
+/*   Updated: 2022/01/04 13:52:11 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(void)
+void	*ft_memcpy(void *dest, const void *src, size_t count)
 {
-	char	*str;
-	int		a;
+	char			*chdest;
+	char			*chsrc;
+	unsigned int	i;
 
-	a = -1;
-	str = "205615dfdggdSFGZFz53656fd1";
-	while (str[++a])
+	chdest = (char *)dest;
+	chsrc = (char *)src;
+	if (dest == 0 && src == 0)
+		return (0);
+	i = 0;
+	while (i < count)
 	{
-		if (is_alphanum(str[a]) == 0)
-		{
-			printf("MAIS NON");
-			return (0);
-		}
+		chdest[i] = chsrc[i];
+		i++;
 	}
-	printf("MAIS OUI");
-	return (0);
+	return (dest);
 }

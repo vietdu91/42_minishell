@@ -6,10 +6,13 @@ COMPILER	= 	clang
 
 	# Variables #
 SRCS		= 	coucou.c \
+				checkers/is_what_alphanum.c \
 				checkers/is_what_others.c \
-				checkers/is_what_str.c \
-				utils/utils_str.c \
 				utils/utils_digits.c \
+				utils/utils_gnl.c \
+				utils/utils_linked.c \
+				utils/utils_mem.c \
+				utils/utils_str.c \
 				utils/utils_write.c
 
 INCLUDES 	= 	includes/minishell.h

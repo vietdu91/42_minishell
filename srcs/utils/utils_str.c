@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/03 16:36:29 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/04 13:50:06 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,21 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (str);
 	}
 	return (s1);
+}
+
+char	*ft_strcalloc(size_t size)
+{
+	char	*str;
+	size_t	i;
+
+	str = (char *)malloc(sizeof(char) * (size + 1));
+	if (!str)
+		return (0);
+	i = 0;
+	while (i < size + 1)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	return (str);
 }
