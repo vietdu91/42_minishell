@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_what_alphanum.c                                 :+:      :+:    :+:   */
+/*   is_alphanum.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:38:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/04 11:26:50 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/10 16:35:45 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is_upper(char c)
 	const char	*upper = UPP_ALPHA;
 
 	a = -1;
-	while (upper[++a] != '\0')
+	while (upper[++a])
 	{
 		if (upper[a] == c)
 			return (1);
@@ -50,7 +50,7 @@ int	is_lower(char c)
 	const char	*lower = LOW_ALPHA;
 
 	a = -1;
-	while (lower[++a] != '\0')
+	while (lower[++a])
 	{
 		if (lower[a] == c)
 			return (1);

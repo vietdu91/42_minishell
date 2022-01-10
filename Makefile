@@ -6,8 +6,9 @@ COMPILER	= 	clang
 
 	# Variables #
 SRCS		= 	coucou.c \
-				checkers/is_what_alphanum.c \
-				checkers/is_what_others.c \
+				checkers/is_unclosed.c \
+				checkers/is_alphanum.c \
+				checkers/is_others.c \
 				utils/utils_digits.c \
 				utils/utils_gnl.c \
 				utils/utils_linked.c \
