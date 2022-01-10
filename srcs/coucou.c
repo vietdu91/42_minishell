@@ -12,21 +12,23 @@
 
 #include "../includes/minishell.h"
 
-int	main(void)
+int	main()
 {
-	char	*str;
-	int		a;
+	char	*buffer = NULL;
+	size_t	buf_size = 2048;
 
-	a = -1;
-	str = "   )  (      )          ";
-//	while (str[++a])
-//	{
-	if (is_unclosed_parenth(str) != 0)
+	buffer = (char *)ft_strcalloc(sizeof(char), buf_size);
+	if (buffer == NULL) 
 	{
-		printf("MAIS NON");
-		return (0);
+		perror("Hoho il y a un problème de malloc...");
+		return (EXIT_FAILURE);
 	}
-//	}
-	printf("MAIS OUI");
-	return (0);
+	ft_putstr("minishell of the hell $> ", 1);
+	while (getline(&buffer, &buf_size, stdin) > 0) 
+	{
+		printf("cmd = %s\n", buffer);
+		ft_putstr("minishell of the hell $> ", 1);
+	}
+	printf("Casse-toi pov' con \n");
+	free(buffer);
 }
