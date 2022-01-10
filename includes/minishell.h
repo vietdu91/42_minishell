@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/03 14:56:51 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/10 18:24:35 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ tcsetattr - tcgetattr */
 # include <sys/ioctl.h>
 
 # include "./checkers.h"
+# include "./parsing.h"
 # include "./utils.h"
-
 #endif

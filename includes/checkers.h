@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:37:14 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/10 14:28:17 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/10 18:34:36 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CHECKERS_H
 
 # define DIGITS "0123456789"
-# define LOW_ALPHA "qwertyuiopasdfghjklzxcvbnm"
-# define UPP_ALPHA "QWERTYUIOPASDFGHJKLZXCVBNM"
+# define LOW_ALPHA "abcdefghijklmnopqrstuvwxyz"
+# define UPP_ALPHA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # define SPACES " \f\r\t\v" // newline non inlus
 # define METACHAR "|&;()<>"
 
