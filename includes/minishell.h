@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/10 18:24:35 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/11 11:46:50 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,6 @@ tcsetattr - tcgetattr */
 # include "./checkers.h"
 # include "./parsing.h"
 # include "./utils.h"
+
+# define PROMPT "\033[5;91mWELCOME TO THE (minis)HELL 😈 \e[0m\033[1;93m$> \e[0m"
 #endif

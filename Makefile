@@ -2,7 +2,7 @@
 NAME	= 	minishell
 
 	# Compilator #
-COMPILER	= 	clang
+COMPILER	= 	cc
 
 	# Variables #
 SRCS		= 	coucou.c \
@@ -66,7 +66,8 @@ DEP		= $(OBJS:.o=.d)
 
 	# Flags #
 
-FLAGS	= 	-Wall -Werror -Wextra
+FLAGS		= 	-Wall -Werror -Wextra 
+READLINE	=	-lreadline
 
 	# Rules #
 all:		${NAME}
@@ -75,7 +76,7 @@ all:		${NAME}
 			@printf "$(L_PINK) <3 <3 \n$(RESET)"
 
 $(NAME):	${OBJS} ${INCLUDES}
-			${COMPILER} ${FLAGS} -I includes ${OBJS} -o $(NAME)
+			${COMPILER} ${FLAGS} ${READLINE} -I includes ${OBJS} -o $(NAME)
 			@printf	"\n\n"
 			@printf "$(GRIS)                                                                                                                                                                  $(RESET)\n"
 			@printf "$(GRIS)  $(RESET)$(NOIR)                                                                                                                                                              $(RESET)$(GRIS)  $(RESET)\n"
@@ -139,7 +140,7 @@ $(NAME):	${OBJS} ${INCLUDES}
 
 objs/%.o:		srcs/%.c
 					@mkdir -p $(dir $@)
-					@${COMPILER} -MMD ${FLAGS} -I includes -o $@ -c $< 
+					@${COMPILER} -MMD ${FLAGS} -I includes -o $@ -c $<
 
 norme:		
 			@norminette srcs/*

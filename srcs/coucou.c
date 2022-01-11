@@ -6,29 +6,39 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/10 14:26:21 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/11 14:20:55 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
-int	main()
+int	main(void)
 {
-	char	*buffer = NULL;
-	size_t	buf_size = 2048;
+	char	*buffer;
 
-	buffer = (char *)ft_strcalloc(sizeof(char), buf_size);
-	if (buffer == NULL) 
+	while (1)
 	{
-		perror("Hoho il y a un problème de malloc...");
-		return (EXIT_FAILURE);
-	}
-	ft_putstr("minishell of the hell $> ", 1);
-	while (getline(&buffer, &buf_size, stdin) > 0) 
-	{
+		buffer = readline(PROMPT);
+		if (buffer == NULL)
+		{
+			ft_putstr("exit\n", 1);
+		}
+		if (ft_strcmp(buffer, "scare_me"))
+		{
+			printf(" .-.\n");
+			printf("(o o) boo!\n");
+			printf("| O \\\n");
+			printf(" \\   \\\n");
+			printf("  `~~~'\n");
+		}
+		if (ft_strcmp(buffer, "exit"))
+		{
+			printf("exit \n");
+			exit(EXIT_SUCCESS);
+		}
 		printf("cmd = %s\n", buffer);
-		ft_putstr("minishell of the hell $> ", 1);
 	}
-	printf("Casse-toi pov' con \n");
-	free(buffer);
 }

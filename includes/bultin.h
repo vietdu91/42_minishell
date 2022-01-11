@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/10 19:47:12 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/11 11:05:18 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,34 @@ typedef struct s_history
 
 typedef struct s_exit
 {
-	int	exit_on;
+	int		exit_on;
 	char*	nb;
 	char*	other_nb;
 }	t_exit;
 
 typedef struct s_export
 {
-	int	export_on;
+	int		export_on;
 	char*	var;
 	char*	value;
 }	t_export;
 
 typedef struct s_unset
 {
-	int	unset_on;
+	int		unset_on;
 	char*	var;
-}	t_export;
+}	t_unset;
 
 typedef struct s_cd
 {
-	int	cd_on;
+	int		cd_on;
 	char	*path;
 }	t_cd;
 
 typedef struct s_echo
 {
-	int	echo_on;
-	int	option_n;
+	int		echo_on;
+	int		option_n;
 	char	*str;
 }	t_echo;
 #endif
