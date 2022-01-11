@@ -5,10 +5,11 @@ NAME	= 	minishell
 COMPILER	= 	cc
 
 	# Variables #
-SRCS		= 	coucou.c \
+SRCS		= 	main.c \
 				checkers/is_unclosed.c \
 				checkers/is_alphanum.c \
 				checkers/is_others.c \
+				signal/signal.c \
 				utils/utils_digits.c \
 				utils/utils_gnl.c \
 				utils/utils_linked.c \
@@ -66,7 +67,7 @@ DEP		= $(OBJS:.o=.d)
 
 	# Flags #
 
-FLAGS		= 	-Wall -Werror -Wextra 
+FLAGS		= 	-g -Wall -Werror -Wextra
 READLINE	=	-lreadline
 
 	# Rules #
@@ -76,7 +77,7 @@ all:		${NAME}
 			@printf "$(L_PINK) <3 <3 \n$(RESET)"
 
 $(NAME):	${OBJS} ${INCLUDES}
-			${COMPILER} ${FLAGS} ${READLINE} -I includes ${OBJS} -o $(NAME)
+			${COMPILER} ${FLAGS} -I includes ${OBJS} -o $(NAME) ${READLINE}
 			@printf	"\n\n"
 			@printf "$(GRIS)                                                                                                                                                                  $(RESET)\n"
 			@printf "$(GRIS)  $(RESET)$(NOIR)                                                                                                                                                              $(RESET)$(GRIS)  $(RESET)\n"
