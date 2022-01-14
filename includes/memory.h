@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_linked.c                                     :+:      :+:    :+:   */
+/*   memory.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/04 11:34:19 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/13 18:37:19 by emtran           ###   ########.fr       */
+/*   Created: 2022/01/13 13:55:56 by emtran            #+#    #+#             */
+/*   Updated: 2022/01/14 17:09:41 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#ifndef MEMORY_H
+# define MEMORY_H
 
-t_list	*init_list(void)
-{
-	t_list	*list;
+/*		FREE_BOX.C		*/
 
-	list = NULL;
-	list = (t_list *)malloc(sizeof(t_list));
-	if (!list)
-		return (NULL);
-	list->head = NULL;
-	list->tail = NULL;
-	list->length = 0;
-	return (list);
-}
+void	free_all(t_args *args);
+void	free_d_tab(char **tb);
+void	free_t_lists(t_list *c);
+
+/*		INITIALISATION.C		*/
+
+void	init_and_set_all(t_args *args, char **envp);
+void	init_struct(t_args *args);
+void	set_all(t_args *args, char **envp);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/04 13:50:06 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/13 17:38:13 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,26 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (s1);
 }
 
-char	*ft_strcalloc(size_t size)
+char	*ft_strnstr(char *s1, const char *s2, size_t n)
 {
-	char	*str;
 	size_t	i;
+	size_t	j;
 
-	str = (char *)malloc(sizeof(char) * (size + 1));
-	if (!str)
-		return (0);
 	i = 0;
-	while (i < size + 1)
+	if (*s2 == '\0')
+		return (s1);
+	if (n == 0)
+		return (NULL);
+	while (s1[i] && i < n)
 	{
-		str[i] = '\0';
+		j = 0;
+		while (s1[i + j] == s2[j] && i < n && s1[i + j])
+		{
+			if (s1[i + j] && s2[j + 1] == 0 && i + j < n)
+				return (&s1[i]);
+			j++;
+		}
 		i++;
 	}
-	return (str);
+	return (NULL);
 }

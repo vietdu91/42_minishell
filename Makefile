@@ -6,15 +6,26 @@ COMPILER	= 	cc
 
 	# Variables #
 SRCS		= 	main.c \
+				bultin/cd.c \
+				bultin/echo.c \
+				bultin/env.c \
+				bultin/export_unset.c \
+				bultin/pwd.c \
 				checkers/is_unclosed.c \
 				checkers/is_alphanum.c \
 				checkers/is_others.c \
+				errors/print_error.c \
+				fun/print_fun.c \
+				memory/free_box.c \
+				memory/initialisation.c \
+				parsing/find_in_env.c \
 				signal/signal.c \
 				utils/utils_digits.c \
 				utils/utils_gnl.c \
 				utils/utils_linked.c \
 				utils/utils_mem.c \
 				utils/utils_str.c \
+				utils/utils_str2.c \
 				utils/utils_write.c
 
 INCLUDES 	= 	includes/minishell.h
@@ -78,7 +89,8 @@ all:		${NAME}
 
 $(NAME):	${OBJS} ${INCLUDES}
 			${COMPILER} ${FLAGS} -I includes ${OBJS} -o $(NAME) ${READLINE}
-			@printf	"\n\n"
+			@printf "\n$(GREEN)████████████████████████████████████████████████████████  ✨ ✨ ✨  C'EST MERVEILLEUSEMENT BIEN COMPILE  ✨ ✨ ✨  ████████████████████████████████████████████████████████$(RESET)"
+			@printf	"\n\n\n"
 			@printf "$(GRIS)                                                                                                                                                                  $(RESET)\n"
 			@printf "$(GRIS)  $(RESET)$(NOIR)                                                                                                                                                              $(RESET)$(GRIS)  $(RESET)\n"
 			@printf "$(GRIS)  $(RESET)$(NOIR)                                                                                                                                                              $(RESET)$(GRIS)  $(RESET)\n"
@@ -127,8 +139,8 @@ $(NAME):	${OBJS} ${INCLUDES}
 			@printf "$(GRIS)  $(RESET)$(NOIR)                                                                                                                                                              $(RESET)$(GRIS)  $(RESET)\n"
 			@printf "$(GRIS)  $(RESET)$(NOIR)                                                                                                                                                              $(RESET)$(GRIS)  $(RESET)\n"
 			@printf "$(GRIS)                                                                                                                                                                  $(RESET)\n"
-			@printf	"\n\n"
-			@printf "$(BLUE_B)Si tu ramasses un coquillage et que tu le portes à ton oreille, tu entendras la mer. Si tu le portes à ta poitrine, il entendra ton coeur <3 \n\n$(RESET)"
+			@printf "\n\n$(SKY)█████████████████████████████████████████████████████████  😊 😊 😊  PENSEE DU JOUR POUR TE FAIRE SOURIRE  😊 😊 😊  ████████████████████████████████████████████████████$(RESET)"
+			@printf "\n\n$(BLUE_B)Si tu ramasses un coquillage et que tu le portes à ton oreille, tu entendras la mer. Si tu le portes à ta poitrine, il entendra ton coeur <3 \n\n$(RESET)"
 			@printf "$(YELLOW)============$(RESET)"
 			@printf "\e[38;5;227m============$(RESET)"
 			@printf "\e[38;5;228m============$(RESET)"
@@ -158,7 +170,7 @@ norme:
 clean:
 			rm -f ${OBJS}
 			@printf "$(YELLOW)\nAu fond, est-ce que ranger ça ne revient pas un peu à foutre le bordel dans son désordre ? \n$(RESET)"
-			@printf "$(YELLOW)===$(RESET)"
+			@printf "$(YELLOW)============$(RESET)"
 			@printf "\e[38;5;227m============$(RESET)"
 			@printf "\e[38;5;228m============$(RESET)"
 			@printf "\e[38;5;229m============$(RESET)"
@@ -170,7 +182,7 @@ fclean:
 			rm -f ${NAME}
 			rm -rf objs
 			@printf "$(YELLOW)\nAu fond, est-ce que ranger ça ne revient pas un peu à foutre le bordel dans son désordre ? \n$(RESET)"
-			@printf "$(YELLOW)===$(RESET)"
+			@printf "$(YELLOW)============$(RESET)"
 			@printf "\e[38;5;227m============$(RESET)"
 			@printf "\e[38;5;228m============$(RESET)"
 			@printf "\e[38;5;229m============$(RESET)"

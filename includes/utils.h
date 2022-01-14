@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/04 13:52:40 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/14 16:29:31 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@
 long int	ft_atoi(const char *str);
 int			ft_nbrlen(int n);
 
+/*		UTILS_LINKED	*/
+
+t_list		*init_list(void);
+
 /*		UTILS_MEMORY	*/
 
 void		*ft_memcpy(void *dest, const void *src, size_t count);
+char		*ft_strcalloc(size_t size);
 
 /* 		UTILS_SPLIT 	*/
 
@@ -37,7 +42,8 @@ int			ft_strlen(char *str);
 int			ft_strcmp(char *str1, char *str2);
 void		ft_strcpy(char *dest, char *src);
 char		*ft_strjoin(char *s1, char *s2);
-char		*ft_strcalloc(size_t size);
+char		*ft_strnstr(char *s1, const char *s2, size_t n);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
 /* 		UTILS_WRITE 	*/
 

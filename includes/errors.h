@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_linked.c                                     :+:      :+:    :+:   */
+/*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/04 11:34:19 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/13 18:37:19 by emtran           ###   ########.fr       */
+/*   Created: 2022/01/13 15:12:01 by emtran            #+#    #+#             */
+/*   Updated: 2022/01/14 16:37:38 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#ifndef ERRORS_H
+# define ERRORS_H
 
-t_list	*init_list(void)
-{
-	t_list	*list;
+# define ERR_NOENV "No such environment\n"
+# define ERR_MALLOC "Failed to allocate memory.\n"
 
-	list = NULL;
-	list = (t_list *)malloc(sizeof(t_list));
-	if (!list)
-		return (NULL);
-	list->head = NULL;
-	list->tail = NULL;
-	list->length = 0;
-	return (list);
-}
+/*		ERRORS.C		*/
+
+void	fork_of_errors(int a, t_args *args);
+void	print_error(char *msg_error, t_args *args);
+
+#endif

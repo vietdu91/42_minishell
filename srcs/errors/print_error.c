@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_linked.c                                     :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/04 11:34:19 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/13 18:37:19 by emtran           ###   ########.fr       */
+/*   Created: 2022/01/13 15:08:22 by emtran            #+#    #+#             */
+/*   Updated: 2022/01/14 16:37:27 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
-t_list	*init_list(void)
+void	fork_of_errors(int a, t_args *args)
 {
-	t_list	*list;
+	if (a == 1)
+		print_error(ERR_NOENV, args);
+	if (a == 2)
+		print_error(ERR_MALLOC, args);
+}
 
-	list = NULL;
-	list = (t_list *)malloc(sizeof(t_list));
-	if (!list)
-		return (NULL);
-	list->head = NULL;
-	list->tail = NULL;
-	list->length = 0;
-	return (list);
+void	print_error(char *msg_error, t_args *args)
+{
+	printf("%s\n", msg_error);
+	free_all(args);
+	exit(EXIT_FAILURE);
 }

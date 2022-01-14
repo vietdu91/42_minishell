@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/11 18:26:58 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/14 17:34:38 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,20 @@ tcsetattr - tcgetattr */
 # include <errno.h>
 
 # include "./checkers.h"
+# include "./fun.h"
 # include "./parsing.h"
-# include "./utils.h"
 # include "./sig.h"
+# include "./utils.h"
+# include "./errors.h"
+# include "./memory.h"
 
 # define PROMPT "\033[5;91mWELCOME TO THE (minis)HELL 😈 \e[0m\033[1;93m$> \e[0m"
 
-typedef struct s_data
-{
-	int	exit_status;
-}	t_data;
+extern int	g_exit_status;
 
 /*		MAIN.C		*/
 
-void	loop(void);
+void	loop(char **envp, t_args *args);
+void	cmp_all(t_args *args, char **envp);
 
 #endif

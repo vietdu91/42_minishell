@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_linked.c                                     :+:      :+:    :+:   */
+/*   fun.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/04 11:34:19 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/13 18:37:19 by emtran           ###   ########.fr       */
+/*   Created: 2022/01/13 13:54:32 by emtran            #+#    #+#             */
+/*   Updated: 2022/01/13 13:55:19 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#ifndef FUN_H
+# define FUN_H
 
-t_list	*init_list(void)
-{
-	t_list	*list;
+/*		PRINT_FUN.C		*/
 
-	list = NULL;
-	list = (t_list *)malloc(sizeof(t_list));
-	if (!list)
-		return (NULL);
-	list->head = NULL;
-	list->tail = NULL;
-	list->length = 0;
-	return (list);
-}
+void	print_scare_me(void);
+
+#endif 
