@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/14 18:00:39 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/17 20:12:10 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ typedef struct s_node
 {
 	struct s_node	*next;
 	char			*content;
-	char			*option;
+	char			*name;
+	int				quote_or_not; //0_nothing ; 1_simple_quote ; 2_double_quote
 	int				index;
 	char			**cmd;
 }	t_node;
