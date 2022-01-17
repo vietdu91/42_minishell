@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/14 18:02:05 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/17 20:05:08 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	loop(char **envp, t_args *args)
 		add_history(args->buffer);
 		if (!args->buffer)
 		{
-			printf("exit\n");
+			ft_putstr("exit\n", 1);
 			break ;
 		}
 		else
@@ -36,25 +36,30 @@ void	cmp_all(t_args *args, char **envp)
 	int	i;
 
 	i = 0;
+	if (check_unclosed(args))
+		return ;
 	if (ft_strcmp(args->buffer, "env"))
 	{
 		while (envp[i])
-			printf("%s\n", envp[i++]);
+		{
+			ft_putstr(envp[i++], 1);
+			ft_putstr("\n", 1);
+		}
 	}
 	if (ft_strcmp(args->buffer, "scare_me"))
 		print_scare_me();
 	if (ft_strcmp(args->buffer, "exit"))
 	{
-		printf("exit \n");
+		ft_putstr("exit\n", 1);
 		free_all(args);
 		exit(EXIT_SUCCESS);
 	}
 	if (ft_strcmp(args->buffer, "echo $?"))
 		printf("%d\n", g_exit_status);
 	printf("cmd = %s\n", args->buffer);
-	printf("PATH = %s\n", args->path);
-	printf("PWD = %s\n", args->pwd);
-	printf("OLDPWD = %s\n", args->oldpwd);
+//	printf("PATH = %s\n", args->path);
+//	printf("PWD = %s\n", args->pwd);
+//	printf("OLDPWD = %s\n", args->oldpwd);
 }
 
 int	main(int argc, char **argv, char **envp)
