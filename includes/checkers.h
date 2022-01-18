@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:37:14 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/17 15:37:31 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/18 11:45:46 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	is_quote(char c);
 
 /*		IS_UNCLOSED.C			*/
 
+int	check_unclosed(t_args *args);
 int	is_unclosed_quotes(char *str);
 int	is_unclosed_parenth(char *str);
 

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/17 20:05:08 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/18 13:46:41 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	cmp_all(t_args *args, char **envp)
 	int	i;
 
 	i = 0;
-	if (check_unclosed(args))
+	if (check_unclosed(args) == 1)
 		return ;
 	if (ft_strcmp(args->buffer, "env"))
 	{
@@ -46,6 +46,10 @@ void	cmp_all(t_args *args, char **envp)
 			ft_putstr("\n", 1);
 		}
 	}
+	if (ft_strcmp(args->buffer, "cd"))
+		cd_main(args->home);
+	if (ft_strcmp(args->buffer, "pwd"))
+		pwd_main();	
 	if (ft_strcmp(args->buffer, "scare_me"))
 		print_scare_me();
 	if (ft_strcmp(args->buffer, "exit"))
@@ -56,7 +60,8 @@ void	cmp_all(t_args *args, char **envp)
 	}
 	if (ft_strcmp(args->buffer, "echo $?"))
 		printf("%d\n", g_exit_status);
-	printf("cmd = %s\n", args->buffer);
+//	printf("cmd = %s\n", args->buffer);
+//	printf("HOME = %s\n", args->home);
 //	printf("PATH = %s\n", args->path);
 //	printf("PWD = %s\n", args->pwd);
 //	printf("OLDPWD = %s\n", args->oldpwd);

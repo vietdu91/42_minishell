@@ -6,33 +6,59 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/17 20:12:10 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/18 13:44:22 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
-# include "./bultin.h"
 
 /*typedef struct s_exit_status
 {
 	int	interrogation;
 }	t_exit_status;*/
 
-typedef struct s_operator
+typedef struct s_env
 {
-	int		pipe;
-	int		double_pipe;
-	int		double_appersand;
-}	t_operator;
+	int	env_on;
+}	t_env;
 
-typedef struct s_redir
+typedef struct s_pwd
 {
-	int		to_output;
-	int		to_input;
-	int		append_output;
-	int		heredoc;
-}	t_redir;
+	int	pwd_on;
+}	t_pwd;
+
+typedef struct s_history
+{
+	int	history_on;
+}	t_history;
+
+typedef struct s_exit
+{
+	int		exit_on;
+	int		nb;
+}	t_exit;
+
+typedef struct s_export
+{
+	int		export_on;
+}	t_export;
+
+typedef struct s_unset
+{
+	int		unset_on;
+}	t_unset;
+
+typedef struct s_cd
+{
+	int		cd_on;
+}	t_cd;
+
+typedef struct s_echo
+{
+	int		echo_on;
+	int		option_n;
+}	t_echo;
 
 typedef struct s_builtin
 {
@@ -50,23 +76,34 @@ typedef struct s_builtin
 typedef struct s_args
 {
 	t_builtin		*builtin;
-	t_redir			*redir;
-	t_operator		*operator;
 	char			*buffer;
 	char			**env;
 	char			*path;
 	char			*pwd;
 	char			*oldpwd;
+	char			*home;
 }	t_args;
-/* checker comment faire differents types de struct*/
 
+/* checker comment faire differents types de struct*/
+/*
+enum	e_type_of_word
+{
+	SIMPLE_ARG,
+	INFILE,
+	OPENFILE,
+	OUTFILE,
+	// ...
+	SUPER_OUTFILE,
+	HEREDOC,
+	LIMITATOR,
+};*/
 /* maillons de la liste chainee */
 
 typedef struct s_node
 {
 	struct s_node	*next;
 	char			*content;
-	char			*name;
+//	enum			e_type_of_word;
 	int				quote_or_not; //0_nothing ; 1_simple_quote ; 2_double_quote
 	int				index;
 	char			**cmd;
@@ -76,7 +113,7 @@ typedef struct s_list
 {
 	t_node	*head;
 	t_node	*tail; // il sert a quoi ?
-	int		length;
+	int		length; // il sert a quoi ?
 }	t_list;
 
 /*		FIND_IN_ENV.C		*/
@@ -84,5 +121,6 @@ typedef struct s_list
 char	*find_path(char **envp);
 char	*find_pwd(char **envp);
 char	*find_oldpwd(char **envp);
+char	*find_home(char **envp);
 
 #endif

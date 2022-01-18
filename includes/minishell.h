@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/17 15:34:22 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/18 13:43:31 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ tcsetattr - tcgetattr */
 # include <errno.h>
 
 # include "./parsing.h"
+# include "./bultin.h"
 # include "./checkers.h"
 # include "./fun.h"
 # include "./sig.h"

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:23:46 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/14 18:00:10 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:06:17 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,23 @@ char	*find_oldpwd(char **envp)
 			i++;
 		else
 			return (envp[i] + 7);
+	}
+	return (NULL);
+}
+
+char	*find_home(char **envp)
+{
+	int	i;
+
+	i = 0;
+	if (!envp)
+		return (NULL);
+	while (envp[i])
+	{
+		if (ft_strncmp(envp[i], "HOME", 4))
+			i++;
+		else
+			return (envp[i] + 5);
 	}
 	return (NULL);
 }
