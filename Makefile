@@ -19,6 +19,8 @@ SRCS		= 	main.c \
 				memory/free_box.c \
 				memory/initialisation.c \
 				parsing/find_in_env.c \
+				parsing/parser.c \
+				parsing/line_to_linked_list.c \
 				signal/signal.c \
 				utils/utils_digits.c \
 				utils/utils_gnl.c \

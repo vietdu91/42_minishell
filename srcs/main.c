@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/14 18:02:05 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/20 17:42:36 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ void	cmp_all(t_args *args, char **envp)
 	}
 	if (ft_strcmp(args->buffer, "echo $?"))
 		printf("%d\n", g_exit_status);
-	printf("cmd = %s\n", args->buffer);
+	maestro(args->buffer);
+/*	printf("cmd = %s\n", args->buffer);
 	printf("PATH = %s\n", args->path);
 	printf("PWD = %s\n", args->pwd);
-	printf("OLDPWD = %s\n", args->oldpwd);
+	printf("OLDPWD = %s\n", args->oldpwd);*/
 }
 
 int	main(int argc, char **argv, char **envp)

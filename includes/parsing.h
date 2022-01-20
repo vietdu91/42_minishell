@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/14 18:00:39 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/20 16:35:36 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,7 @@ char	*find_path(char **envp);
 char	*find_pwd(char **envp);
 char	*find_oldpwd(char **envp);
 
+/*		PARSER.C			*/
+
+int		maestro(char *line);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_unclosed.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 11:55:41 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/10 14:26:46 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/16 17:26:12 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_unclosed_quotes(char *str)
 	{
 		if (str[i] == '\'')
 			nb_single_q++;
-		if (str[i] == '\"')
+		if (str[i] == '\"' && !nb_single_q)
 			nb_double_q++;
 	}
 	if (nb_single_q % 2 != 0 || nb_double_q % 2 != 0)
