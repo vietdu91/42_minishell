@@ -6,31 +6,55 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 11:55:41 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/16 17:26:12 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/20 23:44:43 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+int	check_unclosed(t_args *args)
+{
+	int	checker;
+
+	checker = is_unclosed_quotes(args->buffer);
+	if (checker > 0)
+	{
+		if (checker == 1)
+			print_syntax_error(ERR_UNCLOSED, '\'', 1);
+		else if (checker == 2)
+			print_syntax_error(ERR_UNCLOSED, '"', 1);
+		g_exit_status = 2;
+		return (1);
+	}
+	return (0);
+}
+
 int	is_unclosed_quotes(char *str)
 {
-	int	i;
-	int	nb_single_q;
-	int	nb_double_q;
+	int		i;
+	int		status_quote;
 
-	i = -1;
-	nb_single_q = 0;
-	nb_double_q = 0;
-	while (str[++i])
+	i = 0;
+	status_quote = 0;
+	while (str[i])
 	{
 		if (str[i] == '\'')
-			nb_single_q++;
-		if (str[i] == '\"' && !nb_single_q)
-			nb_double_q++;
+		{
+			if (status_quote == 0)
+				status_quote = 1;
+			else if (status_quote == 1)
+				status_quote = 0;
+		}
+		if (str[i] == '"')
+		{
+			if (status_quote == 0)
+				status_quote = 2;
+			else if (status_quote == 2)
+				status_quote = 0;
+		}
+		i++;
 	}
-	if (nb_single_q % 2 != 0 || nb_double_q % 2 != 0)
-		return (1);
-	return (0);
+	return (status_quote);
 }
 
 int	is_unclosed_parenth(char *str)

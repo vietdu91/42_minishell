@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:08:22 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/14 16:37:27 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:16:16 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,18 @@ void	fork_of_errors(int a, t_args *args)
 
 void	print_error(char *msg_error, t_args *args)
 {
-	printf("%s\n", msg_error);
+	ft_putstr(msg_error, 2);
+	ft_putstr("\n", 2);
 	free_all(args);
 	exit(EXIT_FAILURE);
+}
+
+void	print_syntax_error(char *msg_error, char sign, int a)
+{
+	if (a == 1) //unclosed quotes
+		ft_putstr(msg_error, 2);
+	else
+		ft_putstr(msg_error, 2);
+	ft_putchar(sign, 2);
+	ft_putstr("'\n", 2);
 }

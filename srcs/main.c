@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/20 17:42:36 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/20 23:47:44 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	loop(char **envp, t_args *args)
 		add_history(args->buffer);
 		if (!args->buffer)
 		{
-			printf("exit\n");
+			ft_putstr("exit\n", 1);
 			break ;
 		}
 		else
@@ -36,19 +36,25 @@ void	cmp_all(t_args *args, char **envp)
 	int	i;
 
 	i = 0;
+	if (check_unclosed(args) == 1)
+		return ;
+	args->nb_commands = how_many_commands(args->buffer);
 	if (ft_strcmp(args->buffer, "env"))
 	{
 		while (envp[i])
-			printf("%s\n", envp[i++]);
+		{
+			ft_putstr(envp[i++], 1);
+			ft_putstr("\n", 1);
+		}
 	}
+	if (ft_strcmp(args->buffer, "cd"))
+		cd_main(args->home);
+	if (ft_strcmp(args->buffer, "pwd"))
+		pwd_main();
 	if (ft_strcmp(args->buffer, "scare_me"))
 		print_scare_me();
 	if (ft_strcmp(args->buffer, "exit"))
-	{
-		printf("exit \n");
-		free_all(args);
-		exit(EXIT_SUCCESS);
-	}
+		exit_main(args);
 	if (ft_strcmp(args->buffer, "echo $?"))
 		printf("%d\n", g_exit_status);
 	maestro(args->buffer);
@@ -60,16 +66,20 @@ void	cmp_all(t_args *args, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_args	args;
+	t_args	*args;
 
 	(void) argc;
 	(void) argv;
+	args = NULL;
+	args = malloc(sizeof(t_args));
+	if (!args)
+		fork_of_errors(2, args);
 	if (!envp)
-		fork_of_errors(1, &args);
-	init_and_set_all(&args, envp);
+		fork_of_errors(1, args);
+	init_and_set_all(args, envp);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, &signal_ctlr_c);
-	loop(envp, &args);
-	free_all(&args);
+	loop(envp, args);
+	free_all(args);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/20 16:35:22 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/20 23:47:02 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ tcsetattr - tcgetattr */
 # include <sys/ioctl.h>
 # include <errno.h>
 
+# include "./parsing.h"
+# include "./bultin.h"
 # include "./checkers.h"
 # include "./fun.h"
-# include "./parsing.h"
 # include "./sig.h"
 # include "./utils.h"
 # include "./errors.h"

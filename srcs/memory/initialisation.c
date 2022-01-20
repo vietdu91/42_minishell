@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:26:48 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/14 18:01:23 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/20 15:02:12 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,11 @@ void	set_all(t_args *args, char **envp)
 	args->path = find_path(envp);
 	args->pwd = find_pwd(envp);
 	args->oldpwd = find_oldpwd(envp);
+	args->home = find_home(envp);
 }
 
 void	init_struct(t_args *args)
 {
-	args->operator->pipe = 0;
-	args->operator->double_pipe = 0;
-	args->operator->double_appersand = 0;
-	args->redir->to_output = 0;
-	args->redir->to_input = 0;
-	args->redir->append_output = 0;
-	args->redir->heredoc = 0;
 	args->builtin->tab_builtin = NULL;
 	args->builtin->cd->cd_on = 0;
 	args->builtin->echo->echo_on = 0;
@@ -42,12 +36,14 @@ void	init_struct(t_args *args)
 
 void	init_and_set_all(t_args *args, char **envp)
 {
+\
 	g_exit_status = 0;
 	args->buffer = NULL;
 	args->env = NULL;
 	args->path = NULL;
 	args->pwd = NULL;
 	args->oldpwd = NULL;
+	args->nb_commands = 0;
 //	init_struct(args);
 	set_all(args, envp);
 }
