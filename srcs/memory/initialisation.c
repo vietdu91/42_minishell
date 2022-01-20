@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:26:48 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/18 12:06:49 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/20 15:02:12 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ void	init_struct(t_args *args)
 
 void	init_and_set_all(t_args *args, char **envp)
 {
+\
 	g_exit_status = 0;
 	args->buffer = NULL;
 	args->env = NULL;
 	args->path = NULL;
 	args->pwd = NULL;
 	args->oldpwd = NULL;
+	args->nb_commands = 0;
 //	init_struct(args);
 	set_all(args, envp);
 }

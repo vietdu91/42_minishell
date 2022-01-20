@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/14 17:20:29 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/20 14:49:37 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	free_all(t_args *args)
 		return ;
 	if (args->buffer)
 		free(args->buffer);
+	free(args);
 	rl_clear_history();
 	args = NULL;
 }

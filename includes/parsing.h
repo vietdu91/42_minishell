@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/18 13:44:22 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/20 15:53:02 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,29 +82,37 @@ typedef struct s_args
 	char			*pwd;
 	char			*oldpwd;
 	char			*home;
+	int				nb_commands;
 }	t_args;
 
 /* checker comment faire differents types de struct*/
-/*
-enum	e_type_of_word
+
+enum	e_type
 {
+	EMPTY,
 	SIMPLE_ARG,
+/*		<		*/
+	INPUT,
 	INFILE,
-	OPENFILE,
+/*		>		*/
+	OUTPUT,
 	OUTFILE,
-	// ...
+/*		>>		*/
+	SUPER_OUTPUT,
 	SUPER_OUTFILE,
+/*		<<		*/
 	HEREDOC,
 	LIMITATOR,
-};*/
+};
 /* maillons de la liste chainee */
 
 typedef struct s_node
 {
 	struct s_node	*next;
 	char			*content;
-//	enum			e_type_of_word;
-	int				quote_or_not; //0_nothing ; 1_simple_quote ; 2_double_quote
+	enum e_type		type;
+	int				quote_or_not; 
+//	0_nothing ; 1_simple_quote ; 2_double_quote
 	int				index;
 	char			**cmd;
 }	t_node;

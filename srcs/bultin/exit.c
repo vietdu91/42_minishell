@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bultin.h                                           :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/18 14:14:02 by emtran           ###   ########.fr       */
+/*   Created: 2022/01/18 14:10:01 by emtran            #+#    #+#             */
+/*   Updated: 2022/01/18 15:52:11 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BULTIN_H
-# define BULTIN_H
+#include "../../includes/minishell.h"
 
-/*		CD.C		*/
+void	exit_main(t_args *args)
+{
+	ft_putstr("exit\n", 1);
+	free_all(args);
+	exit(EXIT_SUCCESS);
+}
 
-void	cd_main(char *path);
-
-/*		EXIT.C		*/
-
-void	exit_main(t_args *args);
-
-/*		PWD.C		*/
-
-int		pwd_main(void);
-
-#endif
+/* Faire modulo %256 pour g_exit_status
+Gestion du LONG_LONG_MAX et LONG_LONG_MIN
+*/
