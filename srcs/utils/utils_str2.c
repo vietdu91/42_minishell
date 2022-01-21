@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:28:57 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/16 16:50:54 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/21 13:59:43 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,22 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n - 1)
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+char	*ft_strdup(char *str)
+{
+	int		i;
+	char	*n_str;
+
+	i = 0;
+	while (str[i])
+		i++;
+	n_str = malloc(sizeof(char) * (i + 1));
+	if (!n_str)
+		return (NULL);
+	i = -1;
+	while (str[++i])
+		n_str[i] = str[i];
+	n_str[i] = 0;
+	return (n_str);
 }

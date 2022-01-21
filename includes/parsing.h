@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/20 23:47:09 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/21 14:42:04 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 {
 	int	interrogation;
 }	t_exit_status;*/
-
-typedef struct s_env
-{
-	int	env_on;
-}	t_env;
 
 typedef struct s_pwd
 {
@@ -65,27 +60,11 @@ typedef struct s_builtin
 	char		**tab_builtin;
 	t_cd		*cd;
 	t_echo		*echo;
-	t_env		*env;
 	t_export	*export;
 	t_history	*history;
 	t_pwd		*pwd;
 	t_unset		*unset;
 }	t_builtin;
-
-/* pointeurs sur les structs de type fichier builtin etc */
-typedef struct s_args
-{
-	t_builtin		*builtin;
-	char			*buffer;
-	char			**env;
-	char			*path;
-	char			*pwd;
-	char			*oldpwd;
-	char			*home;
-	int				nb_commands;
-}	t_args;
-
-/* checker comment faire differents types de struct*/
 
 enum	e_type
 {
@@ -117,12 +96,42 @@ typedef struct s_node
 	char			**cmd;
 }	t_node;
 
+typedef struct s_env
+{
+	struct s_env	*next;
+	char			*line;
+	char			*variable;
+	char			*content;
+	int				index;
+}	t_env;
+
+typedef struct s_env_list
+{
+	t_env	*head;
+	int		length;
+}	t_env_list;
+
 typedef struct s_list
 {
 	t_node	*head;
-	t_node	*tail; // il sert a quoi ?
-	int		length; // il sert a quoi ?
+	t_node	*tail;
+	int		length;
 }	t_list;
+
+typedef struct s_args
+{
+	t_builtin		*builtin;
+	t_env			*our_env;
+	char			*buffer;
+//	char			**env;
+	char			*path;
+	char			*pwd;
+	char			*oldpwd;
+	char			*home;
+	int				nb_commands;
+}	t_args;
+
+
 
 /*		FIND_IN_ENV.C		*/
 
@@ -133,5 +142,8 @@ char	*find_home(char **envp);
 
 /*		PARSER.C			*/
 
+void	zap_spaces(char **line);
+char	*first_word(char **str);
+int		parser(char **line);
 int		maestro(char *line);
 #endif

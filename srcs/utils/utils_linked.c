@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_linked.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:34:19 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/16 16:50:38 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/21 14:24:40 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,32 @@ t_list	*init_list(void)
 	list->head = NULL;
 	list->tail = NULL;
 	list->length = 0;
+	return (list);
+}
+
+t_list	*list_end(t_list *list, char *content)
+{
+	t_node	*node;
+
+	if (!list || !content)
+		return (NULL);
+	node = malloc(sizeof(t_node));
+	if (!node)
+		return (NULL);
+	node->content = ft_strdup(content);
+	if (!node->content)
+		return (NULL);
+	node->next = NULL;
+	if (list->head == NULL)
+	{
+		list->head = node;
+		list->tail = node;
+	}
+	else
+	{
+		list->tail->next = node;
+		list->tail = node;
+	}
+	list->length++;
 	return (list);
 }
