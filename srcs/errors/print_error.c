@@ -6,13 +6,13 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:08:22 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/18 12:16:16 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/23 17:10:40 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	fork_of_errors(int a, t_args *args)
+void	intersection_of_errors(int a, t_args *args)
 {
 	if (a == 1)
 		print_error(ERR_NOENV, args);

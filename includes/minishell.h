@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/20 23:47:02 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/23 17:10:40 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 /* malloc - free - exit - getenv */
 # include <stdlib.h>
-/* write - access - read - close - fork - getcwd - chdir - stat - lstat 
+/* write - access - read - close - intersection - getcwd - chdir - stat - lstat 
 fstat - unlink - execve - dup - dup2 - pipe - isatty - ttyname - ttyslot 
 tcsetattr - tcgetattr */
 # include <unistd.h>

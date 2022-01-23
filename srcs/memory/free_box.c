@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/23 16:15:40 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/23 16:55:48 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	free_env_list(t_env_list *env)
 		a++;
 		del = i;
 		free(del->line);
+		free(del->variable);
+		free(del->content);
 		free(del);
 		i = i->next;
 	}
