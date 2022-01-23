@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/21 14:00:22 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/23 15:56:12 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,10 @@ void	cmp_all(t_args *args, char **envp)
 	i = 0;
 	if (check_unclosed(args) == 1)
 		return ;
+	(void) envp;
 	args->nb_commands = how_many_commands(args->buffer);
 	if (ft_strcmp(args->buffer, "env"))
-	{
-		while (envp[i])
-		{
-			ft_putstr(envp[i++], 1);
-			ft_putstr("\n", 1);
-		}
-	}
+		display_env(args);
 	if (ft_strcmp(args->buffer, "cd"))
 		cd_main(args->home);
 	if (ft_strcmp(args->buffer, "pwd"))

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:26:48 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/21 14:35:20 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/23 15:57:17 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	set_all(t_args *args, char **envp)
 	args->home = find_home(envp);
 	get_env(args, envp);
 }
+
 
 void	init_struct(t_args *args)
 {

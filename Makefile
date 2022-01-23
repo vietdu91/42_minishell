@@ -20,6 +20,7 @@ SRCS		= 	main.c \
 				fun/print_fun.c \
 				memory/free_box.c \
 				memory/initialisation.c \
+				memory/initialisation_env.c \
 				parsing/find_in_env.c \
 				parsing/parser.c \
 				parsing/line_to_linked_list.c \

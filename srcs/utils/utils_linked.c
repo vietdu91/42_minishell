@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:34:19 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/21 14:24:40 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/23 13:57:37 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,16 @@ t_list	*list_end(t_list *list, char *content)
 	}
 	list->length++;
 	return (list);
+}
+
+void	list_display(t_list *l)
+{
+	t_node	*i;
+
+	i = l->head;
+	while (i)
+	{
+		printf("%s\n", i->content);
+		i = i->next;
+	}
 }

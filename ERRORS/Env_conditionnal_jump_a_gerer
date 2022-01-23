@@ -1,0 +1,7 @@
+==14173== Conditional jump or move depends on uninitialised value(s)
+==14173==    at 0x40163F: display_env (env.c:51)
+==14173==    by 0x40131C: cmp_all (main.c:44)
+==14173==    by 0x40128B: loop (main.c:29)
+==14173==    by 0x40149E: main (main.c:77)
+
+========================================================================

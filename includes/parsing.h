@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/21 14:42:04 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/23 13:53:08 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,16 +98,17 @@ typedef struct s_node
 
 typedef struct s_env
 {
-	struct s_env	*next;
 	char			*line;
 	char			*variable;
 	char			*content;
 	int				index;
+	struct s_env	*next;
 }	t_env;
 
 typedef struct s_env_list
 {
 	t_env	*head;
+	t_env	*tail;
 	int		length;
 }	t_env_list;
 
@@ -121,9 +122,8 @@ typedef struct s_list
 typedef struct s_args
 {
 	t_builtin		*builtin;
-	t_env			*our_env;
+	t_env_list		*env;
 	char			*buffer;
-//	char			**env;
 	char			*path;
 	char			*pwd;
 	char			*oldpwd;

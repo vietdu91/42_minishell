@@ -6,45 +6,64 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/21 17:43:29 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/23 16:29:20 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_env_list	*init_env_list(void)
+t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args)
 {
-	t_env_list	*env_list;
-	t_env		*env;
+	t_env	*node;
 
-	env_list = NULL;
-	env_list = (t_env_list *)malloc(sizeof(t_env_list));
-	if (!env_list)
+	if (!args)
 		return (NULL);
-	env_list->head = NULL;
-	env_list->length = 0;
-	env = (t_env *)malloc(sizeof(t_env));
-	if (!env)
-		return (NULL);
-	env->next = NULL;
-	env->line = NULL;
-	env->variable = NULL;
-	env->content = NULL;
-	env->index = 0;
-	env_list->head = env;
-	return (env_list);
+	node = malloc(sizeof(t_node));
+	if (!node)
+		fork_of_errors(2, args);
+	node->line = ft_strdup(content);
+	if (!node->line)
+		fork_of_errors(2, args);
+	if (env->head == NULL)
+	{
+		env->head = node;
+		env->tail = node;
+	}
+	else
+	{
+		env->tail->next = node;
+		env->tail = node;
+	}
+	env->length++;
+	return (env);
+}
+
+void	display_env(t_args *args)
+{
+	t_env	*current;
+
+	current = NULL;
+	if (!args || !args->env)
+		return ;
+	current = args->env->head;
+	while (current)
+	{
+		printf("%s\n", current->line);
+		current = current->next;
+	}
 }
 
 void	get_env(t_args *args, char **envp)
 {
-	t_env_list	*env_list;
-	int			i;
+	int	i;
 
-	(void) args;
-	env_list = init_env_list();
 	i = 0;
 	if (!envp)
-		return ;
-	free(env_list->head);
-	free(env_list);
+		fork_of_errors(1, args);
+	args->env = init_env_list(args);
+	while (envp[i])
+	{
+		add_var_to_env(args->env, envp[i], args);
+		i++;
+	}
 }
