@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/23 17:30:30 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/24 14:16:32 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ enum	e_var
 	OLDPWD,
 	HOME,
 	SHLVL,
-}
+};
 /* maillons de la liste chainee */
 
 typedef struct s_node
@@ -110,7 +110,7 @@ typedef struct s_env
 	char			*line;
 	char			*variable;
 	char			*content;
-	enum e_var		var_identification;
+	enum e_var		var_id;
 	struct s_env	*next;
 }	t_env;
 

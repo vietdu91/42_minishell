@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:22:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/23 17:21:43 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/24 14:16:26 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,24 @@
 
 void	change_pwd(char *newpwd, t_args *args)
 {
-	
+	t_env	node;
+
+	if (!args || !newpwd)
+		return ;
+	node = NULL;
+	node = args->env->head
+	while (node)
+	{
+		if (node->var_id == 1)
+		node = node->next;
+	}
 }
 
 int	pwd_main(t_args *args)
 {
 	char	*pwd;
 
+	(void) args;
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
 		return (1);

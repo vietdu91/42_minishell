@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/23 17:06:35 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/24 14:13:48 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 /*		ENV.C		*/
 
-char		*get_variable_env(char *str);
-char		*get_content_env(char *str);
 t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args);
 void		display_env(t_args *args);
 void		get_env(t_args *args, char **envp);
@@ -31,6 +29,8 @@ void		exit_main(t_args *args);
 
 /*		PWD.C		*/
 
-int			pwd_main(void);
+void		change_pwd(char *newpwd, t_args *args);
+int			pwd_main(t_args *args);
+
 
 #endif

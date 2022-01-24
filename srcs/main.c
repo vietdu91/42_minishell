@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/23 17:10:40 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/24 14:08:10 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	cmp_all(t_args *args, char **envp)
 	if (ft_strcmp(args->buffer, "cd"))
 		cd_main(args->home);
 	if (ft_strcmp(args->buffer, "pwd"))
-		pwd_main();
+		pwd_main(args);
 	if (ft_strcmp(args->buffer, "scare_me"))
 		print_scare_me();
 	if (ft_strcmp(args->buffer, "exit"))

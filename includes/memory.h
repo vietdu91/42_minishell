@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:55:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/23 15:16:59 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/24 14:14:56 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ void		set_all(t_args *args, char **envp);
 
 t_env_list	*init_env_list(t_args *args);
 void		init_env_node(t_env *node);
+char		*set_variable_env(char *str);
+char		*set_content_env(char *str);
+int			set_id_env(char *str);
 
 #endif

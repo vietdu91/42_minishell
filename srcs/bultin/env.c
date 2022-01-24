@@ -6,53 +6,11 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/23 17:13:26 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/24 14:16:38 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-char	*get_variable_env(char *str)
-{
-	int		i;
-	char	*variable;
-
-	i = 0;
-	while (str[i] && str[i] != '=')
-		i++;
-	variable = malloc(sizeof(char) * (i + 1));
-	if (!variable)
-		return (NULL);
-	i = 0;
-	while (str[i] && str[i] != '=')
-	{
-		variable[i] = str[i];
-		i++;
-	}
-	variable[i] = 0;
-	return (variable);
-}
-
-char	*get_content_env(char *str)
-{
-	int		i;
-	int		j;
-	char	*content;
-
-	i = ft_strlen(str) - 1;
-	j = 0;
-	while (str[i] && str[i] != '=')
-		i--;
-	content = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
-	if (!content)
-		return (NULL);
-	while (str[++i])
-	{
-		content[j++] = str[i];
-	}
-	content[j] = 0;
-	return (content);
-}
 
 t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args)
 {
@@ -64,8 +22,9 @@ t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args)
 	if (!node)
 		intersection_of_errors(2, args);
 	node->line = ft_strdup(content);
-	node->variable = get_variable_env(node->line);
-	node->content = get_content_env(node->line);
+	node->variable = set_variable_env(node->line);
+	node->content = set_content_env(node->line);
+	node->var_id = set_id_env(node->variable);
 	if (!node->line)
 		intersection_of_errors(2, args);
 	if (env->head == NULL)
