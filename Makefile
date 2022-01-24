@@ -21,6 +21,7 @@ SRCS		= 	main.c \
 				memory/free_box.c \
 				memory/initialisation.c \
 				memory/initialisation_env.c \
+				memory/initialisation_no_env.c \
 				parsing/find_in_env.c \
 				parsing/parser.c \
 				parsing/line_to_linked_list.c \

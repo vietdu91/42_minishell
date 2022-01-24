@@ -6,11 +6,21 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/24 14:16:38 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/24 18:02:41 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	set_new_content_in_env(t_env *node, char *content, t_args *args)
+{
+	node->line = ft_strdup(content);
+	if (!node->line)
+		intersection_of_errors(2, args);
+	node->variable = set_variable_env(node->line);
+	node->content = set_content_env(node->line);
+	node->var_id = set_id_env(node->variable);
+}
 
 t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args)
 {
@@ -18,15 +28,11 @@ t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args)
 
 	if (!args)
 		return (NULL);
-	node = malloc(sizeof(t_node));
+	node = NULL;
+	node = malloc(sizeof(t_env));
 	if (!node)
 		intersection_of_errors(2, args);
-	node->line = ft_strdup(content);
-	node->variable = set_variable_env(node->line);
-	node->content = set_content_env(node->line);
-	node->var_id = set_id_env(node->variable);
-	if (!node->line)
-		intersection_of_errors(2, args);
+	set_new_content_in_env(node, content, args);
 	if (env->head == NULL)
 	{
 		env->head = node;
@@ -61,12 +67,11 @@ void	get_env(t_args *args, char **envp)
 	int	i;
 
 	i = 0;
-	if (!envp)
-		intersection_of_errors(1, args);
 	args->env = init_env_list(args);
 	while (envp[i])
 	{
 		add_var_to_env(args->env, envp[i], args);
 		i++;
 	}
+	g_exit_status = 0;
 }

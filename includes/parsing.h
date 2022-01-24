@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/24 14:16:32 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/24 15:42:58 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 	int	interrogation;
 }	t_exit_status;*/
 
-typedef struct s_pwd
+/*typedef struct s_pwd
 {
-	int	pwd_on;
+	int		oldpwd_on;
+	char	*oldpwd;
 }	t_pwd;
 
 typedef struct s_history
@@ -53,17 +54,19 @@ typedef struct s_echo
 {
 	int		echo_on;
 	int		option_n;
-}	t_echo;
+}	t_echo;*/
 
 typedef struct s_builtin
 {
-	char		**tab_builtin;
+/*	char		**tab_builtin;
 	t_cd		*cd;
 	t_echo		*echo;
 	t_export	*export;
 	t_history	*history;
 	t_pwd		*pwd;
-	t_unset		*unset;
+	t_unset		*unset;*/
+	int		oldpwd_on;
+	char	*oldpwd;
 }	t_builtin;
 
 enum	e_type
@@ -135,7 +138,6 @@ typedef struct s_args
 	char			*buffer;
 	char			*path;
 	char			*pwd;
-	char			*oldpwd;
 	char			*home;
 	int				nb_commands;
 }	t_args;

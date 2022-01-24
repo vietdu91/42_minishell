@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/23 17:10:40 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/24 18:24:33 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ tcsetattr - tcgetattr */
 # include "./errors.h"
 # include "./memory.h"
 
-# define PROMPT "\033[5;91mWELCOME TO THE (minis)HELL 😈 \e[0m\033[1;93m$> \e[0m"
+# define PROMPT "\033[5;91mWELCOME TO (minis)HELL 😈 \e[0m\033[1;93m$> \e[0m"
 
 extern int	g_exit_status;
 

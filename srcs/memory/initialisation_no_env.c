@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   initialisation_no_env.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/24 18:25:41 by emtran           ###   ########.fr       */
+/*   Created: 2022/01/24 17:44:40 by emtran            #+#    #+#             */
+/*   Updated: 2022/01/24 18:26:23 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
-void	cd_main(char *path, t_args *args)
+void	get_env_if_no_env(t_args *args)
 {
-	if (!path)
-	{
-		printf("bash: cd: HOME not set\n");
+	t_env	*node;
+	char	*pwd;
+	char	*shlvl;
+
+	(void) node;
+	if (!args)
 		return ;
-	}
-	if (args->builtin->oldpwd)
-		free(args->builtin->oldpwd);
-	args->builtin->oldpwd = ft_strdup(path);
-	if (chdir(path) == -1)
-		perror("bash: cd");
-	change_pwd(path, args);
-	g_exit_status = 0;
+	args->env = init_env_list(args);
+	pwd = ft_strjoin("PWD=", getcwd(NULL, 0));
+	shlvl = ft_strdup("SHLVL=1");
+	add_var_to_env(args->env, pwd, args);
+	add_var_to_env(args->env, shlvl, args);
 }

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/24 14:08:10 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/24 18:19:15 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void	cmp_all(t_args *args, char **envp)
 		return ;
 	(void) envp;
 	args->nb_commands = how_many_commands(args->buffer);
+	if (ft_strcmp(args->buffer, "echo"))
+		ft_putchar('\n', 1);
 	if (ft_strcmp(args->buffer, "env"))
 		display_env(args);
 	if (ft_strcmp(args->buffer, "cd"))
-		cd_main(args->home);
+		cd_main(args->home, args);
 	if (ft_strcmp(args->buffer, "pwd"))
 		pwd_main(args);
 	if (ft_strcmp(args->buffer, "scare_me"))
@@ -69,8 +71,6 @@ int	main(int argc, char **argv, char **envp)
 	args = malloc(sizeof(t_args));
 	if (!args)
 		intersection_of_errors(2, args);
-	if (!envp)
-		intersection_of_errors(1, args);
 	init_and_set_all(args, envp);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, &signal_ctlr_c);
