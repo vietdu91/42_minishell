@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/24 18:02:41 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/25 15:28:03 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ void	set_new_content_in_env(t_env *node, char *content, t_args *args)
 	if (!node->line)
 		intersection_of_errors(2, args);
 	node->variable = set_variable_env(node->line);
+	if (!node->variable)
+		intersection_of_errors(2, args);
 	node->content = set_content_env(node->line);
+	if (!node->content)
+		intersection_of_errors(2, args);
 	node->var_id = set_id_env(node->variable);
 }
 
@@ -32,6 +36,7 @@ t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args)
 	node = malloc(sizeof(t_env));
 	if (!node)
 		intersection_of_errors(2, args);
+	init_env_node(node);
 	set_new_content_in_env(node, content, args);
 	if (env->head == NULL)
 	{
@@ -47,14 +52,14 @@ t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args)
 	return (env);
 }
 
-void	display_env(t_args *args)
+void	display_env(t_env_list *env)
 {
 	t_env	*current;
 
-	if (!args || !args->env)
+	if (!env)
 		return ;
 	current = NULL;
-	current = args->env->head;
+	current = env->head;
 	while (current)
 	{
 		printf("%s\n", current->line);
@@ -67,7 +72,8 @@ void	get_env(t_args *args, char **envp)
 	int	i;
 
 	i = 0;
-	args->env = init_env_list(args);
+	args->export = init_env_list(args->export, args);
+	args->env = init_env_list(args->env, args);
 	while (envp[i])
 	{
 		add_var_to_env(args->env, envp[i], args);

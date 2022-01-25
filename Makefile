@@ -11,6 +11,7 @@ SRCS		= 	main.c \
 				bultin/env.c \
 				bultin/exit.c \
 				bultin/export_unset.c \
+				bultin/export_tab.c \
 				bultin/pwd.c \
 				checkers/how_many.c \
 				checkers/is_unclosed.c \

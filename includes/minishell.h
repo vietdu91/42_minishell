@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/24 18:24:33 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/25 12:27:49 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ extern int	g_exit_status;
 
 /*		MAIN.C		*/
 
-void	loop(char **envp, t_args *args);
-void	cmp_all(t_args *args, char **envp);
+void	loop(t_args *args);
+void	cmp_all(t_args *args);
 
 #endif

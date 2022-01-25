@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/24 15:01:10 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/25 13:51:14 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,14 @@ int	ft_strcmp(char *str1, char *str2)
 	while (str1[i] && str2[i] && str1[i] == str2[i])
 		i++;
 	if (str1[i] == 0 && str2[i] == 0)
-		return (1);
+		return (0);
+	else
+	{
+		if (str1[i] < str2[i])
+			return (-1);
+		else if (str1[i] > str2[i])
+			return (1);
+	}
 	return (0);
 }
 

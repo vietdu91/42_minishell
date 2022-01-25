@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/24 18:25:41 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/25 12:26:34 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	cd_main(char *path, t_args *args)
 	if (!path)
 	{
 		printf("bash: cd: HOME not set\n");
+		g_exit_status = 1;
 		return ;
 	}
 	if (args->builtin->oldpwd)

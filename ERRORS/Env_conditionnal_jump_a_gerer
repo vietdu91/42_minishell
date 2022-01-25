@@ -5,3 +5,13 @@
 ==14173==    by 0x40149E: main (main.c:77)
 
 ========================================================================
+Quand on quitte le programme :
+
+==187202== Conditional jump or move depends on uninitialised value(s)
+==187202==    at 0x40258C: free_env_list (free_box.c:57)
+==187202==    by 0x4026A0: free_all (free_box.c:85)
+==187202==    by 0x401818: exit_main (exit.c:18)
+==187202==    by 0x4013DF: cmp_all (main.c:53)
+==187202==    by 0x401283: loop (main.c:29)
+==187202==    by 0x4014A1: main (main.c:76)
+==187202== 

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/24 15:43:36 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/25 14:05:07 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,18 @@ void	free_env_list(t_env_list *env)
 {
 	t_env	*del;
 	t_env	*i;
-	int		a;
 
-	a = 0;
 	if (!env)
 		return ;
 	i = env->head;
 	while (i)
 	{
-		a++;
 		del = i;
+		i = i->next;
 		free(del->line);
 		free(del->variable);
 		free(del->content);
 		free(del);
-		i = i->next;
 	}
 	free(env);
 	env = NULL;
@@ -86,6 +83,7 @@ void	free_all(t_args *args)
 		free(args->buffer);
 	free_builtins(args->builtin);
 	free_env_list(args->env);
+	free_env_list(args->export);
 	free(args);
 	rl_clear_history();
 	args = NULL;

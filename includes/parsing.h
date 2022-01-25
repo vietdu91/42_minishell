@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/24 15:42:58 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/25 14:03:19 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct s_args
 {
 	t_builtin		*builtin;
 	t_env_list		*env;
+	t_env_list		*export;
 	char			*buffer;
 	char			*path;
 	char			*pwd;

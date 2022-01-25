@@ -6,22 +6,22 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 14:28:16 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/24 14:20:49 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/25 18:43:14 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_env_list	*init_env_list(t_args *args)
+t_env_list	*init_env_list(t_env_list *env, t_args *args)
 {
-	args->env = NULL;
-	args->env = (t_env_list *)malloc(sizeof(t_env_list));
-	if (!args->env)
+	env = NULL;
+	env = (t_env_list *)malloc(sizeof(t_env_list));
+	if (!env)
 		intersection_of_errors(2, args);
-	args->env->head = NULL;
-	args->env->tail = NULL;
-	args->env->length = 0;
-	return (args->env);
+	env->head = NULL;
+	env->tail = NULL;
+	env->length = 0;
+	return (env);
 }
 
 void	init_env_node(t_env *node)
@@ -77,13 +77,13 @@ char	*set_content_env(char *str)
 
 int	set_id_env(char *str)
 {
-	if (ft_strcmp(str, "PWD"))
+	if (!ft_strcmp(str, "PWD"))
 		return (PWD);
-	else if (ft_strcmp(str, "OLDPWD"))
+	else if (!ft_strcmp(str, "OLDPWD"))
 		return (OLDPWD);
-	else if (ft_strcmp(str, "HOME"))
+	else if (!ft_strcmp(str, "HOME"))
 		return (HOME);
-	else if (ft_strcmp(str, "SHLVL"))
+	else if (!ft_strcmp(str, "SHLVL"))
 		return (SHLVL);
 	else
 		return (BASIC);
