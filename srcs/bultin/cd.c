@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/25 12:26:34 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/27 14:33:56 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	cd_main(char *path, t_args *args)
 	args->builtin->oldpwd = ft_strdup(path);
 	if (chdir(path) == -1)
 		perror("bash: cd");
-	change_pwd(path, args);
+	change_pwd_env(path, args);
+	change_pwd_export(path, args);
 	g_exit_status = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/25 15:28:03 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/27 13:59:58 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	display_env(t_env_list *env)
 	current = env->head;
 	while (current)
 	{
-		printf("%s\n", current->line);
+		if (ft_strcmp(current->content, "\0"))
+			printf("%s\n", current->line);
 		current = current->next;
 	}
 }

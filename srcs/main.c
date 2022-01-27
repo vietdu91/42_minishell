@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/25 19:36:45 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/27 14:14:40 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	cmp_all(t_args *args)
 	if (!ft_strcmp(args->buffer, "env"))
 		display_env(args->env);
 	if (!ft_strcmp(args->buffer, "export"))
-		get_export(args);
+		display_export(args->export);
 	if (!ft_strcmp(args->buffer, "cd"))
 		cd_main(args->home, args);
 	if (!ft_strcmp(args->buffer, "pwd"))

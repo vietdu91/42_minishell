@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:43:05 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/25 18:49:37 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/27 14:11:15 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,9 @@ void	display_export(t_env_list *export)
 	while (current)
 	{
 		printf("export %s", current->variable);
-		printf("=\"%s\"\n", current->content);
+		if (ft_strcmp(current->content, "\0"))
+			printf("=\"%s\"", current->content);
+		printf("\n");
 		current = current->next;
 	}
 }

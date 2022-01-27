@@ -13,6 +13,7 @@ SRCS		= 	main.c \
 				bultin/export_unset.c \
 				bultin/export_tab.c \
 				bultin/pwd.c \
+				bultin/pwd_change.c \
 				checkers/how_many.c \
 				checkers/is_unclosed.c \
 				checkers/is_alphanum.c \

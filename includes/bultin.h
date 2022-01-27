@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/25 18:46:28 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/27 14:31:55 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		exit_main(t_args *args);
 
 void		get_export(t_args *args);
 
-/*		EXPORT_TAB.C		*/
+/*				EXPORT_TAB.C		*/
 
 void		display_export(t_env_list *export);
 void		set_node_export(t_env *node, t_env *env, t_args *args);
@@ -43,9 +43,13 @@ void		sort_export(t_env_list *export);
 
 /*		PWD.C		*/
 
-void		change_pwd(char *newpwd, t_args *args);
-void		change_oldpwd(char *newpwd, t_args *args);
 int			pwd_main(t_args *args);
 
+/*				PWD_CHANGE.C		*/
+
+void		change_pwd_env(char *newpwd, t_args *args);
+void		change_oldpwd_env(char *newpwd, t_args *args);
+void		change_pwd_export(char *newpwd, t_args *args);
+void		change_oldpwd_export(char *newpwd, t_args *args);
 
 #endif
