@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/01/21 12:15:12 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/30 20:47:09 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,20 @@
 **        ls > infile1 infile 2 
 **
 */
-void	zap_spaces(char **line)
+int	zap_spaces(char **line)
 {
-	while (is_space(**line))
+	int	i;
+
+	i = 0;
+	while (is_space(*line[i]))
+	{
+		i++;
 		(*line)++;
+	}
+	return (i);
 }
 
-char	*first_word(char **str)
+int	first_word(char **str, t_parsing_list *l)
 {
 	int		i;
 	char	*cpy;
@@ -31,38 +38,57 @@ char	*first_word(char **str)
 
 	i = 0;
 	cpy = *str;
+	zap_spaces(&cpy);
 	while (cpy[i] && !is_space(cpy[i]))
+	{
+		// printf("i de fw = %d\n", i);
 		i++;
+	}
 	content = malloc(sizeof(char) * (i + 1));
 	if (!content)
-		return (NULL);
+		return (0);
 	i = 0;
 	while (**str && !is_space(**str))
 	{
+		// printf("lettre %c", **str);
 		content[i] = **str;
 		i++;
 		(*str)++;
 	}
 	content[i] = 0;
 	printf("first word = %s\n", content);
-	return (content);
+	(void)l;
+	list_end_parse(l, content);
+	return (i);
 }
 
-int	parser(char **line)
+int	parser(char **line, t_parsing_list *l)
 {
-	zap_spaces(line);
-	// checker chevron 
-	first_word(line);
-	// printf("je suis line %s\n", *line);
+	int	i;
+	int	len;
+
+	len = ft_strlen(*line);
+	i = 0;
+	i += zap_spaces(line);
+	while (**line && i < len)
+	{
+		i += zap_spaces(line);
+		i += first_word(line, l);
+	}
+	// first_word(line);
+	// checker chevron
 	return (0);
 }
 
 int	maestro(char *line)
 {
-	char	**cpy;
+	char			**cpy;
+	t_parsing_list	*l;
 
+	l = NULL;
+	init_parsing_list(&l);
 	cpy = &line;
-	printf("cpy = %s\n", *cpy);
-	parser(cpy);
+	parser(cpy, l);
+	display_parsing(l);
 	return (0);
 }

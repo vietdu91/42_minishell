@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_box.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/25 14:05:07 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/27 18:11:20 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_d_tab(char **tb)
 
 void	free_t_lists(t_list *c)
 {
-	t_node 	*del;
+	t_node	*del;
 	t_node	*i;
 
 	if (!c)

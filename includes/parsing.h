@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/25 14:03:19 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/30 20:45:14 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,24 @@ typedef struct s_echo
 	int		echo_on;
 	int		option_n;
 }	t_echo;*/
+
+typedef struct s_parsing_node
+{
+	char					*content;
+	int						arg;
+	int						cmd;
+	int						file;
+	int						builtin;
+	struct s_parsing_node	*previous;
+	struct s_parsing_node	*next;
+}	t_parsing_node;
+
+typedef struct s_parsing_list
+{
+	t_parsing_node	*head;
+	t_parsing_node	*tail;
+	int				length;
+}	t_parsing_list;
 
 typedef struct s_builtin
 {
@@ -154,8 +172,14 @@ char	*find_home(char **envp);
 
 /*		PARSER.C			*/
 
-void	zap_spaces(char **line);
-char	*first_word(char **str);
-int		parser(char **line);
+int		zap_spaces(char **line);
+int		first_word(char **str, t_parsing_list *l);
+int		parser(char **line, t_parsing_list *l);
 int		maestro(char *line);
+
+/*	init_parsing_list.c	*/
+int		init_parsing_list(t_parsing_list **l);
+void	init_parsing_node(t_parsing_node *node);
+t_parsing_list	*list_end_parse(t_parsing_list *list, char *content);
+void	display_parsing(t_parsing_list *l);
 #endif

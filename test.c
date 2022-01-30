@@ -11,7 +11,6 @@ void	free_list(__env *head)
 		head = head->next;
 		free(to_free);
 	}
-
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -20,7 +19,6 @@ int	main(int argc, char **argv, char **envp)
 
 	__env *list = NULL;
 	my_list->head = list;
-
 	my_list = malloc(sizeof(t_env_list));
 	add_var_to_env(my_list, envp);
 
