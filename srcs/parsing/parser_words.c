@@ -6,46 +6,40 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/31 21:35:13 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/31 21:57:48 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	cut_content(t_pars_list *l, int size)
+int	cut_content(t_pars_list *l)
 {
 	int		i;
 	char	**splitted;
 
-	(void)size;
+
 	splitted = ft_split_charset(l->tail->content, METACHAR);
 	i = -1;
 	while (splitted[++i])
-		printf("%s\n", splitted[i]);
+		printf("yo %s\n", splitted[i]);
 	return (0);
 }
 
-int	word_has_meta(t_pars_list *l, int *meta)
+int	word_has_meta(t_pars_list *l)
 {
 	int	i;
-	// int	quote_seen;
-	int quote_counter;
+	int	quote_counter;
 
-	(void)meta;
 	i = -1;
 	quote_counter = 0;
-	while (is_meta(l->tail->content[++i]))
-		list_end_parse(l, l->tail->content[i])
 	i = -1;
 	while (l->tail->content[++i])
 	{
 		if (is_quote(l->tail->content[i]))
-		{
-			printf("coucou\n");
 			quote_counter++;
-		}
-		printf("QUOTE : %d\n", quote_counter);
-		if (is_meta(l->tail->content[i]) && quote_counter != 1)
+		if (quote_counter == 2)
+			quote_counter = 0;
+		if (is_meta(l->tail->content[i]) && (quote_counter % 2) == 0)
 			return (1);
 	}
 	return (0);

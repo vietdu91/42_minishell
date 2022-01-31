@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/31 20:49:22 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/31 21:53:09 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ char	*find_home(char **envp);
 
 /*		PARSER_WORDS.C			*/
 
-int		cut_content(t_pars_list *l, int size);
-int		word_has_meta(t_pars_list *l, int *meta);
+int		cut_content(t_pars_list *l);
+int		word_has_meta(t_pars_list *l);
 int		check_len_word(char *str);
 char	*put_word_to_content(char **str, char *content);
 int		find_word(char **str, t_pars_list *parser);
