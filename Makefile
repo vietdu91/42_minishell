@@ -22,11 +22,13 @@ SRCS		= 	main.c \
 				errors/print_error.c \
 				fun/print_fun.c \
 				memory/free_box.c \
+				memory/free_lists.c \
+				memory/init_parsing_list.c \
 				memory/initialisation.c \
 				memory/initialisation_env.c \
 				memory/initialisation_no_env.c \
-				parsing/init_parsing_list.c \
 				parsing/find_in_env.c \
+				parsing/parser_words.c \
 				parsing/parser.c \
 				parsing/line_to_linked_list.c \
 				signal/signal.c \

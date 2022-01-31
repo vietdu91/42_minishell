@@ -3,86 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/30 20:45:14 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/31 15:29:56 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-/*typedef struct s_exit_status
+typedef struct s_pars_node
 {
-	int	interrogation;
-}	t_exit_status;*/
+	char				*content;
+	int					arg;
+	int					cmd;
+	int					file;
+	int					builtin;
+	struct s_pars_node	*previous;
+	struct s_pars_node	*next;
+}	t_pars_node;
 
-/*typedef struct s_pwd
+typedef struct s_pars_list
 {
-	int		oldpwd_on;
-	char	*oldpwd;
-}	t_pwd;
-
-typedef struct s_history
-{
-	int	history_on;
-}	t_history;
-
-typedef struct s_exit
-{
-	int		exit_on;
-	int		nb;
-}	t_exit;
-
-typedef struct s_export
-{
-	int		export_on;
-}	t_export;
-
-typedef struct s_unset
-{
-	int		unset_on;
-}	t_unset;
-
-typedef struct s_cd
-{
-	int		cd_on;
-}	t_cd;
-
-typedef struct s_echo
-{
-	int		echo_on;
-	int		option_n;
-}	t_echo;*/
-
-typedef struct s_parsing_node
-{
-	char					*content;
-	int						arg;
-	int						cmd;
-	int						file;
-	int						builtin;
-	struct s_parsing_node	*previous;
-	struct s_parsing_node	*next;
-}	t_parsing_node;
-
-typedef struct s_parsing_list
-{
-	t_parsing_node	*head;
-	t_parsing_node	*tail;
-	int				length;
-}	t_parsing_list;
+	t_pars_node	*head;
+	t_pars_node	*tail;
+	int			length;
+}	t_pars_list;
 
 typedef struct s_builtin
 {
-/*	char		**tab_builtin;
-	t_cd		*cd;
-	t_echo		*echo;
-	t_export	*export;
-	t_history	*history;
-	t_pwd		*pwd;
-	t_unset		*unset;*/
 	int		oldpwd_on;
 	char	*oldpwd;
 }	t_builtin;
@@ -154,14 +104,13 @@ typedef struct s_args
 	t_builtin		*builtin;
 	t_env_list		*env;
 	t_env_list		*export;
+	t_pars_list		*parser;
 	char			*buffer;
 	char			*path;
 	char			*pwd;
 	char			*home;
 	int				nb_commands;
 }	t_args;
-
-
 
 /*		FIND_IN_ENV.C		*/
 
@@ -170,16 +119,16 @@ char	*find_pwd(char **envp);
 char	*find_oldpwd(char **envp);
 char	*find_home(char **envp);
 
+/*		PARSER_WORDS.C			*/
+
+int		check_len_word(char *str);
+char	*put_word_to_content(char **str, char *content);
+int		find_word(char **str, t_pars_list *parser);
+
 /*		PARSER.C			*/
 
 int		zap_spaces(char **line);
-int		first_word(char **str, t_parsing_list *l);
-int		parser(char **line, t_parsing_list *l);
-int		maestro(char *line);
+int		parser(char **line, t_pars_list *parser);
+int		maestro(t_args *args, char *line);
 
-/*	init_parsing_list.c	*/
-int		init_parsing_list(t_parsing_list **l);
-void	init_parsing_node(t_parsing_node *node);
-t_parsing_list	*list_end_parse(t_parsing_list *list, char *content);
-void	display_parsing(t_parsing_list *l);
 #endif

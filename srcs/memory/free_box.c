@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_box.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/27 18:11:20 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/31 14:21:29 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,6 @@ void	free_t_lists(t_list *c)
 	free(c);
 }
 
-void	free_env_list(t_env_list *env)
-{
-	t_env	*del;
-	t_env	*i;
-
-	if (!env)
-		return ;
-	i = env->head;
-	while (i)
-	{
-		del = i;
-		i = i->next;
-		free(del->line);
-		free(del->variable);
-		free(del->content);
-		free(del);
-	}
-	free(env);
-	env = NULL;
-}
-
 void	free_builtins(t_builtin *builtin)
 {
 	if (builtin->oldpwd)
@@ -84,6 +63,7 @@ void	free_all(t_args *args)
 	free_builtins(args->builtin);
 	free_env_list(args->env);
 	free_env_list(args->export);
+	free_pars_list(args->parser);
 	free(args);
 	rl_clear_history();
 	args = NULL;

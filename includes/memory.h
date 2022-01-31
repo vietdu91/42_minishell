@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:55:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/25 14:06:32 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/31 14:08:03 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,19 @@
 void		free_all(t_args *args);
 void		free_d_tab(char **tb);
 void		free_builtins(t_builtin *builtin);
-void		free_env_list(t_env_list *env);
 void		free_t_lists(t_list *c);
+
+/*		FREE_LISTS.C		*/
+
+void		free_pars_list(t_pars_list *l);
+void		free_env_list(t_env_list *env);
+
+/*		INIT_PARSING_LIST.C			*/
+
+int			init_parsing_list(t_pars_list **l);
+void		init_parsing_node(t_pars_node *node);
+t_pars_list	*list_end_parse(t_pars_list *list, char *content);
+void		display_parsing(t_pars_list *l);
 
 /*		INITIALISATION.C		*/
 

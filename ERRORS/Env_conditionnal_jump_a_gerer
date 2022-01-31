@@ -1,17 +1,38 @@
-==14173== Conditional jump or move depends on uninitialised value(s)
-==14173==    at 0x40163F: display_env (env.c:51)
-==14173==    by 0x40131C: cmp_all (main.c:44)
-==14173==    by 0x40128B: loop (main.c:29)
-==14173==    by 0x40149E: main (main.c:77)
-
-========================================================================
-Quand on quitte le programme :
-
-==187202== Conditional jump or move depends on uninitialised value(s)
-==187202==    at 0x40258C: free_env_list (free_box.c:57)
-==187202==    by 0x4026A0: free_all (free_box.c:85)
-==187202==    by 0x401818: exit_main (exit.c:18)
-==187202==    by 0x4013DF: cmp_all (main.c:53)
-==187202==    by 0x401283: loop (main.c:29)
-==187202==    by 0x4014A1: main (main.c:76)
-==187202== 
+WELCOME TO (minis)HELL 😈 $> dsjflsfjgsf"fsfss" fssfdnjfds ksdjsfkfj"  ""
+first word = dsjflsfjgsf"fsfss"
+yo
+first word = fssfdnjfds
+yo
+first word = ksdjsfkfj"
+yo
+==695296== Use of uninitialised value of size 8
+==695296==    at 0x4039EF: zap_spaces (parser.c:25)
+==695296==    by 0x403A5A: first_word (parser.c:41)
+==695296==    by 0x403C24: parser (parser.c:76)
+==695296==    by 0x403C71: maestro (parser.c:91)
+==695296==    by 0x401252: loop (main.c:22)
+==695296==    by 0x4014E6: main (main.c:75)
+==695296== 
+==695296== Invalid read of size 1
+==695296==    at 0x4039EF: zap_spaces (parser.c:25)
+==695296==    by 0x403A5A: first_word (parser.c:41)
+==695296==    by 0x403C24: parser (parser.c:76)
+==695296==    by 0x403C71: maestro (parser.c:91)
+==695296==    by 0x401252: loop (main.c:22)
+==695296==    by 0x4014E6: main (main.c:75)
+==695296==  Address 0xfefff980 is not stack'd, malloc'd or (recently) free'd
+==695296== 
+==695296== 
+==695296== Process terminating with default action of signal 11 (SIGSEGV)
+==695296==  Access not within mapped region at address 0xFEFFF980
+==695296==    at 0x4039EF: zap_spaces (parser.c:25)
+==695296==    by 0x403A5A: first_word (parser.c:41)
+==695296==    by 0x403C24: parser (parser.c:76)
+==695296==    by 0x403C71: maestro (parser.c:91)
+==695296==    by 0x401252: loop (main.c:22)
+==695296==    by 0x4014E6: main (main.c:75)
+==695296==  If you believe this happened as a result of a stack
+==695296==  overflow in your program's main thread (unlikely but
+==695296==  possible), you can try to increase the size of the
+==695296==  main thread stack using the --main-stacksize= flag.
+==695296==  The main thread stack size used in this run was 8388608.

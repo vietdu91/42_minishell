@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:26:48 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/27 14:18:08 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/31 14:05:39 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	set_all(t_args *args, char **envp)
 	else
 		get_env(args, envp);
 	get_export(args);
+	init_parsing_list(&args->parser);
 }
 
 void	init_struct(t_args *args)
@@ -31,13 +32,6 @@ void	init_struct(t_args *args)
 		intersection_of_errors(2, args);
 	args->builtin->oldpwd_on = 0;
 	args->builtin->oldpwd = NULL;
-//	args->builtin->tab_builtin = NULL;
-//	args->builtin->cd->cd_on = 0;
-//	args->builtin->echo->echo_on = 0;
-//	args->builtin->echo->option_n = 0;
-//	args->builtin->export->export_on = 0;
-//	args->builtin->history->history_on = 0;
-//	args->builtin->unset->unset_on = 0;
 }
 
 void	init_and_set_all(t_args *args, char **envp)

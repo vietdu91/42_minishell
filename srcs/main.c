@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/30 18:43:34 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/31 14:20:49 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	loop(t_args *args)
 	while (1)
 	{
 		args->buffer = readline(PROMPT);
-		maestro(args->buffer);
+		maestro(args, args->buffer);
 		add_history(args->buffer);
 		if (!args->buffer)
 		{
@@ -37,7 +37,7 @@ void	cmp_all(t_args *args)
 	int	i;
 
 	i = 0;
-	if (check_unclosed(args) == 1)
+	if (check_unclosed(args))
 		return ;
 	args->nb_commands = how_many_commands(args->buffer);
 	if (!ft_strcmp(args->buffer, "echo"))
@@ -56,11 +56,6 @@ void	cmp_all(t_args *args)
 		exit_main(args);
 	if (!ft_strcmp(args->buffer, "echo $?"))
 		printf("%d\n", g_exit_status);
-/*	maestro(args->buffer);
-	printf("cmd = %s\n", args->buffer);
-	printf("PATH = %s\n", args->path);
-	printf("PWD = %s\n", args->pwd);
-	printf("OLDPWD = %s\n", args->oldpwd);*/
 }
 
 int	main(int argc, char **argv, char **envp)

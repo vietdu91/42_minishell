@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/01/30 20:46:14 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/01/31 14:03:51 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	init_parsing_list(t_parsing_list **l)
+int	init_parsing_list(t_pars_list **parser)
 {
-	*l = malloc(sizeof(t_parsing_list));
-	if (!(*l) || !l)
+	*parser = malloc(sizeof(t_pars_list));
+	if (!(*parser) || !parser)
 		return (0);
-	(*l)->head = NULL;
-	(*l)->tail = NULL;
+	(*parser)->head = NULL;
+	(*parser)->tail = NULL;
 	return (1);
 }
 
-void	init_parsing_node(t_parsing_node *node)
+void	init_parsing_node(t_pars_node *node)
 {
 	node->content = NULL;
 	node->arg = 0;
@@ -33,13 +33,13 @@ void	init_parsing_node(t_parsing_node *node)
 	node->next = NULL;
 }
 
-t_parsing_list	*list_end_parse(t_parsing_list *list, char *content)
+t_pars_list	*list_end_parse(t_pars_list *list, char *content)
 {
-	t_parsing_node	*node;
+	t_pars_node	*node;
 
 	if (!list || !content)
 		return (NULL);
-	node = malloc(sizeof(t_parsing_node));
+	node = malloc(sizeof(t_pars_node));
 	if (!node)
 		return (NULL);
 	printf("yo\n");
@@ -62,11 +62,11 @@ t_parsing_list	*list_end_parse(t_parsing_list *list, char *content)
 	return (list);
 }
 
-void	display_parsing(t_parsing_list *l)
+void	display_parsing(t_pars_list *parser)
 {
-	t_parsing_node	*i;
+	t_pars_node	*i;
 
-	i = l->head;
+	i = parser->head;
 	while (i)
 	{
 		printf("parsing = %s\n", i->content);
