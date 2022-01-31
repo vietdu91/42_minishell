@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/01/31 15:22:59 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/31 21:01:24 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int	parser(char **line, t_pars_list *parser)
 {
 	int	i;
 	int	len;
+	int	meta;
 
+	meta = 0;
 	if (!*line)
 		return (0);
 	len = ft_strlen(*line);
@@ -44,6 +46,8 @@ int	parser(char **line, t_pars_list *parser)
 	{
 		i += zap_spaces(line);
 		i += find_word(line, parser);
+		if (word_has_meta(parser, &meta))
+			cut_content(parser, meta);
 	}
 	return (0);
 }

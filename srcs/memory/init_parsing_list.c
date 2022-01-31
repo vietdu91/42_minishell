@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/01/31 14:03:51 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/31 20:58:42 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_pars_list	*list_end_parse(t_pars_list *list, char *content)
 	node = malloc(sizeof(t_pars_node));
 	if (!node)
 		return (NULL);
-	printf("yo\n");
 	init_parsing_node(node);
 	node->content = content;
 	node->next = NULL;

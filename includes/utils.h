@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/21 13:59:58 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/31 20:49:00 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ size_t		ft_wordlen(char const *s, char c);
 char		**ft_freetamere(char **array);
 char		**ft_split(char const *s, char c);
 
+/*		UTIS_SPLIT_CHARSET.C		*/
+
+char		**free_split(char **split, int index);
+int			is_charset(char c, char *charset);
+char		**ft_split_charset(char *s, char *c);
+
 /*		UTILS_STRINGS 	*/
 
 int			ft_strlen(char *str);
@@ -46,6 +52,8 @@ char		*ft_strjoin(char *s1, char *s2);
 char		*ft_strnstr(char *s1, const char *s2, size_t n);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_strdup(char *str);
+size_t		ft_strlcpy(char *dest, char *src, size_t size);
+
 
 /* 		UTILS_WRITE 	*/
 

@@ -36,6 +36,7 @@ SRCS		= 	main.c \
 				utils/utils_gnl.c \
 				utils/utils_linked.c \
 				utils/utils_mem.c \
+				utils/utils_split_charset.c \
 				utils/utils_str.c \
 				utils/utils_str2.c \
 				utils/utils_write.c

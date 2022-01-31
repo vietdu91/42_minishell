@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkers.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:37:14 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/20 15:08:55 by emtran           ###   ########.fr       */
+/*   Updated: 2022/01/31 16:30:10 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # define LOW_ALPHA "abcdefghijklmnopqrstuvwxyz"
 # define UPP_ALPHA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # define SPACES " \f\r\t\v" // newline non inlus
-# define METACHAR "|&;()<>"
+# define METACHAR "|&;<>"
+// # define METACHAR "|&;()<>"
 
 /*		HOW_MANY.C			*/
 
