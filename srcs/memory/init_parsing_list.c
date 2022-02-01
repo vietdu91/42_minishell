@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/01/31 20:58:42 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/01 15:26:18 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	display_parsing(t_pars_list *parser)
 	i = parser->head;
 	while (i)
 	{
-		printf("parsing = %s\n", i->content);
+//		printf("parsing = %s\n", i->content);
 		i = i->next;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_words.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/31 21:57:48 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/01 15:25:15 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	cut_content(t_pars_list *l)
 	splitted = ft_split_charset(l->tail->content, METACHAR);
 	i = -1;
 	while (splitted[++i])
-		printf("yo %s\n", splitted[i]);
+		printf("SPLIT : %s\n", splitted[i]);
 	return (0);
 }
 
