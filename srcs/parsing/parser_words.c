@@ -3,25 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   parser_words.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/01 15:25:15 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/01 23:43:37 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+int	while_is_meta(t_pars_list *l, char *str, int i)
+{
+	char	c[2];
+	char	*cpy;
+
+	c[1] = 0;
+	cpy = NULL;
+	if (str[i] && is_meta(str[i]))
+	{
+		c[0] = str[i];
+		cpy = ft_strdup(str + 1);
+		free(l->tail->content);
+		l->tail->content = NULL;
+		l->tail->content = ft_strdup(c);
+		i++;
+	}
+	list_end_parse(l, cpy);
+	free(cpy);
+	cpy = NULL;
+	return (i);
+}
+
+int	while_isnt_meta(t_pars_list *l, char *str, int i)
+{
+	char	*c;
+
+	c = ft_strdup("");
+	if (!str)
+		return (0);
+	while (str[i] && !is_meta(str[i]))
+	{
+		c = join_char(c, str[i]);
+		printf("salut %s\n", c);
+		i++;
+	}
+	list_end_parse(l, c);
+	free(c);
+	return (i);
+}
+
 int	cut_content(t_pars_list *l)
 {
-	int		i;
-	char	**splitted;
+	int			i;
+	char		*cpy;
+	t_pars_node	*node;
+	// char	**splitted;
 
-
-	splitted = ft_split_charset(l->tail->content, METACHAR);
-	i = -1;
-	while (splitted[++i])
-		printf("SPLIT : %s\n", splitted[i]);
+	// splitted = ft_split_charset(l->tail->content, METACHAR);
+	// i = -1;
+	// while (splitted[++i])
+	// 	list_end_parse(l, splitted[i]);
+	// printf("SPLIT : %s\n", splitted[i]);
+	i = 0;
+	node = l->tail;
+	cpy = ft_strdup(l->tail->content);
+	while (cpy[i] && node)
+	{
+		while (while_is_meta(l, node->content, i))
+			i++;
+		printf("first i = %d\n", i);
+		node = l->tail;
+		printf("je disparais %s\n", node->content);
+		i += while_isnt_meta(l, node->content, i);
+		printf("second i = %d\n", i);
+		node = l->tail;
+	}
 	return (0);
 }
 

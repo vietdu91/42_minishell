@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/01/31 21:53:27 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/01 23:44:32 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	parser(char **line, t_pars_list *parser)
 	{
 		i += zap_spaces(line);
 		i += find_word(line, parser);
-		if (word_has_meta(parser))
-			cut_content(parser);
+		// if (word_has_meta(parser))
+		// 	cut_content(parser);
 	}
 	return (0);
 }

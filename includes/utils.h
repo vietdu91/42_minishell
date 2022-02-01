@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/31 20:49:00 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/01 19:10:03 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char		*ft_strnstr(char *s1, const char *s2, size_t n);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_strdup(char *str);
 size_t		ft_strlcpy(char *dest, char *src, size_t size);
+char		*join_char(char *str, char c);
 
 
 /* 		UTILS_WRITE 	*/

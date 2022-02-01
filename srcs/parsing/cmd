@@ -1,0 +1,5 @@
+|| si la premiere commande ne s'execute pas fait la deuxieme sinon ne la lance jamais
+
+yo||pwf||ls | wc -l cmd 
+	bash: yo: command not found
+	bash: pwf: command not found

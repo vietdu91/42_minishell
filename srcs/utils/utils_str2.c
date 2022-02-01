@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:28:57 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/31 20:42:33 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/01 23:22:42 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,3 +61,26 @@ size_t	ft_strlcpy(char *dest, char *src, size_t size)
 	return (ft_strlen(src));
 }
 
+char	*join_char(char *str, char c)
+{
+	int		i;
+	int		len;
+	char	*joined;
+
+	i = -1;
+	if (str[0] != 0)
+		len = ft_strlen(str) + 1;
+	else
+		len = 1 + 1;
+	joined = malloc(sizeof(char) * (len + 1));
+	if (!joined)
+		return (NULL);
+	while (++i < (int)ft_strlen(str))
+	{
+		joined[i] = str[i];
+	}
+	joined[i] = c;
+	i++;
+	joined[i] = 0;
+	return (joined);
+}
