@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:40:14 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/02 23:22:46 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/02 23:29:10 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,6 @@ char	**ft_split_charset(char *s, char *c)
 	index = -1;
 	while (++index < nb_words)
 	{
-		// while (is_charset(*flag, c))
-		// 	flag++;
 		split[index] = (char *)malloc(sizeof(char) * (size_word(flag, c) + 1));
 		if (!split[index])
 			return (free_split(split, index));

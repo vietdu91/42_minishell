@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/02 23:20:54 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/02 23:29:32 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int	while_isnt_meta(t_pars_list *l, char *str, int i)
 int	cut_content(t_pars_list *l)
 {
 	int			i;
-//	char		*cpy;
-//	t_pars_node	*node;
 	char		**splitted;
 
 	splitted = ft_split_charset(l->tail->content, METACHAR);
@@ -65,27 +63,8 @@ int	cut_content(t_pars_list *l)
 	l->tail->content = NULL;
 	l->tail->content = ft_strdup(splitted[0]);
 	while (splitted[++i])
-	{
-		// printf("CONTENT : %s\n", l->tail->content);
 		list_end_parse(l, splitted[i]);
-		// printf("SPLIT : %s\n", splitted[i]);
-	}
-/*	i = 0;
-	node = l->tail;
-	cpy = ft_strdup(l->tail->content);
-	while (cpy[i] && node)
-	{
-		while (while_is_meta(l, node->content, i))
-			i++;
-		printf("first i = %d\n", i);
-		node = l->tail;
-		printf("je disparais %s\n", node->content);
-		i += while_isnt_meta(l, node->content, i);
-		printf("second i = %d\n", i);
-		node = l->tail;
-	}*/
 	free_d_tab(splitted);
-//	free(cpy);
 	return (0);
 }
 
