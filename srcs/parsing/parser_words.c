@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_words.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/02 20:52:41 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/02 23:20:54 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,15 @@ int	cut_content(t_pars_list *l)
 	char		**splitted;
 
 	splitted = ft_split_charset(l->tail->content, METACHAR);
-	i = -1;
+	i = 0;
+	free(l->tail->content);
+	l->tail->content = NULL;
+	l->tail->content = ft_strdup(splitted[0]);
 	while (splitted[++i])
 	{
-		printf("CONTENT : %s\n", l->tail->content);
+		// printf("CONTENT : %s\n", l->tail->content);
 		list_end_parse(l, splitted[i]);
-		printf("SPLIT : %s\n", splitted[i]);
+		// printf("SPLIT : %s\n", splitted[i]);
 	}
 /*	i = 0;
 	node = l->tail;
