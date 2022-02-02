@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/31 14:21:29 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/02 16:58:39 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	free_all(t_args *args)
 	free_builtins(args->builtin);
 	free_env_list(args->env);
 	free_env_list(args->export);
-	free_pars_list(args->parser);
+	if (args->parser)
+		free_pars_list(args->parser);
 	free(args);
 	rl_clear_history();
 	args = NULL;

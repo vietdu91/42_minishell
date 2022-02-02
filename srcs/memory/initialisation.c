@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:26:48 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/31 14:05:39 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/02 17:49:55 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	set_all(t_args *args, char **envp)
 	else
 		get_env(args, envp);
 	get_export(args);
-	init_parsing_list(&args->parser);
+//	init_parsing_list(&args->parser);
 }
 
 void	init_struct(t_args *args)

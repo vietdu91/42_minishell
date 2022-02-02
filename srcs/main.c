@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/31 14:20:49 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/02 17:51:08 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	loop(t_args *args)
 {
 	while (1)
 	{
+		init_parsing_list(&args->parser);
 		args->buffer = readline(PROMPT);
 		maestro(args, args->buffer);
 		add_history(args->buffer);
@@ -28,6 +29,8 @@ void	loop(t_args *args)
 		}
 		else
 			cmp_all(args);
+		if (args->parser)
+			free_pars_list(args->parser);
 		free(args->buffer);
 	}
 }

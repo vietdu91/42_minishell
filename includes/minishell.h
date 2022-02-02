@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/25 12:27:49 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/02 18:52:38 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ tcsetattr - tcgetattr */
 /* ioctl */
 # include <sys/ioctl.h>
 # include <errno.h>
+# include <stdbool.h>
 
 # include "./parsing.h"
 # include "./bultin.h"

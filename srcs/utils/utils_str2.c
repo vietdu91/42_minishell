@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:28:57 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/01 23:22:42 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/02 15:38:56 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ char	*join_char(char *str, char c)
 	joined[i] = c;
 	i++;
 	joined[i] = 0;
+	free(str);
 	return (joined);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_words.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/01 23:43:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/02 20:52:41 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,19 @@ int	while_isnt_meta(t_pars_list *l, char *str, int i)
 int	cut_content(t_pars_list *l)
 {
 	int			i;
-	char		*cpy;
-	t_pars_node	*node;
-	// char	**splitted;
+//	char		*cpy;
+//	t_pars_node	*node;
+	char		**splitted;
 
-	// splitted = ft_split_charset(l->tail->content, METACHAR);
-	// i = -1;
-	// while (splitted[++i])
-	// 	list_end_parse(l, splitted[i]);
-	// printf("SPLIT : %s\n", splitted[i]);
-	i = 0;
+	splitted = ft_split_charset(l->tail->content, METACHAR);
+	i = -1;
+	while (splitted[++i])
+	{
+		printf("CONTENT : %s\n", l->tail->content);
+		list_end_parse(l, splitted[i]);
+		printf("SPLIT : %s\n", splitted[i]);
+	}
+/*	i = 0;
 	node = l->tail;
 	cpy = ft_strdup(l->tail->content);
 	while (cpy[i] && node)
@@ -77,25 +80,26 @@ int	cut_content(t_pars_list *l)
 		i += while_isnt_meta(l, node->content, i);
 		printf("second i = %d\n", i);
 		node = l->tail;
-	}
+	}*/
+	free_d_tab(splitted);
+//	free(cpy);
 	return (0);
 }
 
-int	word_has_meta(t_pars_list *l)
+int	word_has_meta(char *content)
 {
 	int	i;
 	int	quote_counter;
 
 	i = -1;
 	quote_counter = 0;
-	i = -1;
-	while (l->tail->content[++i])
+	while (content[++i])
 	{
-		if (is_quote(l->tail->content[i]))
+		if (is_quote(content[i]))
 			quote_counter++;
 		if (quote_counter == 2)
 			quote_counter = 0;
-		if (is_meta(l->tail->content[i]) && (quote_counter % 2) == 0)
+		if (is_meta(content[i]) && (quote_counter % 2) == 0)
 			return (1);
 	}
 	return (0);
@@ -178,7 +182,8 @@ int	find_word(char **str, t_pars_list *parser)
 	if (!content)
 		return (0);
 	content = put_word_to_content(str, content);
-	printf("first word = %s\n", content);
+	printf("word = %s\n", content);
 	list_end_parse(parser, content);
+	free(content);
 	return (i);
 }
