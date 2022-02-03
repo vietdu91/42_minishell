@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:28:57 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/02 15:38:56 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/03 13:19:27 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,44 @@ char	*join_char(char *str, char c)
 	joined[i] = 0;
 	free(str);
 	return (joined);
+}
+
+size_t	ft_strlcpy_with_quotes(char *dest, char *src, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	if (!src)
+		return (0);
+	if (size > 0)
+	{
+		while (src[i] && i < size - 1)
+		{
+			if (src[i] == '\"')
+			{	
+				i++;
+				while (src[i] == '\"')
+				{
+					dest[i] = src[i];
+					i++;
+				}
+			}
+			else if (src[i] == '\'')
+			{	
+				i++;
+				while (src[i] == '\'')
+				{
+					dest[i] = src[i];
+					i++;
+				}
+			}
+			else
+			{
+				dest[i] = src[i];
+				i++;
+			}
+		}
+		dest[i] = 0;
+	}
+	return (ft_strlen(src));
 }

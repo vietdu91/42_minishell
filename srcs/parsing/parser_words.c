@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser_words.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/02 23:29:32 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/03 13:03:51 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	while_is_meta(t_pars_list *l, char *str, int i)
+/*int	while_is_meta(t_pars_list *l, char *str, int i)
 {
 	char	c[2];
 	char	*cpy;
@@ -50,7 +50,7 @@ int	while_isnt_meta(t_pars_list *l, char *str, int i)
 	list_end_parse(l, c);
 	free(c);
 	return (i);
-}
+}*/
 
 int	cut_content(t_pars_list *l)
 {
