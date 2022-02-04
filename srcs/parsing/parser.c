@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/02 23:21:12 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/04 15:05:02 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	zap_spaces(char **line)
 	return (i);
 }
 
-int	parser(char **line, t_pars_list *parser)
+int	parser(char **line, t_pars_list *parser, t_args *args)
 {
 	int		i;
 	int		len;
@@ -46,7 +46,7 @@ int	parser(char **line, t_pars_list *parser)
 		i += find_word(line, parser);
 		i += zap_spaces(line);
 		if (word_has_meta(parser->tail->content))
-			cut_content(parser);
+			cut_content(parser, args);
 	}
 	return (0);
 }
@@ -56,7 +56,7 @@ int	maestro(t_args *args, char *line)
 	char	**cpy;
 
 	cpy = &line;
-	parser(cpy, args->parser);
+	parser(cpy, args->parser, args);
 	display_parsing(args->parser);
 	return (0);
 }

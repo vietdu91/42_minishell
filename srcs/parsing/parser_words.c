@@ -6,58 +6,21 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/03 13:03:51 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/04 17:02:13 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/*int	while_is_meta(t_pars_list *l, char *str, int i)
-{
-	char	c[2];
-	char	*cpy;
-
-	c[1] = 0;
-	cpy = NULL;
-	if (str[i] && is_meta(str[i]))
-	{
-		c[0] = str[i];
-		cpy = ft_strdup(str + 1);
-		free(l->tail->content);
-		l->tail->content = NULL;
-		l->tail->content = ft_strdup(c);
-		i++;
-	}
-	list_end_parse(l, cpy);
-	free(cpy);
-	cpy = NULL;
-	return (i);
-}
-
-int	while_isnt_meta(t_pars_list *l, char *str, int i)
-{
-	char	*c;
-
-	c = ft_strdup("");
-	if (!str)
-		return (0);
-	while (str[i] && !is_meta(str[i]))
-	{
-		c = join_char(c, str[i]);
-		printf("salut %s\n", c);
-		i++;
-	}
-	list_end_parse(l, c);
-	free(c);
-	return (i);
-}*/
-
-int	cut_content(t_pars_list *l)
+int	cut_content(t_pars_list *l, t_args *args)
 {
 	int			i;
 	char		**splitted;
 
-	splitted = ft_split_charset(l->tail->content, METACHAR);
+	splitted = NULL;
+	splitted = ft_split_charset(splitted, l->tail->content, METACHAR, args);
+	if (!splitted)
+		return (0);
 	i = 0;
 	free(l->tail->content);
 	l->tail->content = NULL;
@@ -90,61 +53,46 @@ int	word_has_meta(char *content)
 int	check_len_word(char *str)
 {
 	int	i;
+	int	count;
 
 	i = 0;
+	count = 0;
 	while (str[i] && !is_space(str[i]))
 	{
 		if (str[i] == '\"')
-		{
-			i++;
-			while (str[i] != '\"')
-				i++;
-		}
+			return (check_len_word_in_quotes('\"', str, i, count));
 		else if (str[i] == '\'')
-		{
-			i++;
-			while (str[i] != '\'')
-				i++;
-		}
+			return (check_len_word_in_quotes('\'', str, i, count));
 		i++;
+		count++;
 	}
-	return (i);
+	return (count);
 }
 
 char	*put_word_to_content(char **str, char *content)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (**str && !is_space(**str))
 	{
 		if (**str == '\"')
 		{
-			content[i] = **str;
-			i++;
-			(*str)++;
+			content[i++] = *(*str)++;
 			while (**str != '\"')
-			{
-				content[i] = **str;
-				i++;
-				(*str)++;
-			}
+				content[i++] = *(*str)++;
+			content[i++] = *(*str)++;
+			break ;
 		}
 		else if (**str == '\'')
 		{
-			content[i] = **str;
-			i++;
-			(*str)++;
+			content[i++] = *(*str)++;
 			while (**str != '\'')
-			{
-				content[i] = **str;
-				i++;
-				(*str)++;
-			}
+				content[i++] = *(*str)++;
+			content[i++] = *(*str)++;
+			break ;
 		}
-		content[i] = **str;
-		i++;
-		(*str)++;
+		content[i++] = *(*str)++;
 	}
 	content[i] = 0;
 	return (content);

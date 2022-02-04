@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/02 19:32:08 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/04 18:12:22 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_env
 	char			*line;
 	char			*variable;
 	char			*content;
+	int				len_content;
 	enum e_var		var_id;
 	struct s_env	*next;
 }	t_env;
@@ -109,6 +110,7 @@ typedef struct s_args
 	char			*path;
 	char			*pwd;
 	char			*home;
+	int				quote_parse;
 	int				nb_commands;
 }	t_args;
 
@@ -119,9 +121,17 @@ char	*find_pwd(char **envp);
 char	*find_oldpwd(char **envp);
 char	*find_home(char **envp);
 
+/*		PARSER_QUOTES.C			*/
+
+int		check_len_word_in_quotes(char quote, char *str, int pos, int count);
+void	cpy_with_double_quotes(size_t *i, size_t *j, char *dest, char *src);
+int		count_words_with_quotes(char *s, int *count, int i, char quote);
+int		size_word_with_quotes(char *s, t_args *args, char quote);
+
+
 /*		PARSER_WORDS.C			*/
 
-int		cut_content(t_pars_list *l);
+int		cut_content(t_pars_list *l, t_args *args);
 int		word_has_meta(char *content);
 int		check_len_word(char *str);
 char	*put_word_to_content(char **str, char *content);
@@ -130,7 +140,7 @@ int		find_word(char **str, t_pars_list *parser);
 /*		PARSER.C			*/
 
 int		zap_spaces(char **line);
-int		parser(char **line, t_pars_list *parser);
+int		parser(char **line, t_pars_list *parser, t_args *args);
 int		maestro(t_args *args, char *line);
 
 #endif

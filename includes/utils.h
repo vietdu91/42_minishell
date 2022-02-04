@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/03 13:21:19 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/04 17:46:57 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ char		**ft_split(char const *s, char c);
 
 /*		UTIS_SPLIT_CHARSET.C		*/
 
-char		**free_split(char **split, int index);
-int			is_charset(char c, char *charset);
-int			size_word(char *s, char *c);
+int			size_word(char *s, char *c, t_args *args);
 int			count_words(char *s, char *c);
-char		**ft_split_charset(char *s, char *c);
+int			ready_for_split(int nb_words, char *c, char *s, char **flag);
+char		**create_split(char **split, int nb_words);
+char		**ft_split_charset(char **splitted, char *s, char *c, t_args *args);
 
 /*		UTILS_STRINGS 	*/
 
@@ -56,7 +56,7 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_strdup(char *str);
 size_t		ft_strlcpy(char *dest, char *src, size_t size);
 char		*join_char(char *str, char c);
-size_t		ft_strlcpy_with_quotes(char *dest, char *src, size_t size);
+size_t		ft_strlcpy_w_quotes(char *dest, char *src, size_t size);
 
 
 

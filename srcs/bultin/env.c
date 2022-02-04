@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/31 12:35:16 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/04 18:13:30 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	set_new_content_in_env(t_env *node, char *content, t_args *args)
 	if (!node->content)
 		intersection_of_errors(2, args);
 	node->var_id = set_id_env(node->variable);
+	node->len_content = ft_strlen(node->content);
 }
 
 void	display_env(t_env_list *env)

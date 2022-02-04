@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_others.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 14:42:38 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/20 23:46:09 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/04 17:43:15 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,16 @@ int	is_quote(char c)
 		return (1);
 	if (c == '\"')
 		return (2);
+	return (0);
+}
+
+int	is_charset(char c, char *charset)
+{
+	int	i;
+
+	i = -1;
+	while (charset[++i])
+		if (c == charset[i])
+			return (1);
 	return (0);
 }

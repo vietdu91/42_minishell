@@ -6,71 +6,35 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:40:14 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/03 13:24:18 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/04 18:10:48 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	**free_split(char **split, int index)
-{
-	while (index >= 0)
-		free(split[index--]);
-	free(split);
-	return (NULL);
-}
-
-int	is_charset(char c, char *charset)
-{
-	int	i;
-
-	i = -1;
-	while (charset[++i])
-		if (c == charset[i])
-			return (1);
-	return (0);
-}
-
-int	size_word(char *s, char *c)
+int	size_word(char *s, char *c, t_args *args)
 {
 	int		count;
 
 	count = 0;
-	if (is_charset(*s, c) && *s)
+	if (*s == '\"')
+		count = size_word_with_quotes(s, args, '\"');
+	else if (*s == '\'')
+		count = size_word_with_quotes(s, args, '\'');
+	else if (*s && is_charset(*s, c))
 	{
-		while (is_charset(*s, c) && *s)
+		while (*s && is_charset(*s, c))
 		{
 			count++;
 			s++;
 		}
 	}
-	else if (!is_charset(*s, c) && *s)
+	else if (*s && !is_charset(*s, c))
 	{
-		while (!is_charset(*s, c) && *s)
+		while (*s && !is_charset(*s, c))
 		{
-			if (*s == '\"')
-			{
-				s++;
-				while (*s != '\"')
-				{
-					count++;
-					s++;
-				}
-			}
-			else if (*s == '\'')
-			{
-				s++;
-				while (*s != '\'')
-				{
-					count++;
-					s++;
-				}
-			}
-			else
-			{
-				count++;
-				s++;
-			}
+			count++;
+			s++;
 		}
 	}
 	return (count);
@@ -85,13 +49,17 @@ int	count_words(char *s, char *c)
 	count = 0;
 	while (s[i])
 	{
-		if (is_charset(s[i], c) && s[i])
+		if (s[i] == '\"' && s[i])
+			i = count_words_with_quotes(s, &count, i, '\"');
+		else if (s[i] == '\'' && s[i])
+			i = count_words_with_quotes(s, &count, i, '\'');
+		else if (is_charset(s[i], c) && s[i])
 		{
 			count++;
 			while (is_charset(s[i], c) && s[i])
 				i++;
 		}
-		if (!is_charset(s[i], c) && s[i])
+		else if (!is_charset(s[i], c) && s[i])
 		{
 			count++;
 			while (!is_charset(s[i], c) && s[i])
@@ -101,29 +69,48 @@ int	count_words(char *s, char *c)
 	return (count);
 }
 
-char	**ft_split_charset(char *s, char *c)
+int	ready_for_split(int nb_words, char *c, char *s, char **flag)
 {
-	char	**split;
-	char	*flag;
-	int		nb_words;
-	int		index;
-
 	if (!s)
-		return (NULL);
-	flag = (char *)s;
+		return (-10);
+	*flag = s;
 	nb_words = count_words(s, c);
+	return (nb_words);
+}
+
+char	**create_split(char **split, int nb_words)
+{
 	split = (char **)malloc(sizeof(char *) * (nb_words + 1));
 	if (!split)
 		return (NULL);
 	split[nb_words] = NULL;
+	return (split);
+}
+
+char	**ft_split_charset(char **split, char *s, char *c, t_args *args)
+{
+	char	*flag;
+	int		nb_words;
+	int		index;
+
+	nb_words = 0;
+	flag = NULL;
+	nb_words = ready_for_split(nb_words, c, s, &flag);
+	split = create_split(split, nb_words);
 	index = -1;
 	while (++index < nb_words)
 	{
-		split[index] = (char *)malloc(sizeof(char) * (size_word(flag, c) + 1));
+		split[index] = malloc(sizeof(char) * size_word(flag, c, args) + 1);
 		if (!split[index])
 			return (free_split(split, index));
-		ft_strlcpy_with_quotes(split[index], flag, size_word(flag, c) + 1);
-		flag += (size_word(flag, c));
+		ft_strlcpy_w_quotes(split[index], flag, size_word(flag, c, args) + 1);
+		if (args->quote_parse)
+		{
+			flag += (size_word(flag, c, args) + 2);
+			args->quote_parse = 0;
+		}
+		else
+			flag += (size_word(flag, c, args));
 	}
 	return (split);
 }

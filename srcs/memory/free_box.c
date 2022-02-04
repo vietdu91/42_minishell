@@ -6,11 +6,19 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/02 16:58:39 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/04 17:04:38 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+char	**free_split(char **split, int index)
+{
+	while (index >= 0)
+		free(split[index--]);
+	free(split);
+	return (NULL);
+}
 
 void	free_d_tab(char **tb)
 {

@@ -3,3 +3,9 @@
 yo||pwf||ls | wc -l cmd 
 	bash: yo: command not found
 	bash: pwf: command not found
+
+"env'''grrr"'c' | df|"df"
+
+"env'''grrr"'c' | df|"df sd << >>> bouh'"
+"$A'$B"'$C"$D'$E'"$F'"'$G'$H"
+""''echo hola""'''' que""'' tal""''
