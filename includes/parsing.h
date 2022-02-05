@@ -3,23 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/04 18:12:22 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/05 22:46:22 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
+enum	e_type
+{
+	EMPTY,
+	ERROR,
+	CMP,
+	CMD,
+	SIMPLE_ARG,
+	PIPE,
+	DOUBLE_PIPE,
+	LOGICAL_AND,
+	ASTERISQUE,
+	CONTINUE,
+/*		<		*/
+	INPUT,
+	INFILE,
+/*		>		*/
+	OUTPUT,
+	OUTFILE,
+/*		>>		*/
+	SUPER_OUTPUT,
+	SUPER_OUTFILE,
+/*		<<		*/
+	HEREDOC,
+	LIMITATOR,
+};
+
 typedef struct s_pars_node
 {
 	char				*content;
-	int					arg;
-	int					cmd;
-	int					file;
-	int					builtin;
+	enum e_type			type;
 	struct s_pars_node	*previous;
 	struct s_pars_node	*next;
 }	t_pars_node;
@@ -37,23 +60,6 @@ typedef struct s_builtin
 	char	*oldpwd;
 }	t_builtin;
 
-enum	e_type
-{
-	EMPTY,
-	SIMPLE_ARG,
-/*		<		*/
-	INPUT,
-	INFILE,
-/*		>		*/
-	OUTPUT,
-	OUTFILE,
-/*		>>		*/
-	SUPER_OUTPUT,
-	SUPER_OUTFILE,
-/*		<<		*/
-	HEREDOC,
-	LIMITATOR,
-};
 
 enum	e_var
 {
@@ -128,9 +134,7 @@ void	cpy_with_double_quotes(size_t *i, size_t *j, char *dest, char *src);
 int		count_words_with_quotes(char *s, int *count, int i, char quote);
 int		size_word_with_quotes(char *s, t_args *args, char quote);
 
-
 /*		PARSER_WORDS.C			*/
-
 int		cut_content(t_pars_list *l, t_args *args);
 int		word_has_meta(char *content);
 int		check_len_word(char *str);
@@ -138,9 +142,15 @@ char	*put_word_to_content(char **str, char *content);
 int		find_word(char **str, t_pars_list *parser);
 
 /*		PARSER.C			*/
-
 int		zap_spaces(char **line);
 int		parser(char **line, t_pars_list *parser, t_args *args);
 int		maestro(t_args *args, char *line);
+
+/*		ATTRIBUTION.C		*/
+int		check_if_meta(t_pars_list *l);
+int		logical_attribution(t_pars_list *l);
+
+/*		ATTRIBUTION_NORM.C	*/
+void	apply_cmd(t_pars_node *node);
 
 #endif

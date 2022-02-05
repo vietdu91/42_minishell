@@ -27,6 +27,8 @@ SRCS		= 	main.c \
 				memory/initialisation.c \
 				memory/initialisation_env.c \
 				memory/initialisation_no_env.c \
+				parsing/attribution_meta.c \
+				parsing/attribution_norm.c \
 				parsing/find_in_env.c \
 				parsing/parser_quotes.c \
 				parsing/parser_words.c \

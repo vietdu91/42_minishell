@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/04 15:05:02 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/05 22:42:01 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	maestro(t_args *args, char *line)
 
 	cpy = &line;
 	parser(cpy, args->parser, args);
+	check_if_meta(args->parser);
+	logical_attribution(args->parser);
 	display_parsing(args->parser);
 	return (0);
 }

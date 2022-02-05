@@ -9,3 +9,16 @@ yo||pwf||ls | wc -l cmd
 "env'''grrr"'c' | df|"df sd << >>> bouh'"
 "$A'$B"'$C"$D'$E'"$F'"'$G'$H"
 ""''echo hola""'''' que""'' tal""''
+
+le premier mot de la ligne est interprété comme le nom de la commande, 
+les autres mots en sont les paramètres ou options ;
+
+la fin de la commande est marquée, soit par un « ; » 
+(si l'on veut placer plusieurs commandes sur la même ligne), soit par un saut de ligne.
+
+0- guetter gestion de flux permet de savoir ou sera le fichier
+< fichier cmd (on utilise qu'un seul fichier puis fichier) 
+impossible de renvoyer vers plusieurs fichier
+1- builtin
+2- access cmd
+3- cmd externes

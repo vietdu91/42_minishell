@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_words.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/04 17:02:13 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/05 19:50:02 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ int	find_word(char **str, t_pars_list *parser)
 	if (!content)
 		return (0);
 	content = put_word_to_content(str, content);
-	printf("word = %s\n", content);
 	list_end_parse(parser, content);
 	free(content);
 	return (i);

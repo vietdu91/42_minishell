@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/02 18:39:35 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/05 19:50:28 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ int	init_parsing_list(t_pars_list **parser)
 void	init_parsing_node(t_pars_node *node)
 {
 	node->content = NULL;
-	node->arg = 0;
-	node->cmd = 0;
-	node->file = 0;
-	node->builtin = 0;
 	node->previous = NULL;
+	node->type = 0;
 	node->next = NULL;
 }
 
@@ -69,6 +66,7 @@ void	display_parsing(t_pars_list *parser)
 	while (i)
 	{
 		printf("parsing = %s\n", i->content);
+		printf("type = %u\n", i->type);
 		i = i->next;
 	}
 }
