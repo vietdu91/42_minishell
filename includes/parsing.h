@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/05 22:46:22 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/06 10:11:15 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,28 @@
 
 enum	e_type
 {
-	EMPTY,
-	ERROR,
-	CMP,
-	CMD,
-	SIMPLE_ARG,
-	PIPE,
-	DOUBLE_PIPE,
-	LOGICAL_AND,
-	ASTERISQUE,
-	CONTINUE,
+	EMPTY,	// 0
+	ERROR,	// 1
+	CMP,	// 2
+	CMD,	// 3
+	SIMPLE_ARG,	// 4
+	PIPE,	// 5
+	DOUBLE_PIPE,	// 6
+	LOGICAL_AND,	// 7
+	ASTERISQUE,		// 8
+	CONTINUE,		//9
 /*		<		*/
-	INPUT,
-	INFILE,
+	INPUT,	// 10
+	INFILE,	// 11
 /*		>		*/
-	OUTPUT,
-	OUTFILE,
+	OUTPUT,	// 12
+	OUTFILE,	// 13
 /*		>>		*/
-	SUPER_OUTPUT,
-	SUPER_OUTFILE,
+	SUPER_OUTPUT,	// 14
+	SUPER_OUTFILE,	// 15
 /*		<<		*/
-	HEREDOC,
-	LIMITATOR,
+	HEREDOC,	// 16
+	LIMITATOR,	// 17
 };
 
 typedef struct s_pars_node
@@ -129,7 +129,7 @@ char	*find_home(char **envp);
 
 /*		PARSER_QUOTES.C			*/
 
-int		check_len_word_in_quotes(char quote, char *str, int pos, int count);
+int		check_len_word_in_quotes(char quote, char *str, int *pos, int count);
 void	cpy_with_double_quotes(size_t *i, size_t *j, char *dest, char *src);
 int		count_words_with_quotes(char *s, int *count, int i, char quote);
 int		size_word_with_quotes(char *s, t_args *args, char quote);

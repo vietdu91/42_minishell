@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/05 22:42:01 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/06 15:08:08 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	parser(char **line, t_pars_list *parser, t_args *args)
 	int		i;
 	int		len;
 
+	(void) args;
 	if (!*line)
 		return (0);
 	len = ft_strlen(*line);
@@ -43,8 +44,10 @@ int	parser(char **line, t_pars_list *parser, t_args *args)
 	while (**line && i < len)
 	{
 		i += zap_spaces(line);
+		printf("LINE = %s\n", *line);
 		i += find_word(line, parser);
 		i += zap_spaces(line);
+		printf("CONTENT = %s\n", parser->tail->content);
 		if (word_has_meta(parser->tail->content))
 			cut_content(parser, args);
 	}

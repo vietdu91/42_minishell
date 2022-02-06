@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_words.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/05 19:50:02 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/06 15:09:11 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	word_has_meta(char *content)
 			quote_counter++;
 		if (quote_counter == 2)
 			quote_counter = 0;
-		if (is_meta(content[i]) && (quote_counter % 2) == 0)
+		printf("QUOTE : %d\n", quote_counter);
+		if (is_meta(content[i]) && (quote_counter % 2) != 0)
 			return (1);
 	}
 	return (0);
@@ -60,11 +61,14 @@ int	check_len_word(char *str)
 	while (str[i] && !is_space(str[i]))
 	{
 		if (str[i] == '\"')
-			return (check_len_word_in_quotes('\"', str, i, count));
+			count = check_len_word_in_quotes('\"', str, &i, count);
 		else if (str[i] == '\'')
-			return (check_len_word_in_quotes('\'', str, i, count));
-		i++;
-		count++;
+			count = check_len_word_in_quotes('\'', str, &i, count);
+		else
+		{
+			i++;
+			count++;
+		}
 	}
 	return (count);
 }
@@ -78,21 +82,20 @@ char	*put_word_to_content(char **str, char *content)
 	{
 		if (**str == '\"')
 		{
-			content[i++] = *(*str)++;
+			(*str)++;
 			while (**str != '\"')
 				content[i++] = *(*str)++;
-			content[i++] = *(*str)++;
-			break ;
+			(*str)++;
 		}
 		else if (**str == '\'')
 		{
-			content[i++] = *(*str)++;
+			(*str)++;
 			while (**str != '\'')
 				content[i++] = *(*str)++;
-			content[i++] = *(*str)++;
-			break ;
+			(*str)++;
 		}
-		content[i++] = *(*str)++;
+		else
+			content[i++] = *(*str)++;
 	}
 	content[i] = 0;
 	return (content);

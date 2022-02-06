@@ -6,23 +6,21 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 15:14:40 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/04 18:04:45 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/06 10:23:51 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	check_len_word_in_quotes(char quote, char *str, int pos, int count)
+int	check_len_word_in_quotes(char quote, char *str, int *pos, int count)
 {
-	pos++;
-	count++;
-	while (str[pos] != quote)
+	(*pos)++;
+	while (str[*pos] != quote)
 	{
-		pos++;
+		(*pos)++;
 		count++;
 	}
-	pos++;
-	count++;
+	(*pos)++;
 	return (count);
 }
 

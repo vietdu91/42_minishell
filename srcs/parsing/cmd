@@ -10,6 +10,18 @@ yo||pwf||ls | wc -l cmd
 "$A'$B"'$C"$D'$E'"$F'"'$G'$H"
 ""''echo hola""'''' que""'' tal""''
 
+e"ch"o -> 0
+
+ech"o | env" -> error
+ech"o" | "env" -> 0
+
+"e'ch'o | env"
+"e'ch'o"
+
+
+
+
+
 le premier mot de la ligne est interprété comme le nom de la commande, 
 les autres mots en sont les paramètres ou options ;
 
