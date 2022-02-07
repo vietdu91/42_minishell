@@ -31,6 +31,7 @@ SRCS		= 	main.c \
 				parsing/attribution_norm.c \
 				parsing/crypting_parser_quotes.c \
 				parsing/find_in_env.c \
+				parsing/parser_convert.c \
 				parsing/parser_quotes.c \
 				parsing/parser_words.c \
 				parsing/parser.c \

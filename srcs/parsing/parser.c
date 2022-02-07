@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/07 15:59:37 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/07 19:55:02 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,19 @@ int	parser(char **line, t_pars_list *parser, t_args *args)
 	while (**line && i < len)
 	{
 		i += zap_spaces(line);
-		printf("LINE = %s\n", *line);
+	//	printf("LINE = %s\n", *line);
 		i += find_word(line, parser);
 		i += zap_spaces(line);
-		printf("CONTENT = %s\n", parser->tail->content);
-		encrypting(parser->tail->content, parser->tail);
+		printf("JE PASSE... : %s\n", parser->tail->content);
 		if (word_has_meta(parser->tail->content))
 			cut_content(parser, args);
+	//	printf("CONTENT = %s\n", parser->tail->content);
+		else
+		{
+			printf("PAR LA ?... : %s\n", parser->tail->content);
+			convert_content_without_quotes(&parser->tail->content, parser->tail);
+			encrypting(parser->tail->content, parser->tail);
+		}
 	}
 	return (0);
 }
