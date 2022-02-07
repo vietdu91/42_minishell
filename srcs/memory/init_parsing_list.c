@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/06 09:51:16 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/07 16:38:12 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ int	init_parsing_list(t_pars_list **parser)
 void	init_parsing_node(t_pars_node *node)
 {
 	node->content = NULL;
+	node->nw_content = NULL;
 	node->previous = NULL;
 	node->type = 0;
+	node->quote_or_not = 0;
 	node->next = NULL;
 }
 

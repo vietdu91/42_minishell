@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/06 15:09:11 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/07 16:51:40 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	word_has_meta(char *content)
 			quote_counter++;
 		if (quote_counter == 2)
 			quote_counter = 0;
-		printf("QUOTE : %d\n", quote_counter);
 		if (is_meta(content[i]) && (quote_counter % 2) != 0)
 			return (1);
 	}
@@ -82,17 +81,17 @@ char	*put_word_to_content(char **str, char *content)
 	{
 		if (**str == '\"')
 		{
-			(*str)++;
+			content[i++] = *(*str)++;
 			while (**str != '\"')
 				content[i++] = *(*str)++;
-			(*str)++;
+			content[i++] = *(*str)++;
 		}
 		else if (**str == '\'')
 		{
-			(*str)++;
+			content[i++] = *(*str)++;
 			while (**str != '\'')
 				content[i++] = *(*str)++;
-			(*str)++;
+			content[i++] = *(*str)++;
 		}
 		else
 			content[i++] = *(*str)++;

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/04 17:46:57 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/07 15:56:31 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ int			ft_nbrlen(int n);
 
 /*		UTILS_LINKED	*/
 
-t_list		*init_list(void);
-t_list		*list_end(t_list *list, char *content);
-
 /*		UTILS_MEMORY	*/
 
 void		*ft_memcpy(void *dest, const void *src, size_t count);
 char		*ft_strcalloc(size_t size);
+void		*ft_calloc(size_t num, size_t size);
+
 
 /* 		UTILS_SPLIT 	*/
 
@@ -57,8 +56,6 @@ char		*ft_strdup(char *str);
 size_t		ft_strlcpy(char *dest, char *src, size_t size);
 char		*join_char(char *str, char c);
 size_t		ft_strlcpy_w_quotes(char *dest, char *src, size_t size);
-
-
 
 /* 		UTILS_WRITE 	*/
 

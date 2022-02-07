@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 15:14:40 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/06 10:23:51 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/07 16:45:51 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 int	check_len_word_in_quotes(char quote, char *str, int *pos, int count)
 {
 	(*pos)++;
+	count++;
 	while (str[*pos] != quote)
 	{
 		(*pos)++;
 		count++;
 	}
 	(*pos)++;
+	count++;
 	return (count);
 }
 

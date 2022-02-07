@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 13:50:51 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/13 17:37:24 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/07 15:56:17 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,21 @@ char	*ft_strcalloc(size_t size)
 		i++;
 	}
 	return (str);
+}
+
+void	*ft_calloc(size_t num, size_t size)
+{
+	char	*c;
+	size_t	i;
+
+	c = malloc(size * num);
+	if (c == 0)
+		return (0);
+	i = 0;
+	while (i < num * size)
+	{
+		c[i] = 0;
+		i++;
+	}
+	return (c);
 }

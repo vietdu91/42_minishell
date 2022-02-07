@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/06 10:11:15 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/07 16:43:50 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ enum	e_type
 typedef struct s_pars_node
 {
 	char				*content;
+	char				*nw_content;
 	enum e_type			type;
+	int					*index_crypted;
+	int					quote_or_not;
+//	0_nothing ; 1_simple_quote ; 2_double_quote
 	struct s_pars_node	*previous;
 	struct s_pars_node	*next;
 }	t_pars_node;
@@ -71,17 +75,6 @@ enum	e_var
 };
 /* maillons de la liste chainee */
 
-typedef struct s_node
-{
-	struct s_node	*next;
-	char			*content;
-	enum e_type		type;
-	int				quote_or_not; 
-//	0_nothing ; 1_simple_quote ; 2_double_quote
-	int				index;
-	char			**cmd;
-}	t_node;
-
 typedef struct s_env
 {
 	char			*line;
@@ -99,13 +92,6 @@ typedef struct s_env_list
 	int		length;
 }	t_env_list;
 
-typedef struct s_list
-{
-	t_node	*head;
-	t_node	*tail;
-	int		length;
-}	t_list;
-
 typedef struct s_args
 {
 	t_builtin		*builtin;
@@ -119,6 +105,23 @@ typedef struct s_args
 	int				quote_parse;
 	int				nb_commands;
 }	t_args;
+
+/*		ATTRIBUTION.C		*/
+
+int		check_if_meta(t_pars_list *l);
+int		logical_attribution(t_pars_list *l);
+
+/*		ATTRIBUTION_NORM.C	*/
+
+void	apply_cmd(t_pars_node *node);
+
+/*		CRYPTING_PARSER_QUOTES.C	*/
+
+int		find_meta_in_quotes(char *str);
+int		fill_crypt_tab(char *str, t_pars_node *parser);
+void	crypt_content(char *str, int size, t_pars_node *parser);
+void	decrypt_content(char *str, int size, t_pars_node *parser);
+int		encrypting(char *str, t_pars_node *parser);
 
 /*		FIND_IN_ENV.C		*/
 
@@ -135,9 +138,10 @@ int		count_words_with_quotes(char *s, int *count, int i, char quote);
 int		size_word_with_quotes(char *s, t_args *args, char quote);
 
 /*		PARSER_WORDS.C			*/
+
 int		cut_content(t_pars_list *l, t_args *args);
 int		word_has_meta(char *content);
-int		check_len_word(char *str);
+int		check_len_word(char *str, int a);
 char	*put_word_to_content(char **str, char *content);
 int		find_word(char **str, t_pars_list *parser);
 
@@ -146,11 +150,5 @@ int		zap_spaces(char **line);
 int		parser(char **line, t_pars_list *parser, t_args *args);
 int		maestro(t_args *args, char *line);
 
-/*		ATTRIBUTION.C		*/
-int		check_if_meta(t_pars_list *l);
-int		logical_attribution(t_pars_list *l);
-
-/*		ATTRIBUTION_NORM.C	*/
-void	apply_cmd(t_pars_node *node);
 
 #endif

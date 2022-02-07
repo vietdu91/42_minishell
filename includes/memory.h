@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:55:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/04 17:04:24 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/07 15:42:01 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 void		free_all(t_args *args);
 void		free_d_tab(char **tb);
 void		free_builtins(t_builtin *builtin);
-void		free_t_lists(t_list *c);
 char		**free_split(char **split, int index);
 
 /*		FREE_LISTS.C		*/

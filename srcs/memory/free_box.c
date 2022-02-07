@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/04 17:04:38 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/07 15:42:11 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,6 @@ void	free_d_tab(char **tb)
 	}
 	free(tb);
 	tb = NULL;
-}
-
-void	free_t_lists(t_list *c)
-{
-	t_node	*del;
-	t_node	*i;
-
-	if (!c)
-		return ;
-	i = c->head;
-	while (i)
-	{
-		del = i;
-		free(del->content);
-		i = i->next;
-		free(del);
-	}
-	free(c);
 }
 
 void	free_builtins(t_builtin *builtin)
