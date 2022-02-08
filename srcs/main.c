@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/02 17:51:08 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/07 23:54:43 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	loop(t_args *args)
 	{
 		init_parsing_list(&args->parser);
 		args->buffer = readline(PROMPT);
-		maestro(args, args->buffer);
+		parsing_maestro(args, args->buffer);
+		lexer_maestro(args);
 		add_history(args->buffer);
 		if (!args->buffer)
 		{

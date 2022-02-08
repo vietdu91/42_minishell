@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/07 15:56:31 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/08 00:19:42 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int			ft_nbrlen(int n);
 void		*ft_memcpy(void *dest, const void *src, size_t count);
 char		*ft_strcalloc(size_t size);
 void		*ft_calloc(size_t num, size_t size);
-
 
 /* 		UTILS_SPLIT 	*/
 
@@ -62,5 +61,9 @@ size_t		ft_strlcpy_w_quotes(char *dest, char *src, size_t size);
 void		ft_putnbr(int nb, int fd);
 void		ft_putstr(char *str, int fd);
 void		ft_putchar(char c, int fd);
+
+/*		UTILS_META.C	*/
+int			does_meta_exist(t_pars_node *node);
+int			is_full_meta(char *str);
 
 #endif

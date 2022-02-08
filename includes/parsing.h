@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/07 16:43:50 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/08 17:24:53 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,27 @@ enum	e_type
 	ERROR,	// 1
 	CMP,	// 2
 	CMD,	// 3
-	SIMPLE_ARG,	// 4
-	PIPE,	// 5
-	DOUBLE_PIPE,	// 6
-	LOGICAL_AND,	// 7
-	ASTERISQUE,		// 8
-	CONTINUE,		//9
+	OPTION_CMD, // 4
+	SIMPLE_ARG,	// 5
+	PIPE,	// 6
+	DOUBLE_PIPE,	// 7
+	LOGICAL_AND,	// 8
+	ASTERISQUE,		// 9
+	CONTINUE,		// 10
 /*		<		*/
-	INPUT,	// 10
-	INFILE,	// 11
+	INPUT,	// 11
+	INFILE,	// 12
 /*		>		*/
-	OUTPUT,	// 12
-	OUTFILE,	// 13
+	OUTPUT,	// 13
+	OUTFILE,	// 14
 /*		>>		*/
-	SUPER_OUTPUT,	// 14
-	SUPER_OUTFILE,	// 15
+	SUPER_OUTPUT,	// 15
+	SUPER_OUTFILE,	// 16
 /*		<<		*/
-	HEREDOC,	// 16
-	LIMITATOR,	// 17
+	HEREDOC,	// 17
+	LIMITATOR,	// 18
+/*		||>		*/
+	WRONG_META,
 };
 
 typedef struct s_pars_node
@@ -46,6 +49,7 @@ typedef struct s_pars_node
 	enum e_type			type;
 	int					*index_crypted;
 	int					quote_or_not;
+	char				*path;
 //	0_nothing ; 1_simple_quote ; 2_double_quote
 	struct s_pars_node	*previous;
 	struct s_pars_node	*next;
@@ -64,7 +68,6 @@ typedef struct s_builtin
 	char	*oldpwd;
 }	t_builtin;
 
-
 enum	e_var
 {
 	BASIC,
@@ -81,6 +84,7 @@ typedef struct s_env
 	char			*variable;
 	char			*content;
 	int				len_content;
+	char			*path;
 	enum e_var		var_id;
 	struct s_env	*next;
 }	t_env;
@@ -100,20 +104,13 @@ typedef struct s_args
 	t_pars_list		*parser;
 	char			*buffer;
 	char			*path;
+	char			*path_to_try;
+	char			*final_path;
 	char			*pwd;
 	char			*home;
 	int				quote_parse;
 	int				nb_commands;
 }	t_args;
-
-/*		ATTRIBUTION.C		*/
-
-int		check_if_meta(t_pars_list *l);
-int		logical_attribution(t_pars_list *l);
-
-/*		ATTRIBUTION_NORM.C	*/
-
-void	apply_cmd(t_pars_node *node);
 
 /*		CRYPTING_PARSER_QUOTES.C	*/
 
@@ -141,14 +138,13 @@ int		size_word_with_quotes(char *s, t_args *args, char quote);
 
 int		cut_content(t_pars_list *l, t_args *args);
 int		word_has_meta(char *content);
-int		check_len_word(char *str, int a);
+int		check_len_word(char *str);
 char	*put_word_to_content(char **str, char *content);
 int		find_word(char **str, t_pars_list *parser);
 
 /*		PARSER.C			*/
 int		zap_spaces(char **line);
 int		parser(char **line, t_pars_list *parser, t_args *args);
-int		maestro(t_args *args, char *line);
-
+int		parsing_maestro(t_args *args, char *line);
 
 #endif

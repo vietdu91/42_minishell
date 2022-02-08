@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_convert.c                                   :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/07 16:45:46 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/08 00:03:58 by dyoula           ###   ########.fr       */
+/*   Created: 2022/02/07 17:30:42 by dyoula            #+#    #+#             */
+/*   Updated: 2022/02/07 23:54:21 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#ifndef LEXER_H
+# define LEXER_H
 
-char	*convert_content_without_quotes(char **str, t_pars_node *parser)
-{
-	int		i;
-	char	*cpy;
-	char	*content;
+/*		ATTRIBUTION.C		*/
 
-	i = check_len_word(cpy, 1);
-}
+int		check_if_meta(t_pars_list *l);
+int		logical_attribution(t_pars_list *l);
+
+/*		ATTRIBUTION_NORM.C	*/
+
+void	apply_cmd(t_pars_node *node);
+
+/*		ATTRIBUTION_META.C	*/
+int		logical_attribution(t_pars_list *l);
+int		check_if_meta(t_pars_list *l);
+
+/*		LEXER_MAESTRO		*/
+int		lexer_maestro(t_args *args);
+
+#endif

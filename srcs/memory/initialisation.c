@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:26:48 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/03 17:49:19 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/07 20:35:38 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	init_and_set_all(t_args *args, char **envp)
 	g_exit_status = 0;
 	args->buffer = NULL;
 	args->path = NULL;
+	args->path_to_try = NULL;
+	args->final_path = NULL;
 	args->pwd = NULL;
 	args->quote_parse = 0;
 	args->nb_commands = 0;
