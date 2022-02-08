@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/08 18:09:30 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/08 18:51:20 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int	parser(char **line, t_pars_list *parser, t_args *args)
 	//	printf("LINE = %s\n", *line);
 		i += find_word(line, parser);
 		i += zap_spaces(line);
-		printf("JE PASSE... : %s\n", parser->tail->content);
+		// printf("JE PASSE... : %s\n", parser->tail->content);
 		if (word_has_meta(parser->tail->content))
 			cut_content(parser, args);
 	//	printf("CONTENT = %s\n", parser->tail->content);
 		else
 		{
-			printf("PAR LA ?... : %s\n", parser->tail->content);
+			// printf("PAR LA ?... : %s\n", parser->tail->content);
 			convert_content_without_quotes(&parser->tail->content, parser->tail);
 			encrypting(parser->tail->content, parser->tail);
 		}
@@ -67,6 +67,6 @@ int	parsing_maestro(t_args *args, char *line)
 
 	cpy = &line;
 	parser(cpy, args->parser, args);
-	display_parsing(args->parser);
+	// display_parsing(args->parser);
 	return (0);
 }

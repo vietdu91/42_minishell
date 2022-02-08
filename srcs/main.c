@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/07 23:54:43 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/08 18:51:32 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	loop(t_args *args)
 		args->buffer = readline(PROMPT);
 		parsing_maestro(args, args->buffer);
 		lexer_maestro(args);
+		display_parsing(args->parser);
 		add_history(args->buffer);
 		if (!args->buffer)
 		{

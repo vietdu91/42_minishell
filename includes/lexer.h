@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:30:42 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/07 23:54:21 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/08 19:12:52 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int		logical_attribution(t_pars_list *l);
 
 /*		ATTRIBUTION_NORM.C	*/
 
-void	apply_cmd(t_pars_node *node);
+void	apply_cmd(t_pars_node *node, int type);
+int		apply_type(int type, t_pars_node *node);
 
 /*		ATTRIBUTION_META.C	*/
 int		logical_attribution(t_pars_list *l);

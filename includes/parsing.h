@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/08 18:02:03 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/09 00:02:40 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ enum	e_type
 	HEREDOC,	// 17
 	LIMITATOR,	// 18
 /*		||>		*/
-	WRONG_META,
+	WRONG_META, //19
+	OPTION, // 20
 };
 
 typedef struct s_pars_node

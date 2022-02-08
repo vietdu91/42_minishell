@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 16:59:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/08 18:01:36 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/08 18:33:40 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,5 @@ int	encrypting(char *str, t_pars_node *parser)
 	parser->index_crypted = ft_calloc(size, sizeof(int));
 	fill_crypt_tab(str, parser);
 	crypt_content(str, size, parser);
-	return (0);
+	return (size);
 }
