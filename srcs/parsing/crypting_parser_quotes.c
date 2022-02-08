@@ -6,53 +6,51 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 16:59:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/07 17:26:41 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/08 18:01:36 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	find_meta_in_quotes(char *str)
+int	prepare_crypt(int i, int *j, char *str, t_pars_node *parser)
 {
-	int	i;
 	int	quotes;
-	int	encrypt;
 
-	i = -1;
 	quotes = 0;
-	encrypt = 0;
-	while (str[++i])
+	if (str[i] == '\"' && quotes == 0)
 	{
-		if (str[i] == '\"' && quotes == 0)
-			quotes++;
-		else if (str[i] == '\"' && quotes == 1)
+		quotes++;
+		i++;
+		while (str[i++] != '\"')
+			if (is_meta(str[i]) && quotes == 1)
+				parser->index_crypted[(*j)++] = i;
+		if (str[i] == '\"' && quotes == 1)
 			quotes--;
-		if (is_meta(str[i]) && quotes == 1)
-			encrypt++;
 	}
-	return (encrypt);
+	else if (str[i] == '\'' && quotes == 0)
+	{
+		quotes++;
+		i++;
+		while (str[i++] != '\'')
+			if (is_meta(str[i]) && quotes == 1)
+				parser->index_crypted[(*j)++] = i;
+		if (str[i] == '\'' && quotes == 1)
+			quotes--;
+	}
+	return (i);
 }
 
 int	fill_crypt_tab(char *str, t_pars_node *parser)
 {
 	int	i;
 	int	quotes;
-	int	encrypt;
 	int	j;
 
 	j = 0;
-	i = -1;
+	i = 0;
 	quotes = 0;
-	encrypt = 0;
-	while (str[++i])
-	{
-		if (str[i] == '\"' && quotes == 0)
-			quotes++;
-		else if (str[i] == '\"' && quotes == 1)
-			quotes--;
-		if (is_meta(str[i]) && quotes == 1)
-			parser->index_crypted[j++] = i;
-	}
+	while (str[i])
+		i = prepare_crypt(i, &j, str, parser);
 	return (0);
 }
 
@@ -60,7 +58,7 @@ void	crypt_content(char *str, int size, t_pars_node *parser)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	while (i < size)
 	{
 		if (str[parser->index_crypted[i]] == '|')
@@ -81,7 +79,7 @@ void	decrypt_content(char *str, int size, t_pars_node *parser)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	while (i < size)
 	{
 		if (str[parser->index_crypted[i]] == '0')
@@ -107,7 +105,9 @@ int	encrypting(char *str, t_pars_node *parser)
 	j = 0;
 	i = -1;
 	size = find_meta_in_quotes(str);
-	parser->index_crypted = ft_calloc(1, sizeof(int));
+	if (!size)
+		return (0);
+	parser->index_crypted = ft_calloc(size, sizeof(int));
 	fill_crypt_tab(str, parser);
 	crypt_content(str, size, parser);
 	return (0);
