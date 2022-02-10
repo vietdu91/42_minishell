@@ -18,6 +18,7 @@ ech"o" | "env" -> 0
 "e'ch'o | env"
 "e'ch'o"
 
+echo "bite lol" 'ptdr "lmfao'|<<>> grep -c "xla" <Makefile>|loooooool
 
 
 

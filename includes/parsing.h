@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/09 00:02:40 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/10 19:05:09 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ typedef struct s_pars_node
 {
 	char				*content;
 	char				*nw_content;
+	char				*content_exp;
 	enum e_type			type;
 	int					*index_crypted;
-	int					quote_or_not;
 	char				*path;
-//	0_nothing ; 1_simple_quote ; 2_double_quote
 	struct s_pars_node	*previous;
 	struct s_pars_node	*next;
 }	t_pars_node;
@@ -120,6 +119,13 @@ void	crypt_content(char *str, int size, t_pars_node *parser);
 void	decrypt_content(char *str, int size, t_pars_node *parser);
 int		encrypting(char *str, t_pars_node *parser);
 
+/*		EXPAND.C			*/
+
+int		len_of_variable(char *str);
+char	*check_variable(char *str, t_args *args);
+char	*where_is_dollar(char *str, t_env_list *env);
+void	expand(char **str, t_pars_node *parser, t_args *args);
+
 /*		FIND_IN_ENV.C		*/
 
 char	*find_path(char **envp);
@@ -152,7 +158,7 @@ int		find_word(char **str, t_pars_list *parser);
 
 /*		PARSER.C			*/
 int		zap_spaces(char **line);
-int		parser(char **line, t_pars_list *parser, t_args *args);
+int		parser(char **line, t_pars_list *psr, t_args *args);
 int		parsing_maestro(t_args *args, char *line);
 
 #endif

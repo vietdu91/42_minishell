@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_maestro.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/09 00:19:24 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/10 14:10:39 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	lexer_maestro(t_args *args)
 **	can it be executed ?
 **	then execution
 */
+	if (!args->buffer)
+		return (0);
 	logical_attribution(args->parser);
 	cmd_attribution(args->parser);
 	// check_first(args);

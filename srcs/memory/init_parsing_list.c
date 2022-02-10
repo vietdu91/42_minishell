@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/07 19:36:15 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/10 17:19:26 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	init_parsing_node(t_pars_node *node)
 {
 	node->content = NULL;
 	node->nw_content = NULL;
+	node->content_exp = NULL;
 	node->previous = NULL;
 	node->type = 0;
-	node->quote_or_not = 0;
 	node->next = NULL;
 	node->index_crypted = NULL;
 }
@@ -70,7 +70,6 @@ void	display_parsing(t_pars_list *parser)
 	{
 		printf("parsing = %s\n", i->content);
 		printf("nw_content = %s\n", i->nw_content);
-		printf("quote or not = %d\n", i->quote_or_not);
 		printf("type = %u\n\n", i->type);
 		i = i->next;
 	}
