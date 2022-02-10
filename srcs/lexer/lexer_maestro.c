@@ -6,21 +6,33 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/10 15:04:27 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/10 19:36:52 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	check_first(t_args *args)
+int	syntax_error_meta(t_args *args)
 {
-	t_pars_node	*node;
+	t_pars_node	*i;
 
-	node = args->parser->head;
-	if (!ft_strcmp(node->content, "||"))
-		print_error("syntax error near unexpected token `||'", args);
-	else if (!ft_strcmp(node->content, "|"))
-		print_error("syntax error near unexpected token `|'", args);
+	i = args->parser->head;
+	while (i && i->next)
+	{
+		if (check_enum(i->type) && check_enum(i->next->type))
+		{
+			ft_putstr("syntax error near unexpected token", 2);
+			ft_putstr("\' ", 2);
+			ft_putstr(i->next->content, 2);
+			ft_putstr("\'\n", 2);
+			// print_error(NULL, args);
+		}
+		i = i->next;
+	}
+	// if (!ft_strcmp(i->content, "||"))
+	// 	print_error("syntax error near unexpected token `||'", args);
+	// else if (!ft_strcmp(i->content, "|"))
+	// 	print_error("syntax error near unexpected token `|'", args);
 	return (1);
 }
 
@@ -80,9 +92,8 @@ int	lexer_maestro(t_args *args)
 		return (0);
 	logical_attribution(args->parser);
 	cmd_attribution(args->parser);
-	// check_first(args);
-	//check_if_meta(args->parser);
-	// checker si il y a un '-'
+	if (syntax_error_meta(args))
+		return (-1);
 	return (0);
 }
 

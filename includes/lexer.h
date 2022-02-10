@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:30:42 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/08 19:12:52 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/10 19:23:41 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,9 @@ int		check_if_meta(t_pars_list *l);
 
 /*		LEXER_MAESTRO		*/
 int		lexer_maestro(t_args *args);
+
+/*		LEXER_UTILS.C		*/
+int		check_enum(int n);
+void	norm_heredoc(t_pars_node *node);
 
 #endif

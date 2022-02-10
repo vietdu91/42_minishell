@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/08 19:17:32 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/10 19:43:02 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,18 @@ int	conditions(t_pars_node *node)
 {
 	if (!ft_strcmp(node->content, "<") && apply_type(INPUT, node))
 	{
-		if (node->previous)
-			node->previous->type = CMD;
+		node->previous->type = CMD;
+		if (!node->next)
+			return (0);
 		node->next->type = INFILE;
 	}
 	else if (!ft_strcmp(node->content, "<<") && apply_type(HEREDOC, node))
-	{
-		node->next->next->type = CMD;
-		node->next->type = LIMITATOR;
-	}
-	else if (!ft_strcmp(node->content, ">") && apply_type(OUTPUT, node))
+		norm_heredoc(node);
+	else if (!ft_strcmp(node->content, ">") && apply_type(OUTPUT, node) \
+	&& node->next)
 		node->next->type = OUTFILE;
-	else if (!ft_strcmp(node->content, ">>") && apply_type(SUPER_OUTPUT, node))
+	else if (!ft_strcmp(node->content, ">>") && apply_type(SUPER_OUTPUT, node) \
+	&& node->next)
 		node->next->type = SUPER_OUTFILE;
 	else if (!ft_strcmp(node->content, "|") && apply_type(PIPE, node))
 		apply_cmd(node, PIPE);
