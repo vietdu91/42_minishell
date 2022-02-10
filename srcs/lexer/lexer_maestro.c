@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/10 19:36:52 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/11 00:38:01 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,14 @@ int	syntax_error_meta(t_args *args)
 	{
 		if (check_enum(i->type) && check_enum(i->next->type))
 		{
-			ft_putstr("syntax error near unexpected token", 2);
-			ft_putstr("\' ", 2);
+			ft_putstr("syntax error near unexpected token ", 2);
+			ft_putstr("`", 2);
 			ft_putstr(i->next->content, 2);
 			ft_putstr("\'\n", 2);
-			// print_error(NULL, args);
+			return (-1);
 		}
 		i = i->next;
 	}
-	// if (!ft_strcmp(i->content, "||"))
-	// 	print_error("syntax error near unexpected token `||'", args);
-	// else if (!ft_strcmp(i->content, "|"))
-	// 	print_error("syntax error near unexpected token `|'", args);
 	return (1);
 }
 
@@ -65,6 +61,36 @@ void	cmd_attribution(t_pars_list *l)
 	}
 }
 
+void	split_meta(t_pars_list *l)
+{
+	t_pars_node	*i;
+
+	i = l->head;
+	while (i)
+	{
+		if (is_full_meta(i->content) && ft_strlen(i->content) > 1)
+		{
+			splitter_content_meta(i, l);
+		}
+		i = i->next;
+	}
+}
+
+int	lexer_maestro(t_args *args)
+{
+	if (!args->parser)
+		return (0);
+	split_meta(args->parser);
+	split_meta(args->parser);
+	// syntax error near unexpected token `<' trouver les token qui failent
+	//  < > << >> ; | 
+	logical_attribution(args->parser);
+	cmd_attribution(args->parser);
+	if (syntax_error_meta(args) < -1 || forbidden_token(args->parser))// ajouter fonction d'erreur token rate 
+		return (-1);
+	return (0);
+}
+
 // int	cmd_is__path(t_pars_node *n, t_args	*args)
 // {
 // 	char	*no_space;
@@ -85,18 +111,6 @@ void	cmd_attribution(t_pars_list *l)
 // }
 
 // << del cmd (option) or (meta) or (file) if (next-> != meta) file file file
-
-int	lexer_maestro(t_args *args)
-{
-	if (!args->parser)
-		return (0);
-	logical_attribution(args->parser);
-	cmd_attribution(args->parser);
-	if (syntax_error_meta(args))
-		return (-1);
-	return (0);
-}
-
 // find_option_cmd(i);
 
 // int	find_option_cmd(t_pars_node *n)

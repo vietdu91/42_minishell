@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:30:42 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/10 19:23:41 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/11 00:23:27 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int		lexer_maestro(t_args *args);
 /*		LEXER_UTILS.C		*/
 int		check_enum(int n);
 void	norm_heredoc(t_pars_node *node);
+int		forbidden_token(t_pars_list *l);
 
 #endif

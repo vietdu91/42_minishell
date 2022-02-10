@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/08 00:19:42 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/10 22:19:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ long int	ft_atoi(const char *str);
 int			ft_nbrlen(int n);
 
 /*		UTILS_LINKED	*/
+
+int			add_node_after_current(char *content, t_pars_node *n, \
+			t_pars_list *l);
 
 /*		UTILS_MEMORY	*/
 
@@ -65,5 +68,7 @@ void		ft_putchar(char c, int fd);
 /*		UTILS_META.C	*/
 int			does_meta_exist(t_pars_node *node);
 int			is_full_meta(char *str);
+char		*new_content_first(t_pars_node *node, int *i);
+void		splitter_content_meta(t_pars_node *node, t_pars_list *l);
 
 #endif

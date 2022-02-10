@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 19:50:38 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/10 19:26:35 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/11 00:26:37 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,47 @@ void	norm_heredoc(t_pars_node *node)
 	if (!node->next->next)
 		return ;
 	node->next->next->type = CMD;
+}
+
+int	is_forbidden(t_pars_node *node)
+{
+	if (!ft_strcmp(node->content, "<"))
+		return (1);
+	else if (!ft_strcmp(node->content, "<<"))
+		return (1);
+	else if (!ft_strcmp(node->content, ">"))
+		return (1);
+	else if (!ft_strcmp(node->content, ">>"))
+		return (1);
+	else if (!ft_strcmp(node->content, "|"))
+		return (1);
+	else if (!ft_strcmp(node->content, "||"))
+		return (1);
+	else if (!ft_strcmp(node->content, "&"))
+		return (1);
+	else if (!ft_strcmp(node->content, "&&"))
+		return (1);
+	else if (!ft_strcmp(node->content, ";"))
+		return (1);
+	printf("node->content %s\n", node->content);
+	return (0);
+}
+
+int	forbidden_token(t_pars_list *l)
+{
+	t_pars_node	*i;
+
+	i = l->head;
+	while (i && i->next)
+	{
+		if (does_meta_exist(i) && is_forbidden(i->next))
+		{
+			ft_putstr("syntax error near unexpected token '", 2);
+			ft_putstr(i->next->content, 2);
+			ft_putstr("'\n", 2);
+			return (1);
+		}
+		i = i->next;
+	}
+	return (0);
 }
