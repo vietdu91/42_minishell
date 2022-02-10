@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/08 18:51:20 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/10 14:41:43 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ int	parsing_maestro(t_args *args, char *line)
 {
 	char	**cpy;
 
+	if (line[0] == 0)
+		return (-1);
 	cpy = &line;
 	parser(cpy, args->parser, args);
-	// display_parsing(args->parser);
 	return (0);
 }

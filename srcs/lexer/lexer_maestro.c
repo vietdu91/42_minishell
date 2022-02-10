@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/09 00:19:24 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/10 15:04:27 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ void	cmd_attribution(t_pars_list *l)
 
 	cmd = 0;
 	i = l->head;
-	if (i && i->type == 0)
+	if (!i)
+		return ;
+	if (i->type == 0)
 		i->type = CMD;
-	if (i->next)
-		i = i->next;
+	if (i && i->next == NULL)
+		return ;
+	i = i->next;
 	while (i)
 	{
 		if (i->previous && i->previous->type == 3)
@@ -73,16 +76,8 @@ void	cmd_attribution(t_pars_list *l)
 
 int	lexer_maestro(t_args *args)
 {
-/*
-**	check_first() is_meta ? yes ? which one ? is it an error ?
-**	is_already_path() if first isn't a meta test wether it is a path itself
-**	find_path() if not find the path in env
-**	access() then find if its correct command
-**	logical_deduction() it has to do it simply after a command its wether a flag
-**	or an arg.
-**	can it be executed ?
-**	then execution
-*/
+	if (!args->parser)
+		return (0);
 	logical_attribution(args->parser);
 	cmd_attribution(args->parser);
 	// check_first(args);
