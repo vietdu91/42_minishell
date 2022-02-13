@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:28:57 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/10 11:11:02 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/13 11:58:39 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,25 @@ size_t	ft_strlcpy_w_quotes(char *dest, char *src, size_t size)
 		dest[j] = 0;
 	}
 	return (ft_strlen(src));
+}
+
+char	*ft_strjoin_one_c(char *s1, char s2)
+{
+	unsigned int	len_1;
+	char			*str;
+
+	if (s2 != 0)
+	{
+		len_1 = ft_strlen(s1);
+		str = (char *)malloc(sizeof(char) * (len_1 + 1 + 1));
+		if (!str)
+			return (0);
+		ft_memcpy(str, s1, len_1);
+		ft_memcpy_with_one_char(str + len_1, s2, 1 + 1);
+		free(s1);
+		s1 = NULL;
+		str[len_1 + 1] = '\0';
+		return (str);
+	}
+	return (s1);
 }

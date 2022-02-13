@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/10 19:07:47 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/13 10:39:38 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	parser(char **line, t_pars_list *psr, t_args *args)
 			cut_content(psr, args);
 		else
 		{
-			expand(&psr->tail->content, psr->tail, args);
+			expand(psr->tail->content, psr->tail, args);
 			convert_content_without_quotes(&psr->tail->content, psr->tail);
 			encrypting(psr->tail->content, psr->tail);
 		}

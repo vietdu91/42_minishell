@@ -32,6 +32,7 @@ SRCS		= 	main.c \
 				memory/initialisation_env.c \
 				memory/initialisation_no_env.c \
 				parsing/crypting_parser_quotes.c \
+				parsing/expand_quotes.c \
 				parsing/expand.c \
 				parsing/find_in_env.c \
 				parsing/parser_convert.c \
@@ -48,6 +49,7 @@ SRCS		= 	main.c \
 				utils/utils_split_charset.c \
 				utils/utils_str.c \
 				utils/utils_str2.c \
+				utils/utils_str3.c \
 				utils/utils_write.c
 
 INCLUDES 	= 	includes/minishell.h

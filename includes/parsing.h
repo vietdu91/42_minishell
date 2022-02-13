@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/10 19:05:09 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/13 18:36:41 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_pars_node
 	char				*content;
 	char				*nw_content;
 	char				*content_exp;
+	char				*content_exp_sans_q;
 	enum e_type			type;
 	int					*index_crypted;
 	char				*path;
@@ -119,12 +120,17 @@ void	crypt_content(char *str, int size, t_pars_node *parser);
 void	decrypt_content(char *str, int size, t_pars_node *parser);
 int		encrypting(char *str, t_pars_node *parser);
 
+/*		EXPAND_QUOTES.C		*/
+
+void	convert_expand_quotes(t_pars_list *parser);
+
 /*		EXPAND.C			*/
 
 int		len_of_variable(char *str);
-char	*check_variable(char *str, t_args *args);
-char	*where_is_dollar(char *str, t_env_list *env);
-void	expand(char **str, t_pars_node *parser, t_args *args);
+char	*check_variable(char **str, int len);
+char	*put_content_of_expand(char *var, t_env_list *env);
+void	where_is_dollar(char **str, t_pars_node *parser, t_args *args);
+void	expand(char *str, t_pars_node *parser, t_args *args);
 
 /*		FIND_IN_ENV.C		*/
 

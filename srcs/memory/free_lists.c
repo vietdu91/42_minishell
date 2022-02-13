@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:06:17 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/07 18:31:13 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/13 11:35:56 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	free_pars_list(t_pars_list *parser)
 		free(del->content);
 		if (del->nw_content)
 			free(del->nw_content);
+		if (del->content_exp)
+			free(del->content_exp);
 		if (del->index_crypted)
 			free(del->index_crypted);
 		free(del);
