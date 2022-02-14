@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/13 14:56:01 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/14 17:33:11 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 
 long int	ft_atoi(const char *str);
 int			ft_nbrlen(int n);
+
+/*		UTILS_ITOA		*/
+
+char		ft_check(long int nb, unsigned int len, char *str);
+char		*ft_itoa(int n);
 
 /*		UTILS_LINKED	*/
 

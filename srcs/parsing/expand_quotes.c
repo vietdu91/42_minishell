@@ -6,46 +6,65 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 18:08:53 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/13 18:42:49 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/14 17:27:44 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	convert_expand_quotes(t_pars_list *parser)
+void	wid_with_dq(char **str, int len, t_pars_node *parser, t_env_list *env)
 {
-	t_pars_node	*node;
+	strjoin_c_content_exp(str, parser);
+	while (**str != '\"')
+	{
+		if (**str == '$')
+			strjoin_content_exp(str, len, parser, env);
+		else
+			strjoin_c_content_exp(str, parser);
+	}
+	strjoin_c_content_exp(str, parser);
+}
+
+void	strjoin_c_content_exp(char **str, t_pars_node *parser)
+{
+	char	content;
+
+	content = **str;
+	parser->content_exp = ft_strjoin_one_c(parser->content_exp, content);
+	(*str)++;
+}
+
+void	strjoin_content_exp(char **str, int len, t_pars_node *psr, \
+t_env_list *env)
+{
+	char	*var;
+	char	*content;
+
+	var = NULL;
+	content = NULL;
+	var = check_variable(str, len);
+	content = put_content_of_expand(var, env);
+	psr->content_exp = ft_strjoin(psr->content_exp, content);
+	free(var);
+}
+
+void	convert_expand_quotes(t_pars_node *parser)
+{
 	int			i;
 	int			j;
 	int			len;
 
 	i = 0;
 	j = 0;
-	node = NULL;
-	node = parser->head;
-	while (node)
+	len = check_len_new_word(parser->content_exp);
+	parser->content_exp_sans_q = malloc(sizeof(char) * (len + 1));
+	while (parser->content_exp[i])
 	{
-		len = check_len_new_word(node->content_exp);
-		node->content_exp_sans_q = malloc(sizeof(char) * (len + 1));
-		while (node->content_exp[i])
-		{
-			if (is_quote(node->content_exp[i]) == 1)
-			{
-				i++;
-				while (node->content_exp[i] != '\'')
-					node->content_exp_sans_q[j++] = node->content_exp[i++];
-				i++;
-			}
-			else if (is_quote(node->content_exp[i]) == 2)
-			{
-				i++;
-				while (node->content_exp[i] != '\"')
-					node->content_exp_sans_q[j++] = node->content_exp[i++];
-				i++;
-			}
-			else
-				node->content_exp_sans_q[j++] = node->content_exp[i++];
-		}
-		node = node->next;
+		if (is_quote(parser->content_exp[i]) == 1)
+			put_content_exp_sans_q(parser, &i, &j, '\'');
+		else if (is_quote(parser->content_exp[i]) == 2)
+			put_content_exp_sans_q(parser, &i, &j, '\"');
+		else
+			parser->content_exp_sans_q[j++] = parser->content_exp[i++];
 	}
 }
