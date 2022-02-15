@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:41:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/14 17:29:41 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/15 13:27:03 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	count_the_len_of_variable(int *count, int *i, char *str)
 {
-	if (str[*i + 1] == '$' || str[*i + 1] == '\0')
+	if (str[*i + 1] == '$' || str[*i + 1] == '\0' || is_quote(str[*i + 1]))
 	{
 		(*count)++;
 		return ;
@@ -66,7 +66,8 @@ char	*check_variable(char **str, int len)
 		if (**str == '$')
 		{
 			i = len_of_variable(*str);
-			if (*(*str + 1) != '$' && ft_strcmp("$", *str))
+			if (*(*str + 1) != '$' && ft_strcmp("$", *str) \
+			&& !is_quote(*(*str + 1)))
 				(*str)++;
 			var = malloc(sizeof(char) * (i + 1));
 			ft_strncpy(var, *str, i);

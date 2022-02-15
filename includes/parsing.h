@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/14 17:24:43 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:08:19 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int		encrypting(char *str, t_pars_node *parser);
 
 void	put_content_exp_sans_q(t_pars_node *node, int *i, int *j, char quote);
 char	*put_content_of_expand(char *var, t_env_list *env);
+char	*check_put_content_of_expand(char *var, char *content, t_env *node);
 
 /*		EXPAND_QUOTES.C		*/
 
@@ -173,6 +174,7 @@ char	*put_word_to_content(char **str, char *content);
 int		find_word(char **str, t_pars_list *parser);
 
 /*		PARSER.C			*/
+
 int		zap_spaces(char **line);
 int		parser(char **line, t_pars_list *psr, t_env_list *env, t_args *args);
 int		parsing_maestro(t_args *args, char *line);
