@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkers.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:37:14 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/05 18:17:54 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/14 16:34:48 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	is_space(char c);
 int	is_meta(char c);
 int	is_quote(char c);
 int	is_charset(char c, char *charset);
-
 
 /*		IS_UNCLOSED.C			*/
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/09 00:02:40 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/15 14:08:19 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ typedef struct s_pars_node
 {
 	char				*content;
 	char				*nw_content;
+	char				*content_exp;
+	char				*content_exp_sans_q;
 	enum e_type			type;
 	int					*index_crypted;
-	int					quote_or_not;
 	char				*path;
-//	0_nothing ; 1_simple_quote ; 2_double_quote
 	struct s_pars_node	*previous;
 	struct s_pars_node	*next;
 }	t_pars_node;
@@ -120,6 +120,29 @@ void	crypt_content(char *str, int size, t_pars_node *parser);
 void	decrypt_content(char *str, int size, t_pars_node *parser);
 int		encrypting(char *str, t_pars_node *parser);
 
+/*		EXPAND_PUT.C		*/
+
+void	put_content_exp_sans_q(t_pars_node *node, int *i, int *j, char quote);
+char	*put_content_of_expand(char *var, t_env_list *env);
+char	*check_put_content_of_expand(char *var, char *content, t_env *node);
+
+/*		EXPAND_QUOTES.C		*/
+
+void	wid_with_dq(char **str, int len, t_pars_node *parser, \
+t_env_list *env);
+void	convert_expand_quotes(t_pars_node *parser);
+void	strjoin_c_content_exp(char **str, t_pars_node *parser);
+void	strjoin_content_exp(char **str, int len, t_pars_node *psr, \
+t_env_list *env);
+
+/*		EXPAND.C			*/
+
+void	count_the_len_of_variable(int *count, int *i, char *str);
+int		len_of_variable(char *str);
+char	*check_variable(char **str, int len);
+void	where_is_dollar(char **str, t_pars_node *parser, t_env_list *env);
+void	expand(char *str, t_pars_node *parser, t_env_list *env);
+
 /*		FIND_IN_ENV.C		*/
 
 char	*find_path(char **envp);
@@ -144,15 +167,16 @@ int		size_word_with_quotes(char *s, t_args *args, char quote);
 
 /*		PARSER_WORDS.C			*/
 
-int		cut_content(t_pars_list *l, t_args *args);
+int		cut_content(t_pars_list *parser, t_env_list *env, t_args *args);
 int		word_has_meta(char *content);
 int		check_len_word(char *str);
 char	*put_word_to_content(char **str, char *content);
 int		find_word(char **str, t_pars_list *parser);
 
 /*		PARSER.C			*/
+
 int		zap_spaces(char **line);
-int		parser(char **line, t_pars_list *parser, t_args *args);
+int		parser(char **line, t_pars_list *psr, t_env_list *env, t_args *args);
 int		parsing_maestro(t_args *args, char *line);
 
 #endif

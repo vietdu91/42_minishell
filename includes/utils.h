@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/08 00:19:42 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/14 17:33:11 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,17 @@
 long int	ft_atoi(const char *str);
 int			ft_nbrlen(int n);
 
+/*		UTILS_ITOA		*/
+
+char		ft_check(long int nb, unsigned int len, char *str);
+char		*ft_itoa(int n);
+
 /*		UTILS_LINKED	*/
 
 /*		UTILS_MEMORY	*/
 
 void		*ft_memcpy(void *dest, const void *src, size_t count);
+void		*ft_memcpy_with_one_char(void *dest, const char src, size_t count);
 char		*ft_strcalloc(size_t size);
 void		*ft_calloc(size_t num, size_t size);
 
@@ -55,6 +61,8 @@ char		*ft_strdup(char *str);
 size_t		ft_strlcpy(char *dest, char *src, size_t size);
 char		*join_char(char *str, char c);
 size_t		ft_strlcpy_w_quotes(char *dest, char *src, size_t size);
+char		*ft_strjoin_one_c(char *s1, char s2);
+void		ft_strncpy(char *dest, char *src, int n);
 
 /* 		UTILS_WRITE 	*/
 

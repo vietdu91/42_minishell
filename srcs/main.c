@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/08 18:51:32 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/15 11:55:42 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,22 @@ void	loop(t_args *args)
 	{
 		init_parsing_list(&args->parser);
 		args->buffer = readline(PROMPT);
-		parsing_maestro(args, args->buffer);
-		lexer_maestro(args);
-		display_parsing(args->parser);
-		add_history(args->buffer);
 		if (!args->buffer)
 		{
 			ft_putstr("exit\n", 1);
 			break ;
 		}
 		else
+		{
+			if (!check_unclosed(args))
+			{
+				parsing_maestro(args, args->buffer);
+				lexer_maestro(args);
+				display_parsing(args->parser);
+			}
+			add_history(args->buffer);
 			cmp_all(args);
+		}
 		if (args->parser)
 			free_pars_list(args->parser);
 		free(args->buffer);
@@ -42,8 +47,6 @@ void	cmp_all(t_args *args)
 	int	i;
 
 	i = 0;
-	if (check_unclosed(args))
-		return ;
 	args->nb_commands = how_many_commands(args->buffer);
 	if (!ft_strcmp(args->buffer, "echo"))
 		ft_putchar('\n', 1);
