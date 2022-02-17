@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_unclosed.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 11:55:41 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/20 23:44:43 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/17 16:14:48 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	check_unclosed(t_args *args)
 	if (checker > 0)
 	{
 		if (checker == 1)
-			print_syntax_error(ERR_UNCLOSED, '\'', 1);
+			print_syntax_error(ERR_UNCLOSED, "'");
 		else if (checker == 2)
-			print_syntax_error(ERR_UNCLOSED, '"', 1);
+			print_syntax_error(ERR_UNCLOSED, "\"");
 		g_exit_status = 2;
 		return (1);
 	}

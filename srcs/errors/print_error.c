@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:08:22 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/23 17:10:40 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/17 16:14:31 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,9 @@ void	print_error(char *msg_error, t_args *args)
 	exit(EXIT_FAILURE);
 }
 
-void	print_syntax_error(char *msg_error, char sign, int a)
+void	print_syntax_error(char *msg_error, char *sign)
 {
-	if (a == 1) //unclosed quotes
-		ft_putstr(msg_error, 2);
-	else
-		ft_putstr(msg_error, 2);
-	ft_putchar(sign, 2);
+	ft_putstr(msg_error, 2);
+	ft_putstr(sign, 2);
 	ft_putstr("'\n", 2);
 }
