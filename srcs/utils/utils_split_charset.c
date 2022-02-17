@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:40:14 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/04 18:10:48 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/10 13:58:09 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,9 @@ char	**ft_split_charset(char **split, char *s, char *c, t_args *args)
 		if (!split[index])
 			return (free_split(split, index));
 		ft_strlcpy_w_quotes(split[index], flag, size_word(flag, c, args) + 1);
+		flag += (size_word(flag, c, args));
 		if (args->quote_parse)
-		{
-			flag += (size_word(flag, c, args) + 2);
 			args->quote_parse = 0;
-		}
-		else
-			flag += (size_word(flag, c, args));
 	}
 	return (split);
 }

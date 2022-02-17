@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 16:59:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/07 21:06:29 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/10 13:58:55 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	prepare_crypt(int i, int *j, char *str, t_pars_node *parser)
 		if (str[i] == '\'' && quotes == 1)
 			quotes--;
 	}
+	else
+		i++;
 	return (i);
 }
 
@@ -49,7 +51,7 @@ int	fill_crypt_tab(char *str, t_pars_node *parser)
 	j = 0;
 	i = 0;
 	quotes = 0;
-	while (str[i])
+	while (str[i] && i < ft_strlen(str))
 		i = prepare_crypt(i, &j, str, parser);
 	return (0);
 }
@@ -110,5 +112,5 @@ int	encrypting(char *str, t_pars_node *parser)
 	parser->index_crypted = ft_calloc(size, sizeof(int));
 	fill_crypt_tab(str, parser);
 	crypt_content(str, size, parser);
-	return (0);
+	return (size);
 }

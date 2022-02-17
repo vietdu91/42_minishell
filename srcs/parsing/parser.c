@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/07 19:55:02 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/14 17:23:45 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	zap_spaces(char **line)
 	return (i);
 }
 
-int	parser(char **line, t_pars_list *parser, t_args *args)
+int	parser(char **line, t_pars_list *psr, t_env_list *env, t_args *args)
 {
 	int		i;
 	int		len;
@@ -44,31 +44,26 @@ int	parser(char **line, t_pars_list *parser, t_args *args)
 	while (**line && i < len)
 	{
 		i += zap_spaces(line);
-	//	printf("LINE = %s\n", *line);
-		i += find_word(line, parser);
+		i += find_word(line, psr);
 		i += zap_spaces(line);
-		printf("JE PASSE... : %s\n", parser->tail->content);
-		if (word_has_meta(parser->tail->content))
-			cut_content(parser, args);
-	//	printf("CONTENT = %s\n", parser->tail->content);
+		if (word_has_meta(psr->tail->content))
+			cut_content(psr, env, args);
 		else
 		{
-			printf("PAR LA ?... : %s\n", parser->tail->content);
-			convert_content_without_quotes(&parser->tail->content, parser->tail);
-			encrypting(parser->tail->content, parser->tail);
+			expand(psr->tail->content, psr->tail, env);
+			convert_content_without_quotes(&psr->tail->content, psr->tail);
+			encrypting(psr->tail->content, psr->tail);
 		}
 	}
 	return (0);
 }
 
-int	maestro(t_args *args, char *line)
+int	parsing_maestro(t_args *args, char *line)
 {
 	char	**cpy;
 
 	cpy = &line;
-	parser(cpy, args->parser, args);
-	check_if_meta(args->parser);
-	logical_attribution(args->parser);
-	display_parsing(args->parser);
+	parser(cpy, args->parser, args->env, args);
+	// display_parsing(args->parser);
 	return (0);
 }

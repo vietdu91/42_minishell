@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 13:50:51 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/07 15:56:17 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/13 11:46:10 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@ void	*ft_memcpy(void *dest, const void *src, size_t count)
 	while (i < count)
 	{
 		chdest[i] = chsrc[i];
+		i++;
+	}
+	return (dest);
+}
+
+void	*ft_memcpy_with_one_char(void *dest, const char c, size_t count)
+{
+	char			*chdest;
+	char			chsrc;
+	unsigned int	i;
+
+	chdest = (char *)dest;
+	chsrc = c;
+	if (dest == 0 && c == 0)
+		return (0);
+	i = 0;
+	while (i < count)
+	{
+		chdest[i] = chsrc;
 		i++;
 	}
 	return (dest);

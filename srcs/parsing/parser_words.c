@@ -6,13 +6,13 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/07 19:50:25 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/14 17:24:41 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	cut_content(t_pars_list *parser, t_args *args)
+int	cut_content(t_pars_list *parser, t_env_list *env, t_args *args)
 {
 	int			i;
 	char		**splitted;
@@ -26,9 +26,13 @@ int	cut_content(t_pars_list *parser, t_args *args)
 	free(parser->tail->content);
 	parser->tail->content = NULL;
 	parser->tail->content = ft_strdup(splitted[0]);
+	expand(parser->tail->content, parser->tail, env);
+	convert_content_without_quotes(&parser->tail->content, parser->tail);
+	encrypting(parser->tail->content, parser->tail);
 	while (splitted[++i])
 	{
 		list_end_parse(parser, splitted[i]);
+		expand(parser->tail->content, parser->tail, env);
 		convert_content_without_quotes(&parser->tail->content, parser->tail);
 		encrypting(parser->tail->content, parser->tail);
 	}
@@ -39,18 +43,25 @@ int	cut_content(t_pars_list *parser, t_args *args)
 int	word_has_meta(char *content)
 {
 	int	i;
-	int	quote_counter;
 
-	i = -1;
-	quote_counter = 0;
-	while (content[++i])
+	i = 0;
+	while (content[i])
 	{
-		if (is_quote(content[i]))
-			quote_counter++;
-		if (quote_counter == 2)
-			quote_counter = 0;
-		if (is_meta(content[i]) && (quote_counter % 2) == 0)
+		if (is_quote(content[i]) == 1)
+		{
+			i++;
+			while (content[i] != '\'')
+				i++;
+		}
+		else if (is_quote(content[i]) == 2)
+		{
+			i++;
+			while (content[i] != '\"')
+				i++;
+		}
+		else if (is_meta(content[i]))
 			return (1);
+		i++;
 	}
 	return (0);
 }

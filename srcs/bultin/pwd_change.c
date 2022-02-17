@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:26:54 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/27 14:28:47 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/17 15:04:21 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 void	change_pwd_env(char *newpwd, t_args *args)
 {
 	t_env	*node;
+	char	*pwd_str;
 
 	if (!args || !newpwd)
 		return ;
 	node = NULL;
 	node = args->env->head;
+	pwd_str = ft_strdup("PWD=");
 	while (node)
 	{
 		if (node->var_id == 1)
@@ -27,7 +29,7 @@ void	change_pwd_env(char *newpwd, t_args *args)
 			free(node->content);
 			node->content = ft_strdup(newpwd);
 			free(node->line);
-			node->line = ft_strjoin("PWD=", newpwd);
+			node->line = ft_strjoin(pwd_str, newpwd);
 			return ;
 		}
 		node = node->next;
@@ -37,6 +39,7 @@ void	change_pwd_env(char *newpwd, t_args *args)
 void	change_oldpwd_env(char *newpwd, t_args *args)
 {
 	t_env	*node;
+	char	*oldpwd_str;
 
 	if (!args || !newpwd)
 		return ;
@@ -47,6 +50,7 @@ void	change_oldpwd_env(char *newpwd, t_args *args)
 	}
 	node = NULL;
 	node = args->env->head;
+	oldpwd_str = ft_strdup("OLDPWD=");
 	while (node)
 	{
 		if (node->var_id == 2)
@@ -54,7 +58,7 @@ void	change_oldpwd_env(char *newpwd, t_args *args)
 			free(node->content);
 			node->content = ft_strdup(newpwd);
 			free(node->line);
-			node->line = ft_strjoin("OLDPWD=", newpwd);
+			node->line = ft_strjoin(oldpwd_str, newpwd);
 			return ;
 		}
 		node = node->next;
@@ -64,11 +68,13 @@ void	change_oldpwd_env(char *newpwd, t_args *args)
 void	change_pwd_export(char *newpwd, t_args *args)
 {
 	t_env	*node;
+	char	*pwd_str;
 
 	if (!args || !newpwd)
 		return ;
 	node = NULL;
 	node = args->export->head;
+	pwd_str = ft_strdup("PWD=");
 	while (node)
 	{
 		if (node->var_id == 1)
@@ -76,7 +82,7 @@ void	change_pwd_export(char *newpwd, t_args *args)
 			free(node->content);
 			node->content = ft_strdup(newpwd);
 			free(node->line);
-			node->line = ft_strjoin("PWD=", newpwd);
+			node->line = ft_strjoin(pwd_str, newpwd);
 			return ;
 		}
 		node = node->next;
@@ -86,6 +92,7 @@ void	change_pwd_export(char *newpwd, t_args *args)
 void	change_oldpwd_export(char *newpwd, t_args *args)
 {
 	t_env	*node;
+	char	*oldpwd_str;
 
 	if (!args || !newpwd)
 		return ;

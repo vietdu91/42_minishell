@@ -21,15 +21,20 @@ SRCS		= 	main.c \
 				checkers/is_others.c \
 				errors/print_error.c \
 				fun/print_fun.c \
+				lexer/attribution_meta.c \
+				lexer/attribution_norm.c \
+				lexer/lexer_maestro.c \
+				lexer/lexer_utils.c \
 				memory/free_box.c \
 				memory/free_lists.c \
 				memory/init_parsing_list.c \
 				memory/initialisation.c \
 				memory/initialisation_env.c \
 				memory/initialisation_no_env.c \
-				parsing/attribution_meta.c \
-				parsing/attribution_norm.c \
 				parsing/crypting_parser_quotes.c \
+				parsing/expand_put.c \
+				parsing/expand_quotes.c \
+				parsing/expand.c \
 				parsing/find_in_env.c \
 				parsing/parser_convert.c \
 				parsing/parser_quotes.c \
@@ -39,11 +44,14 @@ SRCS		= 	main.c \
 				signal/signal.c \
 				utils/utils_digits.c \
 				utils/utils_gnl.c \
+				utils/utils_itoa.c \
 				utils/utils_linked.c \
 				utils/utils_mem.c \
+				utils/utils_meta.c \
 				utils/utils_split_charset.c \
 				utils/utils_str.c \
 				utils/utils_str2.c \
+				utils/utils_str3.c \
 				utils/utils_write.c
 
 INCLUDES 	= 	includes/minishell.h
