@@ -14,7 +14,7 @@ On ne voit pas trop l'intérêt de réaliser ce projet mais ca permet au moins d
 ```
 Notre connaissance est partielle, et partielles sont nos prophéties. 
 Mais le jour où notre Minishell apparaîtra, ce qui est partiel cessera. 
-                                                                                                    (Corinthiens 13:9.5) 
+                                                                            (Corinthiens 13:9.5) 
 ```
 
 ![Screenshot](minishell_action.png)
