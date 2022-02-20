@@ -32,3 +32,11 @@ WELCOME TO (minis)HELL 😈 $>
 ==652196==    by 0x4012A6: loop (main.c:33)
 ==652196==    by 0x401526: main (main.c:83)
 ==652196==  Address 0x40 is not stack'd, malloc'd or (recently) free'd
+
++++++
+
+SEGFAULT sur lexer quand il y a des metas espaces a la suite : < < < < <
+
++++++
+
+lexer considere "exit -666" que le -666 est une option (type 20) alors que cela ne devrait pas

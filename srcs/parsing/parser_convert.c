@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:45:46 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/10 11:04:11 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/20 18:14:11 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ int	check_len_new_word(char *str)
 	return (count);
 }
 
-void	convert_content_without_quotes(char **str, t_pars_node *parser)
+void	convert_content_without_quotes(char *str, t_pars_node *parser)
 {
 	int		i;
 	char	*cpy;
 
-	cpy = *str;
+	cpy = str;
 	i = check_len_new_word(cpy);
 	parser->nw_content = malloc(sizeof(char) * (i + 1));
 	if (!parser->nw_content)

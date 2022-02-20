@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/27 17:48:21 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/20 18:31:40 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args);
 
 /*		EXIT.C		*/
 
-void		exit_main(t_args *args);
+void		exit_main(t_args *args, t_pars_node *parser);
 
 /*		EXPORT_UNSET.C		*/
 

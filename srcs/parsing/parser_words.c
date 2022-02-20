@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/14 17:24:41 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/20 18:13:36 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	cut_content(t_pars_list *parser, t_env_list *env, t_args *args)
 	parser->tail->content = NULL;
 	parser->tail->content = ft_strdup(splitted[0]);
 	expand(parser->tail->content, parser->tail, env);
-	convert_content_without_quotes(&parser->tail->content, parser->tail);
+	convert_content_without_quotes(parser->tail->content, parser->tail);
 	encrypting(parser->tail->content, parser->tail);
 	while (splitted[++i])
 	{
 		list_end_parse(parser, splitted[i]);
 		expand(parser->tail->content, parser->tail, env);
-		convert_content_without_quotes(&parser->tail->content, parser->tail);
+		convert_content_without_quotes(parser->tail->content, parser->tail);
 		encrypting(parser->tail->content, parser->tail);
 	}
 	free_d_tab(splitted);

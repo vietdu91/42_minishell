@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/20 11:23:12 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/20 18:56:28 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	loop(t_args *args)
 			{
 				parsing_maestro(args, args->buffer);
 				lexer_maestro(args);
-	//			display_parsing(args->parser);
+//				display_parsing(args->parser);
 			}
 			add_history(args->buffer);
 			cmp_all(args);
@@ -60,8 +60,11 @@ void	cmp_all(t_args *args)
 		pwd_main(args);
 	if (!ft_strcmp(args->buffer, "scare_me"))
 		print_scare_me();
-	if (!ft_strcmp(args->buffer, "exit"))
-		exit_main(args);
+	if (args->parser->head)
+	{
+		if (!ft_strcmp(args->parser->head->content, "exit"))
+			exit_main(args, args->parser->head);
+	}
 	if (!ft_strcmp(args->buffer, "echo $?"))
 		printf("%d\n", g_exit_status);
 }
