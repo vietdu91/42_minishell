@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/15 11:55:42 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/20 11:23:12 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	loop(t_args *args)
 			{
 				parsing_maestro(args, args->buffer);
 				lexer_maestro(args);
-				display_parsing(args->parser);
+	//			display_parsing(args->parser);
 			}
 			add_history(args->buffer);
 			cmp_all(args);
