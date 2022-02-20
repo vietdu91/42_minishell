@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/10 14:10:39 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/17 16:18:25 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	check_first(t_args *args)
 
 	node = args->parser->head;
 	if (!ft_strcmp(node->content, "||"))
-		print_error("syntax error near unexpected token `||'", args);
+		print_syntax_error(ERR_TOKEN, "||");
 	else if (!ft_strcmp(node->content, "|"))
-		print_error("syntax error near unexpected token `|'", args);
+		print_syntax_error(ERR_TOKEN, "|");
 	return (1);
 }
 
