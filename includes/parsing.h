@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/15 14:08:19 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/20 18:13:58 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ char	*find_home(char **envp);
 char	*put_new_word_to_content(char **str, char *content);
 int		check_len_nw_word_in_quotes(char quote, char *str, int *pos, int count);
 int		check_len_new_word(char *str);
-void	convert_content_without_quotes(char **str, t_pars_node *parser);
+void	convert_content_without_quotes(char *str, t_pars_node *parser);
 
 /*		PARSER_QUOTES.C			*/
 
