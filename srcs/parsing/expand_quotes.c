@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 18:08:53 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/15 14:02:06 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/21 17:37:55 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,5 @@ void	convert_expand_quotes(t_pars_node *parser)
 		else
 			parser->content_exp_sans_q[j++] = parser->content_exp[i++];
 	}
+	parser->content_exp_sans_q[j] = 0;
 }

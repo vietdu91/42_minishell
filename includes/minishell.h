@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/07 17:32:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/21 14:03:07 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ tcsetattr - tcgetattr */
 # include <sys/ioctl.h>
 # include <errno.h>
 # include <stdbool.h>
+# include <limits.h>
 
 # include "./parsing.h"
 # include "./bultin.h"
@@ -63,7 +64,7 @@ tcsetattr - tcgetattr */
 
 # define PROMPT "\033[5;91mWELCOME TO (minis)HELL 😈 \e[0m\033[1;93m$> \e[0m"
 
-extern int	g_exit_status;
+extern unsigned long long	g_exit_status;
 
 /*		MAIN.C		*/
 

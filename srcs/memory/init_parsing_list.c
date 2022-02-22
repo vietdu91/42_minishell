@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/15 12:03:50 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/21 17:28:09 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	init_parsing_list(t_pars_list **parser)
 		return (0);
 	(*parser)->head = NULL;
 	(*parser)->tail = NULL;
+	(*parser)->length = 0;
 	return (1);
 }
 
@@ -31,7 +32,8 @@ void	init_parsing_node(t_pars_node *node)
 	node->previous = NULL;
 	node->type = 0;
 	node->next = NULL;
-	node->index_crypted = NULL;
+	node->index_crypted = 0;
+	node->path = NULL;
 }
 
 t_pars_list	*list_end_parse(t_pars_list *list, char *content)

@@ -6,17 +6,17 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:47:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/03 15:16:11 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/21 14:58:45 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-long int	ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int			i;
-	long int	a;
-	int			signe;
+	int	i;
+	int	a;
+	int	signe;
 
 	i = 0;
 	a = 0;
@@ -53,4 +53,21 @@ int	ft_nbrlen(int n)
 		i++;
 	}
 	return (i);
+}
+
+unsigned long long	ft_atoull(const char *str)
+{
+	unsigned long long	a;
+	int					i;
+
+	a = 0;
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
+		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+		a = a * 10 + str[i++] - 48;
+	return (a);
 }
