@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 18:08:53 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/21 17:37:55 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/24 10:21:15 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	wid_with_dq(char **str, int len, t_pars_node *parser, t_env_list *env)
 	strjoin_c_content_exp(str, parser);
 	while (**str != '\"')
 	{
-		if (**str == '$')
+		if (**str == '$' && *(*str + 1) != '"')
 			strjoin_content_exp(str, len, parser, env);
 		else
 			strjoin_c_content_exp(str, parser);

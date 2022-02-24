@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:37:14 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/20 18:51:10 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/23 22:21:48 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,9 @@ int	is_charset(char c, char *charset);
 int	check_unclosed(t_args *args);
 int	is_unclosed_quotes(char *str);
 int	is_unclosed_parenth(char *str);
+
+/*		WHAT_TYPE.C				*/
+
+int	type_meta(int type);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:28:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/15 14:08:35 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/24 10:33:43 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ char	*put_content_of_expand(char *var, t_env_list *env)
 			return (content);
 		node = node->next;
 	}
-	content = ft_strdup("$");
+	content = ft_strdup("");
 	return (content);
 }

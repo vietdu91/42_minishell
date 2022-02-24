@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/22 18:24:08 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/24 11:00:58 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	loop(t_args *args)
 			{
 				parsing_maestro(args, args->buffer);
 				lexer_maestro(args);
-			//	display_parsing(args->parser);
+				display_parsing(args->parser);
 			}
 			add_history(args->buffer);
 			cmp_all(args);
@@ -48,8 +48,6 @@ void	cmp_all(t_args *args)
 
 	i = 0;
 	args->nb_commands = how_many_commands(args->buffer);
-//	if (!ft_strcmp(args->buffer, "echo"))
-//		ft_putchar('\n', 1);
 	if (!ft_strcmp(args->buffer, "env"))
 		display_env(args->env);
 	if (!ft_strcmp(args->buffer, "export"))
@@ -67,8 +65,6 @@ void	cmp_all(t_args *args)
 		if (!ft_strcmp(args->parser->head->content, "echo"))
 			echo_main(args, args->parser->head);
 	}
-	if (!ft_strcmp(args->buffer, "echo $?"))
-		printf("%lld\n", g_exit_status);
 }
 
 int	main(int argc, char **argv, char **envp)

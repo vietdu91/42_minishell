@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:41:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/15 13:27:03 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/24 10:37:00 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	count_the_len_of_variable(int *count, int *i, char *str)
 	if (str[*i + 1] == '$' || str[*i + 1] == '\0' || is_quote(str[*i + 1]))
 	{
 		(*count)++;
+		if (is_quote(str[*i + 2]))
+			(*count)++;
 		return ;
 	}
 	(*i)++;
@@ -69,6 +71,8 @@ char	*check_variable(char **str, int len)
 			if (*(*str + 1) != '$' && ft_strcmp("$", *str) \
 			&& !is_quote(*(*str + 1)))
 				(*str)++;
+			if (is_quote(*(*str + 1)) && is_quote(*(*str + 2)))
+				(*str)++;
 			var = malloc(sizeof(char) * (i + 1));
 			ft_strncpy(var, *str, i);
 			while (i-- > 0)
@@ -97,6 +101,8 @@ void	where_is_dollar(char **str, t_pars_node *parser, t_env_list *env)
 		}
 		else if (is_quote(**str) == 2)
 			wid_with_dq(str, len, parser, env);
+		else if (**str == '$' && is_quote(*(*str + 1)))
+			(*str)++;
 		else if (**str == '$')
 			strjoin_content_exp(str, len, parser, env);
 		else

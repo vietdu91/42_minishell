@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/22 18:18:31 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/24 08:33:57 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void		cd_main(char *path, t_args *args);
 
 /*		ECHO.C		*/
 
+int			check_option(char *str);
 void		echo_main(t_args *args, t_pars_node *parser);
 
 /*		ENV.C		*/

@@ -19,6 +19,7 @@ SRCS		= 	main.c \
 				checkers/is_unclosed.c \
 				checkers/is_alphanum.c \
 				checkers/is_others.c \
+				checkers/what_type.c \
 				errors/print_error.c \
 				fun/print_fun.c \
 				lexer/attribution_meta.c \
