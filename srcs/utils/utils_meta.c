@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 23:25:18 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/11 00:39:49 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/11 14:46:18 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	splitter_content_meta(t_pars_node *node, t_pars_list *l)
 {
 	int		i;
 	char	*first;
-	int 	len;
+	int		len;
 
 	i = -1;
 	first = new_content_first(node, &i);
