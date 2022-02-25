@@ -1,38 +1,42 @@
-WELCOME TO (minis)HELL 😈 $> dsjflsfjgsf"fsfss" fssfdnjfds ksdjsfkfj"  ""
-first word = dsjflsfjgsf"fsfss"
-yo
-first word = fssfdnjfds
-yo
-first word = ksdjsfkfj"
-yo
-==695296== Use of uninitialised value of size 8
-==695296==    at 0x4039EF: zap_spaces (parser.c:25)
-==695296==    by 0x403A5A: first_word (parser.c:41)
-==695296==    by 0x403C24: parser (parser.c:76)
-==695296==    by 0x403C71: maestro (parser.c:91)
-==695296==    by 0x401252: loop (main.c:22)
-==695296==    by 0x4014E6: main (main.c:75)
-==695296== 
-==695296== Invalid read of size 1
-==695296==    at 0x4039EF: zap_spaces (parser.c:25)
-==695296==    by 0x403A5A: first_word (parser.c:41)
-==695296==    by 0x403C24: parser (parser.c:76)
-==695296==    by 0x403C71: maestro (parser.c:91)
-==695296==    by 0x401252: loop (main.c:22)
-==695296==    by 0x4014E6: main (main.c:75)
-==695296==  Address 0xfefff980 is not stack'd, malloc'd or (recently) free'd
-==695296== 
-==695296== 
-==695296== Process terminating with default action of signal 11 (SIGSEGV)
-==695296==  Access not within mapped region at address 0xFEFFF980
-==695296==    at 0x4039EF: zap_spaces (parser.c:25)
-==695296==    by 0x403A5A: first_word (parser.c:41)
-==695296==    by 0x403C24: parser (parser.c:76)
-==695296==    by 0x403C71: maestro (parser.c:91)
-==695296==    by 0x401252: loop (main.c:22)
-==695296==    by 0x4014E6: main (main.c:75)
-==695296==  If you believe this happened as a result of a stack
-==695296==  overflow in your program's main thread (unlikely but
-==695296==  possible), you can try to increase the size of the
-==695296==  main thread stack using the --main-stacksize= flag.
-==695296==  The main thread stack size used in this run was 8388608.
+WELCOME TO (minis)HELL 😈 $> $ $ $
+parsing = $
+content_exp = $
+==652196== Conditional jump or move depends on uninitialised value(s)
+==652196==    at 0x483EFB8: __strlen_sse2 (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==652196==    by 0x492EE94: __vfprintf_internal (vfprintf-internal.c:1688)
+==652196==    by 0x4917EBE: printf (printf.c:33)
+==652196==    by 0x403DEB: display_parsing (init_parsing_list.c:74)
+==652196==    by 0x4012B3: loop (main.c:34)
+==652196==    by 0x401526: main (main.c:83)
+==652196== 
+content_exp_sans_quotes = $
+nw_content = $
+type = 3
+
+parsing = $
+content_exp = $
+content_exp_sans_quotes = $
+nw_content = $
+type = 5
+
+parsing = $
+content_exp = $
+content_exp_sans_quotes = $
+nw_content = $
+type = 5
+
+WELCOME TO (minis)HELL 😈 $> 
+==652196== Invalid read of size 8
+==652196==    at 0x403592: cmd_attribution (lexer_maestro.c:36)
+==652196==    by 0x4036D0: lexer_maestro (lexer_maestro.c:89)
+==652196==    by 0x4012A6: loop (main.c:33)
+==652196==    by 0x401526: main (main.c:83)
+==652196==  Address 0x40 is not stack'd, malloc'd or (recently) free'd
+
++++++
+
+SEGFAULT sur lexer quand il y a des metas espaces a la suite : < < < < <
+
++++++
+
+lexer considere "exit -666" que le -666 est une option (type 20) alors que cela ne devrait pas

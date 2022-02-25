@@ -18,6 +18,7 @@ ech"o" | "env" -> 0
 "e'ch'o | env"
 "e'ch'o"
 
+echo "bite lol" 'ptdr "lmfao'|<<>> grep -c "xla" <Makefile>|loooooool
 
 
 
@@ -34,3 +35,17 @@ impossible de renvoyer vers plusieurs fichier
 1- builtin
 2- access cmd
 3- cmd externes
+
+===================================================================
+EXPAND
+
+$$$$
+$?
+$?$?
+echo $? | echo $?
+echo $HOME ggfsg
+echo $HOME dasd $HOME$HOME prout
+echo $HOHOME
+echo $HOME9
+$HOME$HOME
+?$HOME

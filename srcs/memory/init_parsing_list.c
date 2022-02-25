@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/10 21:36:09 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/25 17:28:37 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	init_parsing_list(t_pars_list **parser)
 		return (0);
 	(*parser)->head = NULL;
 	(*parser)->tail = NULL;
+	(*parser)->length = 0;
 	return (1);
 }
 
@@ -26,11 +27,13 @@ void	init_parsing_node(t_pars_node *node)
 {
 	node->content = NULL;
 	node->nw_content = NULL;
+	node->content_exp = NULL;
+	node->content_exp_sans_q = NULL;
 	node->previous = NULL;
 	node->type = 0;
-	node->quote_or_not = 0;
 	node->next = NULL;
-	node->index_crypted = NULL;
+	node->index_crypted = 0;
+	node->path = NULL;
 }
 
 t_pars_list	*list_end_parse(t_pars_list *list, char *content)
@@ -69,8 +72,9 @@ void	display_parsing(t_pars_list *parser)
 	while (i)
 	{
 		printf("parsing = %s\n", i->content);
+		printf("content_exp = %s\n", i->content_exp);
+		printf("content_exp_sans_quotes = %s\n", i->content_exp_sans_q);
 		printf("nw_content = %s\n", i->nw_content);
-		printf("quote or not = %d\n", i->quote_or_not);
 		printf("type = %u\n\n", i->type);
 		i = i->next;
 	}

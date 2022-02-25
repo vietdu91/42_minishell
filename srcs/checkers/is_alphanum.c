@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:38:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/10 16:35:45 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/21 17:08:56 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,20 @@ int	is_alphanum(char c)
 	if (!is_alpha(c) && !is_digit(c))
 		return (0);
 	return (1);
+}
+
+int	check_only_digits(char *str)
+{
+	int	i;
+
+	i = 1;
+	if (str[0] != '+' && str[0] != '-' && !is_digit(str[0]))
+		return (1);
+	while (str[i])
+	{
+		if (!is_digit(str[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }

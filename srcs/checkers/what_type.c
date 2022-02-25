@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   what_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 19:22:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/14 16:37:29 by emtran           ###   ########.fr       */
+/*   Created: 2022/02/23 22:19:28 by emtran            #+#    #+#             */
+/*   Updated: 2022/02/23 22:23:47 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
-void	pwd_main(t_args *args)
+int	type_meta(int type)
 {
-	char	*pwd;
-
-	(void) args;
-	pwd = getcwd(NULL, 0);
-	if (pwd == NULL)
-		return ;
-	ft_putstr(pwd, 1);
-	ft_putchar('\n', 1);
-	change_pwd_env(pwd, args);
-	g_exit_status = 0;
-	free(pwd);
+	if (type == 6 || type == 7 || type == 8 || type == 11 \
+	|| type == 13 || type == 15 || type == 17 || type == 19)
+		return (1);
+	return (0);
 }

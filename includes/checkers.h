@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:37:14 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/10 23:07:46 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/25 17:27:26 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	is_alpha(char c);
 int	is_upper(char c);
 int	is_lower(char c);
 int	is_alphanum(char c);
+int	check_only_digits(char *str);
 
 /*		IS_OTHERS.C		*/
 
@@ -44,11 +45,14 @@ int	is_meta(char c);
 int	is_quote(char c);
 int	is_charset(char c, char *charset);
 
-
 /*		IS_UNCLOSED.C			*/
 
 int	check_unclosed(t_args *args);
 int	is_unclosed_quotes(char *str);
 int	is_unclosed_parenth(char *str);
+
+/*		WHAT_TYPE.C				*/
+
+int	type_meta(int type);
 
 #endif
