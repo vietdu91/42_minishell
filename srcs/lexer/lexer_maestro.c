@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/25 19:00:52 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/26 18:57:21 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int	lexer_maestro(t_args *args)
 	// syntax error near unexpected token `<' trouver les token qui failent
 	//  < > << >> ; | 
 	printf("args->next = %p", args->parser->tail);
-	// logical_attribution(args->parser);
-	// cmd_attribution(args->parser);
+	logical_attribution(args->parser);
+	cmd_attribution(args->parser);
 	// ajouter fonction d'erreur token rate 
 	if (syntax_error_meta(args) < -1 || forbidden_token(args->parser))
 		return (-1);
@@ -119,9 +119,9 @@ int	lexer_maestro(t_args *args)
 
 // << del cmd (option) or (meta) or (file) if (next-> != meta) file file file
 
+/*
 int	lexer_maestro(t_args *args)
 {
-/*
 **	check_first() is_meta ? yes ? which one ? is it an error ?
 **	is_already_path() if first isn't a meta test wether it is a path itself
 **	find_path() if not find the path in env
@@ -130,7 +130,6 @@ int	lexer_maestro(t_args *args)
 **	or an arg.
 **	can it be executed ?
 **	then execution
-*/
 	if (!args->buffer)
 		return (0);
 	logical_attribution(args->parser);
@@ -140,6 +139,7 @@ int	lexer_maestro(t_args *args)
 	// checker si il y a un '-'
 	return (0);
 }
+*/
 
 // find_option_cmd(i);
 
