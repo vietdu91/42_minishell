@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/25 19:01:51 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/26 22:21:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int					ft_atoi(const char *str);
 int					ft_nbrlen(int n);
-unsigned long long 	ft_atoull(const char *str);
+unsigned long long	ft_atoull(const char *str);
 
 /*		UTILS_ITOA		*/
 

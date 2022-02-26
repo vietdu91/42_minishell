@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/25 17:07:33 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/26 21:00:15 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ int	check_if_meta(t_pars_list *l)
 
 int	conditions(t_pars_node *node)
 {
-	if (!ft_strcmp(node->content, "<") && apply_type(INPUT, node))
+	if (!ft_strcmp(node->content, "<") && apply_type(INPUT, node) \
+		&& node->previous)
 	{
 		node->previous->type = CMD;
 		if (!node->next)
@@ -91,7 +92,7 @@ int	conditions(t_pars_node *node)
 	else if (!ft_strcmp(node->content, ">") && apply_type(OUTPUT, node) \
 	&& node->next != NULL)
 	{
-		printf(" > node->next = %p", node->next);
+		// printf(" > node->next = %p", node->next);
 		node->next->type = OUTFILE;
 	}
 	else if (!ft_strcmp(node->content, ">>") && apply_type(SUPER_OUTPUT, node) \
