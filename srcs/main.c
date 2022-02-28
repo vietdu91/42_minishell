@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/28 17:13:41 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/28 18:59:49 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ void	cmp_all(t_args *args)
 			pwd_main(args->parser->head, args);
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "scare_me"))
 			print_scare_me();
+		if (!ft_strcmp(args->parser->head->content_exp_sans_q, \
+		"patience_is_a_vertue"))
+			print_patience(args);
 	}
 }
 
