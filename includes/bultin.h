@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/24 08:33:57 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/28 16:37:30 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void		sort_export(t_env_list *export);
 
 /*		PWD.C		*/
 
-void		pwd_main(t_args *args);
+void		pwd_main(t_pars_node *parser, t_args *args);
+
 
 /*				PWD_CHANGE.C		*/
 

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/28 12:12:50 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/28 17:13:41 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ void	cmp_all(t_args *args)
 		display_export(args->export);
 	if (!ft_strcmp(args->buffer, "cd"))
 		cd_main(args->home, args);
-	if (!ft_strcmp(args->buffer, "pwd"))
-		pwd_main(args);
 	if (args->parser->head)
 	{
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "exit"))
@@ -62,6 +60,8 @@ void	cmp_all(t_args *args)
 			echo_main(args, args->parser->head);
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "env"))
 			display_env(args->env);
+		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "pwd"))
+			pwd_main(args->parser->head, args);
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "scare_me"))
 			print_scare_me();
 	}
