@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cc.c                                               :+:      :+:    :+:   */
+/*   what_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 18:00:57 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/10 18:00:58 by dyoula           ###   ########.fr       */
+/*   Created: 2022/02/23 22:19:28 by emtran            #+#    #+#             */
+/*   Updated: 2022/02/23 22:23:47 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
+#include "../includes/minishell.h"
 
-int	main(void)
+int	type_meta(int type)
 {
-	kill(0, SIGSEGV);
+	if (type == 6 || type == 7 || type == 8 || type == 11 \
+	|| type == 13 || type == 15 || type == 17 || type == 19)
+		return (1);
 	return (0);
 }

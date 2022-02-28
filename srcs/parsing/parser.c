@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/20 18:14:27 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/26 18:57:44 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	parsing_maestro(t_args *args, char *line)
 {
 	char	**cpy;
 
+	if (line[0] == 0)
+		return (-1);
 	cpy = &line;
 	parser(cpy, args->parser, args->env, args);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/20 18:31:40 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/24 08:33:57 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 /*		CD.C		*/
 
 void		cd_main(char *path, t_args *args);
+
+/*		ECHO.C		*/
+
+int			check_option(char *str);
+void		echo_main(t_args *args, t_pars_node *parser);
 
 /*		ENV.C		*/
 
@@ -29,6 +34,10 @@ t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args);
 
 /*		EXIT.C		*/
 
+void		error_numeric_exit(t_args *args, char *content);
+int			check_len_llu_nb(char *content);
+void		say_hello_wave_goodbye(t_args *args, char *content, int neg, \
+unsigned long long exit_status);
 void		exit_main(t_args *args, t_pars_node *parser);
 
 /*		EXPORT_UNSET.C		*/

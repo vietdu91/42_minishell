@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/08 19:17:32 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/26 21:00:15 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,28 @@ int	check_if_meta(t_pars_list *l)
 
 int	conditions(t_pars_node *node)
 {
-	if (!ft_strcmp(node->content, "<") && apply_type(INPUT, node))
+	if (!ft_strcmp(node->content, "<") && apply_type(INPUT, node) \
+		&& node->previous)
 	{
-		if (node->previous)
-			node->previous->type = CMD;
+		node->previous->type = CMD;
+		if (!node->next)
+			return (0);
 		node->next->type = INFILE;
 	}
 	else if (!ft_strcmp(node->content, "<<") && apply_type(HEREDOC, node))
+		norm_heredoc(node);
+	else if (!ft_strcmp(node->content, ">") && apply_type(OUTPUT, node) \
+	&& node->next != NULL)
 	{
-		node->next->next->type = CMD;
-		node->next->type = LIMITATOR;
-	}
-	else if (!ft_strcmp(node->content, ">") && apply_type(OUTPUT, node))
+		// printf(" > node->next = %p", node->next);
 		node->next->type = OUTFILE;
-	else if (!ft_strcmp(node->content, ">>") && apply_type(SUPER_OUTPUT, node))
-		node->next->type = SUPER_OUTFILE;
+	}
+	else if (!ft_strcmp(node->content, ">>") && apply_type(SUPER_OUTPUT, node) \
+	&& node->next)
+	{
+		printf(" >> node->next = %p", node->next);
+		// node->next->type = SUPER_OUTFILE;
+	}
 	else if (!ft_strcmp(node->content, "|") && apply_type(PIPE, node))
 		apply_cmd(node, PIPE);
 	else if (!ft_strcmp(node->content, "||") && apply_type(DOUBLE_PIPE, node))

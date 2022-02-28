@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/19 14:56:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/20 18:56:28 by emtran           ###   ########.fr       */
+/*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
+/*   Updated: 2022/02/28 12:12:50 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	loop(t_args *args)
 			{
 				parsing_maestro(args, args->buffer);
 				lexer_maestro(args);
-//				display_parsing(args->parser);
+			//	display_parsing(args->parser);
 			}
 			add_history(args->buffer);
 			cmp_all(args);
@@ -48,25 +48,23 @@ void	cmp_all(t_args *args)
 
 	i = 0;
 	args->nb_commands = how_many_commands(args->buffer);
-	if (!ft_strcmp(args->buffer, "echo"))
-		ft_putchar('\n', 1);
-	if (!ft_strcmp(args->buffer, "env"))
-		display_env(args->env);
 	if (!ft_strcmp(args->buffer, "export"))
 		display_export(args->export);
 	if (!ft_strcmp(args->buffer, "cd"))
 		cd_main(args->home, args);
 	if (!ft_strcmp(args->buffer, "pwd"))
 		pwd_main(args);
-	if (!ft_strcmp(args->buffer, "scare_me"))
-		print_scare_me();
 	if (args->parser->head)
 	{
-		if (!ft_strcmp(args->parser->head->content, "exit"))
+		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "exit"))
 			exit_main(args, args->parser->head);
+		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "echo"))
+			echo_main(args, args->parser->head);
+		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "env"))
+			display_env(args->env);
+		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "scare_me"))
+			print_scare_me();
 	}
-	if (!ft_strcmp(args->buffer, "echo $?"))
-		printf("%d\n", g_exit_status);
 }
 
 int	main(int argc, char **argv, char **envp)

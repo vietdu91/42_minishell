@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:41:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/15 13:27:03 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/28 14:47:02 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 void	count_the_len_of_variable(int *count, int *i, char *str)
 {
-	if (str[*i + 1] == '$' || str[*i + 1] == '\0' || is_quote(str[*i + 1]))
+	if (str[*i + 1] == '$' || str[*i + 1] == '\0' || is_quote(str[*i + 1]) \
+	|| !is_alphanum(str[*i + 1]))
 	{
 		(*count)++;
+		if (str[*i + 1] != '\0')
+		{
+			if (is_quote(str[*i + 2]))
+				(*count)++;
+		}
 		return ;
 	}
 	(*i)++;
@@ -66,8 +72,18 @@ char	*check_variable(char **str, int len)
 		if (**str == '$')
 		{
 			i = len_of_variable(*str);
-			if (*(*str + 1) != '$' && ft_strcmp("$", *str) \
-			&& !is_quote(*(*str + 1)))
+/*			printf("I : %d\n", i);
+			printf("STR : %s\n", *str);
+			printf(" NTM : %c\n", *(*str + 1));
+			printf(" MAIS FDP : %d\n", ft_strcmp("$", *str));
+			printf(" MAIS ENCULE : %d\n", is_quote(*(*str + 1)));
+			printf(" MAIS PUTAIN : %d\n", is_alphanum(*(*str + 1)));*/
+			if (*(*str + 1) == '?')
+				(*str)++;
+			else if (*(*str + 1) != '$' && ft_strcmp("$", *str) \
+			&& !is_quote(*(*str + 1)) && (is_alphanum(*(*str + 1)) == 1))
+				(*str)++;
+			else if (is_quote(*(*str + 1)) && is_quote(*(*str + 2)))
 				(*str)++;
 			var = malloc(sizeof(char) * (i + 1));
 			ft_strncpy(var, *str, i);
@@ -97,6 +113,8 @@ void	where_is_dollar(char **str, t_pars_node *parser, t_env_list *env)
 		}
 		else if (is_quote(**str) == 2)
 			wid_with_dq(str, len, parser, env);
+		else if (**str == '$' && is_quote(*(*str + 1)))
+			(*str)++;
 		else if (**str == '$')
 			strjoin_content_exp(str, len, parser, env);
 		else

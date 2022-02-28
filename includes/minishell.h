@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/07 17:32:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/26 20:38:16 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ tcsetattr - tcgetattr */
 # include <sys/ioctl.h>
 # include <errno.h>
 # include <stdbool.h>
+# include <limits.h>
 
 # include "./parsing.h"
 # include "./bultin.h"

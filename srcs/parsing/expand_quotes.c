@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 18:08:53 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/15 14:02:06 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/28 14:45:45 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	wid_with_dq(char **str, int len, t_pars_node *parser, t_env_list *env)
 	strjoin_c_content_exp(str, parser);
 	while (**str != '\"')
 	{
-		if (**str == '$')
+		if (**str == '$' && *(*str + 1) != '"')
 			strjoin_content_exp(str, len, parser, env);
 		else
 			strjoin_c_content_exp(str, parser);
@@ -68,4 +68,5 @@ void	convert_expand_quotes(t_pars_node *parser)
 		else
 			parser->content_exp_sans_q[j++] = parser->content_exp[i++];
 	}
+	parser->content_exp_sans_q[j] = 0;
 }
