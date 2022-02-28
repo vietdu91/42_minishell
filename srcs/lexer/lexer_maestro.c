@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_maestro.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/26 20:45:43 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/02/28 14:51:36 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int	syntax_error_meta(t_args *args)
 	{
 		if (check_enum(i->type) && check_enum(i->next->type))
 		{
-			ft_putstr("syntax error near unexpected token ", 2);
-			ft_putstr("`", 2);
-			ft_putstr(i->next->content, 2);
-			ft_putstr("\'\n", 2);
+			print_syntax_error(ERR_TOKEN, i->next->content);
 			return (-1);
 		}
 		i = i->next;

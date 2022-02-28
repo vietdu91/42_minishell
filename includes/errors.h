@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:12:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/20 19:14:01 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/28 14:51:31 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define ERR_MALLOC "Failed to allocate memory.\n"
 # define ERR_UNCLOSED "bash: syntax error: unclosed quotes `"
 # define ERR_MANY_ARG "bash: exit: too many arguments\n"
-# define ERR_TOKEN "bash: sybtax error near unexpected token `"
+# define ERR_TOKEN "bash: syntax error near unexpected token `"
 
 /*		ERRORS.C		*/
 

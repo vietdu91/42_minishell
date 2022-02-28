@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:24:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/24 11:04:22 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/28 12:07:56 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ void	echo_main(t_args *args, t_pars_node *parser)
 	{
 		if (ding_dong == 1)
 			ft_putchar(' ', 1);
-//		printf("CONTENT 0 : %c === CONTENT 1 : %c\n", node->content_exp[0], node->content_exp[1]);
-		if (node->content_exp_sans_q[0] == '\0' && \
-		(!is_quote(node->content_exp[0] && !is_quote(node->content_exp[1]))))
+		if (node->content_exp[0] == '\0')
+			ding_dong = 0;
+		else if (node->content_exp_sans_q[0] == '\0' && \
+		(!is_quote(node->content_exp[0]) && !is_quote(node->content_exp[1])))
 			ding_dong = 0;
 		else
 			ding_dong = 1;
