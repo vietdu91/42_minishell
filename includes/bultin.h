@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/28 16:37:30 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/01 18:12:10 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		echo_main(t_args *args, t_pars_node *parser);
 /*		ENV.C		*/
 
 void		set_new_content_in_env(t_env *node, char *content, t_args *args);
-void		display_env(t_env_list *env);
+void		display_env(t_pars_node *node, t_env_list *env);
 void		get_env(t_args *args, char **envp);
 
 /*				ENV_CHANGE.C	*/
@@ -56,12 +56,18 @@ void		sort_export(t_env_list *export);
 
 void		pwd_main(t_pars_node *parser, t_args *args);
 
-
 /*				PWD_CHANGE.C		*/
 
 void		change_pwd_env(char *newpwd, t_args *args);
 void		change_oldpwd_env(char *newpwd, t_args *args);
 void		change_pwd_export(char *newpwd, t_args *args);
 void		change_oldpwd_export(char *newpwd, t_args *args);
+
+/*		UNSET.C		*/
+
+t_env		*find_previous_node(t_env_list *env, char *var);
+void		delete_var_list(t_env_list *env, char *var);
+int			check_id_unset(char *str);
+void		unset_main(t_args *args, t_pars_node *parser);
 
 #endif

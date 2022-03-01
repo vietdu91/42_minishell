@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/04 18:13:30 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/01 16:16:09 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,23 @@ void	set_new_content_in_env(t_env *node, char *content, t_args *args)
 	node->len_content = ft_strlen(node->content);
 }
 
-void	display_env(t_env_list *env)
+void	display_env(t_pars_node *pars, t_env_list *env)
 {
-	t_env	*current;
+	t_env		*current;
+	t_pars_node	*node;
 
+	node = pars;
 	if (!env)
 		return ;
+	while (node)
+	{
+		if (node->type == 20)
+		{
+			invalid_option(node, CMD_ENV);
+			return ;
+		}
+		node = node->next;
+	}
 	current = NULL;
 	current = env->head;
 	while (current)

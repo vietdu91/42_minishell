@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:08:22 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/28 16:58:38 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/01 16:58:49 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,24 @@ void	print_error(char *sys, char *cmd, char *arg, char *error)
 {
 	ft_putstr(sys, 2);
 	ft_putstr(cmd, 2);
-	ft_putstr(arg, 2);
-	ft_putstr(": ", 2);
+	if (arg)
+	{
+		ft_putstr(arg, 2);
+		ft_putstr(": ", 2);
+	}
 	ft_putstr(error, 2);
 }
+
+void	print_error_w_quote(char *sys, char *cmd, char *arg, char *error)
+{
+	ft_putstr(sys, 2);
+	ft_putstr(cmd, 2);
+	if (arg)
+	{
+		ft_putchar('`', 2);
+		ft_putstr(arg, 2);
+		ft_putstr("': ", 2);
+	}
+	ft_putstr(error, 2);
+}
+
