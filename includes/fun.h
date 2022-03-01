@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:54:32 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/25 19:36:22 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/28 18:59:58 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 /*		PRINT_FUN.C		*/
 
-void	print_scare_me(void);
 void	print_demon(void);
+void	print_scare_me(void);
+void	print_patience(t_args *args);
 
 #endif 

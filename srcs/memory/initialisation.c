@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:26:48 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/21 17:14:32 by emtran           ###   ########.fr       */
+/*   Updated: 2022/02/28 18:56:43 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	init_and_set_all(t_args *args, char **envp)
 	args->pwd = NULL;
 	args->quote_parse = 0;
 	args->nb_commands = 0;
+	args->patience = 0;
 	init_struct(args);
 	set_all(args, envp);
 }
