@@ -26,6 +26,7 @@ SRCS		= 	main.c \
 				exec/converter_for_pipex.c \
 				exec/exec_maestro.c \
 				exec/heredoc.c \
+				exec/init_cmds.c \
 				exec/leaks_exec.c \
 				fun/print_fun.c \
 				fun/print_patience.c \
