@@ -11,7 +11,7 @@ SRCS		= 	main.c \
 				bultin/env.c \
 				bultin/env_change.c \
 				bultin/exit.c \
-				bultin/export_unset.c \
+				bultin/export.c \
 				bultin/export_tab.c \
 				bultin/pwd.c \
 				bultin/pwd_change.c \

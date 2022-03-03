@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:53:09 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/02 19:05:07 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/03 16:16:12 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	count_heredoc(t_pars_list *l)
 			i++;
 		node = node->next;	
 	}
-	printf("heredoc = %d\n", i);
+//	printf("heredoc = %d\n", i);
 	return (i);
 }
 

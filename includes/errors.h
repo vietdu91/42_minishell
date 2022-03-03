@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:12:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/01 16:56:41 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/03 16:04:33 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define BASH "bash: "
 # define CMD_ENV "env: "
 # define CMD_EXIT "exit: "
+# define CMD_EXPORT "export: "
 # define CMD_PWD "pwd: "
 # define CMD_UNSET "unset: "
 # define ERR_ID "not a valid identifier\n"

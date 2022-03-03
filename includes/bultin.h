@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/01 18:12:10 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/03 16:17:55 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,12 @@ void		say_hello_wave_goodbye(t_args *args, char *content, int neg, \
 unsigned long long exit_status);
 void		exit_main(t_args *args, t_pars_node *parser);
 
-/*		EXPORT_UNSET.C		*/
+/*		EXPORT.C		*/
 
 void		get_export(t_args *args);
+int			check_id_export(char *str);
+void		export_main(t_args *args, t_env_list *env, t_env_list *export, \
+t_pars_node *parser);
 
 /*				EXPORT_TAB.C		*/
 

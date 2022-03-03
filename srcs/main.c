@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/03/02 19:03:22 by dyoula           ###   ########.fr       */
-=======
-/*   Updated: 2022/03/01 16:07:40 by emtran           ###   ########.fr       */
->>>>>>> b9115548ecc52561c33cff99df288f06209491d3
+/*   Updated: 2022/03/03 16:56:59 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +32,7 @@ void	loop(t_args *args)
 				parsing_maestro(args, args->buffer);
 				lexer_maestro(args);
 				exec_maestro(args);
-				display_parsing(args->parser);
+			//	display_parsing(args->parser);
 			}
 			add_history(args->buffer);
 			cmp_all(args);
@@ -49,16 +45,13 @@ void	loop(t_args *args)
 
 void	cmp_all(t_args *args)
 {
-	// int	i;
-
-	// i = 0;
 	args->nb_commands = how_many_commands(args->buffer);
-	if (!ft_strcmp(args->buffer, "export"))
-		display_export(args->export);
 	if (!ft_strcmp(args->buffer, "cd"))
 		cd_main(args->home, args);
 	if (args->parser->head)
 	{
+		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "export"))
+			export_main(args, args->env, args->export, args->parser->head);
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "exit"))
 			exit_main(args, args->parser->head);
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "echo"))

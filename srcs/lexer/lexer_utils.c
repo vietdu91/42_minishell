@@ -6,11 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 19:50:38 by dyoula            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/03/03 00:07:14 by dyoula           ###   ########.fr       */
-=======
-/*   Updated: 2022/03/01 17:06:28 by emtran           ###   ########.fr       */
->>>>>>> b9115548ecc52561c33cff99df288f06209491d3
+/*   Updated: 2022/03/03 14:03:03 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +76,8 @@ int	is_forbidden(t_pars_node *node)
 		return (1);
 	else if (!ft_strcmp(node->content, "&&"))
 		return (1);
-<<<<<<< HEAD
 	else if (!ft_strcmp(node->content, ";"))
 		return (1);
-=======
-//	else if (!ft_strcmp(node->content, ";"))
-//		return (1);
-//	printf("node->content %s\n", node->content);
->>>>>>> b9115548ecc52561c33cff99df288f06209491d3
 	return (0);
 }
 
