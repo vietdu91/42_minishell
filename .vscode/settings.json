@@ -6,5 +6,7 @@
 		"initializer_list": "c",
 		"ranges": "c",
 		"utility": "c"
-	}
+	},
+	"42header.email": "dyoula@student.42.fr",
+	"42header.username": "dyoula"
 }

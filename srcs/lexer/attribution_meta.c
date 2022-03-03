@@ -6,15 +6,15 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/26 21:00:15 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/03 00:08:14 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
 int	attribution_metachar(t_pars_node *node)
 {
 	if (!ft_strcmp(node->content, "<"))
+
 		node->type = INPUT;
 	else if (!ft_strcmp(node->content, "<<"))
 		node->type = HEREDOC;
@@ -87,7 +87,7 @@ int	conditions(t_pars_node *node)
 			return (0);
 		node->next->type = INFILE;
 	}
-	else if (!ft_strcmp(node->content, "<<") && apply_type(HEREDOC, node))
+	else if (!ft_strcmp(node->content, "<<") && apply_type(HEREDOC, node) && node->next)
 		norm_heredoc(node);
 	else if (!ft_strcmp(node->content, ">") && apply_type(OUTPUT, node) \
 	&& node->next != NULL)
@@ -98,8 +98,7 @@ int	conditions(t_pars_node *node)
 	else if (!ft_strcmp(node->content, ">>") && apply_type(SUPER_OUTPUT, node) \
 	&& node->next)
 	{
-		printf(" >> node->next = %p", node->next);
-		// node->next->type = SUPER_OUTFILE;
+		node->next->type = SUPER_OUTFILE;
 	}
 	else if (!ft_strcmp(node->content, "|") && apply_type(PIPE, node))
 		apply_cmd(node, PIPE);

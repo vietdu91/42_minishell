@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 23:25:18 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/11 14:46:18 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/03 00:33:53 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int	is_full_meta(char *str)
 {
 	int	i;
-	int	j;
+	// int	j;
 
 	i = -1;
-	j = -1;
+	// j = -1;
 	while (str[++i])
 	{
 		if (!is_meta(str[i]))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/28 18:59:49 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/02 19:03:22 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	loop(t_args *args)
 			{
 				parsing_maestro(args, args->buffer);
 				lexer_maestro(args);
-			//	display_parsing(args->parser);
+				exec_maestro(args);
+				display_parsing(args->parser);
 			}
 			add_history(args->buffer);
 			cmp_all(args);
@@ -44,9 +45,9 @@ void	loop(t_args *args)
 
 void	cmp_all(t_args *args)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
+	// i = 0;
 	args->nb_commands = how_many_commands(args->buffer);
 	if (!ft_strcmp(args->buffer, "export"))
 		display_export(args->export);

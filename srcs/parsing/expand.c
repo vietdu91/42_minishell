@@ -125,12 +125,12 @@ void	where_is_dollar(char **str, t_pars_node *parser, t_env_list *env)
 
 void	expand(char *str, t_pars_node *parser, t_env_list *env)
 {
-	int		i;
+	// int		i;
 	char	**cpy;
 
 	if (!str)
 		return ;
-	i = 0;
+	// i = 0;
 	cpy = &str;
 	where_is_dollar(cpy, parser, env);
 	convert_expand_quotes(parser);

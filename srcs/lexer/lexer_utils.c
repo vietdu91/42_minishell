@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 19:50:38 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/11 00:26:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/03 00:07:14 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	norm_heredoc(t_pars_node *node)
 	if (!node->next)
 		return ;
 	node->next->type = LIMITATOR;
+	printf("hello\n");
 	if (!node->next->next)
 		return ;
 	node->next->next->type = CMD;
@@ -77,7 +78,6 @@ int	is_forbidden(t_pars_node *node)
 		return (1);
 	else if (!ft_strcmp(node->content, ";"))
 		return (1);
-	printf("node->content %s\n", node->content);
 	return (0);
 }
 
