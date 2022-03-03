@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:41:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/28 14:47:02 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/01 16:47:09 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,6 @@ char	*check_variable(char **str, int len)
 		if (**str == '$')
 		{
 			i = len_of_variable(*str);
-/*			printf("I : %d\n", i);
-			printf("STR : %s\n", *str);
-			printf(" NTM : %c\n", *(*str + 1));
-			printf(" MAIS FDP : %d\n", ft_strcmp("$", *str));
-			printf(" MAIS ENCULE : %d\n", is_quote(*(*str + 1)));
-			printf(" MAIS PUTAIN : %d\n", is_alphanum(*(*str + 1)));*/
 			if (*(*str + 1) == '?')
 				(*str)++;
 			else if (*(*str + 1) != '$' && ft_strcmp("$", *str) \

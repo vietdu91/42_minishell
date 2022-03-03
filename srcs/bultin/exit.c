@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:10:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/22 11:14:17 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/01 12:02:29 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	exit_main(t_args *args, t_pars_node *parser)
 			error_numeric_exit(args, node->content_exp_sans_q);
 		else if (node->next)
 		{
-			ft_putstr(ERR_MANY_ARG, 2);
+			print_error(BASH, CMD_EXIT, NULL, ERR_MANY_ARG);
 			g_exit_status = 1;
 			return ;
 		}

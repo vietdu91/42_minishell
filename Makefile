@@ -15,17 +15,20 @@ SRCS		= 	main.c \
 				bultin/export_tab.c \
 				bultin/pwd.c \
 				bultin/pwd_change.c \
+				bultin/unset.c \
 				checkers/how_many.c \
 				checkers/is_unclosed.c \
 				checkers/is_alphanum.c \
 				checkers/is_others.c \
 				checkers/what_type.c \
+				errors/invalid.c \
 				errors/print_error.c \
 				exec/converter_for_pipex.c \
 				exec/exec_maestro.c \
 				exec/heredoc.c \
 				exec/leaks_exec.c \
 				fun/print_fun.c \
+				fun/print_patience.c \
 				lexer/attribution_meta.c \
 				lexer/attribution_norm.c \
 				lexer/lexer_maestro.c \

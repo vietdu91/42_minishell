@@ -6,7 +6,11 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/03/02 19:03:22 by dyoula           ###   ########.fr       */
+=======
+/*   Updated: 2022/03/01 16:07:40 by emtran           ###   ########.fr       */
+>>>>>>> b9115548ecc52561c33cff99df288f06209491d3
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +64,11 @@ void	cmp_all(t_args *args)
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "echo"))
 			echo_main(args, args->parser->head);
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "env"))
-			display_env(args->env);
+			display_env(args->parser->head, args->env);
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "pwd"))
 			pwd_main(args->parser->head, args);
+		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "unset"))
+			unset_main(args, args->parser->head);
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "scare_me"))
 			print_scare_me();
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, \
