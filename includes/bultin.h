@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/03 16:17:55 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/04 16:08:19 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,25 @@ void		echo_main(t_args *args, t_pars_node *parser);
 
 /*		ENV.C		*/
 
-void		set_new_content_in_env(t_env *node, char *content, t_args *args);
 void		display_env(t_pars_node *node, t_env_list *env);
 void		get_env(t_args *args, char **envp);
 
 /*				ENV_CHANGE.C	*/
 
 t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args);
+void		export_var_to_export(t_args *args, t_env_list *export, char *var, \
+int check);
+void		export_var_to_env(t_args *args, t_env_list *env, char *var, \
+int check);
+
+/*				ENV_SET.C	*/
+
+void		set_new_content_in_env(t_env *node, char *content, t_args *args);
+void		set_new_content_in_export(t_env *node, char *content, t_args *args, \
+int check);
+char		*set_variable_env(char *str);
+char		*set_content_env(char *str);
+int			set_id_env(char *str);
 
 /*		EXIT.C		*/
 
@@ -46,6 +58,13 @@ void		get_export(t_args *args);
 int			check_id_export(char *str);
 void		export_main(t_args *args, t_env_list *env, t_env_list *export, \
 t_pars_node *parser);
+
+/*				EXPORT_CHANGE.C		*/
+
+int			check_existing_var(t_env_list *env, char *var);
+void		replace_existing_var(t_args *args, t_env_list *env, char *var);
+void		replace_existing_var_exp(t_args *args, t_env_list *export, \
+char *var, int check);
 
 /*				EXPORT_TAB.C		*/
 

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:32 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/03 16:43:35 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/04 15:49:20 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,34 @@ int	check_id_export(char *str)
 
 	i = 0;
 	if (is_digit(str[i]))
-		return (1);
-	else if (str[i] == '\0')
 		return (0);
-	else if (!is_alphanum(str[i]) && str[i] != '_')
+	else if (!ft_strcmp(str, ""))
+		return (0);
+	else if (str[i] == '\0')
 		return (1);
+	else if (!is_alpha(str[i]) && str[i] != '_')
+		return (0);
 	i++;
-	while (str[i] != '=')
+	while (str[i] && str[i] != '=')
 	{
 		if (!is_alphanum(str[i]) && str[i] != '_')
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	if (str[i] == '\0')
+		return (2);
+	return (1);
 }
 
 void	export_main(t_args *args, t_env_list *env, t_env_list *export, \
 t_pars_node *parser)
 {
 	t_pars_node	*node;
+	int			check;
 
 	(void) args;
 	(void) env;
+	check = 0;
 	node = parser->next;
 	if (!node)
 	{
@@ -65,13 +71,20 @@ t_pars_node *parser)
 	}
 	while (node)
 	{
+		check = check_id_export(node->content_exp_sans_q);
 		if (node->type == 20)
 			invalid_option(node, CMD_UNSET);
-		else if (check_id_export(node->content_exp_sans_q))
+		else if (!check)
 		{
 			print_error_w_quote(BASH, CMD_EXPORT, node->content_exp_sans_q, \
 			ERR_ID);
 			g_exit_status = 1;
+		}
+		else
+		{
+			export_var_to_export(args, export, node->content_exp_sans_q, check);
+			if (check == 1)
+				export_var_to_env(args, env, node->content_exp_sans_q, check);
 		}
 		node = node->next;
 	}
