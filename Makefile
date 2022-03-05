@@ -23,11 +23,13 @@ SRCS		= 	main.c \
 				checkers/what_type.c \
 				errors/invalid.c \
 				errors/print_error.c \
+				exec/cmd_is_path.c \
 				exec/converter_for_pipex.c \
 				exec/exec_maestro.c \
 				exec/heredoc.c \
 				exec/init_cmds.c \
 				exec/leaks_exec.c \
+				exec/path_manager.c \
 				fun/print_fun.c \
 				fun/print_patience.c \
 				lexer/attribution_meta.c \
@@ -61,7 +63,7 @@ SRCS		= 	main.c \
 				utils/utils_str.c \
 				utils/utils_str2.c \
 				utils/utils_str3.c \
-				utils/utils_write.c
+				utils/utils_write.c \
 
 INCLUDES 	= 	includes/minishell.h
 

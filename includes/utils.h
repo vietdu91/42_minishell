@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/26 22:21:19 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/05 16:33:47 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void				*ft_calloc(size_t num, size_t size);
 size_t				ft_wordcount(char const *s, char c);
 size_t				ft_wordlen(char const *s, char c);
 char				**ft_freetamere(char **array);
-char				**ft_split(char const *s, char c);
+char				**ft_split(char *s, char c);
 
 /*		UTIS_SPLIT_CHARSET.C		*/
 

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/03 11:15:06 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/04 21:13:27 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	loop(t_args *args)
 				parsing_maestro(args, args->buffer);
 				lexer_maestro(args);
 				exec_maestro(args);
-				display_parsing(args->parser);
+				// display_parsing(args->parser);
 			}
 			add_history(args->buffer);
 			cmp_all(args);

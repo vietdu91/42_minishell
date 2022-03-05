@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:53:09 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/03 11:52:02 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/05 15:33:17 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,25 @@ int	count_heredoc(t_pars_list *l)
 			i++;
 		node = node->next;
 	}
-	printf("heredoc = %d\n", i);
 	return (i);
 }
 
-int	fill_d_tab_heredoc(t_exec *args_exec, int size, char **eof)
+int	fill_d_tab_heredoc(t_args *args, int size, char **eof)
 {
 	int	i;
 
 	if (!size)
 		return (0);
 	i = 0;
-	args_exec->heredocs = malloc(sizeof(char *) * (size + 1));
-	if (!args_exec->heredocs)
+	args->hdocs = malloc(sizeof(char *) * (size + 1));
+	if (!args->hdocs)
 		return (-1);
 	while (i < size)
 	{
-		args_exec->heredocs[i] = NULL;
-		if (!read_heredoc(args_exec->heredocs[i], eof[i]))
+		args->hdocs[i] = NULL;
+		if (!read_heredoc(args->hdocs[i], eof[i]))
 		{
-			malloc_failed(args_exec->heredocs, i);
+			malloc_failed(args->hdocs, i);
 			return (-2);
 		}
 		i++;
