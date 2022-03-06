@@ -6,33 +6,29 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/04 18:13:30 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 14:18:42 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	set_new_content_in_env(t_env *node, char *content, t_args *args)
+void	display_env(t_pars_node *pars, t_env_list *env)
 {
-	node->line = ft_strdup(content);
-	if (!node->line)
-		intersection_of_errors(2, args);
-	node->variable = set_variable_env(node->line);
-	if (!node->variable)
-		intersection_of_errors(2, args);
-	node->content = set_content_env(node->line);
-	if (!node->content)
-		intersection_of_errors(2, args);
-	node->var_id = set_id_env(node->variable);
-	node->len_content = ft_strlen(node->content);
-}
+	t_env		*current;
+	t_pars_node	*node;
 
-void	display_env(t_env_list *env)
-{
-	t_env	*current;
-
+	node = pars;
 	if (!env)
 		return ;
+	while (node)
+	{
+		if (node->type == OPTION)
+		{
+			invalid_option(node, CMD_ENV);
+			return ;
+		}
+		node = node->next;
+	}
 	current = NULL;
 	current = env->head;
 	while (current)

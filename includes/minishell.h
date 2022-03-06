@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/26 20:38:16 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/02 09:31:59 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ tcsetattr - tcgetattr */
 # include "./errors.h"
 # include "./memory.h"
 # include "./lexer.h"
-
+# include "./exec.h"
 # define PROMPT "\033[5;91mWELCOME TO (minis)HELL 😈 \e[0m\033[1;93m$> \e[0m"
 
 extern int	g_exit_status;

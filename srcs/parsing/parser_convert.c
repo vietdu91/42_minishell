@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:45:46 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/20 18:14:11 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 11:25:49 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_len_new_word(char *str)
 
 	i = 0;
 	count = 0;
-	while (str[i] && !is_space(str[i]))
+	while (str[i])
 	{
 		if (str[i] == '\"')
 			count = check_len_nw_word_in_quotes('\"', str, &i, count);

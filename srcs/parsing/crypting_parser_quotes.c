@@ -45,12 +45,12 @@ int	prepare_crypt(int i, int *j, char *str, t_pars_node *parser)
 int	fill_crypt_tab(char *str, t_pars_node *parser)
 {
 	int	i;
-	int	quotes;
+	// int	quotes;
 	int	j;
 
 	j = 0;
 	i = 0;
-	quotes = 0;
+	// quotes = 0;
 	while (str[i] && i < ft_strlen(str))
 		i = prepare_crypt(i, &j, str, parser);
 	return (0);
@@ -100,12 +100,12 @@ void	decrypt_content(char *str, int size, t_pars_node *parser)
 
 int	encrypting(char *str, t_pars_node *parser)
 {
-	int	i;
-	int	j;
+	// int	i;
+	// int	j;
 	int	size;
 
-	j = 0;
-	i = -1;
+	// j = 0;
+	// i = -1;
 	size = find_meta_in_quotes(str);
 	if (!size)
 		return (0);

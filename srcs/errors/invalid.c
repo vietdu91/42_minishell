@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_unset.c                                     :+:      :+:    :+:   */
+/*   invalid.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 19:23:32 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/27 14:39:39 by emtran           ###   ########.fr       */
+/*   Created: 2022/03/01 16:55:17 by emtran            #+#    #+#             */
+/*   Updated: 2022/03/01 16:55:35 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
-void	get_export(t_args *args)
+void	invalid_option(t_pars_node *node, char *cmd)
 {
-	t_env	*node_env;
+	char	*option;
 
-	if (!args)
-		return ;
-	node_env = NULL;
-	node_env = args->env->head;
-	while (node_env)
-	{
-		set_var_to_export(args->export, node_env, args);
-		node_env = node_env->next;
-	}
-	sort_export(args->export);
-	g_exit_status = 0;
+	option = malloc(sizeof(char) * (2 + 1));
+	ft_strlcpy(option, node->content_exp_sans_q, 3);
+	print_error(BASH, cmd, option, ERR_OPTION);
+	g_exit_status = 2;
+	free(option);
 }

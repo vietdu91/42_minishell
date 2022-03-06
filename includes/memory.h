@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:55:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/25 17:27:21 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/04 13:39:23 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char		**free_split(char **split, int index);
 /*		FREE_LISTS.C		*/
 
 void		free_pars_list(t_pars_list *l);
+void		free_env_node(t_env	*node);
+void		free_content_env_node(t_env *node);
 void		free_env_list(t_env_list *env);
 
 /*		INIT_PARSING_LIST.C			*/
@@ -42,9 +44,7 @@ void		set_all(t_args *args, char **envp);
 
 t_env_list	*init_env_list(t_env_list *env, t_args *args);
 void		init_env_node(t_env *node);
-char		*set_variable_env(char *str);
-char		*set_content_env(char *str);
-int			set_id_env(char *str);
+void		reset_env_node(t_env *node);
 
 /*		INITIALISATION_NO_ENV.C		*/
 

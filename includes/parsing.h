@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/20 18:13:58 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 11:25:57 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_env
 	char			*line;
 	char			*variable;
 	char			*content;
+	char			*content_trim;
 	int				len_content;
 	char			*path;
 	enum e_var		var_id;
@@ -111,6 +112,7 @@ typedef struct s_args
 	char			*home;
 	int				quote_parse;
 	int				nb_commands;
+	int				patience;
 }	t_args;
 
 /*		CRYPTING_PARSER_QUOTES.C	*/

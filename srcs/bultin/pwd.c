@@ -6,17 +6,23 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:22:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/14 16:37:29 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/04 15:52:16 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	pwd_main(t_args *args)
+void	pwd_main(t_pars_node *parser, t_args *args)
 {
-	char	*pwd;
+	t_pars_node	*node;
+	char		*pwd;
 
-	(void) args;
+	node = parser;
+	if (node->next && node->next->type == 20)
+	{
+		invalid_option(node->next, CMD_PWD);
+		return ;
+	}
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
 		return ;

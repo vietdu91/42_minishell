@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:06:17 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/14 16:42:00 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 15:22:40 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,29 @@ void	free_env_list(t_env_list *env)
 		free(del->line);
 		free(del->variable);
 		free(del->content);
+		free(del->content_trim);
 		free(del);
 	}
 	free(env);
 	env = NULL;
+}
+
+void	free_env_node(t_env	*node)
+{
+	free(node->line);
+	free(node->variable);
+	free(node->content);
+	free(node->content_trim);
+	free(node);
+	node = NULL;
+}
+
+void	free_content_env_node(t_env *node)
+{
+	free(node->line);
+	free(node->variable);
+	free(node->content);
+	free(node->content_trim);
 }
 
 void	free_pars_list(t_pars_list *parser)

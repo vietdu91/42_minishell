@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkers.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:37:14 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/25 17:27:26 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/01 17:07:12 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define LOW_ALPHA "abcdefghijklmnopqrstuvwxyz"
 # define UPP_ALPHA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # define SPACES " \f\r\t\v" // newline non inlus
-# define METACHAR "|&;<>*"
+# define METACHAR "|&<>*"
 # define FORBIDDEN_TOKENS "< > << >> ; |"
 
 // # define METACHAR "|&;()<>"

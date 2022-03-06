@@ -10,18 +10,28 @@ SRCS		= 	main.c \
 				bultin/echo.c \
 				bultin/env.c \
 				bultin/env_change.c \
+				bultin/env_set.c \
 				bultin/exit.c \
-				bultin/export_unset.c \
+				bultin/export.c \
+				bultin/export_change.c \
 				bultin/export_tab.c \
+				bultin/export_trim.c \
 				bultin/pwd.c \
 				bultin/pwd_change.c \
+				bultin/unset.c \
 				checkers/how_many.c \
 				checkers/is_unclosed.c \
 				checkers/is_alphanum.c \
 				checkers/is_others.c \
 				checkers/what_type.c \
+				errors/invalid.c \
 				errors/print_error.c \
+				exec/converter_for_pipex.c \
+				exec/exec_maestro.c \
+				exec/heredoc.c \
+				exec/leaks_exec.c \
 				fun/print_fun.c \
+				fun/print_patience.c \
 				lexer/attribution_meta.c \
 				lexer/attribution_norm.c \
 				lexer/lexer_maestro.c \

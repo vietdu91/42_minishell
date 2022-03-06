@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_maestro.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/28 14:51:36 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/03 00:51:10 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	cmd_attribution(t_pars_list *l)
 		if (i->type >= 6 && i->type < 20)
 			cmd = 0;
 		if (i->previous && (i->previous->type == CMD \
-		|| i->previous->type == OPTION) && i->content[0] == '-')
+		|| i->previous->type == OPTION) && i->content[0] == '-' \
+			&& i->content[1] != 0)
 			i->type = OPTION;
 		if (i->type != OPTION && cmd == 1)
 			i->type = SIMPLE_ARG;
@@ -71,9 +72,7 @@ void	split_meta(t_pars_list *l)
 	while (i)
 	{
 		if (is_full_meta(i->content) && ft_strlen(i->content) > 1)
-		{
 			splitter_content_meta(i, l);
-		}
 		i = i->next;
 	}
 }
