@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 14:28:16 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/04 13:39:44 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 10:50:53 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_env_node(t_env *node)
 	node->line = NULL;
 	node->variable = NULL;
 	node->content = NULL;
+	node->content_trim = NULL;
 	node->len_content = 0;
 	node->var_id = 0;
 }
@@ -39,6 +40,7 @@ void	reset_env_node(t_env *node)
 	node->line = NULL;
 	node->variable = NULL;
 	node->content = NULL;
+	node->content_trim = NULL;
 	node->len_content = 0;
 	node->var_id = 0;
 }

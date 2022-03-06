@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:35:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/04 16:04:31 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 15:12:33 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,40 @@ void	set_new_content_in_env(t_env *node, char *content, t_args *args)
 	node->content = set_content_env(node->line);
 	if (!node->content)
 		intersection_of_errors(2, args);
+	node->content_trim = set_content_trim_env(node->content, ' ');
+	node->content_trim = remove_interior_spaces(node->content_trim);
+	if (!node->content_trim)
+		intersection_of_errors(2, args);
 	node->var_id = set_id_env(node->variable);
 	node->len_content = ft_strlen(node->content);
 }
 
-void	set_new_content_in_export(t_env *node, char *content, t_args *args, \
-int check)
+char	*set_content_trim_env(char *str, char trim)
 {
-	node->line = ft_strdup(content);
-	if (!node->line)
-		intersection_of_errors(2, args);
-	node->variable = set_variable_env(node->line);
-	if (!node->variable)
-		intersection_of_errors(2, args);
-	if (check == 1)
+	int	i;
+	int	j;
+	int	len;
+
+	i = 0;
+	if (!str || !trim)
+		return (NULL);
+	if (str[i] == '\0')
+		return (ft_strdup(""));
+	while (str[i] && str[i] == trim)
+		i++;
+	j = ft_strlen(str) - 1;
+	if (i == j)
+		len = 0;
+	else
 	{
-		node->content = set_content_env(node->line);
-		if (!node->content)
-			intersection_of_errors(2, args);
+		while (j >= i && str[j] == trim)
+			j--;
+		len = j - i + 1;
 	}
-	node->var_id = set_id_env(node->variable);
-	node->len_content = ft_strlen(node->content);
+	i = 0;
+	while (str[i] && str[i] == trim)
+		i++;
+	return (ft_substr(str, i, len));
 }
 
 char	*set_variable_env(char *str)
@@ -73,10 +86,10 @@ char	*set_content_env(char *str)
 	int		j;
 	char	*content;
 
-	i = ft_strlen(str) - 1;
+	i = 0;
 	j = 0;
 	while (str[i] && str[i] != '=')
-		i--;
+		i++;
 	content = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
 	if (!content)
 		return (NULL);

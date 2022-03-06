@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:32 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/04 15:49:20 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 15:04:50 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ t_pars_node *parser)
 	t_pars_node	*node;
 	int			check;
 
-	(void) args;
-	(void) env;
 	check = 0;
 	node = parser->next;
 	if (!node)
