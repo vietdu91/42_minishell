@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/01 18:12:10 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 16:24:43 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*		CD.C		*/
 
-void		cd_main(char *path, t_args *args);
+void		cd_main(t_args *args, t_env_list *env, t_pars_node *parser);
 
 /*		ECHO.C		*/
 
@@ -24,13 +24,24 @@ void		echo_main(t_args *args, t_pars_node *parser);
 
 /*		ENV.C		*/
 
-void		set_new_content_in_env(t_env *node, char *content, t_args *args);
 void		display_env(t_pars_node *node, t_env_list *env);
 void		get_env(t_args *args, char **envp);
 
 /*				ENV_CHANGE.C	*/
 
 t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args);
+void		export_var_to_export(t_args *args, t_env_list *export, char *var, \
+int check);
+void		export_var_to_env(t_args *args, t_env_list *env, char *var, \
+int check);
+
+/*				ENV_SET.C	*/
+
+void		set_new_content_in_env(t_env *node, char *content, t_args *args);
+char		*set_content_trim_env(char *str, char trim);
+char		*set_variable_env(char *str);
+char		*set_content_env(char *str);
+int			set_id_env(char *str);
 
 /*		EXIT.C		*/
 
@@ -40,9 +51,21 @@ void		say_hello_wave_goodbye(t_args *args, char *content, int neg, \
 unsigned long long exit_status);
 void		exit_main(t_args *args, t_pars_node *parser);
 
-/*		EXPORT_UNSET.C		*/
+/*		EXPORT.C		*/
 
 void		get_export(t_args *args);
+int			check_id_export(char *str);
+void		export_main(t_args *args, t_env_list *env, t_env_list *export, \
+t_pars_node *parser);
+
+/*				EXPORT_CHANGE.C		*/
+
+int			check_existing_var(t_env_list *env, char *var);
+void		set_new_content_in_export(t_env *node, char *content, t_args *args, \
+int check);
+void		replace_existing_var(t_args *args, t_env_list *env, char *var);
+void		replace_existing_var_exp(t_args *args, t_env_list *export, \
+char *var, int check);
 
 /*				EXPORT_TAB.C		*/
 
@@ -51,6 +74,17 @@ void		set_node_export(t_env *node, t_env *env, t_args *args);
 t_env_list	*set_var_to_export(t_env_list *export, t_env *env, t_args *args);
 void		swap_export(t_env *node, t_env *node2);
 void		sort_export(t_env_list *export);
+
+/*				EXPORT_TRIM.C		*/
+
+int			check_len_interior_spaces(char *str);
+char		*remove_interior_spaces(char *str);
+char		*check_put_content_trim_of_expand(char *var, char *content, \
+t_env *node);
+char		*put_content_trim_of_expand(char *var, t_env_list *env);
+void		strjoin_content_trim_exp(char **str, int len, t_pars_node *psr, \
+t_env_list *env);
+
 
 /*		PWD.C		*/
 

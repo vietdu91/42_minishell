@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:41:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/01 16:47:09 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 14:27:32 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	where_is_dollar(char **str, t_pars_node *parser, t_env_list *env)
 		else if (**str == '$' && is_quote(*(*str + 1)))
 			(*str)++;
 		else if (**str == '$')
-			strjoin_content_exp(str, len, parser, env);
+			strjoin_content_trim_exp(str, len, parser, env);
 		else
 			strjoin_c_content_exp(str, parser);
 	}
@@ -119,12 +119,10 @@ void	where_is_dollar(char **str, t_pars_node *parser, t_env_list *env)
 
 void	expand(char *str, t_pars_node *parser, t_env_list *env)
 {
-	// int		i;
 	char	**cpy;
 
 	if (!str)
 		return ;
-	// i = 0;
 	cpy = &str;
 	where_is_dollar(cpy, parser, env);
 	convert_expand_quotes(parser);

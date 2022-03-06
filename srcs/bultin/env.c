@@ -6,26 +6,11 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/01 16:16:09 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 14:18:42 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	set_new_content_in_env(t_env *node, char *content, t_args *args)
-{
-	node->line = ft_strdup(content);
-	if (!node->line)
-		intersection_of_errors(2, args);
-	node->variable = set_variable_env(node->line);
-	if (!node->variable)
-		intersection_of_errors(2, args);
-	node->content = set_content_env(node->line);
-	if (!node->content)
-		intersection_of_errors(2, args);
-	node->var_id = set_id_env(node->variable);
-	node->len_content = ft_strlen(node->content);
-}
 
 void	display_env(t_pars_node *pars, t_env_list *env)
 {
@@ -37,7 +22,7 @@ void	display_env(t_pars_node *pars, t_env_list *env)
 		return ;
 	while (node)
 	{
-		if (node->type == 20)
+		if (node->type == OPTION)
 		{
 			invalid_option(node, CMD_ENV);
 			return ;

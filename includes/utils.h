@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/26 22:21:19 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/06 14:05:55 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ char				*join_char(char *str, char c);
 size_t				ft_strlcpy_w_quotes(char *dest, char *src, size_t size);
 char				*ft_strjoin_one_c(char *s1, char s2);
 void				ft_strncpy(char *dest, char *src, int n);
+char				*ft_substr(char *s, int start, int len);
 
 /* 		UTILS_WRITE 	*/
 
