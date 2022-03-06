@@ -6,11 +6,11 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/03 16:49:57 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/05 21:04:59 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 int	init_parsing_list(t_pars_list **parser)
 {
@@ -71,6 +71,8 @@ void	display_parsing(t_pars_list *parser)
 	i = parser->head;
 	while (i)
 	{
+		if (i->type == CMD)
+			printf("Path = %s\n", i->path);
 		printf("parsing = %s\n", i->content);
 		printf("content_exp = %s\n", i->content_exp);
 		printf("content_exp_sans_quotes = %s\n", i->content_exp_sans_q);
