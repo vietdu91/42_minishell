@@ -6,14 +6,12 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/03 16:41:50 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/06 03:10:35 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
-
-# include "./minishell.h"
 
 typedef struct s_cmds
 {
@@ -41,23 +39,41 @@ typedef struct s_exec
 }	t_exec;
 
 
-/* 		COVERTER_FOR_PIPEX.C	*/
+/* 				COVERTER_FOR_PIPEX.C	*/
 char			**init_env_tab(t_env_list *l);
 char			**init_parse_to_tab(t_pars_list *l);
 char			**delimiters_to_tab(t_pars_list *l, int size);
+char			**content_to_d_tab(int iter, int *index, t_pars_node *cpy);
+int				iter_tab(t_pars_list *l, int *index);
 
-/*		EXEC_MAESTRO.C			*/
+/*				CMD_IS_PATH.C			*/
+char			*cut_path(char *str, char *no_space);
+int				cmd_is_path(char *array, t_pars_node *c);
+
+/*				EXEC_MAESTRO.C			*/
 char			**init_env_tab(t_env_list *l);
 int				exec_maestro(t_args *args);
 
-/*		HEREDOCS.C				*/
+/*				EXEC_MAP.C				*/
+int				simple_exec(t_args *args, t_pars_list *l);
+/*				HEREDOCS.C				*/
 int				read_heredoc(char *heredoc, char *del);
 int				count_heredoc(t_pars_list *l);
-int				fill_d_tab_heredoc(t_exec *args_exec, int size, char **eof);
+int				fill_d_tab_heredoc(t_args *args, int size, char **eof);
 
-/*		INIT_CMDS				*/
+/*				INIT_CMDS				*/
 t_cmds_list		*init_list(void);
 
-/*		LEAKS_EXEC.C			*/
+/*				LEAKS_EXEC.C			*/
 int				malloc_failed(char **env, int size);
+
+/*				PATH_MANAGER.C				*/
+char			**check_errors(char *array, char *cmd);
+char	 		*return_path(char **to_try);
+int 			path_maestro(t_args *args);
+
+/*				UTILS_PATH.C				*/
+void			add_slash(char **to_try);
+int				add_cmd(char **to_try, char *cmd);
+int				cmd_is_path(char *array, t_pars_node *c);
 #endif

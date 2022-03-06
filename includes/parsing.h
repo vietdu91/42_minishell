@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/06 17:38:01 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/06 17:43:12 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,9 @@ typedef struct s_args
 	char			*final_path;
 	char			*pwd;
 	char			*home;
+	char			**env_tab;
+	char			**hdocs;
+	char			**delimiters;
 	int				quote_parse;
 	int				nb_commands;
 	int				patience;

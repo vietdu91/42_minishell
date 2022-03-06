@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_cmds.c                                        :+:      :+:    :+:   */
+/*   exec_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/03 14:47:48 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/05 16:32:27 by dyoula           ###   ########.fr       */
+/*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
+/*   Updated: 2022/03/06 17:07:57 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_cmds_list	*init_list(void)
+int	simple_exec(t_args *args, t_pars_list *l)
 {
-	t_cmds_list	*list;
+	int	pid;
 
-	list = NULL;
-	list = (t_cmds_list *)malloc(sizeof(t_cmds_list));
-	if (!list)
-		return (NULL);
-	list->head = NULL;
-	list->tail = NULL;
-	list->length = 0;
-	return (list);
+	pid = fork();
+	if (pid == -1)
+		return (-1);
+	// gerer infile
+	// gerer outfile
+	// gerer heredoc 
+	if (pid == 0)
+	{
+		execve(l->head->path, l->head->cmds, args->env_tab);
+		// free
+	}
+	return (0);
 }

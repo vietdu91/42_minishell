@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_maestro.c                                     :+:      :+:    :+:   */
+/*   data_for_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/03 17:13:44 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/06 03:11:29 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 int	read_heredoc(char *heredoc, char *del)
 {
@@ -58,14 +58,29 @@ int	size_d_tab(t_pars_list *l)
 			i++;
 		node = node->next;
 	}
-	return (i * 2);
+	return (i);
 }
 
+int	count_options(t_pars_node *cpy)
+{
+	t_pars_node	*node;
+	int i;
+
+	i = 0;
+	if (!cpy->next)
+		return (i);
+	node = cpy->next;
+	while (node && (node->type == OPTION || node->type == SIMPLE_ARG))
+	{
+		i++;
+		node = node->next;
+	}
+	return (i);
+}
 
 int	*fill_index(t_pars_list *l)
 {
 	int			i;
-	int			j;
 	int			size;
 	t_pars_node	*node;
 	int			*index;
@@ -80,88 +95,48 @@ int	*fill_index(t_pars_list *l)
 	i = 0;
 	while (node)
 	{
-		j = 0;
 		if (node->type == CMD)
 		{
-			index[i++] = j++;
-			if (node->next)
-				node = node->next;
+			index[i] = count_options(node) + 1;
+			i++;	
 		}
-		j = 0;
-		while (node && node->type == OPTION && node->next)
-		{
-			j++;
-			node = node->next;
-		}
-		index[i++] = j++;
-		if (!node->next)
-			return (index);
 		node = node->next;
 	}
 	return (index);
 }
 
-void	count_option(t_pars_node *cpy, int *index, int position)
-{
-	int			i;
-	t_pars_node	*node;
-
-	if (!index)
-		return ;
-	if (!cpy->next)
-		return ;
-	node = cpy->next;
-	i = 0;
-	while (node && node->type == OPTION)
-	{
-		i++;
-		node = node->next;
-	}
-	index[position] = i;
-}
-
-char	**cmd_into_list(t_pars_list *l, int	*index)
+void	check_cmds(t_pars_list *l)
 {
 	t_pars_node	*node;
-	int			i;
 
-	i = 0;
 	node = l->head;
-	// utiliser tableau et lister les index des otpions et des cmd 
 	while (node)
 	{
 		if (node->type == CMD)
 		{
-			count_option(node, index, i);
-			i++;
+			int i = -1;
+			while (node->cmds[++i])
+				printf("cmds = %s\n", node->cmds[i]);
 		}
 		node = node->next;
 	}
-	return (NULL);
 }
-
 
 int	exec_maestro(t_args *args)
 {
-	t_exec	exec;
+	int		n_docs;
 	int		*index;
-	int		size;
+	t_pars_list	*l;
 
-	exec.env = init_env_tab(args->env);
-	exec.hdocs = count_heredoc(args->parser);
-	exec.delimiters = delimiters_to_tab(args->parser, exec.hdocs);
-	exec.args = args;
-	fill_d_tab_heredoc(&exec, exec.hdocs, exec.delimiters);
-	// cmd to linked list
-	size = size_d_tab(args->parser) / 2;
-	printf("HOLA\n");
+	l = args->parser;
+	// (void)l;
+	args->env_tab = init_env_tab(args->env);
+	n_docs = count_heredoc(args->parser);
+	args->delimiters = delimiters_to_tab(args->parser, n_docs);
+	fill_d_tab_heredoc(args, n_docs, args->delimiters);
 	index = fill_index(args->parser);
-	int i = 0;
-	while (i < size * 2)
-	{
-		printf("index[%d] == %d\n", i, index[i]);
-		i++;
-	}
-	// exec.cmds = init_list();
+	iter_tab(args->parser, index);
+	path_maestro(args);
+	simple_exec(args, l);
 	return (0);
 }
