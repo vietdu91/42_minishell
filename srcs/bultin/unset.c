@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:12:23 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/01 18:12:08 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/03 10:57:37 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 t_env	*find_previous_node(t_env_list *env, char *var)
 {
 	t_env	*node;
+	t_env	*tmp;
 
 	node = NULL;
+	tmp = NULL;
 	node = env->head;
 	while (node)
 	{
-		if (!ft_strcmp(node->variable, var))
-			return (node);
+		tmp = node;
 		node = node->next;
+		if (!ft_strcmp(node->variable, var))
+			return (tmp);
 	}
 	return (NULL);
 }

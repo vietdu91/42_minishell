@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/03 16:51:35 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/06 17:38:01 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_env
 	char			*line;
 	char			*variable;
 	char			*content;
+	char			*content_trim;
 	int				len_content;
 	char			*path;
 	enum e_var		var_id;

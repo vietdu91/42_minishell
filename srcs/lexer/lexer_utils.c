@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 19:50:38 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/03 11:16:50 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/06 17:38:54 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	is_forbidden(t_pars_node *node)
 		return (1);
 	else if (!ft_strcmp(node->content, ";"))
 		return (1);
-//	printf("node->content %s\n", node->content);
 	return (0);
 }
 

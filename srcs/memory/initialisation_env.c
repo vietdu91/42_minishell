@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 14:28:16 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/14 16:37:13 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 10:50:53 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,62 +30,17 @@ void	init_env_node(t_env *node)
 	node->line = NULL;
 	node->variable = NULL;
 	node->content = NULL;
+	node->content_trim = NULL;
 	node->len_content = 0;
 	node->var_id = 0;
 }
 
-char	*set_variable_env(char *str)
+void	reset_env_node(t_env *node)
 {
-	int		i;
-	char	*variable;
-
-	i = 0;
-	while (str[i] && str[i] != '=')
-		i++;
-	variable = malloc(sizeof(char) * (i + 1));
-	if (!variable)
-		return (NULL);
-	i = 0;
-	while (str[i] && str[i] != '=')
-	{
-		variable[i] = str[i];
-		i++;
-	}
-	variable[i] = 0;
-	return (variable);
-}
-
-char	*set_content_env(char *str)
-{
-	int		i;
-	int		j;
-	char	*content;
-
-	i = ft_strlen(str) - 1;
-	j = 0;
-	while (str[i] && str[i] != '=')
-		i--;
-	content = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
-	if (!content)
-		return (NULL);
-	while (str[++i])
-	{
-		content[j++] = str[i];
-	}
-	content[j] = 0;
-	return (content);
-}
-
-int	set_id_env(char *str)
-{
-	if (!ft_strcmp(str, "PWD"))
-		return (PWD);
-	else if (!ft_strcmp(str, "OLDPWD"))
-		return (OLDPWD);
-	else if (!ft_strcmp(str, "HOME"))
-		return (HOME);
-	else if (!ft_strcmp(str, "SHLVL"))
-		return (SHLVL);
-	else
-		return (BASIC);
+	node->line = NULL;
+	node->variable = NULL;
+	node->content = NULL;
+	node->content_trim = NULL;
+	node->len_content = 0;
+	node->var_id = 0;
 }

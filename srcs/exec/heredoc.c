@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:53:09 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/03 11:52:02 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/06 17:37:47 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	count_heredoc(t_pars_list *l)
 			i++;
 		node = node->next;
 	}
-	printf("heredoc = %d\n", i);
+//	printf("heredoc = %d\n", i);
 	return (i);
 }
 
