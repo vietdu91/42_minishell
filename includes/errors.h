@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:12:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/06 16:29:59 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/07 18:52:01 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@
 # define CMD_EXPORT "export: "
 # define CMD_PWD "pwd: "
 # define CMD_UNSET "unset: "
+# define ERR_DIR "No such file or directory\n"
+# define ERR_HOME "HOME not set\n"
 # define ERR_ID "not a valid identifier\n"
 # define ERR_MALLOC "Failed to allocate memory.\n"
 # define ERR_MANY_ARG "too many arguments\n"
 # define ERR_NOENV "No such environment\n"
+# define ERR_OLDPWD_NOTSET "OLDPWD not set\n"
 # define ERR_OPTION "invalid option\n"
+# define ERR_STALE "Stale file handle\n"
 # define ERR_TOKEN "bash: syntax error near unexpected token `"
 # define ERR_UNCLOSED "bash: syntax error: unclosed quotes `"
 

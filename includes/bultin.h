@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/06 16:24:43 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/07 18:57:20 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,14 @@
 
 /*		CD.C		*/
 
+void		find_cd(t_args *args, t_env_list *env, char *oldpwd, char *path);
 void		cd_main(t_args *args, t_env_list *env, t_pars_node *parser);
+
+/*			CD_SPECIAL.C	*/
+
+void		error_because_lost_dir(char *oldpwd, char *command);
+void		cd_moins(t_args *args, t_env_list *env, char *oldpwd);
+void		cd_home(t_args *args, t_env_list *env, char *oldpwd);
 
 /*		ECHO.C		*/
 
@@ -26,6 +33,7 @@ void		echo_main(t_args *args, t_pars_node *parser);
 
 void		display_env(t_pars_node *node, t_env_list *env);
 void		get_env(t_args *args, char **envp);
+char		*find_content_in_env(char *var, t_env_list *env);
 
 /*				ENV_CHANGE.C	*/
 
@@ -91,11 +99,12 @@ t_env_list *env);
 void		pwd_main(t_pars_node *parser, t_args *args);
 
 /*				PWD_CHANGE.C		*/
-
-void		change_pwd_env(char *newpwd, t_args *args);
-void		change_oldpwd_env(char *newpwd, t_args *args);
-void		change_pwd_export(char *newpwd, t_args *args);
-void		change_oldpwd_export(char *newpwd, t_args *args);
+	
+void		update_env(char *pwd, char *oldpwd, t_args *args);
+void		change_pwd_env(char *newpwd, t_env_list *env);
+void		change_oldpwd_env(char *newpwd, t_env_list *env);
+void		change_pwd_export(char *newpwd, t_env_list *export);
+void		change_oldpwd_export(char *newpwd, t_env_list *export);
 
 /*		UNSET.C		*/
 

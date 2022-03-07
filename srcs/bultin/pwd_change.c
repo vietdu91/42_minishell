@@ -6,21 +6,49 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:26:54 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/20 11:21:38 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/07 17:48:43 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	change_pwd_env(char *newpwd, t_args *args)
+void	update_env(char *pwd, char *oldpwd, t_args *args)
+{
+	char	*oldpwd_var;
+	char	*new_oldpwd;
+
+	if (!find_content_in_env("OLDPWD", args->env))
+	{
+		oldpwd_var = ft_strdup("OLDPWD=");
+		new_oldpwd = ft_strjoin(oldpwd_var, oldpwd);
+		add_var_to_env(args->env, new_oldpwd, args);
+		add_var_to_env(args->export, new_oldpwd, args);
+		free(new_oldpwd);
+	}
+	if (oldpwd)
+	{
+		printf("OLDPWD : %s\n", oldpwd);
+		change_oldpwd_env(oldpwd, args->env);
+		change_oldpwd_export(oldpwd, args->export);
+	}
+	if (pwd && find_content_in_env("PWD", args->env))
+	{
+		printf("PWD : %s\n", pwd);
+		change_pwd_env(pwd, args->env);
+		change_pwd_export(pwd, args->export);
+	}
+	g_exit_status = 0;
+}
+
+void	change_pwd_env(char *newpwd, t_env_list *env)
 {
 	t_env	*node;
 	char	*pwd;
 
-	if (!args || !newpwd)
+	if (!env || !newpwd)
 		return ;
 	node = NULL;
-	node = args->env->head;
+	node = env->head;
 	pwd = ft_strdup("PWD=");
 	while (node)
 	{
@@ -36,20 +64,15 @@ void	change_pwd_env(char *newpwd, t_args *args)
 	}
 }
 
-void	change_oldpwd_env(char *newpwd, t_args *args)
+void	change_oldpwd_env(char *newpwd, t_env_list *env)
 {
 	t_env	*node;
 	char	*oldpwd;
 
-	if (!args || !newpwd)
+	if (!env || !newpwd)
 		return ;
-	if (!args->builtin->oldpwd_on)
-	{
-		args->builtin->oldpwd_on = 1;
-		return ;
-	}
 	node = NULL;
-	node = args->env->head;
+	node = env->head;
 	oldpwd = ft_strdup("OLDPWD=");
 	while (node)
 	{
@@ -65,15 +88,15 @@ void	change_oldpwd_env(char *newpwd, t_args *args)
 	}
 }
 
-void	change_pwd_export(char *newpwd, t_args *args)
+void	change_pwd_export(char *newpwd, t_env_list *export)
 {
 	t_env	*node;
 	char	*pwd;
 
-	if (!args || !newpwd)
+	if (!export || !newpwd)
 		return ;
 	node = NULL;
-	node = args->export->head;
+	node = export->head;
 	pwd = ft_strdup("PWD=");
 	while (node)
 	{
@@ -89,20 +112,15 @@ void	change_pwd_export(char *newpwd, t_args *args)
 	}
 }
 
-void	change_oldpwd_export(char *newpwd, t_args *args)
+void	change_oldpwd_export(char *newpwd, t_env_list *export)
 {
 	t_env	*node;
 	char	*oldpwd;
 
-	if (!args || !newpwd)
+	if (!export || !newpwd)
 		return ;
-	if (!args->builtin->oldpwd_on)
-	{
-		args->builtin->oldpwd_on = 1;
-		return ;
-	}
 	node = NULL;
-	node = args->export->head;
+	node = export->head;
 	oldpwd = ft_strdup("OLDPWD=");
 	while (node)
 	{
