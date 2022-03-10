@@ -30,6 +30,7 @@ SRCS		= 	main.c \
 				exec/cmd_is_path.c \
 				exec/converter_for_pipex.c \
 				exec/data_for_exec.c \
+				exec/exec_map_utils.c \
 				exec/exec_map.c \
 				exec/heredoc.c \
 				exec/init_cmds.c \

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/08 20:47:04 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/10 20:44:29 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ int check_simple_files(t_pars_node *n, int *fds)
 	if (fd_out < 0)
 		return (-1);
 	else
-	{
 		fds[1] = fd_out;
-	}
 	return (0);
 }
 
@@ -36,7 +34,7 @@ char	**create_fd_tab(t_pars_node *inf, t_pars_node *out)
 
 	size = 0;
 	fds = NULL;
-	printf("out = %s\n", out->content);
+	// printf("out = %s\n", out->content);
 	if (inf)
 		size++;
 	if (out)
@@ -62,27 +60,20 @@ char	**init_fds(t_pars_list *l)
 	t_pars_node	*out;
 	t_pars_node	*inf;
 	char		**fds;
-	int			files;
 
-	files = 0;
 	i = l->head;
 	inf = NULL;
 	out = NULL;
 	while (i)
 	{
 		if (i->type == INFILE)
-		{
 			inf = i;
-			printf("inf = %s\n", inf->content);
-			files++;
-		}
 		if (i->type == OUTFILE)
 		{
 			out = i;
-			while (out && out->next && out->next->type == OUTFILE)
-				out = out->next;
-			files++;
 		}
+		else if (i->type == SUPER_OUTFILE)
+			out = i;
 		i = i->next;
 	}
 	fds = create_fd_tab(inf, out);
@@ -91,10 +82,10 @@ char	**init_fds(t_pars_list *l)
 
 int	simple_exec(t_args *args, t_pars_list *l)
 {
-	int	pid;
-	char	**fds;
-	int		infile;
-	int		outfile;
+	int		pid;
+	char	**fds_content;
+	int		in_out[2];
+	int		fd_tab[2];
 
 	pid = fork();
 	if (pid == -1)
@@ -104,23 +95,19 @@ int	simple_exec(t_args *args, t_pars_list *l)
 	// gerer outfile on va chercher le dernier aussi et on va verifier s'il existe ou pas 
 	// mais on ne va pas le creer si ça fail.
 	// gerer heredoc 
+	fd_tab[0] = 0;
+	fd_tab[1] = 0;
+	in_out[0] = 0;
+	in_out[1] = 0;
 	if (pid == 0)
 	{
-		fds = init_fds(l);
-		infile = 0;
-		outfile = 0;
-		if (fds && fds[0])
-			infile = open(fds[0], O_RDONLY);
-		printf("fds[1] = %s\n", fds[1]);
-		if (fds && fds[1])
-			outfile = open(fds[1], O_WRONLY | O_CREAT, 0664);
-		printf("outfile = %d\n", outfile);
-		if (infile > 0)
-			dup2(infile, 0);
-		if (outfile > 0)
-			dup2(outfile, 1);
+		fds_content = init_fds(l);
+		create_infiles_outfiles(l, in_out, fd_tab, fds_content);
+		if (fd_tab[0] > 0)
+			dup2(fd_tab[0], 0);
+		if (fd_tab[1] > 0)
+			dup2(fd_tab[1], 1);
 		execve(l->head->path, l->head->cmds, args->env_tab);
-		// free
 		exit(0);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/06 03:10:35 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/10 20:30:41 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ int				cmd_is_path(char *array, t_pars_node *c);
 /*				EXEC_MAESTRO.C			*/
 char			**init_env_tab(t_env_list *l);
 int				exec_maestro(t_args *args);
+
+/*				EXEC_MAP_UTILS.C		*/
+void			create_infiles_outfiles(t_pars_list *l, int in_out[2], \
+					int fd_tab[2], char **fds_content);
 
 /*				EXEC_MAP.C				*/
 int				simple_exec(t_args *args, t_pars_list *l);
