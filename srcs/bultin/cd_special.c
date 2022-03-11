@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_special.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:46:57 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/07 19:33:58 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/08 15:15:12 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	cd_home(t_args *args, t_env_list *env, char *oldpwd)
 
 	if (!find_content_in_env("HOME", env))
 	{
+		free(oldpwd);
 		print_error(BASH, CMD_CD, NULL, ERR_HOME);
 		g_exit_status = 1;
 		return ;

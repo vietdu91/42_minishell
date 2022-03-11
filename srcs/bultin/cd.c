@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/07 19:36:04 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/08 15:15:20 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 		error_because_lost_dir(oldpwd, node->content_exp_sans_q);
 		return ;
 	}
+/*	else if (ft_strlen(cdpath) > 0 && !ft_strcmp(node->content_exp_sans_q, ".") \
+	&& !ft_strcmp(node->content_exp_sans_q, ".."))
+	{
+		
+	}*/
 	else
 	{
 		find_cd(args, env, oldpwd, node->content_exp_sans_q);
