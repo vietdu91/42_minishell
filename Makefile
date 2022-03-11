@@ -7,6 +7,7 @@ COMPILER	= 	cc
 	# Variables #
 SRCS		= 	main.c \
 				bultin/cd.c \
+				bultin/cd_special.c \
 				bultin/echo.c \
 				bultin/env.c \
 				bultin/env_change.c \
