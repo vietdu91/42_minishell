@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/06 11:25:57 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/06 17:43:12 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_pars_node
 	char				*content_exp_sans_q;
 	enum e_type			type;
 	int					*index_crypted;
+	char				**cmds;
 	char				*path;
 	struct s_pars_node	*previous;
 	struct s_pars_node	*next;
@@ -110,6 +111,9 @@ typedef struct s_args
 	char			*final_path;
 	char			*pwd;
 	char			*home;
+	char			**env_tab;
+	char			**hdocs;
+	char			**delimiters;
 	int				quote_parse;
 	int				nb_commands;
 	int				patience;
