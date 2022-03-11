@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 16:20:58 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/10 20:40:18 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/11 02:19:16 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,29 @@ int	find_out(t_pars_list *l)
 		i = i->previous;
 	}
 	return (0);
+}
+
+void	delete_content_useless_infiles(t_pars_list *l)
+{
+	t_pars_node *i;
+	int			last;
+	int			fd;
+
+	last = 1;
+	i = l->tail;
+	while (i)
+	{
+		fd = -1;
+		if ((i->type == OUTFILE || i->type == SUPER_OUTFILE) && last == 1)
+			last--;
+		if (i->type == OUTFILE || i->type == SUPER_OUTFILE)
+		{
+			fd = open(i->content, O_TRUNC);
+			write(fd, "\0", 1);
+			close(fd);
+		}
+		i = i->previous;
+	}
 }
 
 void		create_infiles_outfiles(t_pars_list *l, int in_out[2],\
