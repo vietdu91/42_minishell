@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/10 20:35:35 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/11 01:31:44 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	loop(t_args *args)
 				// display_parsing(args->parser);
 			}
 			add_history(args->buffer);
-			cmp_all(args);
 		}
 		if (args->parser)
 			free_pars_list(args->parser);
@@ -43,32 +42,6 @@ void	loop(t_args *args)
 	}
 }
 
-void	cmp_all(t_args *args)
-{
-	args->nb_commands = how_many_commands(args->buffer);
-	if (args->parser->head)
-	{
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "cd"))
-			cd_main(args, args->env, args->parser->head);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "export"))
-			export_main(args, args->env, args->export, args->parser->head);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "exit"))
-			exit_main(args, args->parser->head);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "echo"))
-			echo_main(args, args->parser->head);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "env"))
-			display_env(args->parser->head, args->env);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "pwd"))
-			pwd_main(args->parser->head, args);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "unset"))
-			unset_main(args, args->parser->head);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "scare_me"))
-			print_scare_me();
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, \
-		"patience_is_a_vertue"))
-			print_patience(args);
-	}
-}
 
 int	main(int argc, char **argv, char **envp)
 {

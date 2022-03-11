@@ -1,0 +1,12 @@
+cc.c
+ERRORS
+includes
+ls
+Makefile
+minishell
+minishell_action.png
+minishell_img.png
+objs
+README.md
+srcs
+test.c

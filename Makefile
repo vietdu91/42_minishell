@@ -36,6 +36,7 @@ SRCS		= 	main.c \
 				exec/init_cmds.c \
 				exec/leaks_exec.c \
 				exec/path_manager.c \
+				exec/road_to_builtin.c \
 				exec/utils_path.c \
 				fun/print_fun.c \
 				fun/print_patience.c \

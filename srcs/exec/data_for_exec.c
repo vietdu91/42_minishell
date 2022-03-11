@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/06 03:11:29 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/10 21:53:45 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ int	exec_maestro(t_args *args)
 	t_pars_list	*l;
 
 	l = args->parser;
-	// (void)l;
 	args->env_tab = init_env_tab(args->env);
 	n_docs = count_heredoc(args->parser);
 	args->delimiters = delimiters_to_tab(args->parser, n_docs);

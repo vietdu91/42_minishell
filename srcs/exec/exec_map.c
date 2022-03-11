@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/10 20:44:29 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/11 01:26:59 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,7 @@ char	**init_fds(t_pars_list *l)
 		if (i->type == INFILE)
 			inf = i;
 		if (i->type == OUTFILE)
-		{
 			out = i;
-		}
 		else if (i->type == SUPER_OUTFILE)
 			out = i;
 		i = i->next;
@@ -107,7 +105,8 @@ int	simple_exec(t_args *args, t_pars_list *l)
 			dup2(fd_tab[0], 0);
 		if (fd_tab[1] > 0)
 			dup2(fd_tab[1], 1);
-		execve(l->head->path, l->head->cmds, args->env_tab);
+		if (is_builtin_1(args) < 0)
+			execve(l->head->path, l->head->cmds, args->env_tab);
 		exit(0);
 	}
 	return (0);

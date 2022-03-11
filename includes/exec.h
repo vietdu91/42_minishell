@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/10 20:30:41 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/11 01:25:17 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,19 @@ int				read_heredoc(char *heredoc, char *del);
 int				count_heredoc(t_pars_list *l);
 int				fill_d_tab_heredoc(t_args *args, int size, char **eof);
 
-/*				INIT_CMDS				*/
+/*				INIT_CMDS					*/
 t_cmds_list		*init_list(void);
 
-/*				LEAKS_EXEC.C			*/
+/*				LEAKS_EXEC.C				*/
 int				malloc_failed(char **env, int size);
 
 /*				PATH_MANAGER.C				*/
 char			**check_errors(char *array, char *cmd);
 char	 		*return_path(char **to_try);
 int 			path_maestro(t_args *args);
+
+/*				ROAD_TO_BUILTINS.C			*/
+int 			is_builtin_1(t_args *args);
 
 /*				UTILS_PATH.C				*/
 void			add_slash(char **to_try);
