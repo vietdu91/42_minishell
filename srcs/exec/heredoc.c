@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:53:09 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/06 17:43:02 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/12 17:43:03 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_heredoc(t_pars_list *l)
 	node = l->head;
 	while (node)
 	{
-		if (node->type == 18)
+		if (node->type == LIMITATOR)
 			i++;
 		node = node->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/11 02:20:43 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/12 16:31:37 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**init_fds(t_pars_list *l)
 	out = NULL;
 	while (i)
 	{
-		if (i->type == INFILE)
+		if (i->type == INFILE || i->type == LIMITATOR)
 			inf = i;
 		if (i->type == OUTFILE)
 			out = i;
@@ -88,10 +88,6 @@ int	simple_exec(t_args *args, t_pars_list *l)
 	pid = fork();
 	if (pid == -1)
 		return (-1);
-	// printf("infile = %d outfile = %d", infile, outfile);
-	// gerer infile celui qui fonctionnera sera celui qui sera en dernier
-	// gerer outfile on va chercher le dernier aussi et on va verifier s'il existe ou pas 
-	// mais on ne va pas le creer si ça fail.
 	// gerer heredoc 
 	fd_tab[0] = 0;
 	fd_tab[1] = 0;
