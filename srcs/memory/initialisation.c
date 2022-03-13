@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:26:48 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/13 01:41:00 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/13 16:11:32 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	init_and_set_all(t_args *args, char **envp)
 	g_exit_status = 0;
 	args->buffer = NULL;
 	args->path = NULL;
-	args->path_to_try = NULL;
 	args->final_path = NULL;
 	args->pwd = NULL;
 	args->quote_parse = 0;

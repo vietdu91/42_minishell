@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/13 03:35:59 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/13 16:35:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ int	exec_maestro(t_args *args)
 	fill_d_tab_heredoc(args, n_docs, args->delimiters);
 	index = fill_index(args->parser);
 	iter_tab(args->parser, index);
+	free(index);
+	index = NULL;
 	path_maestro(args);
 	simple_exec(args, l);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/12 17:13:20 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/13 16:11:20 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ typedef struct s_args
 	t_pars_list		*parser;
 	char			*buffer;
 	char			*path;
-	char			*path_to_try;
 	char			*final_path;
 	char			*pwd;
 	char			*home;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_lists.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:06:17 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/06 15:22:40 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/13 17:54:42 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ void	free_pars_list(t_pars_list *parser)
 			free(del->content_exp_sans_q);
 		if (del->index_crypted)
 			free(del->index_crypted);
+		if (del->cmds)
+			free_d_tab(del->cmds);
+		if (del->path)
+			free(del->path);
 		free(del);
 	}
 	free(parser);
