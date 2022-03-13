@@ -6,20 +6,21 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/10 21:53:45 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/13 03:35:59 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	read_heredoc(char *heredoc, char *del)
+int	read_heredoc(char **heredoc, char *del)
 {
 	char		buf[2];
 	char		*txt;
 
-	heredoc = ft_strdup("");
+	buf[0] = 0;
+	*heredoc = ft_strdup("");
 	txt = ft_strdup("");
-	if (!txt || !heredoc)
+	if (!txt || !(*heredoc))
 		return (0);
 	while (read(0, buf, 1) > 0)
 	{
@@ -32,8 +33,8 @@ int	read_heredoc(char *heredoc, char *del)
 				free(txt);
 				return (1);
 			}
-			heredoc = ft_strjoin(heredoc, txt);
-			if (!heredoc)
+			*heredoc = ft_strjoin(*heredoc, txt);
+			if (!(*heredoc))
 				return (0);
 			free(txt);
 			txt = ft_strdup("");
@@ -125,7 +126,7 @@ void	check_cmds(t_pars_list *l)
 int	exec_maestro(t_args *args)
 {
 	int		n_docs;
-	int		*index;
+	int			*index;
 	t_pars_list	*l;
 
 	l = args->parser;

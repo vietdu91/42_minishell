@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/11 02:20:03 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/12 21:41:18 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ char			**init_env_tab(t_env_list *l);
 int				exec_maestro(t_args *args);
 
 /*				EXEC_MAP_UTILS.C		*/
-void			create_infiles_outfiles(t_pars_list *l, int in_out[2], \
+void			create_infiles_outfiles(t_args *args, int in_out[2], \
 					int fd_tab[2], char **fds_content);
 void			delete_content_useless_infiles(t_pars_list *l);
 
 /*				EXEC_MAP.C				*/
 int				simple_exec(t_args *args, t_pars_list *l);
 /*				HEREDOCS.C				*/
-int				read_heredoc(char *heredoc, char *del);
+int				read_heredoc(char **heredoc, char *del);
 int				count_heredoc(t_pars_list *l);
 int				fill_d_tab_heredoc(t_args *args, int size, char **eof);
 

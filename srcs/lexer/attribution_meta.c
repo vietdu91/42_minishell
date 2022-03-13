@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/03 00:08:14 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/12 18:32:03 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,10 @@ int	conditions(t_pars_node *node)
 		norm_heredoc(node);
 	else if (!ft_strcmp(node->content, ">") && apply_type(OUTPUT, node) \
 	&& node->next != NULL)
-	{
-		// printf(" > node->next = %p", node->next);
 		node->next->type = OUTFILE;
-	}
 	else if (!ft_strcmp(node->content, ">>") && apply_type(SUPER_OUTPUT, node) \
 	&& node->next)
-	{
 		node->next->type = SUPER_OUTFILE;
-	}
 	else if (!ft_strcmp(node->content, "|") && apply_type(PIPE, node))
 		apply_cmd(node, PIPE);
 	else if (!ft_strcmp(node->content, "||") && apply_type(DOUBLE_PIPE, node))

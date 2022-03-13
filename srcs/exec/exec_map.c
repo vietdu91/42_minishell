@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/12 16:31:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/13 03:15:48 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ int	simple_exec(t_args *args, t_pars_list *l)
 	if (pid == 0)
 	{
 		fds_content = init_fds(l);
-		create_infiles_outfiles(l, in_out, fd_tab, fds_content);
+		create_infiles_outfiles(args, in_out, fd_tab, fds_content);
+		// printf("fd 0 = %d\n", fd_tab[0]);
 		if (fd_tab[0] > 0)
 			dup2(fd_tab[0], 0);
 		if (fd_tab[1] > 0)
