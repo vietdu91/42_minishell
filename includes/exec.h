@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/12 21:41:18 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/14 22:10:55 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ char			**init_env_tab(t_env_list *l);
 char			**init_parse_to_tab(t_pars_list *l);
 char			**delimiters_to_tab(t_pars_list *l, int size);
 char			**content_to_d_tab(int iter, int *index, t_pars_node *cpy);
-int				iter_tab(t_pars_list *l, int *index);
 
 /*				CMD_IS_PATH.C			*/
 char			*cut_path(char *str, char *no_space);
 int				cmd_is_path(char *array, t_pars_node *c);
 
+/*              DATA_EXEC.C             */
+int	            options_maestro(t_args *args, t_pars_list *l);
 /*				EXEC_MAESTRO.C			*/
 char			**init_env_tab(t_env_list *l);
 int				exec_maestro(t_args *args);
