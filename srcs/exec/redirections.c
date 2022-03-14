@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   leaks_exec.c                                       :+:      :+:    :+:   */
+/*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 09:19:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/05 16:32:40 by dyoula           ###   ########.fr       */
+/*   Created: 2022/03/14 18:15:04 by dyoula            #+#    #+#             */
+/*   Updated: 2022/03/14 21:39:38 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int malloc_failed(char **env, int size)
-{
-	int	i;
-
-	i = -1;
-	while (++i < size)
-		free(env[i]);
-	env = NULL;
-	return (0);
-}
+// int redirections_maestro(t_args *args, t_pars_list *l)
+// {
+    
+// }

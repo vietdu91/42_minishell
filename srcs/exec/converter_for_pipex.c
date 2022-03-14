@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:47:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/02 18:47:31 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/14 22:10:35 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**init_parse_to_tab(t_pars_list *l)
 	while (node)
 	{
 		parse[i] = ft_strdup(node->content);
-		if (parse[i])
+		if (!parse[i])
 		{
 			malloc_failed(parse, i);
 			return (NULL);
@@ -77,7 +77,7 @@ char	**delimiters_to_tab(t_pars_list *l, int size)
 	node = l->head;
 	while (node)
 	{
-		if (node->type == 18)
+		if (node->type == LIMITATOR)
 		{
 			delimiters[i] = ft_strdup(node->content);
 			if (!delimiters[i])
@@ -91,4 +91,29 @@ char	**delimiters_to_tab(t_pars_list *l, int size)
 	}
 	delimiters[i] = NULL;
 	return (delimiters);
+}
+
+char	**content_to_d_tab(int iter, int *index, t_pars_node *cpy)
+{
+	t_pars_node	*n;
+	int			i;
+	char		**d_tab;
+
+	d_tab = malloc(sizeof(char *) * (index[iter] + 1));
+	if (!d_tab)
+		return (NULL);
+	i = 0;
+	n = cpy;
+	while (i < index[iter])
+	{
+		d_tab[i++] = ft_strdup(n->content);
+		if (!d_tab)
+		{
+			malloc_failed(d_tab, i);
+			return (NULL);
+		}
+		n = n->next;
+	}
+	d_tab[i] = NULL;
+	return (d_tab);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/06 11:28:36 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/13 16:45:17 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 int	init_parsing_list(t_pars_list **parser)
 {
@@ -34,6 +34,7 @@ void	init_parsing_node(t_pars_node *node)
 	node->next = NULL;
 	node->index_crypted = 0;
 	node->path = NULL;
+	node->cmds = NULL;
 }
 
 t_pars_list	*list_end_parse(t_pars_list *list, char *content)
@@ -71,6 +72,8 @@ void	display_parsing(t_pars_list *parser)
 	i = parser->head;
 	while (i)
 	{
+		if (i->type == CMD)
+			printf("Path = %s\n", i->path);
 		printf("parsing = %s\n", i->content);
 		printf("content_exp = %s\n", i->content_exp);
 		printf("content_exp_sans_quotes = %s\n", i->content_exp_sans_q);

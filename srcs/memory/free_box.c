@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_box.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/07 15:42:11 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/13 17:54:44 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,23 @@ void	free_builtins(t_builtin *builtin)
 		free(builtin);
 }
 
+void	free_args(t_args *args)
+{
+	if (args->path)
+		free(args->path);
+	if (args->buffer)
+		free(args->buffer);
+	if (args->home)
+		free(args->home);
+	if (args->env_tab)
+		free_d_tab(args->env_tab);
+	if (args->hdocs)
+		free_d_tab(args->hdocs);
+	if (args->delimiters)
+		free_d_tab(args->delimiters);
+	memset(&args, 0, sizeof(args));
+}
+
 void	free_all(t_args *args)
 {
 	if (!args)
@@ -55,6 +72,7 @@ void	free_all(t_args *args)
 	free_env_list(args->export);
 	if (args->parser)
 		free_pars_list(args->parser);
+	free_args(args);
 	free(args);
 	rl_clear_history();
 	args = NULL;

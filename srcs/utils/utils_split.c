@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:38:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/20 23:49:08 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/05 16:33:33 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**ft_freetamere(char **array)
 	return (0);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**array;
 	size_t	w;

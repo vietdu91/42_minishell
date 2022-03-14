@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/06 16:24:49 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:16:15 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,42 +31,14 @@ void	loop(t_args *args)
 			{
 				parsing_maestro(args, args->buffer);
 				lexer_maestro(args);
-			//	exec_maestro(args);
-			//	display_parsing(args->parser);
+				exec_maestro(args);
+				// display_parsing(args->parser);
 			}
 			add_history(args->buffer);
-			cmp_all(args);
 		}
 		if (args->parser)
 			free_pars_list(args->parser);
 		free(args->buffer);
-	}
-}
-
-void	cmp_all(t_args *args)
-{
-	args->nb_commands = how_many_commands(args->buffer);
-	if (args->parser->head)
-	{
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "cd"))
-			cd_main(args, args->env, args->parser->head);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "export"))
-			export_main(args, args->env, args->export, args->parser->head);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "exit"))
-			exit_main(args, args->parser->head);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "echo"))
-			echo_main(args, args->parser->head);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "env"))
-			display_env(args->parser->head, args->env);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "pwd"))
-			pwd_main(args->parser->head, args);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "unset"))
-			unset_main(args, args->parser->head);
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "scare_me"))
-			print_scare_me();
-		if (!ft_strcmp(args->parser->head->content_exp_sans_q, \
-		"patience_is_a_vertue"))
-			print_patience(args);
 	}
 }
 
