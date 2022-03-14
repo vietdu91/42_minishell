@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/07 17:18:46 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:14:20 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	display_env(t_pars_node *pars, t_env_list *env)
 	while (current)
 	{
 		if (ft_strcmp(current->content, "\0"))
-			printf("%s\n", current->line);
+			ft_putstr(current->line, 1);
+			// printf("%s\n", current->line);
 		current = current->next;
 	}
 }

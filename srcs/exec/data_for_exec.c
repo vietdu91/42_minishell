@@ -6,20 +6,21 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/06 03:11:29 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/13 16:35:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	read_heredoc(char *heredoc, char *del)
+int	read_heredoc(char **heredoc, char *del)
 {
 	char		buf[2];
 	char		*txt;
 
-	heredoc = ft_strdup("");
+	buf[0] = 0;
+	*heredoc = ft_strdup("");
 	txt = ft_strdup("");
-	if (!txt || !heredoc)
+	if (!txt || !(*heredoc))
 		return (0);
 	while (read(0, buf, 1) > 0)
 	{
@@ -32,8 +33,8 @@ int	read_heredoc(char *heredoc, char *del)
 				free(txt);
 				return (1);
 			}
-			heredoc = ft_strjoin(heredoc, txt);
-			if (!heredoc)
+			*heredoc = ft_strjoin(*heredoc, txt);
+			if (!(*heredoc))
 				return (0);
 			free(txt);
 			txt = ft_strdup("");
@@ -125,17 +126,18 @@ void	check_cmds(t_pars_list *l)
 int	exec_maestro(t_args *args)
 {
 	int		n_docs;
-	int		*index;
+	int			*index;
 	t_pars_list	*l;
 
 	l = args->parser;
-	// (void)l;
 	args->env_tab = init_env_tab(args->env);
 	n_docs = count_heredoc(args->parser);
 	args->delimiters = delimiters_to_tab(args->parser, n_docs);
 	fill_d_tab_heredoc(args, n_docs, args->delimiters);
 	index = fill_index(args->parser);
 	iter_tab(args->parser, index);
+	free(index);
+	index = NULL;
 	path_maestro(args);
 	simple_exec(args, l);
 	return (0);

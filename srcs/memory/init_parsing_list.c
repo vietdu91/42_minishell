@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/06 17:43:45 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/13 16:45:17 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_parsing_node(t_pars_node *node)
 	node->next = NULL;
 	node->index_crypted = 0;
 	node->path = NULL;
+	node->cmds = NULL;
 }
 
 t_pars_list	*list_end_parse(t_pars_list *list, char *content)
