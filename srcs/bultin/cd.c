@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/08 15:15:20 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/11 15:03:25 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ void	find_cd(t_args *args, t_env_list *env, char *oldpwd, char *path)
 void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 {
 	t_pars_node	*node;
-	char		*cdpath;
+//	char		*cdpath;
 	char		*oldpwd;
 
 	node = parser->next;
 	oldpwd = getcwd(NULL, 0);
-	cdpath = find_content_in_env("CDPATH", env);
+//	cdpath = find_content_in_env("CDPATH", env);
 	if (!node)
 	{
 		cd_home(args, env, oldpwd);
