@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/05 16:25:38 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/11 01:31:59 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,5 @@ extern int	g_exit_status;
 /*		MAIN.C		*/
 
 void	loop(t_args *args);
-void	cmp_all(t_args *args);
 
 #endif

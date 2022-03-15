@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:22:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/04 15:52:16 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/07 16:16:21 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	pwd_main(t_pars_node *parser, t_args *args)
 		return ;
 	ft_putstr(pwd, 1);
 	ft_putchar('\n', 1);
-	change_pwd_env(pwd, args);
+	change_pwd_env(pwd, args->env);
+	change_pwd_export(pwd, args->export);
 	g_exit_status = 0;
 	free(pwd);
 }

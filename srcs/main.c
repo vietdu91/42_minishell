@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/15 14:54:11 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/15 14:56:20 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ void	loop(t_args *args)
 			{
 				parsing_maestro(args, args->buffer);
 				lexer_maestro(args);
-			//	exec_maestro(args);
-			//	display_parsing(args->parser);
+				exec_maestro(args);
+				// display_parsing(args->parser);
 			}
 			add_history(args->buffer);
-			cmp_all(args);
 		}
 		if (args->parser)
 			free_pars_list(args->parser);
@@ -43,6 +42,7 @@ void	loop(t_args *args)
 	}
 }
 
+<<<<<<< HEAD
 void	cmp_all(t_args *args)
 {
 	args->nb_commands = how_many_commands(args->buffer);
@@ -65,10 +65,12 @@ void	cmp_all(t_args *args)
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "scare_me"))
 			print_scare_me();
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, \
-		"patience_is_a_vertue"))
+		"patience_is_a_virtue"))
 			print_patience(args);
 	}
 }
+=======
+>>>>>>> simple_exec
 
 int	main(int argc, char **argv, char **envp)
 {

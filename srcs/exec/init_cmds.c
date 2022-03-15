@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/03 14:47:48 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/05 16:32:27 by dyoula           ###   ########.fr       */
+/*   Created: 2022/03/10 01:13:19 by dyoula            #+#    #+#             */
+/*   Updated: 2022/03/13 01:32:37 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ t_cmds_list	*init_list(void)
 	list = (t_cmds_list *)malloc(sizeof(t_cmds_list));
 	if (!list)
 		return (NULL);
-	list->head = NULL;
-	list->tail = NULL;
-	list->length = 0;
+	// list->head = NULL;
+	// list->tail = NULL;
+	// list->length = 0;
+	memset(&list, 0, sizeof(list));
 	return (list);
 }

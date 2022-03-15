@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 19:50:38 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/06 17:43:41 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/12 17:47:11 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,23 @@ int	check_enum(int n)
 	return (0);
 }
 
+void	hdocs_is_valid(t_pars_node *node)
+{
+	t_pars_node *i;
+
+	i = node;
+	while (i)
+	{
+		if (i->type == OUTFILE || i->type == SUPER_OUTFILE)
+		{
+			node->next->type = FAKE_HEREDOCS;
+			return ;
+		}
+		i = i->previous;
+	}
+	return ;
+}
+
 void	norm_heredoc(t_pars_node *node)
 {
 	if (!node)
@@ -31,8 +48,7 @@ void	norm_heredoc(t_pars_node *node)
 	if (!node->next)
 		return ;
 	node->next->type = LIMITATOR;
-	printf("hello\n");
-	
+	hdocs_is_valid(node);
 	if (!node->next->next)
 		return ;
 	node->next->next->type = CMD;
