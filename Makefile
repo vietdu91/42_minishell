@@ -30,14 +30,14 @@ SRCS		= 	main.c \
 				exec/check_files.c \
 				exec/cmd_is_path.c \
 				exec/converter_for_pipex.c \
-				exec/data_exec.c \
 				exec/data_for_exec.c \
 				exec/exec_map_utils.c \
 				exec/heredoc.c \
+				exec/inf_out.c \
 				exec/init_cmds.c \
 				exec/leaks_exec.c \
+				exec/options_exec.c \
 				exec/path_manager.c \
-				exec/redirections.c \
 				exec/road_to_builtin.c \
 				exec/simple_exec_map.c \
 				exec/utils_path.c \
