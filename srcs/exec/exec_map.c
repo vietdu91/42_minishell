@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/13 03:15:48 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/15 16:07:37 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,12 @@ char	**init_fds(t_pars_list *l)
 int	simple_exec(t_args *args, t_pars_list *l)
 {
 	int		pid;
+	int 	status;
 	char	**fds_content;
 	int		in_out[2];
 	int		fd_tab[2];
 
+	status = 0;
 	pid = fork();
 	if (pid == -1)
 		return (-1);
@@ -107,5 +109,6 @@ int	simple_exec(t_args *args, t_pars_list *l)
 			execve(l->head->path, l->head->cmds, args->env_tab);
 		exit(0);
 	}
+	waitpid(pid, &status, 0);
 	return (0);
 }
