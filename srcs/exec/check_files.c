@@ -1,24 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   leaks_exec.c                                       :+:      :+:    :+:   */
+/*   check_files.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 09:19:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/05 16:32:40 by dyoula           ###   ########.fr       */
+/*   Created: 2022/03/05 21:04:47 by dyoula            #+#    #+#             */
+/*   Updated: 2022/03/06 02:06:09 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int malloc_failed(char **env, int size)
-{
-	int	i;
 
-	i = -1;
-	while (++i < size)
-		free(env[i]);
-	env = NULL;
-	return (0);
-}

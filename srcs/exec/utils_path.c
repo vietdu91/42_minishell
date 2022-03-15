@@ -1,52 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.c                                          :+:      :+:    :+:   */
+/*   utils_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 16:53:09 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/06 17:43:02 by dyoula           ###   ########.fr       */
+/*   Created: 2022/03/05 16:28:08 by dyoula            #+#    #+#             */
+/*   Updated: 2022/03/05 20:29:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	count_heredoc(t_pars_list *l)
-{
-	int			i;
-	t_pars_node	*node;
-
-	i = 0;
-	node = l->head;
-	while (node)
-	{
-		if (node->type == 18)
-			i++;
-		node = node->next;
-	}
-	return (i);
-}
-
-int	fill_d_tab_heredoc(t_args *args, int size, char **eof)
+void	add_slash(char **to_try)
 {
 	int	i;
+	int	end;
 
-	if (!size)
-		return (0);
-	i = 0;
-	args->hdocs = malloc(sizeof(char *) * (size + 1));
-	if (!args->hdocs)
-		return (-1);
-	while (i < size)
+	i = -1;
+	while (to_try[++i])
 	{
-		args->hdocs[i] = NULL;
-		if (!read_heredoc(args->hdocs[i], eof[i]))
-		{
-			malloc_failed(args->hdocs, i);
-			return (-2);
-		}
-		i++;
+		end = ft_strlen(to_try[i]);
+		if (to_try[i][end - 1] != '/')
+			to_try[i] = ft_strjoin(to_try[i], "/");
 	}
+}
+
+int	add_cmd(char **to_try, char *cmd)
+{
+	int		i;
+	char	**av;
+
+	av = ft_split(cmd, ' ');
+	if (!av)
+		return (0);
+	i = -1;
+	while (to_try[++i])
+	{
+		to_try[i] = ft_strjoin(to_try[i], av[0]);
+		if (!to_try[i])
+			return (0);
+	}
+	free_d_tab(av);
 	return (1);
 }
