@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/13 17:54:44 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/16 02:28:23 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	free_all(t_args *args)
 	if (args->parser)
 		free_pars_list(args->parser);
 	free_args(args);
-	free(args);
+	if (args)
+		free(args);
 	rl_clear_history();
 	args = NULL;
 }

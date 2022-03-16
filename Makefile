@@ -32,6 +32,7 @@ SRCS		= 	main.c \
 				exec/converter_for_pipex.c \
 				exec/data_for_exec.c \
 				exec/exec_map_utils.c \
+				exec/execution.c \
 				exec/heredoc.c \
 				exec/inf_out.c \
 				exec/init_cmds.c \
@@ -39,7 +40,6 @@ SRCS		= 	main.c \
 				exec/options_exec.c \
 				exec/path_manager.c \
 				exec/road_to_builtin.c \
-				exec/simple_exec_map.c \
 				exec/utils_path.c \
 				fun/print_fun.c \
 				fun/print_patience.c \
