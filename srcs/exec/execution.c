@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/18 18:15:20 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/18 19:49:40 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int	datas[3])
 {
 	if (datas[0] == 0)
 	{
-		printf("%s\n", cpy->path);
+		if (cpy->path)
+			printf("%s\n", cpy->path);
 		if (cpy->fds[0] > 0)
 		{
 			printf("1\n");
@@ -65,7 +66,8 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int	datas[3])
 	}
 	else if (datas[0] == datas[1])
 	{
-		printf("%s\n", cpy->path);
+		if (cpy->path)
+			printf("%s\n", cpy->path);
 		if (cpy->fds[0] > 0)
 			dup2(cpy->fds[0], 0);
 		else
