@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/15 16:07:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/18 15:01:34 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	simple_exec(t_args *args, t_pars_list *l)
 		if (fd_tab[1] > 0)
 			dup2(fd_tab[1], 1);
 		delete_content_useless_infiles(l);
-		if (is_builtin_1(args) < 0)
+		if (is_builtin_1(args) < 0 && is_builtin_2(args) < 0)
 			execve(l->head->path, l->head->cmds, args->env_tab);
 		exit(0);
 	}
