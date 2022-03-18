@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/14 17:14:20 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/18 19:01:21 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ void	display_env(t_pars_node *pars, t_env_list *env)
 	while (current)
 	{
 		if (ft_strcmp(current->content, "\0"))
+		{
 			ft_putstr(current->line, 1);
-			// printf("%s\n", current->line);
+			ft_putchar('\n', 1);
+		}
 		current = current->next;
 	}
 }
