@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/16 02:29:16 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/18 18:15:36 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	loop(t_args *args)
 			}
 			add_history(args->buffer);
 		}
-		// free_all(args);
+		//free_all(args);
 		if (args->parser)
 			free_pars_list(args->parser);
 		free(args->buffer);
