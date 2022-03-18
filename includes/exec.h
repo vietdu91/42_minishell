@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/12 21:41:18 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/18 14:56:33 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int 			path_maestro(t_args *args);
 
 /*				ROAD_TO_BUILTINS.C			*/
 int 			is_builtin_1(t_args *args);
+int				is_builtin_2(t_args *args);
 
 /*				UTILS_PATH.C				*/
 void			add_slash(char **to_try);
