@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/11 15:03:25 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/15 17:19:45 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	find_cd(t_args *args, t_env_list *env, char *oldpwd, char *path)
 	}
 	else
 		update_env(pwd, oldpwd, args);
+	g_exit_status = 0;
 	free(pwd);
 	free(oldpwd);
 	return ;

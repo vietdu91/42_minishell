@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/14 17:14:20 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/15 17:20:17 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	display_env(t_pars_node *pars, t_env_list *env)
 			// printf("%s\n", current->line);
 		current = current->next;
 	}
+	g_exit_status = 0;
 }
 
 void	get_env(t_args *args, char **envp)

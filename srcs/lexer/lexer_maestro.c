@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/03 00:51:10 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/15 16:18:04 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	syntax_error_meta(t_args *args)
 		if (check_enum(i->type) && check_enum(i->next->type))
 		{
 			print_syntax_error(ERR_TOKEN, i->next->content);
+			g_exit_status = 2;
 			return (-1);
 		}
 		i = i->next;

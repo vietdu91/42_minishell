@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:17:41 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/05 20:36:03 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/15 17:16:40 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@ int path_maestro(t_args *args)
 			{
 				path = return_path(to_try);
 				if (path == NULL)
+				{
 					node->path = NULL;
+					print_error(BASH, NULL, node->content_exp_sans_q, ERR_CMD);
+					g_exit_status = 127;
+				}
 				else
 					node->path = ft_strdup(path);
 			}
