@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/16 02:29:16 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/18 17:35:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	loop(t_args *args)
 		if (!args->buffer)
 		{
 			ft_putstr("exit\n", 1);
+			printf("je sors\n");
 			break ;
 		}
 		else
@@ -34,9 +35,12 @@ void	loop(t_args *args)
 				exec_maestro(args);
 				// display_parsing(args->parser);
 			}
+			// waitpid(0, NULL, 0);
+			printf("salut\n");
 			add_history(args->buffer);
 		}
 		// free_all(args);
+		printf("adios\n");
 		if (args->parser)
 			free_pars_list(args->parser);
 		free(args->buffer);
