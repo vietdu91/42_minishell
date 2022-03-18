@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/18 17:34:21 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/18 18:38:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,11 +138,14 @@ int	loop_execution(t_args *args, t_pars_list *l)
 				// exit(0);
 				pid_zero_execution(i, args, datas);
 			}
-			if (datas[0] > 0)
-				close(datas[2]);
-			datas[2] = l->pipe[0];
-			close(l->pipe[1]);
 			waitpid(0, NULL, 0);
+			if (datas[0] > 1)
+				close(datas[2]);
+			if (args->nb_commands > 1)
+			{
+				datas[2] = l->pipe[0];
+				close(l->pipe[1]);
+			}
 		}
 		datas[0]++;
 		i = i->next;
