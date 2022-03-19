@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 16:20:58 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/19 17:31:12 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/19 18:46:14 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ void		create_infiles_outfiles(t_args *args, int in_out[2],\
 	in_out[0] = find_in(args->parser);
 	in_out[1] = find_out(args->parser);
 	if (in_out[0] == 1 && fds_content[0])
-		cpy->fds[0] = open(fds_content[0], O_RDONLY);
+	{
+		cpy->fds[0] = open(fds_content[0], O_RDONLY, 0664);
+		printf("infile is here fd = %d\n", cpy->fds[0]);
+	}
 	else if (in_out[0] == 2 && fds_content[0])
 	{
 		hdoc_number = size_2dtab(args->hdocs) - 1;
