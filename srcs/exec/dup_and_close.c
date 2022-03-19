@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 01:09:33 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/19 19:02:09 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/20 00:40:01 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,37 @@ int	close_maestro(int datas[3], t_pars_list *l, t_pars_node *cpy)
 
 int	dup_maestro(int datas[3], t_pars_list *l, t_pars_node *cpy)
 {
+	// printf(" 2 infile is here fd = %d\n", cpy->fds[1]);
 	if (cpy->fds[0] > 0)
 		if (dup2(cpy->fds[0], STDIN_FILENO) < 0)
 			return (-1);
 	if (cpy->fds[1] > 0)
+	{
 		if (dup2(cpy->fds[1], STDOUT_FILENO) < 0)
 			return (-1);
-	return (0);
+		printf("salut\n");
+	}
 	if (datas[0] == 0)
 	{
 		if (datas[1] > 1)
-			if (dup2(l->pipe[1], 1) < 0)
+			if (dup2(l->pipe[1], STDOUT_FILENO) < 0)
 				return (-1);
 		return (0);
 	}
 	else if (datas[0] == datas[1] - 1)
 	{
-		printf("danke \n");
+		printf("-1\n");
 		if (cpy->fds[1] == 0)
-			if (dup2(datas[2], 0) < 0)
+			if (dup2(datas[2], STDIN_FILENO) < 0)
 				return (-1);
 	}
 	else
 	{
 		if (cpy->fds[0] == 0)
-			if (dup2(datas[2], 0) < 0)
+			if (dup2(datas[2], STDIN_FILENO) < 0)
 				return (-1);	
 		if (cpy->fds[1] == 0)
-			if (dup2(l->pipe[1], 1) < 0)
+			if (dup2(l->pipe[1], STDOUT_FILENO) < 0)
 				return (-1);
 	}
 	return (0);

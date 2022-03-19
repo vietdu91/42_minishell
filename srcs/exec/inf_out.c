@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:15:04 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/15 20:59:32 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/19 19:19:09 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,9 @@
 char	**create_fd_tab(t_pars_node *inf, t_pars_node *out)
 {
 	char		**fds;
-	int			size;
 
-	size = 0;
 	fds = NULL;
 	// printf("out = %s\n", out->content);
-	if (inf)
-		size++;
-	if (out)
-		size++;
-	if (size == 0)
-		return (NULL);
 	fds = malloc(sizeof(char *) * 3);
 	if (!fds)
 		return (NULL);
@@ -79,9 +71,9 @@ int	inf_out_maestro(t_args *args, t_pars_list *l)
 		{
 			fds_content = fill_fds(i);
 			create_infiles_outfiles(args, in_out, i, fds_content);
+			// printf("infile = %d\n", i->fds[0]);
 		}
 		i = i->next;
 	}
-	(void)args;
 	return (1);
 }

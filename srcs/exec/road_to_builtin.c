@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/18 19:50:19 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/19 23:55:08 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	is_builtin_2(t_args *args)
 
 int	is_builtin_1(t_args *args)
 {
-	args->nb_commands = how_many_commands(args->buffer);
 	if (args->parser->head)
 	{
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "cd"))

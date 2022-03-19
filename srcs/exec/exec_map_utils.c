@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 16:20:58 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/19 18:46:14 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/20 00:40:17 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void		create_infiles_outfiles(t_args *args, int in_out[2],\
 	if (in_out[0] == 1 && fds_content[0])
 	{
 		cpy->fds[0] = open(fds_content[0], O_RDONLY, 0664);
-		printf("infile is here fd = %d\n", cpy->fds[0]);
+		// printf("infile is here fd = %d\n", cpy->fds[0]);
 	}
 	else if (in_out[0] == 2 && fds_content[0])
 	{
@@ -101,10 +101,11 @@ void		create_infiles_outfiles(t_args *args, int in_out[2],\
 		ft_putstr(args->hdocs[hdoc_number], cpy->fds[0]);
 		close(cpy->fds[0]);
 	}
-	cpy->fds[0] = open("/tmp/.zuzu", O_RDONLY| O_CREAT, 0664);
+	// cpy->fds[0] = open("/tmp/.zuzu", O_RDONLY| O_CREAT, 0664);
 	if (in_out[1] == 1 && fds_content[1])
 		cpy->fds[1] = open(fds_content[1], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	else if (in_out[1] == 2  && fds_content[1])
 		cpy->fds[1] = open(fds_content[1], O_WRONLY | O_CREAT | O_APPEND, 0664);
+	// printf(" 2 infile is here fd = %d\n", cpy->fds[1]);
 	return ;
 }
