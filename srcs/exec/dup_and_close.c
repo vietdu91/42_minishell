@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 01:09:33 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/19 16:29:08 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/19 17:48:34 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	dup_maestro(int datas[2], t_pars_list *l, t_pars_node *cpy)
 	{
 		if (cpy->fds[0] > 0)
 		{
+			printf("salut\n");
+			printf("cpy[0] = %d\n", cpy->fds[0]);
 			if (dup2(cpy->fds[0], 0) < 0)
 				return (-1);
 		}
@@ -43,6 +45,7 @@ int	dup_maestro(int datas[2], t_pars_list *l, t_pars_node *cpy)
 			if (dup2(l->pipe[1], 1) < 0)
 				return (-1);
 		}
+		return (0);
 	}
 	else if (datas[0] == datas[1] - 1)
 	{
