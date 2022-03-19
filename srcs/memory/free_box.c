@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/16 02:28:23 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/16 23:47:15 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	free_builtins(t_builtin *builtin)
 
 void	free_args(t_args *args)
 {
-	if (args->path)
-		free(args->path);
+	// if (args->path)
+	// 	free(args->path);
 	if (args->buffer)
 		free(args->buffer);
-	if (args->home)
-		free(args->home);
+	// if (args->home)
+	// 	free(args->home);
 	if (args->env_tab)
 		free_d_tab(args->env_tab);
 	if (args->hdocs)
