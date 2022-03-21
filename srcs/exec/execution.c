@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/20 00:42:19 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/20 16:15:15 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args)
 {
 	// printf("cpy[0] = %d\n", cpy->fds[0]);
 	// printf("cmds = %s\n", cpy->cmds[0]);
-	printf("path = %s\n", cpy->path);
+	// printf("path = %s\n", cpy->path);
 	delete_content_useless_infiles(args->parser);
 	if (is_builtin_1(args) < 0)
 		execve(cpy->path, cpy->cmds, args->env_tab);
