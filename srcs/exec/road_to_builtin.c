@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/19 23:55:08 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 15:31:07 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,28 @@ int	is_builtin_1(t_args *args)
 		}
 	}
 	return (is_builtin_2(args));
+}
+
+int is_builtin(t_args *args)
+{
+	if (!ft_strcmp(args->parser->head->content_exp_sans_q, "env"))
+		return (0);	
+	else if (!ft_strcmp(args->parser->head->content_exp_sans_q, "pwd"))
+		return (0);	
+	else if (!ft_strcmp(args->parser->head->content_exp_sans_q, "unset"))
+		return (0);
+	else if (!ft_strcmp(args->parser->head->content_exp_sans_q, "scare_me"))
+		return (0);
+	else if (!ft_strcmp(args->parser->head->content_exp_sans_q, \
+	"patience_is_a_virtue"))
+		return (0);
+	else if (!ft_strcmp(args->parser->head->content_exp_sans_q, "cd"))
+		return (0);
+	else if (!ft_strcmp(args->parser->head->content_exp_sans_q, "export"))
+		return (0);
+	else if (!ft_strcmp(args->parser->head->content_exp_sans_q, "exit"))
+		return (0);
+	else if (!ft_strcmp(args->parser->head->content_exp_sans_q, "echo"))
+		return (0);
+	return (1);
 }

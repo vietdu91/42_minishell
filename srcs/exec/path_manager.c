@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:17:41 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 02:20:13 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 13:18:57 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char *return_path(char **to_try)
 		// printf("to_try[%d] = %s\n", i, to_try[i]);
 		return (to_try[i]);
 	}
-	printf("no access\n");
+//	printf("no access\n");
 	return (NULL);
 }
 
@@ -55,7 +55,7 @@ int path_maestro(t_args *args)
 	to_try = NULL;
 	node = args->parser->head;
 	line_with_path = find_path(args->env_tab);
-	printf("line with path = %s\n", line_with_path);
+//	printf("line with path = %s\n", line_with_path);
 	while (node)
 	{
 		if (node->type == CMD)
@@ -64,7 +64,7 @@ int path_maestro(t_args *args)
 			if (!cmd_is_path(node->content, node))
 			{
 				path = return_path(to_try);
-				printf("path = %s\n", path);
+			//	printf("path = %s\n", path);
 				if (path == NULL)
 					node->path = NULL;
 				else
@@ -73,7 +73,7 @@ int path_maestro(t_args *args)
 					node->path = ft_strdup(path);
 				}
 			}
-			free(to_try);
+			free_d_tab(to_try);
 			to_try = NULL;
 		}
 		node = node->next;
