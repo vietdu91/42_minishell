@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 16:03:39 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 19:51:48 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	printf("CMDS %d\n", args->nb_commands);
 	while (i)
 	{
-		if ((args->nb_commands > 0 && !is_builtin(args)) || is_builtin(args))
+		if (is_builtin(args) || (args->nb_commands > 1 && !is_builtin(args)))
 		{
 			if (i->type == CMD)
 			{

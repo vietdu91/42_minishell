@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:40:14 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 16:08:34 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 19:44:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ char	**ft_split_charset(char **split, char *s, char *c, t_args *args)
 	printf("in split_charset s = %s nb_words = %d\n", s, nb_words);
 	while (++index < nb_words)
 	{
-		split[index] = malloc(sizeof(char) * size_word(flag, c, args) + 1);
+		split[index] = malloc(sizeof(char) * (size_word(flag, c, args) + 1));
 		if (!split[index])
 			return (free_split(split, index));
-		ft_strlcpy_w_quotes(split[index], flag, size_word(flag, c, args) + 1);
+		ft_strlcpy_w_quotes(split[index], flag, (size_word(flag, c, args) + 1));
 		flag += (size_word(flag, c, args));
 		if (args->quote_parse)
 			args->quote_parse = 0;
