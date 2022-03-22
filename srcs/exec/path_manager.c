@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:17:41 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 00:41:02 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 02:20:13 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ char *return_path(char **to_try)
 {
 	int	i;
 
+	// i = -1;
+	// while (to_try[++i])
+	// {
+	// 	// printf("to_try[%d] = %s\n", i, to_try[i]);
+	// }
 	i = -1;
 	while (to_try[++i])
+	{
 		if (!access(to_try[i], F_OK))
-		{
-			// printf("to_try[%d] = %s\n", i, to_try[i]);
-			return (to_try[i]);
-		}
-	// printf("no access\n");
+		// printf("to_try[%d] = %s\n", i, to_try[i]);
+		return (to_try[i]);
+	}
+	printf("no access\n");
 	return (NULL);
 }
 
@@ -64,7 +69,7 @@ int path_maestro(t_args *args)
 					node->path = NULL;
 				else
 				{
-					printf("path = %s\n", path);	
+					// printf("path = %s\n", path);	
 					node->path = ft_strdup(path);
 				}
 			}

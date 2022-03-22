@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/19 19:32:23 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 01:04:39 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	display_parsing(t_pars_list *parser)
 		if (i->type == CMD)
 			printf("Path = %s\n", i->path);
 		printf("parsing = %s\n", i->content);
+		printf("len->content = %d\n", ft_strlen(i->content));
 		printf("content_exp = %s\n", i->content_exp);
 		printf("content_exp_sans_quotes = %s\n", i->content_exp_sans_q);
 		printf("nw_content = %s\n", i->nw_content);

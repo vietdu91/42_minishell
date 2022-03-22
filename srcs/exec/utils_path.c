@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 16:28:08 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/05 20:29:19 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 00:56:03 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,19 @@ void	add_slash(char **to_try)
 int	add_cmd(char **to_try, char *cmd)
 {
 	int		i;
-	char	**av;
+	// char	**av;
 
-	av = ft_split(cmd, ' ');
-	if (!av)
-		return (0);
+	printf("cmd add cmd = %s\n", cmd);
+	// av = ft_split(cmd, ' ');
+	// if (!av)
+	// 	return (0);
 	i = -1;
 	while (to_try[++i])
 	{
-		to_try[i] = ft_strjoin(to_try[i], av[0]);
+		to_try[i] = ft_strjoin(to_try[i], cmd);
 		if (!to_try[i])
 			return (0);
 	}
-	free_d_tab(av);
+	// free_d_tab(av);
 	return (1);
 }

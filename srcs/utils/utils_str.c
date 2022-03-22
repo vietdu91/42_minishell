@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/15 13:47:41 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/22 01:45:59 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	{
 		len_1 = ft_strlen(s1);
 		len_2 = ft_strlen(s2);
+		// printf("s1 = %s len 1 = %d\n", s1, len_1);
+		// printf("s2 = %s, len 2 = %d\n", s2, len_2);
 		str = (char *)malloc(sizeof(char) * (len_1 + len_2 + 1));
 		if (!str)
 			return (0);
