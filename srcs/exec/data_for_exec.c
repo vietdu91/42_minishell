@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/13 16:35:19 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/19 16:35:57 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,50 +62,6 @@ int	size_d_tab(t_pars_list *l)
 	return (i);
 }
 
-int	count_options(t_pars_node *cpy)
-{
-	t_pars_node	*node;
-	int i;
-
-	i = 0;
-	if (!cpy->next)
-		return (i);
-	node = cpy->next;
-	while (node && (node->type == OPTION || node->type == SIMPLE_ARG))
-	{
-		i++;
-		node = node->next;
-	}
-	return (i);
-}
-
-int	*fill_index(t_pars_list *l)
-{
-	int			i;
-	int			size;
-	t_pars_node	*node;
-	int			*index;
-
-	size = size_d_tab(l);
-	if (size == 0)
-		return (NULL);
-	index = malloc(sizeof(int) * (size));
-	if (!index)
-		return (NULL);
-	node = l->head;
-	i = 0;
-	while (node)
-	{
-		if (node->type == CMD)
-		{
-			index[i] = count_options(node) + 1;
-			i++;	
-		}
-		node = node->next;
-	}
-	return (index);
-}
-
 void	check_cmds(t_pars_list *l)
 {
 	t_pars_node	*node;
@@ -125,20 +81,19 @@ void	check_cmds(t_pars_list *l)
 
 int	exec_maestro(t_args *args)
 {
-	int		n_docs;
-	int			*index;
+	int			n_docs;
+	// int			*index;
 	t_pars_list	*l;
 
 	l = args->parser;
+	//UNIVERSEL
 	args->env_tab = init_env_tab(args->env);
 	n_docs = count_heredoc(args->parser);
 	args->delimiters = delimiters_to_tab(args->parser, n_docs);
 	fill_d_tab_heredoc(args, n_docs, args->delimiters);
-	index = fill_index(args->parser);
-	iter_tab(args->parser, index);
-	free(index);
-	index = NULL;
+    options_maestro(args, l);
 	path_maestro(args);
-	simple_exec(args, l);
+	inf_out_maestro(args, l);
+	loop_execution(args, l);
 	return (0);
 }

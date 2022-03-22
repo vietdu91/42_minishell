@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/11 01:26:40 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/19 23:55:08 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	is_builtin_2(t_args *args)
 		return (0);
 	}
 	else if (!ft_strcmp(args->parser->head->content_exp_sans_q, \
-	"patience_is_a_vertue"))
+	"patience_is_a_virtue"))
 	{
 		print_patience(args);
 		return (0);	
@@ -45,7 +45,6 @@ int	is_builtin_2(t_args *args)
 
 int	is_builtin_1(t_args *args)
 {
-	args->nb_commands = how_many_commands(args->buffer);
 	if (args->parser->head)
 	{
 		if (!ft_strcmp(args->parser->head->content_exp_sans_q, "cd"))
@@ -69,5 +68,5 @@ int	is_builtin_1(t_args *args)
 			return (0);	
 		}
 	}
-	return (-1);
+	return (is_builtin_2(args));
 }

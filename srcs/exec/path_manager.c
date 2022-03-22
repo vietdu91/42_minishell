@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:17:41 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/15 17:16:40 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 12:49:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,19 @@ char *return_path(char **to_try)
 {
 	int	i;
 
+	// i = -1;
+	// while (to_try[++i])
+	// {
+	// 	// printf("to_try[%d] = %s\n", i, to_try[i]);
+	// }
 	i = -1;
 	while (to_try[++i])
+	{
 		if (!access(to_try[i], F_OK))
-			return (to_try[i]);
+		// printf("to_try[%d] = %s\n", i, to_try[i]);
+		return (to_try[i]);
+	}
+	printf("no access\n");
 	return (NULL);
 }
 
@@ -46,6 +55,7 @@ int path_maestro(t_args *args)
 	to_try = NULL;
 	node = args->parser->head;
 	line_with_path = find_path(args->env_tab);
+	printf("line with path = %s\n", line_with_path);
 	while (node)
 	{
 		if (node->type == CMD)
@@ -54,6 +64,7 @@ int path_maestro(t_args *args)
 			if (!cmd_is_path(node->content, node))
 			{
 				path = return_path(to_try);
+				printf("path = %s\n", path);
 				if (path == NULL)
 				{
 					node->path = NULL;
@@ -61,7 +72,10 @@ int path_maestro(t_args *args)
 					g_exit_status = 127;
 				}
 				else
+				{
+					// printf("path = %s\n", path);	
 					node->path = ft_strdup(path);
+				}
 			}
 			free(to_try);
 			to_try = NULL;

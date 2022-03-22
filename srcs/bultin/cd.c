@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/15 17:19:45 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 12:50:18 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,40 +45,28 @@ void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 	if (!node)
 	{
 		cd_home(args, env, oldpwd);
-		return ;
-	}
 	if (node->type == 20)
 	{
 		free(oldpwd);
 		invalid_option(node, CMD_CD);
-		return ;
 	}
 	else if (node->next)
 	{
 		free(oldpwd);
 		print_error(BASH, CMD_CD, NULL, ERR_MANY_ARG);
 		g_exit_status = 1;
-		return ;
 	}
 	else if (!ft_strcmp(node->content_exp_sans_q, "-"))
-	{
 		cd_moins(args, env, oldpwd);
-		return ;
-	}
 	else if (!oldpwd && (!ft_strcmp(node->content_exp_sans_q, ".") \
 	|| !ft_strcmp(node->content_exp_sans_q, "..")))
-	{
 		error_because_lost_dir(oldpwd, node->content_exp_sans_q);
-		return ;
-	}
 /*	else if (ft_strlen(cdpath) > 0 && !ft_strcmp(node->content_exp_sans_q, ".") \
 	&& !ft_strcmp(node->content_exp_sans_q, ".."))
 	{
 		
 	}*/
 	else
-	{
 		find_cd(args, env, oldpwd, node->content_exp_sans_q);
-		return ;
-	}
+	return ;
 }

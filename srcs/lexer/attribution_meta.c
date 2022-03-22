@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/12 18:32:03 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/14 18:26:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	check_if_meta(t_pars_list *l)
 	return (0);
 }
 
-int	conditions(t_pars_node *node)
+int	attribute_meta(t_pars_node *node)
 {
 	if (!ft_strcmp(node->content, "<") && apply_type(INPUT, node) \
 		&& node->previous)
@@ -113,7 +113,7 @@ int	logical_attribution(t_pars_list *l)
 	i = l->head;
 	while (i)
 	{
-		conditions(i);
+		attribute_meta(i);
 		i = i->next;
 	}
 	return (0);

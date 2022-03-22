@@ -31,11 +31,14 @@ SRCS		= 	main.c \
 				exec/cmd_is_path.c \
 				exec/converter_for_pipex.c \
 				exec/data_for_exec.c \
+				exec/dup_and_close.c \
 				exec/exec_map_utils.c \
-				exec/exec_map.c \
+				exec/execution.c \
 				exec/heredoc.c \
+				exec/inf_out.c \
 				exec/init_cmds.c \
 				exec/leaks_exec.c \
+				exec/options_exec.c \
 				exec/path_manager.c \
 				exec/road_to_builtin.c \
 				exec/utils_path.c \

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:47:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/05 17:44:26 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/14 22:10:35 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	**delimiters_to_tab(t_pars_list *l, int size)
 	node = l->head;
 	while (node)
 	{
-		if (node->type == 18)
+		if (node->type == LIMITATOR)
 		{
 			delimiters[i] = ft_strdup(node->content);
 			if (!delimiters[i])
@@ -116,25 +116,4 @@ char	**content_to_d_tab(int iter, int *index, t_pars_node *cpy)
 	}
 	d_tab[i] = NULL;
 	return (d_tab);
-}
-
-int	iter_tab(t_pars_list *l, int *index)
-{
-	t_pars_node	*i;
-	int			iter;
-
-	iter = 0;
-	i = l->head;
-	while (i)
-	{
-		if (i->type == CMD)
-		{
-			i->cmds = content_to_d_tab(iter, index, i);
-			if (!i->cmds)
-				return (-1);
-			iter++;
-		}
-		i = i->next;
-	}
-	return (0);
 }
