@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:22:39 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/22 20:01:55 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/23 03:30:00 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	cut_content(t_pars_list *parser, t_env_list *env, t_args *args)
 		int j = -1;
 		while (splitted[i][++j])
 	//		printf("in cut_content %c\n", splitted[i][j]);
-		ft_putstr(splitted[i], 1);
-		printf("\n");
+		// ft_putstr(splitted[i], 1);
+		// printf("\n");
 	//	printf("in cut_contentsplitted [%d] = %s len = %d\n", i, splitted[i], ft_strlen(splitted[i]));
 		expand(parser->tail->content, parser->tail, env);
 		convert_content_without_quotes(parser->tail->content, parser->tail);

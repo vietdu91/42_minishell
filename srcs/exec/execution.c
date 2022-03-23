@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 19:58:27 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/23 03:20:26 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args)
 //	 printf("cmds = [%s]\n", cpy->cmds[0]);
 //	 printf("path = %s\n", cpy->path);
 	delete_content_useless_infiles(args->parser);
-	if (is_builtin_1(args) < 0)
+	if (exec_builtin_1(args, 2) < 0)
 		execve(cpy->path, cpy->cmds, args->env_tab);
 	exit(0);
 	return (0);
@@ -88,7 +88,13 @@ int	loop_execution(t_args *args, t_pars_list *l)
 			}
 		}
 		else
-			is_builtin_1(args);
+		{
+			printf("yosa\n");
+			dup_maestro(datas, l, i);	
+			exec_builtin_1(args, 1);
+			if (i->fds[1] > 0)
+				close(i->fds[1]);
+		}
 		i = i->next;
 	}
 	return (0);
