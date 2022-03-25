@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_tab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:43:05 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/04 15:34:09 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:59:15 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_env_list	*set_var_to_export(t_env_list *export, t_env *env, t_args *args)
 
 void	swap_export(t_env *node, t_env *node2)
 {
-	char	*swap;
+	unsigned char	*swap;
 	int		swip;
 
 	swap = node->line;

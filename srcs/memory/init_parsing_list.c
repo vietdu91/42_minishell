@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 01:04:39 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:26:08 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	init_parsing_node(t_pars_node *node)
 	node->nw_content = NULL;
 	node->content_exp = NULL;
 	node->content_exp_sans_q = NULL;
-	node->previous = NULL;
 	node->type = 0;
-	node->next = NULL;
 	node->index_crypted = 0;
-	node->path = NULL;
 	node->cmds = NULL;
+	node->path = NULL;
 	node->fds[0] = 0;
 	node->fds[1] = 0;
+	node->previous = NULL;
+	node->next = NULL;
 }
 
 t_pars_list	*list_end_parse(t_pars_list *list, char *content)
@@ -77,7 +77,12 @@ void	display_parsing(t_pars_list *parser)
 	while (i)
 	{
 		if (i->type == CMD)
+		{
 			printf("Path = %s\n", i->path);
+			int j = -1;
+			while (i->cmds[++j])
+				printf("%s\n", i->cmds[j]);
+		}
 		printf("parsing = %s\n", i->content);
 		printf("len->content = %d\n", ft_strlen(i->content));
 		printf("content_exp = %s\n", i->content_exp);

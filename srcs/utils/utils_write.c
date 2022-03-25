@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:15:47 by emtran            #+#    #+#             */
-/*   Updated: 2022/01/16 16:50:50 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:50:32 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,16 @@ void	ft_putstr(char *str, int fd)
 {
 	int	a;
 
-	a = ft_strlen(str);
-	write(fd, str, a);
-	a++;
+	// a = ft_strlen(str);
+	// write(fd, str, a);
+	while (*str)
+	{
+		ft_putchar(*(str++), fd);
+		// a = *(str++);
+		// (void)fd;
+		// printf("a = %d\n", a);
+	}
+	// a++;
 }
 
 void	ft_putchar(char c, int fd)

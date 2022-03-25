@@ -6,13 +6,13 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:46:57 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/08 15:15:12 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:54:43 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	error_because_lost_dir(char *oldpwd, char *command)
+void	error_because_lost_dir(unsigned char *oldpwd, unsigned char *command)
 {
 	ft_putstr("chdir: error retrieving current directory: ", 2);
 	ft_putstr("getcwd: cannot access parent directories: ", 2);
@@ -21,9 +21,9 @@ void	error_because_lost_dir(char *oldpwd, char *command)
 	g_exit_status = 1;
 }
 
-void	cd_moins(t_args *args, t_env_list *env, char *oldpwd)
+void	cd_moins(t_args *args, t_env_list *env, unsigned char *oldpwd)
 {
-	char	*new_oldpwd;
+	unsigned char	*new_oldpwd;
 
 	if (!find_content_in_env("OLDPWD", env) && \
 	!ft_strcmp(find_content_in_env("OLDPWD", env), ""))
@@ -39,9 +39,9 @@ void	cd_moins(t_args *args, t_env_list *env, char *oldpwd)
 	return ;
 }
 
-void	cd_home(t_args *args, t_env_list *env, char *oldpwd)
+void	cd_home(t_args *args, t_env_list *env, unsigned char *oldpwd)
 {
-	char	*home;
+	unsigned char	*home;
 
 	if (!find_content_in_env("HOME", env))
 	{
