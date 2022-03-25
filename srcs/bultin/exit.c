@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:10:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/01 12:02:29 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/25 14:56:57 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	error_numeric_exit(t_args *args, char *content)
+void	error_numeric_exit(t_args *args,char *content)
 {
 	ft_putstr("bash: exit: ", 2);
 	ft_putstr(content, 2);
@@ -41,7 +41,7 @@ int	check_len_llu_nb(char *content)
 	return (0);
 }
 
-void	say_hello_wave_goodbye(t_args *args, char *content, int neg, \
+void	say_hello_wave_goodbye(t_args *args,char *content, int neg, \
 unsigned long long exit_status)
 {
 	long long	new_exit_status;

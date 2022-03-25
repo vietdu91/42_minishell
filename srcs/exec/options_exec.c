@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:43:25 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 00:36:16 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 13:13:15 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,6 @@ int	options_maestro(t_args *args, t_pars_list *l)
 		}
 		i = i->next;
 	}
+	free(options);
 	return (0);
 }

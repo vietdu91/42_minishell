@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 12:48:56 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 18:45:06 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,38 @@
 
 int	g_exit_status;
 
+char	*buffer_cleaner(char *buffer)
+{
+	char	*str;
+	int		i;
+	int		size;
+	int		j;
+
+	i = -1;
+	j = 0;
+	size = 0;
+	while (buffer[++i])
+		if (buffer[i] > 0)
+			size++;
+	str = malloc(sizeof(char) * (size + 1));
+	if (!str)
+		return (NULL);
+	i = -1;
+	while (buffer[++i])
+		if (buffer[i] > 0)
+			str[j++] = buffer[i];
+	str[j] = 0;
+	free(buffer);
+	return (str);
+}
+
 void	loop(t_args *args)
 {
 	while (1)
 	{
 		init_parsing_list(&args->parser);
 		args->buffer = readline(PROMPT);
+		// printf("main args->buffer = %s\n", args->buffer);
 		if (!args->buffer)
 		{
 			ft_putstr("exit\n", 1);
@@ -27,17 +53,20 @@ void	loop(t_args *args)
 		}
 		else
 		{
+			args->buffer = buffer_cleaner(args->buffer);
 			if (!check_unclosed(args))
 			{
 				parsing_maestro(args, args->buffer);
+				// display_parsing(args->parser);
 				lexer_maestro(args);
-				// display_parsing(args->parser);
 				exec_maestro(args);
-				// display_parsing(args->parser);
+				display_parsing(args->parser);
 			}
+			// waitpid(0, NULL, 0);
+			printf("salut\n");
 			add_history(args->buffer);
 		}
-		// free_all(args);
+		//free_all(args);
 		if (args->parser)
 			free_pars_list(args->parser);
 		free(args->buffer);

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/02/26 18:57:44 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 14:46:48 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,16 @@ int	parsing_maestro(t_args *args, char *line)
 {
 	char	**cpy;
 
+	cpy = NULL;
+	// char *str = line;
+	
+	// int i = -1;
+	// while (str[++i])
+	// 	printf("str[i] %d\n", str[i]);
 	if (line[0] == 0)
 		return (-1);
 	cpy = &line;
+	// printf("parsing maestro line = %s\n", line);
 	parser(cpy, args->parser, args->env, args);
 	return (0);
 }

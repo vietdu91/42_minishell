@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/20 16:15:15 by dyoula           ###   ########.fr       */
+/*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
+/*   Updated: 2022/03/25 14:48:33 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,15 @@ int	count_cmd(t_pars_list *l)
 
 int	pid_zero_execution(t_pars_node *cpy, t_args *args)
 {
-	// printf("cpy[0] = %d\n", cpy->fds[0]);
-	// printf("cmds = %s\n", cpy->cmds[0]);
-	// printf("path = %s\n", cpy->path);
+	//  printf("cpy[0] = %d\n", cpy->fds[0]);
+	//  printf("cmds = [%s]\n", cpy->cmds[0]);
+	//  printf("path = %s\n", cpy->path);
 	delete_content_useless_infiles(args->parser);
-	if (is_builtin_1(args) < 0)
+	if (exec_builtin_1(args, 2) < 0)
+	{
+
 		execve(cpy->path, cpy->cmds, args->env_tab);
+	}
 	exit(0);
 	return (0);
 }
@@ -53,36 +56,45 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[0] = 0; // numero cmd
 	datas[1] = count_cmd(l); // nombre de cmd
 	datas[2] = 0; //tmp
-
 	args->nb_commands = how_many_commands(args->buffer);
+	// printf("CMDS %d\n", args->nb_commands);
 	while (i)
 	{
-		if (i->type == CMD)
+		if (is_builtin(args) || (args->nb_commands > 1 && !is_builtin(args)))
 		{
-			// printf("infile fd = %d\n", i->fds[0]);
-			if (datas[1] > 1 && pipe(l->pipe) < 0) // ca maarche
-				return (-1);
-			pid = fork();
-			if (pid == -1)
-				return (-1);
-			if (pid == 0)
+			if (i->type == CMD)
 			{
-				// printf("datas[0] = %d\n", datas[0]);
-				// printf("%s\n", i->path);
-				// la liste chainee a l'air d'etre morte 
-				dup_maestro(datas, l, i);
-				pid_zero_execution(i, args);
-				exit (0);
+				// printf("infile fd = %d\n", i->fds[0]);
+				if (datas[1] > 1 && pipe(l->pipe) < 0) // ca maarche
+					return (-1);
+				pid = fork();
+				if (pid == -1)
+					return (-1);
+				if (pid == 0)
+				{
+					// printf("datas[0] = %d\n", datas[0]);
+					dup_maestro(datas, l, i);
+					pid_zero_execution(i, args);
+					exit (0);
+				}
+				if (datas[0] > 1)
+					close(datas[2]);
+				if (args->nb_commands > 1)
+				{
+					datas[2] = l->pipe[0];
+					close(l->pipe[1]);
+				}
+				datas[0]++;
+				waitpid(0, NULL, 0);
 			}
-			if (datas[0] > 1)
-				close(datas[2]);
-			if (args->nb_commands > 1)
-			{
-				datas[2] = l->pipe[0];
-				close(l->pipe[1]);
-			}
-			datas[0]++;
-			waitpid(0, NULL, 0);
+		}
+		else
+		{
+			// printf("yosa\n");
+			dup_maestro(datas, l, i);	
+			exec_builtin_1(args, 1);
+			if (i->fds[1] > 0)
+				close(i->fds[1]);
 		}
 		i = i->next;
 	}

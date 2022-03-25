@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:26:48 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/19 16:50:09 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 15:07:00 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void	init_and_set_all(t_args *args, char **envp)
 	args->nb_commands = 0;
 	args->patience = 0;
 	args->home = NULL;
+	args->env_tab = NULL;
 	args->hdocs = NULL;
+	args->delimiters = NULL;
 	init_struct(args);
 	set_all(args, envp);
 }

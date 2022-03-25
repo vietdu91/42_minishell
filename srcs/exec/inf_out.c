@@ -6,15 +6,15 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 12:50:32 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 18:48:43 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	**create_fd_tab(t_pars_node *inf, t_pars_node *out)
+char **create_fd_tab(t_pars_node *inf, t_pars_node *out)
 {
-	char		**fds;
+	char **fds;
 
 	fds = NULL;
 	// printf("out = %s\n", out->content);
@@ -24,19 +24,19 @@ char	**create_fd_tab(t_pars_node *inf, t_pars_node *out)
 	fds[0] = NULL;
 	if (inf)
 		fds[0] = ft_strdup(inf->content);
-	fds[1] = NULL;	
+	fds[1] = NULL;
 	if (out)
 		fds[1] = ft_strdup(out->content);
 	fds[2] = NULL;
 	return (fds);
 }
 
-char	**fill_fds(t_pars_node *cpy)
+char **fill_fds(t_pars_node *cpy)
 {
-    t_pars_node *i;
-	t_pars_node	*infile;
-	t_pars_node	*outfile;
-	char		**fds;
+	t_pars_node *i;
+	t_pars_node *infile;
+	t_pars_node *outfile;
+	char **fds;
 
 	infile = NULL;
 	outfile = NULL;
@@ -55,7 +55,7 @@ char	**fill_fds(t_pars_node *cpy)
 	return (fds);
 }
 
-int	inf_out_maestro(t_args *args, t_pars_list *l)
+int inf_out_maestro(t_args *args, t_pars_list *l)
 {
 	int		pid;
 	int 	status;
@@ -83,6 +83,12 @@ int	inf_out_maestro(t_args *args, t_pars_list *l)
 		}
 		i = i->next;
 	}
+<<<<<<< HEAD
 	waitpid(pid, &status, 0);
 	return (0);
+=======
+	if (fds_content)
+		free_d_tab(fds_content);
+	return (1);
+>>>>>>> d087592482836f4c31489dd9e83fac81fc15b03c
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_trim.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 14:04:58 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/06 14:33:02 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/25 14:58:49 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*remove_interior_spaces(char *str)
 	i = 0;
 	j = 0;
 	len = check_len_interior_spaces(str);
-	nstr = (char *)malloc(sizeof(char *) * len + 1);
+	nstr = (char *)malloc(sizeof(char *) * (len + 1));
 	while (str[i])
 	{
 		while (str[i] && !is_space(str[i]))
