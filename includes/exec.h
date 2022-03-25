@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/16 01:15:00 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/23 03:01:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int				cmd_is_path(char *array, t_pars_node *c);
 
 /*              DATA_EXEC.C             */
 int	            options_maestro(t_args *args, t_pars_list *l);
+/*				DUP_AND_CLOSE.C			*/
+int				dup_maestro(int datas[3], t_pars_list *l, t_pars_node *cpy);
 /*				EXEC_MAESTRO.C			*/
 char			**init_env_tab(t_env_list *l);
 int				exec_maestro(t_args *args);
@@ -85,7 +87,9 @@ char	 		*return_path(char **to_try);
 int 			path_maestro(t_args *args);
 
 /*				ROAD_TO_BUILTINS.C			*/
-int 			is_builtin_1(t_args *args);
+int 			is_builtin(t_args *args);
+int 			exec_builtin_1(t_args *args, int n);
+int 			exec_builtin_2(t_args *args, int n);
 
 /*				UTILS_PATH.C				*/
 void			add_slash(char **to_try);
