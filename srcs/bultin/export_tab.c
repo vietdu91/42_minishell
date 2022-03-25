@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:43:05 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 14:47:26 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 14:58:29 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_env_list	*set_var_to_export(t_env_list *export, t_env *env, t_args *args)
 
 void	swap_export(t_env *node, t_env *node2)
 {
-	unsigned char	*swap;
+	char	*swap;
 	int		swip;
 
 	swap = node->line;

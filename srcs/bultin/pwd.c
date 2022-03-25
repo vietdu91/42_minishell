@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:22:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 02:01:09 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 14:59:08 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	pwd_main(t_pars_node *parser, t_args *args)
 {
 	t_pars_node	*node;
-	unsigned char		*pwd;
+	char		*pwd;
 
 	node = parser;
 	if (node->next && node->next->type == 20)

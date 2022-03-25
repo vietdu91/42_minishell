@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:32 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 02:00:15 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 14:57:34 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	get_export(t_args *args)
 	g_exit_status = 0;
 }
 
-int	check_id_export(unsigned char *str)
+int	check_id_export(char *str)
 {
 	int	i;
 

@@ -6,13 +6,13 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:12:23 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 02:01:24 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 14:59:59 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_env	*find_previous_node(t_env_list *env, unsigned char *var)
+t_env	*find_previous_node(t_env_list *env, char *var)
 {
 	t_env	*node;
 	t_env	*tmp;
@@ -30,7 +30,7 @@ t_env	*find_previous_node(t_env_list *env, unsigned char *var)
 	return (NULL);
 }
 
-void	delete_var_list(t_env_list *env, unsigned char *var)
+void	delete_var_list(t_env_list *env, char *var)
 {
 	t_env	*node;
 	t_env	*previous;
@@ -57,7 +57,7 @@ void	delete_var_list(t_env_list *env, unsigned char *var)
 	}
 }
 
-int	check_id_unset(unsigned char *str)
+int	check_id_unset(char *str)
 {
 	int	i;
 

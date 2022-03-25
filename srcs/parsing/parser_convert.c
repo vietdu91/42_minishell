@@ -6,14 +6,14 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:45:46 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 14:44:48 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 15:01:03 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-unsigned char	*put_new_word_to_content(unsigned char **str, \
-unsigned char *content)
+char	*put_new_word_to_content(char **str, \
+char *content)
 {
 	int		i;
 

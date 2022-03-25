@@ -6,13 +6,13 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:46:26 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 01:56:30 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 14:55:30 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_env_list	*add_var_to_env(t_env_list *env, unsigned char *content, t_args *args)
+t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args)
 {
 	t_env	*node;
 
@@ -38,7 +38,7 @@ t_env_list	*add_var_to_env(t_env_list *env, unsigned char *content, t_args *args
 	return (env);
 }
 
-void	export_var_to_export(t_args *args, t_env_list *export, unsigned char *var, \
+void	export_var_to_export(t_args *args, t_env_list *export, char *var, \
 int check)
 {
 	t_env	*node;
@@ -72,7 +72,7 @@ int check)
 	export->length++;
 }
 
-void	export_var_to_env(t_args *args, t_env_list *env, unsigned char *var, int check)
+void	export_var_to_env(t_args *args, t_env_list *env, char *var, int check)
 {
 	t_env	*node;
 

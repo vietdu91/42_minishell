@@ -6,16 +6,16 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 12:38:42 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 01:58:45 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 14:58:12 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	check_existing_var(t_env_list *env, unsigned char *var)
+int	check_existing_var(t_env_list *env, char *var)
 {
 	t_env	*node;
-	unsigned char	*variable;
+	char	*variable;
 
 	node = NULL;
 	node = env->head;
@@ -33,7 +33,7 @@ int	check_existing_var(t_env_list *env, unsigned char *var)
 	return (0);
 }
 
-void	set_new_content_in_export(t_env *node, unsigned char *content, t_args *args, \
+void	set_new_content_in_export(t_env *node, char *content, t_args *args, \
 int check)
 {
 	node->line = ft_strdup(content);
@@ -55,10 +55,10 @@ int check)
 	node->len_content = ft_strlen(node->content);
 }
 
-void	replace_existing_var(t_args *args, t_env_list *env, unsigned char *var)
+void	replace_existing_var(t_args *args, t_env_list *env, char *var)
 {
 	t_env	*node;
-	unsigned char	*variable;
+	char	*variable;
 
 	node = NULL;
 	node = env->head;
@@ -76,11 +76,11 @@ void	replace_existing_var(t_args *args, t_env_list *env, unsigned char *var)
 	free(variable);
 }
 
-void	replace_existing_var_exp(t_args *args, t_env_list *export, unsigned char *var, \
+void	replace_existing_var_exp(t_args *args, t_env_list *export, char *var, \
 int check)
 {
 	t_env	*node;
-	unsigned char	*variable;
+	char	*variable;
 
 	node = NULL;
 	node = export->head;

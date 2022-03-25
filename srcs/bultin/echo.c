@@ -6,13 +6,13 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:24:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 01:55:57 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 14:54:03 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	check_option(unsigned char *str)
+int	check_option(char *str)
 {
 	int		i;
 

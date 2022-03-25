@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 01:55:07 by dyoula           ###   ########.fr       */
+/*   Created: 2022/03/25 14:50:34 by dyoula            #+#    #+#             */
+/*   Updated: 2022/03/25 14:52:00 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	find_cd(t_args *args, t_env_list *env, unsigned char *oldpwd, unsigned char *path)
+void	find_cd(t_args *args, t_env_list *env, char *oldpwd, char *path)
 {
 	int		ret;
-	unsigned char	*pwd;
+	char	*pwd;
 
 	(void) env;
 	ret = chdir(path);
@@ -35,8 +35,8 @@ void	find_cd(t_args *args, t_env_list *env, unsigned char *oldpwd, unsigned char
 void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 {
 	t_pars_node	*node;
-	unsigned char		*cdpath;
-	unsigned char		*oldpwd;
+	char		*cdpath;
+	char		*oldpwd;
 
 	node = parser->next;
 	oldpwd = getcwd(NULL, 0);
