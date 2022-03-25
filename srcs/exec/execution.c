@@ -5,12 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/03/25 01:13:35 by dyoula           ###   ########.fr       */
-=======
-/*   Updated: 2022/03/24 23:52:50 by dyoula           ###   ########.fr       */
->>>>>>> f2d43ca5a946284d5a124a93ba7a5effd87bc80e
+/*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
+/*   Updated: 2022/03/25 14:48:33 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +32,9 @@ int	count_cmd(t_pars_list *l)
 
 int	pid_zero_execution(t_pars_node *cpy, t_args *args)
 {
-//	 printf("cpy[0] = %d\n", cpy->fds[0]);
-//	 printf("cmds = [%s]\n", cpy->cmds[0]);
-//	 printf("path = %s\n", cpy->path);
+	//  printf("cpy[0] = %d\n", cpy->fds[0]);
+	//  printf("cmds = [%s]\n", cpy->cmds[0]);
+	//  printf("path = %s\n", cpy->path);
 	delete_content_useless_infiles(args->parser);
 	if (exec_builtin_1(args, 2) < 0)
 	{
@@ -61,7 +57,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[1] = count_cmd(l); // nombre de cmd
 	datas[2] = 0; //tmp
 	args->nb_commands = how_many_commands(args->buffer);
-//	printf("CMDS %d\n", args->nb_commands);
+	// printf("CMDS %d\n", args->nb_commands);
 	while (i)
 	{
 		if (is_builtin(args) || (args->nb_commands > 1 && !is_builtin(args)))
