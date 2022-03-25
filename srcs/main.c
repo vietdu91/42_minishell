@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/25 14:46:10 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 18:40:01 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ char	*buffer_cleaner(char *buffer)
 	int		j;
 
 	i = -1;
+	j = 0;
 	size = 0;
 	while (buffer[++i])
 		if (buffer[i] > 0)
 			size++;
-	str = malloc (sizeof(char) * (size + 1));
+	str = malloc(sizeof(char) * (size + 1));
 	if (!str)
 		return (NULL);
 	i = -1;
@@ -34,6 +35,7 @@ char	*buffer_cleaner(char *buffer)
 		if (buffer[i] > 0)
 			str[j++] = buffer[i];
 	str[j] = 0;
+	free(buffer);
 	return (str);
 }
 
@@ -43,16 +45,15 @@ void	loop(t_args *args)
 	{
 		init_parsing_list(&args->parser);
 		args->buffer = readline(PROMPT);
-		args->buffer = buffer_cleaner(args->buffer);
 		// printf("main args->buffer = %s\n", args->buffer);
 		if (!args->buffer)
 		{
 			ft_putstr("exit\n", 1);
-			printf("je sors\n");
 			break ;
 		}
 		else
 		{
+			args->buffer = buffer_cleaner(args->buffer);
 			if (!check_unclosed(args))
 			{
 				parsing_maestro(args, args->buffer);
