@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/14 22:10:55 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 15:31:37 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,29 @@ int				cmd_is_path(char *array, t_pars_node *c);
 
 /*              DATA_EXEC.C             */
 int	            options_maestro(t_args *args, t_pars_list *l);
+/*				DUP_AND_CLOSE.C			*/
+int				dup_maestro(int datas[3], t_pars_list *l, t_pars_node *cpy);
 /*				EXEC_MAESTRO.C			*/
 char			**init_env_tab(t_env_list *l);
 int				exec_maestro(t_args *args);
 
 /*				EXEC_MAP_UTILS.C		*/
-void			create_infiles_outfiles(t_args *args, int in_out[2], \
-					int fd_tab[2], char **fds_content);
+void			create_infiles_outfiles(t_args *args, int in_out[2],\
+		t_pars_node *cpy, char **fds_content);
 void			delete_content_useless_infiles(t_pars_list *l);
 
 /*				EXEC_MAP.C				*/
-int				simple_exec(t_args *args, t_pars_list *l);
+int				exec(t_args *args, t_pars_list *l);
+
+/*				EXECUTIONS.C			*/
+int				loop_execution(t_args *args, t_pars_list *l);
 /*				HEREDOCS.C				*/
 int				read_heredoc(char **heredoc, char *del);
 int				count_heredoc(t_pars_list *l);
 int				fill_d_tab_heredoc(t_args *args, int size, char **eof);
+
+/*				INF_OUT.C				*/
+int				inf_out_maestro(t_args *args, t_pars_list *l);
 
 /*				INIT_CMDS					*/
 t_cmds_list		*init_list(void);
@@ -80,6 +88,8 @@ int 			path_maestro(t_args *args);
 
 /*				ROAD_TO_BUILTINS.C			*/
 int 			is_builtin_1(t_args *args);
+int 			is_builtin(t_args *args);
+
 
 /*				UTILS_PATH.C				*/
 void			add_slash(char **to_try);

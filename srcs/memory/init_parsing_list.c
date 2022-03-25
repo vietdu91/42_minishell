@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/13 16:45:17 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 01:04:39 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	init_parsing_list(t_pars_list **parser)
 	(*parser)->head = NULL;
 	(*parser)->tail = NULL;
 	(*parser)->length = 0;
+	(*parser)->pipe[0] = 0;
+	(*parser)->pipe[1] = 0;
 	return (1);
 }
 
@@ -35,6 +37,8 @@ void	init_parsing_node(t_pars_node *node)
 	node->index_crypted = 0;
 	node->path = NULL;
 	node->cmds = NULL;
+	node->fds[0] = 0;
+	node->fds[1] = 0;
 }
 
 t_pars_list	*list_end_parse(t_pars_list *list, char *content)
@@ -75,6 +79,7 @@ void	display_parsing(t_pars_list *parser)
 		if (i->type == CMD)
 			printf("Path = %s\n", i->path);
 		printf("parsing = %s\n", i->content);
+		printf("len->content = %d\n", ft_strlen(i->content));
 		printf("content_exp = %s\n", i->content_exp);
 		printf("content_exp_sans_quotes = %s\n", i->content_exp_sans_q);
 		printf("nw_content = %s\n", i->nw_content);

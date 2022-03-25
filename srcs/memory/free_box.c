@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/13 17:54:44 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/22 14:42:13 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	free_builtins(t_builtin *builtin)
 
 void	free_args(t_args *args)
 {
-	if (args->path)
-		free(args->path);
+	// if (args->path)
+	// 	free(args->path);
 	if (args->buffer)
 		free(args->buffer);
-	if (args->home)
-		free(args->home);
+	// if (args->home)
+	// 	free(args->home);
 	if (args->env_tab)
 		free_d_tab(args->env_tab);
 	if (args->hdocs)
@@ -73,7 +73,8 @@ void	free_all(t_args *args)
 	if (args->parser)
 		free_pars_list(args->parser);
 	free_args(args);
-	free(args);
+	if (args)
+		free(args);
 	rl_clear_history();
 	args = NULL;
 }

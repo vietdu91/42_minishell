@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/13 16:11:20 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 03:00:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_pars_node
 	int					*index_crypted;
 	char				**cmds;
 	char				*path;
+	int					fds[2];
 	struct s_pars_node	*previous;
 	struct s_pars_node	*next;
 }	t_pars_node;
@@ -62,6 +63,7 @@ typedef struct s_pars_list
 {
 	t_pars_node	*head;
 	t_pars_node	*tail;
+	int			pipe[2];
 	int			length;
 }	t_pars_list;
 
