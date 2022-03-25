@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:40:14 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 16:08:34 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 02:25:43 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char	**ft_split_charset(char **split, char *s, char *c, t_args *args)
 
 	nb_words = 0;
 	flag = NULL;
+	printf("string = %s\n", s);
 	nb_words = ready_for_split(nb_words, c, s, &flag);
 	split = create_split(split, nb_words);
 	index = -1;

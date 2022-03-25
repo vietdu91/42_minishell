@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 14:31:35 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/25 14:24:02 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,37 @@
 
 int	g_exit_status;
 
+char	*buffer_cleaner(char *buffer)
+{
+	char	*str;
+	int		i;
+	int		size;
+	int		j;
+
+	i = -1;
+	size = 0;
+	while (buffer[++i])
+		if (buffer[i] > 0)
+			size++;
+	str = malloc (sizeof(char) * (size + 1));
+	if (!str)
+		return (NULL);
+	i = -1;
+	while (buffer[++i])
+		if (buffer[i] > 0)
+			str[j++] = buffer[i];
+	str[j] = 0;
+	return (str);
+}
+
 void	loop(t_args *args)
 {
 	while (1)
 	{
 		init_parsing_list(&args->parser);
 		args->buffer = readline(PROMPT);
+		args->buffer = buffer_cleaner(args->buffer);
+		// printf("main args->buffer = %s\n", args->buffer);
 		if (!args->buffer)
 		{
 			ft_putstr("exit\n", 1);
