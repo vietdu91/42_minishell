@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser_convert.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:45:46 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/06 11:25:49 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:52:18 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*put_new_word_to_content(char **str, char *content)
+unsigned char	*put_new_word_to_content(unsigned char **str, \
+unsigned char *content)
 {
 	int		i;
 
@@ -37,6 +38,8 @@ char	*put_new_word_to_content(char **str, char *content)
 			content[i++] = *(*str)++;
 	}
 	content[i] = 0;
+	// ft_putstr(content, 1);
+	// printf("\n");
 	return (content);
 }
 

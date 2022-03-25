@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:35:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/06 15:12:33 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:57:03 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	set_new_content_in_env(t_env *node, char *content, t_args *args)
+void	set_new_content_in_env(t_env *node, unsigned char *content, t_args *args)
 {
 	node->line = ft_strdup(content);
 	if (!node->line)
@@ -31,7 +31,7 @@ void	set_new_content_in_env(t_env *node, char *content, t_args *args)
 	node->len_content = ft_strlen(node->content);
 }
 
-char	*set_content_trim_env(char *str, char trim)
+unsigned char	*set_content_trim_env(unsigned char *str, unsigned char trim)
 {
 	int	i;
 	int	j;
@@ -59,15 +59,15 @@ char	*set_content_trim_env(char *str, char trim)
 	return (ft_substr(str, i, len));
 }
 
-char	*set_variable_env(char *str)
+unsigned char	*set_variable_env(unsigned char *str)
 {
 	int		i;
-	char	*variable;
+	unsigned char	*variable;
 
 	i = 0;
 	while (str[i] && str[i] != '=')
 		i++;
-	variable = malloc(sizeof(char) * (i + 1));
+	variable = malloc(sizeof(unsigned char) * (i + 1));
 	if (!variable)
 		return (NULL);
 	i = 0;
@@ -80,17 +80,17 @@ char	*set_variable_env(char *str)
 	return (variable);
 }
 
-char	*set_content_env(char *str)
+unsigned char	*set_content_env(unsigned char *str)
 {
 	int		i;
 	int		j;
-	char	*content;
+	unsigned char	*content;
 
 	i = 0;
 	j = 0;
 	while (str[i] && str[i] != '=')
 		i++;
-	content = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	content = malloc(sizeof(unsigned char) * (ft_strlen(str) - i + 1));
 	if (!content)
 		return (NULL);
 	while (str[++i])
@@ -101,7 +101,7 @@ char	*set_content_env(char *str)
 	return (content);
 }
 
-int	set_id_env(char *str)
+int	set_id_env(unsigned char *str)
 {
 	if (!ft_strcmp(str, "PWD"))
 		return (PWD);

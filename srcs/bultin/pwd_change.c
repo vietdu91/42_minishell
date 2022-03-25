@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_change.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:26:54 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/07 17:48:43 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/25 02:00:29 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	update_env(char *pwd, char *oldpwd, t_args *args)
+void	update_env(unsigned char *pwd, unsigned char *oldpwd, t_args *args)
 {
-	char	*oldpwd_var;
-	char	*new_oldpwd;
+	unsigned char	*oldpwd_var;
+	unsigned char	*new_oldpwd;
 
 	if (!find_content_in_env("OLDPWD", args->env))
 	{
@@ -40,10 +40,10 @@ void	update_env(char *pwd, char *oldpwd, t_args *args)
 	g_exit_status = 0;
 }
 
-void	change_pwd_env(char *newpwd, t_env_list *env)
+void	change_pwd_env(unsigned char *newpwd, t_env_list *env)
 {
 	t_env	*node;
-	char	*pwd;
+	unsigned char	*pwd;
 
 	if (!env || !newpwd)
 		return ;
@@ -64,10 +64,10 @@ void	change_pwd_env(char *newpwd, t_env_list *env)
 	}
 }
 
-void	change_oldpwd_env(char *newpwd, t_env_list *env)
+void	change_oldpwd_env(unsigned char *newpwd, t_env_list *env)
 {
 	t_env	*node;
-	char	*oldpwd;
+	unsigned char	*oldpwd;
 
 	if (!env || !newpwd)
 		return ;
@@ -88,10 +88,10 @@ void	change_oldpwd_env(char *newpwd, t_env_list *env)
 	}
 }
 
-void	change_pwd_export(char *newpwd, t_env_list *export)
+void	change_pwd_export(unsigned char *newpwd, t_env_list *export)
 {
 	t_env	*node;
-	char	*pwd;
+	unsigned char	*pwd;
 
 	if (!export || !newpwd)
 		return ;
@@ -112,10 +112,10 @@ void	change_pwd_export(char *newpwd, t_env_list *export)
 	}
 }
 
-void	change_oldpwd_export(char *newpwd, t_env_list *export)
+void	change_oldpwd_export(unsigned char *newpwd, t_env_list *export)
 {
 	t_env	*node;
-	char	*oldpwd;
+	unsigned char	*oldpwd;
 
 	if (!export || !newpwd)
 		return ;
