@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/25 18:53:41 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/26 17:12:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,16 @@ char **fill_fds(t_pars_node *cpy)
 
 int inf_out_maestro(t_args *args, t_pars_list *l)
 {
-	int		pid;
-	int 	status;
-	char	**fds_content;
-	int		in_out[2];
-	int		fd_tab[2];
+	t_pars_node	*i;
+	char		**fds_content;
+	int			in_out[2];
 
-	status = 0;
-	pid = fork();
-	if (pid == -1)
-		return (-1);
-	// gerer heredoc 
-	fd_tab[0] = 0;
-	fd_tab[1] = 0;
+	// gerer heredoc
 	in_out[0] = 0;
 	in_out[1] = 0;
 	i = l->head;
 	while (i)
 	{
-<<<<<<< HEAD:srcs/exec/inf_out.c
 		if (i->type == CMD)
 		{
 			fds_content = fill_fds(i);
@@ -83,26 +74,8 @@ int inf_out_maestro(t_args *args, t_pars_list *l)
 			// printf("infile = %d\n", i->fds[0]);
 		}
 		i = i->next;
-=======
-		fds_content = init_fds(l);
-		create_infiles_outfiles(args, in_out, fd_tab, fds_content);
-		// printf("fd 0 = %d\n", fd_tab[0]);
-		if (fd_tab[0] > 0)
-			dup2(fd_tab[0], 0);
-		if (fd_tab[1] > 0)
-			dup2(fd_tab[1], 1);
-		delete_content_useless_infiles(l);
-		if (is_builtin_1(args) < 0 && is_builtin_2(args) < 0)
-			execve(l->head->path, l->head->cmds, args->env_tab);
-		exit(0);
->>>>>>> 52c75480964d5b2d953310054ee25c2460ed192a:srcs/exec/exec_map.c
 	}
-<<<<<<< HEAD
-	waitpid(pid, &status, 0);
-	return (0);
-=======
 	if (fds_content)
 		free_d_tab(fds_content);
 	return (1);
->>>>>>> d087592482836f4c31489dd9e83fac81fc15b03c
 }
