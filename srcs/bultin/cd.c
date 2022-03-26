@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/18 17:28:47 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/26 16:46:56 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	find_cd(t_args *args, t_env_list *env, char *oldpwd, char *path)
 		g_exit_status = 1;
 	}
 	else
+	{
 		update_env(pwd, oldpwd, args);
+		g_exit_status = 0;
+	}
 	free(pwd);
 	free(oldpwd);
 	return ;
@@ -35,16 +38,15 @@ void	find_cd(t_args *args, t_env_list *env, char *oldpwd, char *path)
 void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 {
 	t_pars_node	*node;
-	char		*cdpath;
+//	char		*cdpath;
 	char		*oldpwd;
 
 	node = parser->next;
 	oldpwd = getcwd(NULL, 0);
-	cdpath = find_content_in_env("CDPATH", env);
-	(void)cdpath;
+//	cdpath = find_content_in_env("CDPATH", env);
 	if (!node || !ft_strcmp(node->content_exp_sans_q, "~"))
 		cd_home(args, env, oldpwd);
-	if (node->type == 20)
+	else if (node->type == 20)
 	{
 		free(oldpwd);
 		invalid_option(node, CMD_CD);

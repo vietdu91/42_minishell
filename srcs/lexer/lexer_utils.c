@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 19:50:38 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/12 17:47:11 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/15 16:15:50 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ int	forbidden_token(t_pars_list *l)
 	{
 		if (does_meta_exist(i) && is_forbidden(i->next))
 		{
-			ft_putstr("syntax error near unexpected token '", 2);
-			ft_putstr(i->next->content, 2);
-			ft_putstr("'\n", 2);
+		//	ft_putstr("syntax error near unexpected token '", 2);
+		//	ft_putstr(i->next->content, 2);
+		//	ft_putstr("'\n", 2);
 			return (1);
 		}
 		i = i->next;

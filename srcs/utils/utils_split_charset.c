@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:40:14 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/25 02:25:43 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/26 17:38:10 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	size_word(char *s, char *c, t_args *args)
 			s++;
 		}
 	}
-	printf("	in size_word count = %d\n", count);
+//	printf("	in size_word count = %d\n", count);
 	return (count);
 }
 
@@ -96,17 +96,17 @@ char	**ft_split_charset(char **split, char *s, char *c, t_args *args)
 
 	nb_words = 0;
 	flag = NULL;
-	printf("string = %s\n", s);
+	// printf("string = %s\n", s);
 	nb_words = ready_for_split(nb_words, c, s, &flag);
 	split = create_split(split, nb_words);
 	index = -1;
-	printf("in split_charset s = %s nb_words = %d\n", s, nb_words);
+//	printf("in split_charset s = %s nb_words = %d\n", s, nb_words);
 	while (++index < nb_words)
 	{
-		split[index] = malloc(sizeof(char) * size_word(flag, c, args) + 1);
+		split[index] = malloc(sizeof(char) * (size_word(flag, c, args) + 1));
 		if (!split[index])
 			return (free_split(split, index));
-		ft_strlcpy_w_quotes(split[index], flag, size_word(flag, c, args) + 1);
+		ft_strlcpy_w_quotes(split[index], flag, (size_word(flag, c, args) + 1));
 		flag += (size_word(flag, c, args));
 		if (args->quote_parse)
 			args->quote_parse = 0;

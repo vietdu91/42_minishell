@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_change.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:46:26 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/04 16:08:51 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/25 18:53:53 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int check)
 		export->tail = node;
 	}
 	sort_export(export);
+	display_export(export);
 	export->length++;
 }
 

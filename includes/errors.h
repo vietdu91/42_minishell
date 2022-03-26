@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:12:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/07 18:52:01 by emtran           ###   ########.fr       */
+/*   Updated: 2022/03/25 18:48:07 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define CMD_EXPORT "export: "
 # define CMD_PWD "pwd: "
 # define CMD_UNSET "unset: "
+# define ERR_CMD "command not found\n"
 # define ERR_DIR "No such file or directory\n"
 # define ERR_HOME "HOME not set\n"
 # define ERR_ID "not a valid identifier\n"

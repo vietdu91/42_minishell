@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 18:15:04 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 15:10:43 by dyoula           ###   ########.fr       */
+/*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
+/*   Updated: 2022/03/26 17:12:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,11 @@ char **fill_fds(t_pars_node *cpy)
 
 int inf_out_maestro(t_args *args, t_pars_list *l)
 {
-	t_pars_node *i;
-	int in_out[2]; // dans le node desormais
-	// int		fd_tab[2];
-	char **fds_content;
+	t_pars_node	*i;
+	char		**fds_content;
+	int			in_out[2];
 
-	fds_content = NULL;
+	// gerer heredoc
 	in_out[0] = 0;
 	in_out[1] = 0;
 	i = l->head;
