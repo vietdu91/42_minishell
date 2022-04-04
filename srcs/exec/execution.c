@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/26 19:25:02 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/04 17:50:52 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 				if (datas[1] > 1)
 				{
 					datas[2] = l->pipe[0];
+					datas[2]--;
 					// ft_putnbr(datas[2], 2);
 					// ft_putstr("\n", 2);
 					close(l->pipe[1]);
@@ -98,6 +99,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 			if (i->fds[1] > 0)
 				close(i->fds[1]);
 		}
+		unlink("/tmp/.zuzu");
 		i = i->next;
 	}
 	return (0);
