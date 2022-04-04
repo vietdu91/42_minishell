@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:08:22 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 15:00:42 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/04 18:01:43 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ void	print_syntax_error(char *msg_error, char *sign)
 
 void	print_error(char *sys, char *cmd, char *arg, char *error)
 {
-	ft_putstr(sys, 2);
-	ft_putstr(cmd, 2);
+	ft_putstr(sys, STDERR_FILENO);
+	if (cmd)
+		ft_putstr(cmd, STDERR_FILENO);
 	if (arg)
 	{
-		ft_putstr(arg, 2);
-		ft_putstr(": ", 2);
+		ft_putstr(arg, STDERR_FILENO);
+		ft_putstr(": ", STDERR_FILENO);
 	}
-	ft_putstr(error, 2);
+	ft_putstr(error, STDERR_FILENO);
 }
 
 void	print_error_w_quote(char *sys, char *cmd, char *arg, char *error)

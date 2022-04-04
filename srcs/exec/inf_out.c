@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/04 17:06:05 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/04 19:39:42 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int inf_out_maestro(t_args *args, t_pars_list *l)
 	int			in_out[2];
 
 	// gerer heredoc
+	fds_content = NULL;
 	in_out[0] = 0;
 	in_out[1] = 0;
 	i = l->head;

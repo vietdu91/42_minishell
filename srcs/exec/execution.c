@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/04 17:50:52 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/04 19:45:27 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,18 @@ int	count_cmd(t_pars_list *l)
 	return (cmd);
 }
 
-int	pid_zero_execution(t_pars_node *cpy, t_args *args)
+int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 {
 	//  printf("cpy[0] = %d\n", cpy->fds[0]);
 	//  printf("cmds = [%s]\n", cpy->cmds[0]);
 	//  printf("path = %s\n", cpy->path);
 	delete_content_useless_infiles(args->parser);
-	if (exec_builtin_1(args, 2) < 0)
+	if (exec_builtin_1(args, data) < 0)
 	{
-		execve(cpy->path, cpy->cmds, args->env_tab);
+		if (cpy->path)
+			execve(cpy->path, cpy->cmds, args->env_tab);
 	}
+	free_all(args);
 	exit(0);
 	return (0);
 }
@@ -74,8 +76,8 @@ int	loop_execution(t_args *args, t_pars_list *l)
 					dup_maestro(datas, l, i);
 					// ft_putnbr(STDIN_FILENO, 2);
 					// printf("<-\n");
-					pid_zero_execution(i, args);
-					exit (0);
+					pid_zero_execution(i, args, datas[1]);
+					// exit (0);
 				}
 				if (datas[0] > 1)
 					close(datas[2]);

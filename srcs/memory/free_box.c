@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 01:13:49 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/04 18:15:52 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	free_args(t_args *args)
 	// 	free_d_tab(args->hdocs);
 	if (args->delimiters)
 		free_d_tab(args->delimiters);
-	memset(&args, 0, sizeof(args));
+	ft_memset(&args, 0, sizeof(args));
 }
 
 void	free_all(t_args *args)
