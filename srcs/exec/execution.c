@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/25 14:48:33 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/03/26 19:25:02 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args)
 	delete_content_useless_infiles(args->parser);
 	if (exec_builtin_1(args, 2) < 0)
 	{
-
 		execve(cpy->path, cpy->cmds, args->env_tab);
 	}
 	exit(0);
@@ -47,7 +46,7 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args)
 
 int	loop_execution(t_args *args, t_pars_list *l)
 {
-	int	pid;
+	int			pid;
 	// int	tmp;
 	int			datas[3]; // no_cmd, nbr_cmd, tmp
 	t_pars_node *i;
@@ -56,11 +55,9 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[0] = 0; // numero cmd
 	datas[1] = count_cmd(l); // nombre de cmd
 	datas[2] = 0; //tmp
-	args->nb_commands = how_many_commands(args->buffer);
-	// printf("CMDS %d\n", args->nb_commands);
 	while (i)
 	{
-		if (is_builtin(args) || (args->nb_commands > 1 && !is_builtin(args)))
+		if (is_builtin(args) || (datas[1] > 1 && !is_builtin(args)))
 		{
 			if (i->type == CMD)
 			{
@@ -72,16 +69,21 @@ int	loop_execution(t_args *args, t_pars_list *l)
 					return (-1);
 				if (pid == 0)
 				{
+					// printf("salut\n");
 					// printf("datas[0] = %d\n", datas[0]);
 					dup_maestro(datas, l, i);
+					// ft_putnbr(STDIN_FILENO, 2);
+					// printf("<-\n");
 					pid_zero_execution(i, args);
 					exit (0);
 				}
 				if (datas[0] > 1)
 					close(datas[2]);
-				if (args->nb_commands > 1)
+				if (datas[1] > 1)
 				{
 					datas[2] = l->pipe[0];
+					// ft_putnbr(datas[2], 2);
+					// ft_putstr("\n", 2);
 					close(l->pipe[1]);
 				}
 				datas[0]++;

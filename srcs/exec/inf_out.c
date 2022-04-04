@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/25 19:01:17 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/04 17:06:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,11 @@ char **fill_fds(t_pars_node *cpy)
 
 int inf_out_maestro(t_args *args, t_pars_list *l)
 {
-	int				pid;
-	int 			status;
-	char			**fds_content;
-	int				in_out[2];
-	int				fd_tab[2];
-	t_pars_list 	i;
+	t_pars_node	*i;
+	char		**fds_content;
+	int			in_out[2];
 
-	status = 0;
-	pid = fork();
-	if (pid == -1)
-		return (-1);
-	// gerer heredoc 
-	fd_tab[0] = 0;
-	fd_tab[1] = 0;
+	// gerer heredoc
 	in_out[0] = 0;
 	in_out[1] = 0;
 	i = l->head;
@@ -84,6 +75,7 @@ int inf_out_maestro(t_args *args, t_pars_list *l)
 		}
 		i = i->next;
 	}
-	waitpid(pid, &status, 0);
-	return (0);
+	if (fds_content)
+		free_d_tab(fds_content);
+	return (1);
 }
