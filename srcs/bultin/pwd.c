@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:22:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 18:47:59 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/04 17:32:30 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	pwd_main(t_pars_node *parser, t_args *args)
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
 		return ;
-	ft_putstr(pwd, 1);
-	ft_putchar('\n', 1);
+	ft_putstr(pwd, STDIN_FILENO);
+	ft_putchar('\n', STDIN_FILENO);
 	change_pwd_env(pwd, args->env);
 	change_pwd_export(pwd, args->export);
 	g_exit_status = 0;
