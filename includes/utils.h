@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/06 17:43:17 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/04 18:15:27 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int					add_node_after_current(char *content, t_pars_node *n, \
 
 /*		UTILS_MEMORY	*/
 
+void				*ft_memset(void *s, int a, int c);
 void				*ft_memcpy(void *dest, const void *src, size_t count);
 void				*ft_memcpy_with_one_char(void *dest, const char src, \
 size_t count);

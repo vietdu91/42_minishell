@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/25 18:53:36 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/04 18:22:56 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ int	return_or_exit(int n)
 	if (n == 1)
 		return (0);
 	else
+	{
+		printf("au revoir bye bye\n");
 		exit(0);
+	}
 	return (0);
 }
 

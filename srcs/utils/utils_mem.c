@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   utils_mem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 13:50:51 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/13 11:46:10 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/04 18:15:09 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	*ft_memset(void *s, int a, int c)
+{
+	int		b;
+	char	*ch;
+
+	ch = s;
+	b = 0;
+	while (b < c)
+	{
+		ch[b] = (unsigned char)a;
+		b++;
+	}
+	return (s);
+}
 
 void	*ft_memcpy(void *dest, const void *src, size_t count)
 {

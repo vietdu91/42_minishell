@@ -6,16 +6,16 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:17:41 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/26 17:36:58 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/04 18:02:50 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	**check_errors(char *array, char *cmd)
+char **check_errors(char *array, char *cmd)
 {
-	char	**to_try;
-	
+	char **to_try;
+
 	to_try = NULL;
 	to_try = ft_split(array, ':');
 	// int j = -1;
@@ -31,7 +31,7 @@ char	**check_errors(char *array, char *cmd)
 
 char *return_path(char **to_try)
 {
-	int	i;
+	int i;
 
 	i = -1;
 	while (to_try[++i])
@@ -53,10 +53,10 @@ char *return_path(char **to_try)
 
 int path_maestro(t_args *args)
 {
-	char		**to_try;
-	char		*line_with_path;
-	char		*path;
-	t_pars_node	*node;
+	char **to_try;
+	char *line_with_path;
+	char *path;
+	t_pars_node *node;
 
 	node = args->parser->head;
 	line_with_path = find_path(args->env_tab);
@@ -70,7 +70,7 @@ int path_maestro(t_args *args)
 			if (!cmd_is_path(node->content, node))
 			{
 				path = return_path(to_try);
-			//	printf("path = %s\n", path);
+				//	printf("path = %s\n", path);
 				if (path == NULL)
 				{
 					node->path = NULL;
@@ -79,7 +79,7 @@ int path_maestro(t_args *args)
 				}
 				else
 				{
-					// printf("path = %s\n", path);	
+					// printf("path = %s\n", path);
 					node->path = ft_strdup(path);
 				}
 			}

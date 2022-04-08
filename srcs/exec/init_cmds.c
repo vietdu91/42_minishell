@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 01:13:19 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/13 01:32:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/04 18:15:48 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ t_cmds_list	*init_list(void)
 	// list->head = NULL;
 	// list->tail = NULL;
 	// list->length = 0;
-	memset(&list, 0, sizeof(list));
+	ft_memset(&list, 0, sizeof(list));
 	return (list);
 }
