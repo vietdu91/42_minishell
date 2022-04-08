@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/08 18:44:06 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/08 19:58:47 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	exec_maestro(t_args *args)
 	args->delimiters = delimiters_to_tab(args->parser, n_docs);
 	fill_d_tab_heredoc(args, n_docs, args->delimiters);
 	// acces au eof via le parser Trouver le bon limitator.
-	
+	modify_heredoc(args->hdocs, args->delimiters, args->env);
     options_maestro(args, l);
 	path_maestro(args);
 	inf_out_maestro(args, l); // ici qu'on ecrit le hdoc dans le tmp.
