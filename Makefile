@@ -34,6 +34,7 @@ SRCS		= 	main.c \
 				exec/dup_and_close.c \
 				exec/exec_map_utils.c \
 				exec/execution.c \
+				exec/expand_heredoc.c \
 				exec/heredoc.c \
 				exec/inf_out.c \
 				exec/init_cmds.c \
