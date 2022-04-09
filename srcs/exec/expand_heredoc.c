@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:27:18 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/08 20:10:36 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/09 16:36:35 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	send_variable(char *line, char *limitator, t_env_list *env)
 			free(content);
 		}
 	}
+	return (0);
 }
 int	modify_heredoc(char **hdoc, char **limitator, t_env_list *env)
 {
@@ -58,16 +59,19 @@ int	modify_heredoc(char **hdoc, char **limitator, t_env_list *env)
 	// checker si le limitator a des quotes
 	char	**d_tab;
 	int		i;
+	int		j;
 
+	j = 0;
 	i = -1;
 	// find which is the good limitator
+	while (hdoc[j])
+		j++;
 	if (quotes_or_not(limitator))
 		return (-1);
-	d_tab = ft_split(hdoc, '\n');
+	d_tab = ft_split(hdoc[j], '\n');
 	d_tab = NULL;
 	if (d_tab)
 		return (-1);
-	
 	while (d_tab[++i])
 	{
 		send_variable(d_tab[i], limitator, env);

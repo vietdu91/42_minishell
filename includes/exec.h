@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/08 19:57:18 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/09 16:25:49 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ int				loop_execution(t_args *args, t_pars_list *l);
 int				pid_zero_execution(t_pars_node *cpy, t_args *args, int data);
 
 /*				EXPAND.C				*/
-int				modify_heredoc(char *hdoc, char *limitator, t_env_list *env);
+
+int				modify_heredoc(char **hdoc, char **limitator, t_env_list *env);
 /*				HEREDOCS.C				*/
 int				read_heredoc(char **heredoc, char *del);
 int				count_heredoc(t_pars_list *l);
