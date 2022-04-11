@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 14:04:58 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 14:58:49 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/11 17:54:13 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ char	*remove_interior_spaces(char *str)
 
 char	*check_put_content_trim_of_expand(char *var, char *content, t_env *node)
 {
-	if (!ft_strcmp(var, "$"))
+	if (!var)
+		return (NULL);
+	else if (!ft_strcmp(var, "$"))
 	{
 		content = ft_strdup("$");
 		return (content);
