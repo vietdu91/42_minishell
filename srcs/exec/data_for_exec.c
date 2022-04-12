@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/08 19:58:47 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:29:38 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	exec_maestro(t_args *args)
 	modify_heredoc(args->hdocs, args->delimiters, args->env);
     options_maestro(args, l);
 	path_maestro(args);
-	inf_out_maestro(args, l); // ici qu'on ecrit le hdoc dans le tmp.
+	inf_out_maestro(args, l);
 	loop_execution(args, l);
 	free_d_tab(args->env_tab);
 	args->env_tab = NULL;

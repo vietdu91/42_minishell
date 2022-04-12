@@ -6,10 +6,9 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:27:18 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/11 19:46:55 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:19:31 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/minishell.h"
 
@@ -50,6 +49,7 @@ char	*send_variable(char *line, t_env_list *env)
 		flag = ft_strjoin_one_c(flag, *line);
 		(line)++;
 	}
+	flag = ft_strjoin_one_c(flag, '\n');
 	return (flag);
 }
 
@@ -66,18 +66,18 @@ char	*split_to_join(char **d_tab)
 	i = 0;
 	while (d_tab[i])
 	{
-		printf("d_tab 0 : %s\n", d_tab[i]);
+		// printf("d_tab 0 : %s\n", d_tab[i]);
 		string = malloc(sizeof(char) * (ft_strlen(cpy) + ft_strlen(d_tab[i]) + 1));
 		j = 0;
 		while (cpy[j])
 			j++;
 		k = 0;
-		printf("STRING 3 : %s\n", string);
+		// printf("STRING 3 : %s\n", string);
 		while (d_tab[i][k])
 		{
 			string[j] = d_tab[i][k];
-			printf("d_tab : %c\n", d_tab[i][k]);
-			printf("lol : %c\n", string[j]);
+			// printf("d_tab : %c\n", d_tab[i][k]);
+			// printf("lol : %c\n", string[j]);
 			j++;
 			k++;
 		}
@@ -116,8 +116,9 @@ int	modify_heredoc(char **hdoc, char **limitator, t_env_list *env)
 	while (d_tab[++i])
 	{
 		d_tab[i] = send_variable(d_tab[i], env);
-		printf("DTAB[%d] : %s\n", i, d_tab[i]);
+		// printf("DTAB[%d] : %s\n", i, d_tab[i]);
 	}
 	hdoc[j] = split_to_join(d_tab);
+	// modifier strcmp 
 	return (0);
 }
