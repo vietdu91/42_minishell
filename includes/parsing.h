@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 03:00:05 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/15 18:17:10 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ enum	e_type
 /*		||>		*/
 	WRONG_META, //20
 	OPTION, // 21
+	VAR, // 22
 };
 
 typedef struct s_pars_node

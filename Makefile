@@ -47,6 +47,7 @@ SRCS		= 	main.c \
 				fun/print_patience.c \
 				lexer/attribution_meta.c \
 				lexer/attribution_norm.c \
+				lexer/lexer_expand.c \
 				lexer/lexer_maestro.c \
 				lexer/lexer_utils.c \
 				memory/free_box.c \

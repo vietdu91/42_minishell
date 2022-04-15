@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:32 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 18:53:48 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/15 18:14:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_pars_node *parser)
 	while (node)
 	{
 		check = check_id_export(node->content_exp_sans_q);
-		if (node->type == 20)
+		if (node->type == OPTION)
 			invalid_option(node, CMD_UNSET);
 		else if (!check)
 		{

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:12:23 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 18:47:56 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/15 18:14:15 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	unset_main(t_args *args, t_pars_node *parser)
 	node = parser->next;
 	while (node)
 	{
-		if (node->type == 20)
+		if (node->type == OPTION)
 			invalid_option(node, CMD_UNSET);
 		else if (check_id_unset(node->content_exp_sans_q))
 		{

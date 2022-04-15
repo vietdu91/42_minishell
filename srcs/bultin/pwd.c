@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:22:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/04 17:32:30 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/15 18:14:10 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	pwd_main(t_pars_node *parser, t_args *args)
 	char		*pwd;
 
 	node = parser;
-	if (node->next && node->next->type == 20)
+	if (node->next && node->next->type == OPTION)
 	{
 		invalid_option(node->next, CMD_PWD);
 		return ;

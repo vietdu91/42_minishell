@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 12:49:15 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/15 19:22:16 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,16 @@ int	lexer_maestro(t_args *args)
 	//  < > << >> ; | 
 	// printf("args->next = %p", args->parser->tail);
 	logical_attribution(args->parser);
+//	split_expand(args->parser, args->env);
 	cmd_attribution(args->parser);
+
+	t_pars_node *node;
+	node = args->parser->head;
+	while (node)
+	{
+		printf("TYPE : %d\n", node->type);
+		node = node->next;	
+	}
 	// ajouter fonction d'erreur token rate 
 	if (syntax_error_meta(args) < -1 || forbidden_token(args->parser))
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/04 17:07:04 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/15 18:13:59 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 //	cdpath = find_content_in_env("CDPATH", env);
 	if (!node || !ft_strcmp(node->content_exp_sans_q, "~"))
 		cd_home(args, env, oldpwd);
-	else if (node->type == 20)
+	else if (node->type == OPTION)
 	{
 		free(oldpwd);
 		invalid_option(node, CMD_CD);
