@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:47:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/14 22:10:35 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/15 02:48:33 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,42 @@ char	**init_parse_to_tab(t_pars_list *l)
 	return (parse);
 }
 
+char	*remove_quotes_delimiters(char *str)
+{
+	int		i;
+	int		j;
+	int		size;
+	char	*content;
+	
+	size = check_len_new_word(str);
+	content = malloc(sizeof(char) * (size + 1));
+	if (!content)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] == '\"')
+		{
+			i++;
+			while (str[i] != '\"')
+				content[j++] = str[i++];
+			i++;
+		}
+		else if (str[i] == '\'')
+		{
+			i++;
+			while (str[i] != '\'')
+				content[j++] = str[i++];
+			i++;
+		}
+		else
+			content[j++] = str[i++];
+	}
+	content[j] = 0;
+	return (content);
+}
+
 char	**delimiters_to_tab(t_pars_list *l, int size)
 {
 	int			i;
@@ -79,7 +115,7 @@ char	**delimiters_to_tab(t_pars_list *l, int size)
 	{
 		if (node->type == LIMITATOR)
 		{
-			delimiters[i] = ft_strdup(node->content);
+			delimiters[i] = ft_strdup(remove_quotes_delimiters(node->content));
 			if (!delimiters[i])
 			{
 				malloc_failed(delimiters, i);

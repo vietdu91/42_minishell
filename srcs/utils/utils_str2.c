@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:28:57 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/14 16:36:21 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/12 19:40:36 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,31 +60,6 @@ size_t	ft_strlcpy(char *dest, char *src, size_t size)
 	}
 	return (ft_strlen(src));
 }
-/*
-char	*join_char(char *str, char c)
-{
-	int		i;
-	int		len;
-	char	*joined;
-
-	i = -1;
-	if (str[0] != 0)
-		len = ft_strlen(str) + 1;
-	else
-		len = 1 + 1;
-	joined = malloc(sizeof(char) * (len + 1));
-	if (!joined)
-		return (NULL);
-	while (++i < (int)ft_strlen(str))
-	{
-		joined[i] = str[i];
-	}
-	joined[i] = c;
-	i++;
-	joined[i] = 0;
-	free(str);
-	return (joined);
-}*/
 
 size_t	ft_strlcpy_w_quotes(char *dest, char *src, size_t size)
 {
