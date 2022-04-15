@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:43:25 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 13:13:15 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/15 16:44:10 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ char	**create_options_tab(t_pars_node *cpy, int limit)
 		// printf("bug malloc create options tab \n");
 		return (NULL);
 	}
-	cmds[0] = ft_strdup(cpy->content); // good
+	cmds[0] = ft_strdup(cpy->content_exp_sans_q); // good
 	count = 1;
 	// printf("cmds[0] == %s\n", cmds[0]); // good 
 	i = cpy->next;
 	while (i && count < limit)
 	{
-		cmds[count] = ft_strdup(i->content);
+		cmds[count] = ft_strdup(i->content_exp);
 		if (!cmds[count])
 			malloc_failed(cmds, count);
 		// printf("cmds[%d] == %s\n" ,count, cmds[count]); // good

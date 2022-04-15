@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:27:18 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/12 03:19:31 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/15 16:04:39 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ int	modify_heredoc(char **hdoc, char **limitator, t_env_list *env)
 	j = 0;
 	i = -1;
 	// find which is the good limitator
+	if (!hdoc)
+		return (0);
 	while (hdoc[j])
 		j++;
 	if (quotes_or_not(*limitator))

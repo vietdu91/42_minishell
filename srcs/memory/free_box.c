@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/04 18:15:52 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/15 16:15:50 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	free_args(t_args *args)
 {
 	// if (args->path)
 	// 	free(args->path);
-	if (args->buffer)
-		free(args->buffer);
+//	if (args->buffer)
+//		free(args->buffer);
 	// if (args->home)
 	// 	free(args->home);
 	if (args->env_tab)
