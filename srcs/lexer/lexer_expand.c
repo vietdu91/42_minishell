@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/15 19:59:22 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/15 20:04:51 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	content_is_to_split(char *content)
 			quote = str[i];
 		if (str[i] == '"' && quote == 0)
 			quote = str[i];
-		if (str[i] == quote && qutoe != 0)
+		if (str[i] == quote && quote != 0)
 			return (1);
 	}
 	return (0);
