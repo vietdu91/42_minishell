@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:30:42 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/12 18:29:31 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/17 17:16:47 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int		apply_type(int type, t_pars_node *node);
 /*		ATTRIBUTION_META.C	*/
 int		logical_attribution(t_pars_list *l);
 int		check_if_meta(t_pars_list *l);
+
+/*		LEXER_EXPAND.C		*/
+int	split_expand(t_pars_list *l, t_env_list *env);
 
 /*		LEXER_MAESTRO		*/
 int		lexer_maestro(t_args *args);

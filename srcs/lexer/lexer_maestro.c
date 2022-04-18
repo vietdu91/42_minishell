@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/15 19:22:16 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/17 17:15:23 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	lexer_maestro(t_args *args)
 	//  < > << >> ; | 
 	// printf("args->next = %p", args->parser->tail);
 	logical_attribution(args->parser);
-//	split_expand(args->parser, args->env);
+	split_expand(args->parser, args->env);
 	cmd_attribution(args->parser);
 
 	t_pars_node *node;
