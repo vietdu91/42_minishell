@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/17 17:15:23 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/19 17:48:03 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int	lexer_maestro(t_args *args)
 	node = args->parser->head;
 	while (node)
 	{
-		printf("TYPE : %d\n", node->type);
+		printf("CONTENT : %s\n", node->content);
+		printf("TYPE : %d\n\n", node->type);
 		node = node->next;	
 	}
 	// ajouter fonction d'erreur token rate 

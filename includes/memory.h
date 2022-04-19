@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:55:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/04 13:39:23 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/19 18:19:18 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char		**free_split(char **split, int index);
 
 void		free_pars_list(t_pars_list *l);
 void		free_env_node(t_env	*node);
+void	    delete_pars_node(t_pars_node *node);
 void		free_content_env_node(t_env *node);
 void		free_env_list(t_env_list *env);
 
@@ -32,6 +33,7 @@ void		free_env_list(t_env_list *env);
 int			init_parsing_list(t_pars_list **l);
 void		init_parsing_node(t_pars_node *node);
 t_pars_list	*list_end_parse(t_pars_list *list, char *content);
+t_pars_list	*list_mid_parse(t_pars_list *list, t_pars_node *n, char *content);
 void		display_parsing(t_pars_list *l);
 
 /*		INITIALISATION.C		*/

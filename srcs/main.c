@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/15 18:22:44 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/19 18:52:16 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	loop(t_args *args)
 			if (!check_unclosed(args))
 			{
 				parsing_maestro(args, args->buffer);
-				display_parsing(args->parser);
+				//display_parsing(args->parser);
 				lexer_maestro(args);
 				//display_parsing(args->parser);
 				exec_maestro(args);

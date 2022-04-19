@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/18 04:23:43 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/19 19:47:20 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ char *return_var(char *str, t_env_list *env, int datas[2])
 			i++;
 			datas[0] += i;
 			var = check_variable(&str, ft_strlen(str));
-			printf("VAR : %s\n", var);
-			content = put_content_trim_of_expand(var, env);
-			printf("CONTENT : %s\n", content);
+			datas[0] += ft_strlen(var);
+			// printf("VAR : %s\n", var);
+			content = put_content_of_expand(var, env);
+			// printf("CONTENT : %s\n", content);
 			free(var);
 			return (content);
 		}
@@ -106,11 +107,48 @@ char *return_var(char *str, t_env_list *env, int datas[2])
 	return (NULL);
 }
 
-int	loop_var(char *str, t_env_list *env, t_pars_node *node)
+int split_to_node(char *str, t_pars_list *list, t_pars_node *node, t_env_list *env)
+{
+	t_pars_node *node2;
+	char		**split;
+	int			i;
+
+	node2 = node;
+	split = NULL;
+	i = 0;
+	split = ft_split(str, ' ');
+	if (!split)
+		return (-1);
+	while (split[i])
+	{
+		printf("SPLIT %d : %s\n", i, split[i]);
+		list_mid_parse(list, node2, split[i]);
+		expand(node2->content, node2, env);
+		convert_content_without_quotes(node2->content, node2);
+		encrypting(node2->content, node2);
+		node2 = node2->next;
+		// printf("PREVIOUS : %s\n", node2->previous->content);
+		if (i == 0)
+			delete_pars_node(node2->previous);
+		// node2 = list->head;
+		// while (node2)
+		// {
+		// 	printf("CONTENT1 : %s\n", node2->content);
+		// 	printf("TYPE1 : %d\n\n", node2->type);
+		// 	node2 = node2->next;
+		// }
+		i++;
+	}
+	return (i - 1);
+}
+
+int	loop_var(char *str, t_pars_list *l, t_env_list *env, t_pars_node *node)
 {
 	int		datas[2];
 	char	*var;
+	char	*final;
 
+	final = ft_strdup("");
 	if (!str)
 	{
 		printf("j'ai rien reçu\n");
@@ -121,51 +159,63 @@ int	loop_var(char *str, t_env_list *env, t_pars_node *node)
 	// printf("addresse 1= %p\n", datas);
 	// printf("first datas[0] = %d\n", datas[0]);
 	printf("str = %s\n", str);
+	if (!is_charset('$', str))
+		return (0);
 	while(str[datas[0]])
 	{
 		// on va return le content du var
 		
 		// je guette si elle est a split
 		//  si elle n'a pas de quotes
-		printf("prims = %s\n", str + datas[0]);
+		// printf("prims = %s\n", str + datas[0]);
 		var = return_var(str + datas[0], env, datas);
+		// printf("salut len = %d && datas[0] = %d\n", ft_strlen(str), datas[0]);
+		final = ft_strjoin(final, var);
+		// printf("FINAL : %s\n", final);
+		if (datas[0] == ft_strlen(str))
+			break ;
 		// var = Content on va l'utiliser pour en faire un node.
-		(void)var;
-		(void)node;
+		//printf("jo- %s\n", str + datas[0]);
+		//printf("1- var = %s\n", var);
 		// (void)env;
 		// printf("datas[0] = %d\n", datas[0]);
 		// datas[0]++;
 		// printf("2 datas[0] = %d\n", datas[0]);
-		printf("%c\n", str[datas[0]]);
+		//printf("%c\n", str[datas[0]]);
 		// if split creer nouveaux nodes a la suit 
 		// else content exp
 	}
 	// printf("j'ai encore rien crée\n");
 	// doit return le nombre de nodes crées.
-	return (0);
+	return (split_to_node(final, l, node, env));
 }
 
 int	split_expand(t_pars_list *l, t_env_list *env)
 {
 	t_pars_node	*node;
-	int			i;
+//	int			i;
 	int			nodes_added;
 
-	nodes_added = 0;
-	i = -1;
-	node = l->head;
-	while (node)
+	(void)env;
+ 	nodes_added = 0;
+ 	node = l->head;
+	printf("node = %s\n", node->content);
+ 	while (node != l->tail)
 	{
-		// veiller a ce que ce ne soit pas entre quotes
+	    printf("node->content = %s\n", l->tail->content);
 		if (!content_is_to_split(node->content))
-		{
-			nodes_added = loop_var(node->content, env, node);
-		}
-		// return (0);
-		// printf("hyde = %s\n", node->content);
-		while (node->next && ++i < nodes_added)
-			node = node->next;
-		node = node->next;
+			nodes_added += loop_var(node->content, l, env, node);	
+ 		node = node->next;
 	}
-	return (1);
+// //	i = -1;
+// 	{
+// 		// veiller a ce que ce ne soit pas entre quotes
+// 		// return (0);
+// 		// printf("hyde = %s\n", node->content);
+// 	//	printf("NODES ADDED : %d\n", nodes_added);
+// 		// while (++i < nodes_added)
+// 		//  	node = node->next;
+// 		printf("NODE IS : %s\n", node->content);
+// 	}
+	return (nodes_added);
 }

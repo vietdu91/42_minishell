@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:06:17 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/13 17:54:42 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/19 18:46:31 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,27 @@ void	free_env_node(t_env	*node)
 	free(node->variable);
 	free(node->content);
 	free(node->content_trim);
+	free(node);
+	node = NULL;
+}
+
+void	delete_pars_node(t_pars_node *node)
+{
+	printf("yo\n");
+	if (!node)
+	{
+		printf("pas de node envoyé\n");	
+		return ;
+	}
+	printf("CONTENT PRECEDENT : %s\n", node->previous->content);
+	if (node->next)
+		node->previous->next = node->next;
+	if (node->previous)
+		node->next->previous = node->previous;
+	free(node->content);
+	free(node->nw_content);
+	free(node->content_exp);
+	free(node->content_exp_sans_q);
 	free(node);
 	node = NULL;
 }

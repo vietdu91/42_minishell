@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/25 01:26:08 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/19 19:38:04 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,38 @@ t_pars_list	*list_end_parse(t_pars_list *list, char *content)
 		node->previous = list->tail;
 		list->tail = node;
 	}
+	list->length++;
+	return (list);
+}
+
+
+t_pars_list	*list_mid_parse(t_pars_list *list, t_pars_node *n, char *content)
+{
+	t_pars_node	*node;
+
+	if (!list || !n || !content)
+		return (NULL);
+	node = malloc(sizeof(t_pars_node));
+	if (!node)
+		return (NULL);
+	printf("n = %s\n", n->content);
+	init_parsing_node(node);
+	node->content = ft_strdup(content);
+	printf("hello content %s\n", node->content);
+	if (n->next == NULL)
+	{
+		node->next = NULL;
+		list->tail = node;
+	}
+	else
+	{
+		printf("doing the job n->content = %s\n", n->content);
+		node->next = n->next;
+		n->next->previous = node;
+		// list->tail = node;
+	}
+	node->previous = n;
+	n->next = node;
 	list->length++;
 	return (list);
 }
