@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:26:48 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/22 15:07:00 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 17:06:58 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	set_all(t_args *args, char **envp)
 		get_env(args, envp);
 	get_export(args);
 	args->parser = NULL;
-//	init_parsing_list(&args->parser);
 }
 
 void	init_struct(t_args *args)

@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/04 17:07:55 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 10:39:09 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	print_env(t_env *current)
+{
+	if (ft_strcmp(current->content, "\0"))
+	{
+		ft_putstr(current->line, STDIN_FILENO);
+		ft_putstr("\n", STDIN_FILENO);
+	}
+}
 
 void	display_env(t_pars_node *pars, t_env_list *env)
 {
@@ -33,12 +42,7 @@ void	display_env(t_pars_node *pars, t_env_list *env)
 	current = env->head;
 	while (current)
 	{
-		if (ft_strcmp(current->content, "\0"))
-		{
-			ft_putstr(current->line, STDIN_FILENO);
-			ft_putstr("\n", STDIN_FILENO);
-			// printf("%s\n", current->line);
-		}
+		print_env(current);
 		current = current->next;
 	}
 	g_exit_status = 0;

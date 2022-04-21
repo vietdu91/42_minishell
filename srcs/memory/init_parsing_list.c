@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/19 19:38:04 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 16:33:31 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ t_pars_list	*list_end_parse(t_pars_list *list, char *content)
 	return (list);
 }
 
-
 t_pars_list	*list_mid_parse(t_pars_list *list, t_pars_node *n, char *content)
 {
 	t_pars_node	*node;
@@ -79,10 +78,8 @@ t_pars_list	*list_mid_parse(t_pars_list *list, t_pars_node *n, char *content)
 	node = malloc(sizeof(t_pars_node));
 	if (!node)
 		return (NULL);
-	printf("n = %s\n", n->content);
 	init_parsing_node(node);
 	node->content = ft_strdup(content);
-	printf("hello content %s\n", node->content);
 	if (n->next == NULL)
 	{
 		node->next = NULL;
@@ -90,10 +87,8 @@ t_pars_list	*list_mid_parse(t_pars_list *list, t_pars_node *n, char *content)
 	}
 	else
 	{
-		printf("doing the job n->content = %s\n", n->content);
 		node->next = n->next;
 		n->next->previous = node;
-		// list->tail = node;
 	}
 	node->previous = n;
 	n->next = node;
@@ -104,14 +99,15 @@ t_pars_list	*list_mid_parse(t_pars_list *list, t_pars_node *n, char *content)
 void	display_parsing(t_pars_list *parser)
 {
 	t_pars_node	*i;
+	int			j;
 
+	j = -1;
 	i = parser->head;
 	while (i)
 	{
 		if (i->type == CMD)
 		{
 			printf("Path = %s\n", i->path);
-			int j = -1;
 			while (i->cmds[++j])
 				printf("%s\n", i->cmds[j]);
 		}

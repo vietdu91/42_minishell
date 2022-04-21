@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_change.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:46:26 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 18:53:53 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 11:09:27 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,20 @@ t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args)
 	return (env);
 }
 
+void	create_node_to_export_or_env(t_env *node, t_env_list *list)
+{
+	if (list->head == NULL)
+	{
+		list->head = node;
+		list->tail = node;
+	}
+	else
+	{
+		list->tail->next = node;
+		list->tail = node;
+	}
+}
+
 void	export_var_to_export(t_args *args, t_env_list *export, char *var, \
 int check)
 {
@@ -58,16 +72,7 @@ int check)
 		intersection_of_errors(2, args);
 	init_env_node(node);
 	set_new_content_in_export(node, var, args, check);
-	if (export->head == NULL)
-	{
-		export->head = node;
-		export->tail = node;
-	}
-	else
-	{
-		export->tail->next = node;
-		export->tail = node;
-	}
+	create_node_to_export_or_env(node, export);
 	sort_export(export);
 	display_export(export);
 	export->length++;
@@ -92,15 +97,6 @@ void	export_var_to_env(t_args *args, t_env_list *env, char *var, int check)
 		intersection_of_errors(2, args);
 	init_env_node(node);
 	set_new_content_in_env(node, var, args);
-	if (env->head == NULL)
-	{
-		env->head = node;
-		env->tail = node;
-	}
-	else
-	{
-		env->tail->next = node;
-		env->tail = node;
-	}
+	create_node_to_export_or_env(node, env);
 	env->length++;
 }

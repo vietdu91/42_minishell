@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/15 18:17:10 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 10:33:04 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ enum	e_var
 	HOME,
 	SHLVL,
 };
-/* maillons de la liste chainee */
 
 typedef struct s_env
 {

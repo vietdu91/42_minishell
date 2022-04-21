@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_lists.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:06:17 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/19 18:46:31 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 17:06:43 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,43 +34,22 @@ void	free_env_list(t_env_list *env)
 	env = NULL;
 }
 
-void	free_env_node(t_env	*node)
+void	delete_pars_node_list(t_pars_node *del)
 {
-	free(node->line);
-	free(node->variable);
-	free(node->content);
-	free(node->content_trim);
-	free(node);
-	node = NULL;
-}
-
-void	delete_pars_node(t_pars_node *node)
-{
-	printf("yo\n");
-	if (!node)
-	{
-		printf("pas de node envoyé\n");	
-		return ;
-	}
-	printf("CONTENT PRECEDENT : %s\n", node->previous->content);
-	if (node->next)
-		node->previous->next = node->next;
-	if (node->previous)
-		node->next->previous = node->previous;
-	free(node->content);
-	free(node->nw_content);
-	free(node->content_exp);
-	free(node->content_exp_sans_q);
-	free(node);
-	node = NULL;
-}
-
-void	free_content_env_node(t_env *node)
-{
-	free(node->line);
-	free(node->variable);
-	free(node->content);
-	free(node->content_trim);
+	free(del->content);
+	if (del->nw_content)
+		free(del->nw_content);
+	if (del->content_exp)
+		free(del->content_exp);
+	if (del->content_exp_sans_q)
+		free(del->content_exp_sans_q);
+	if (del->index_crypted)
+		free(del->index_crypted);
+	if (del->cmds)
+		free_d_tab(del->cmds);
+	if (del->path)
+		free(del->path);
+	free(del);
 }
 
 void	free_pars_list(t_pars_list *parser)
@@ -85,20 +64,7 @@ void	free_pars_list(t_pars_list *parser)
 	{
 		del = i;
 		i = i->next;
-		free(del->content);
-		if (del->nw_content)
-			free(del->nw_content);
-		if (del->content_exp)
-			free(del->content_exp);
-		if (del->content_exp_sans_q)
-			free(del->content_exp_sans_q);
-		if (del->index_crypted)
-			free(del->index_crypted);
-		if (del->cmds)
-			free_d_tab(del->cmds);
-		if (del->path)
-			free(del->path);
-		free(del);
+		delete_pars_node_list(del);
 	}
 	free(parser);
 	parser = NULL;

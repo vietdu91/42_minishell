@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:32 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/15 18:14:05 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 10:44:14 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ int	check_id_export(char *str)
 	return (1);
 }
 
+void	bad_id_export(t_pars_node *node)
+{
+	print_error_w_quote(BASH, CMD_EXPORT, node->content_exp_sans_q, \
+	ERR_ID);
+	g_exit_status = 1;
+}
+
 void	export_main(t_args *args, t_env_list *env, t_env_list *export, \
 t_pars_node *parser)
 {
@@ -73,11 +80,7 @@ t_pars_node *parser)
 		if (node->type == OPTION)
 			invalid_option(node, CMD_UNSET);
 		else if (!check)
-		{
-			print_error_w_quote(BASH, CMD_EXPORT, node->content_exp_sans_q, \
-			ERR_ID);
-			g_exit_status = 1;
-		}
+			bad_id_export(node);
 		else
 		{
 			export_var_to_export(args, export, node->content_exp_sans_q, check);

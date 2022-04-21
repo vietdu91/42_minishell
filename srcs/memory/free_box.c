@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_box.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/15 16:15:50 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 17:07:21 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,13 @@ void	free_builtins(t_builtin *builtin)
 		free(builtin);
 }
 
+// if (args->hdocs)
+// 	free_d_tab(args->hdocs);
+
 void	free_args(t_args *args)
 {
-	// if (args->path)
-	// 	free(args->path);
-//	if (args->buffer)
-//		free(args->buffer);
-	// if (args->home)
-	// 	free(args->home);
 	if (args->env_tab)
 		free_d_tab(args->env_tab);
-	// if (args->hdocs)
-	// 	free_d_tab(args->hdocs);
 	if (args->delimiters)
 		free_d_tab(args->delimiters);
 	ft_memset(&args, 0, sizeof(args));

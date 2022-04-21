@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_write.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:15:47 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 15:01:34 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 18:46:55 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,8 @@ void	ft_putnbr(int nb, int fd)
 
 void	ft_putstr(char *str, int fd)
 {
-	// int	a;
-
-	// a = ft_strlen(str);
-	// write(fd, str, a);
 	while (*str)
-	{
 		ft_putchar(*(str++), fd);
-		// a = *(str++);
-		// (void)fd;
-		// printf("a = %d\n", a);
-	}
-	// a++;
 }
 
 void	ft_putchar(char c, int fd)

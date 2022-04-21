@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bultin.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 14:51:30 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 10:31:47 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,12 @@ char		*put_content_trim_of_expand(char *var, t_env_list *env);
 void		strjoin_content_trim_exp(char **str, int len, t_pars_node *psr, \
 t_env_list *env);
 
-
 /*		PWD.C		*/
 
 void		pwd_main(t_pars_node *parser, t_args *args);
 
 /*				PWD_CHANGE.C		*/
-	
+
 void		update_env(char *pwd, char *oldpwd, t_args *args);
 void		change_pwd_env(char *newpwd, t_env_list *env);
 void		change_oldpwd_env(char *newpwd, t_env_list *env);

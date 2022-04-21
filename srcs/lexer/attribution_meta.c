@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   attribution_meta.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/14 18:26:05 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 15:27:21 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
 int	attribution_metachar(t_pars_node *node)
 {
 	if (!ft_strcmp(node->content, "<"))
-
 		node->type = INPUT;
 	else if (!ft_strcmp(node->content, "<<"))
 		node->type = HEREDOC;
@@ -87,7 +87,8 @@ int	attribute_meta(t_pars_node *node)
 			return (0);
 		node->next->type = INFILE;
 	}
-	else if (!ft_strcmp(node->content, "<<") && apply_type(HEREDOC, node) && node->next)
+	else if (!ft_strcmp(node->content, "<<") && apply_type(HEREDOC, node) \
+	&& node->next)
 		norm_heredoc(node);
 	else if (!ft_strcmp(node->content, ">") && apply_type(OUTPUT, node) \
 	&& node->next != NULL)

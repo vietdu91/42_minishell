@@ -27,11 +27,11 @@ SRCS		= 	main.c \
 				checkers/what_type.c \
 				errors/invalid.c \
 				errors/print_error.c \
-				exec/check_files.c \
 				exec/cmd_is_path.c \
 				exec/converter_for_pipex.c \
 				exec/data_for_exec.c \
 				exec/dup_and_close.c \
+				exec/init_tab.c \
 				exec/exec_map_utils.c \
 				exec/execution.c \
 				exec/expand_heredoc.c \

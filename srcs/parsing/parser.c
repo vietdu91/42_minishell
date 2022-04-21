@@ -3,23 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:10:12 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/19 17:36:43 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 17:29:34 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/*
-
-**        ls > infile1 infile 2
-**
-*/
-int zap_spaces(char **line)
+int	zap_spaces(char **line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (is_space(**line))
@@ -30,10 +25,23 @@ int zap_spaces(char **line)
 	return (i);
 }
 
-int parser(char **line, t_pars_list *psr, t_env_list *env, t_args *args)
+int	encrypting(char *str, t_pars_node *parser)
 {
-	int i;
-	int len;
+	int	size;
+
+	size = find_meta_in_quotes(str);
+	if (!size)
+		return (0);
+	parser->index_crypted = ft_calloc(size, sizeof(int));
+	fill_crypt_tab(str, parser);
+	crypt_content(str, size, parser);
+	return (size);
+}
+
+int	parser(char **line, t_pars_list *psr, t_env_list *env, t_args *args)
+{
+	int	i;
+	int	len;
 
 	if (!*line)
 		return (0);
@@ -57,20 +65,14 @@ int parser(char **line, t_pars_list *psr, t_env_list *env, t_args *args)
 	return (0);
 }
 
-int parsing_maestro(t_args *args, char *line)
+int	parsing_maestro(t_args *args, char *line)
 {
-	char **cpy;
+	char	**cpy;
 
 	cpy = NULL;
-	// char *str = line;
-
-	// int i = -1;
-	// while (str[++i])
-	// 	printf("str[i] %d\n", str[i]);
 	if (line[0] == 0)
 		return (-1);
 	cpy = &line;
-	// printf("parsing maestro line = %s\n", line);
 	parser(cpy, args->parser, args->env, args);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/15 18:13:59 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 10:48:08 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,38 +35,37 @@ void	find_cd(t_args *args, t_env_list *env, char *oldpwd, char *path)
 	return ;
 }
 
+void	bad_cd(char *oldpwd, t_pars_node *node, int way)
+{
+	free(oldpwd);
+	if (way == 1)
+		invalid_option(node, CMD_CD);
+	else if (way == 2)
+	{
+		print_error(BASH, CMD_CD, NULL, ERR_MANY_ARG);
+		g_exit_status = 1;
+	}
+	return ;
+}
+
 void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 {
 	t_pars_node	*node;
-//	char		*cdpath;
 	char		*oldpwd;
 
 	node = parser->next;
 	oldpwd = getcwd(NULL, 0);
-//	cdpath = find_content_in_env("CDPATH", env);
 	if (!node || !ft_strcmp(node->content_exp_sans_q, "~"))
 		cd_home(args, env, oldpwd);
 	else if (node->type == OPTION)
-	{
-		free(oldpwd);
-		invalid_option(node, CMD_CD);
-	}
+		bad_cd(oldpwd, node, 1);
 	else if (node->next)
-	{
-		free(oldpwd);
-		print_error(BASH, CMD_CD, NULL, ERR_MANY_ARG);
-		g_exit_status = 1;
-	}
+		bad_cd(oldpwd, node, 2);
 	else if (!ft_strcmp(node->content_exp_sans_q, "-"))
 		cd_moins(args, env, oldpwd);
 	else if (!oldpwd && (!ft_strcmp(node->content_exp_sans_q, ".") \
 	|| !ft_strcmp(node->content_exp_sans_q, "..")))
 		error_because_lost_dir(oldpwd, node->content_exp_sans_q);
-/*	else if (ft_strlen(cdpath) > 0 && !ft_strcmp(node->content_exp_sans_q, ".") \
-	&& !ft_strcmp(node->content_exp_sans_q, ".."))
-	{
-		
-	}*/
 	else
 		find_cd(args, env, oldpwd, node->content_exp_sans_q);
 	return ;

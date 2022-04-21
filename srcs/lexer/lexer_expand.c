@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/19 19:47:20 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 16:31:44 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+// if (is_quote(*content) == 1)
+// {
+// 	while (*content != '\'')
+// 		(*content)++;
+// }
+// else if (is_quote(*content) == 2)
+// {
+// 	while (*content != '"')
+// 		(*content)++;
+// }
+// else (*content == '$')
+// 	// faire le truc pour spliter
+// else
 
 int	content_is_to_split(char *content)
 {
@@ -19,74 +33,49 @@ int	content_is_to_split(char *content)
 
 	i = 0;
 	quote = 0;
-	// printf("hum content = %s\n", content);
 	while (content[i] && content[i] != '\'' && content[i] != '\"')
 		i++;
 	while (content[i])
 	{
 		if (content[i] == '\'' && quote == 0)
-		{
 			quote = content[i];
-			// printf("c[i] = %c\n", content[i]);
-			// printf("simple\n");
-		}
 		if (content[i] == '"' && quote == 0)
-		{
 			quote = content[i];
-			// printf("double\n");
-		}
 		if (content[i] == quote && quote != 0)
-		{
-			// printf("quotes here\n");
 			return (1);
-		}
 		i++;
 	}
 	return (0);
-	
-	// if (is_quote(*content) == 1)
-	// {
-	// 	while (*content != '\'')
-	// 		(*content)++;
-	// }
-	// else if (is_quote(*content) == 2)
-	// {
-	// 	while (*content != '"')
-	// 		(*content)++;
-	// }
-	// else (*content == '$')
-	// 	// faire le truc pour spliter
-	// else
-		
 }
 
-char *return_var(char *str, t_env_list *env, int datas[2])
+/*LOL="	  hibou   bubble	tea"
+cat $LOL"$LOL"
+===>
+cat : hibou
+cat : bubble
+cat : tea
+cat : '	  hibou   bubble	tea'
+======
+On checke caractere par caractere
+Si une variable en $ existe, sans qu'il soit entre quotes
+On reutilise les fonctions d'expand, en checkant la variable, et en
+cherchant son contenu, et on split son contenu.
+Et après on continue le check du str pour voir si on peut toujours spliter
+le contenu des prochaines variables ou non */
+
+// var = ft_strdup("");
+// content = ft_strdup("");
+// printf("line : %s\n", line);
+// datas[0]++;
+// printf("addresse 2 = %p\n", datas);
+
+char	*return_var(char *str, t_env_list *env, int datas[2])
 {
-	int	 	i;
+	int		i;
 	char	*var;
 	char	*content;
 
 	i = 0;
-	/*LOL="	  hibou   bubble	tea"
-	cat $LOL"$LOL"
-	===>
-	cat : hibou
-	cat : bubble
-	cat : tea
-	cat : '	  hibou   bubble	tea'
-	======
-	On checke caractere par caractere
-	Si une variable en $ existe, sans qu'il soit entre quotes
-	On reutilise les fonctions d'expand, en checkant la variable, et en
-	cherchant son contenu, et on split son contenu.
-	Et après on continue le check du str pour voir si on peut toujours spliter
-	le contenu des prochaines variables ou non */
-
-	// var = ft_strdup("");
-	// content = ft_strdup("");
-	// printf("line : %s\n", line);
-	// datas[0]++;
-	// printf("addresse 2 = %p\n", datas);
 	while (str[i])
 	{
 		if (str[i] == '$')
@@ -95,9 +84,7 @@ char *return_var(char *str, t_env_list *env, int datas[2])
 			datas[0] += i;
 			var = check_variable(&str, ft_strlen(str));
 			datas[0] += ft_strlen(var);
-			// printf("VAR : %s\n", var);
 			content = put_content_of_expand(var, env);
-			// printf("CONTENT : %s\n", content);
 			free(var);
 			return (content);
 		}
@@ -107,9 +94,10 @@ char *return_var(char *str, t_env_list *env, int datas[2])
 	return (NULL);
 }
 
-int split_to_node(char *str, t_pars_list *list, t_pars_node *node, t_env_list *env)
+int	split_to_node(char *str, t_pars_list *list, t_pars_node *node, \
+t_env_list *env)
 {
-	t_pars_node *node2;
+	t_pars_node	*node2;
 	char		**split;
 	int			i;
 
@@ -154,10 +142,8 @@ int	loop_var(char *str, t_pars_list *l, t_env_list *env, t_pars_node *node)
 		printf("j'ai rien reçu\n");
 		return (-1);
 	}
-	datas[0] = 0; // index str
-	datas[1] = 0; // to split ou pas;
-	// printf("addresse 1= %p\n", datas);
-	// printf("first datas[0] = %d\n", datas[0]);
+	datas[0] = 0;
+	datas[1] = 0;
 	printf("str = %s\n", str);
 	if (!is_charset('$', str))
 		return (0);
@@ -193,8 +179,8 @@ int	loop_var(char *str, t_pars_list *l, t_env_list *env, t_pars_node *node)
 int	split_expand(t_pars_list *l, t_env_list *env)
 {
 	t_pars_node	*node;
-//	int			i;
 	int			nodes_added;
+//	int			i;
 
 	(void)env;
  	nodes_added = 0;

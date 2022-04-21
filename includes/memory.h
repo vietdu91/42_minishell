@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:55:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/19 18:19:18 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 10:33:42 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char		**free_split(char **split, int index);
 
 void		free_pars_list(t_pars_list *l);
 void		free_env_node(t_env	*node);
-void	    delete_pars_node(t_pars_node *node);
+void		delete_pars_node(t_pars_node *node);
 void		free_content_env_node(t_env *node);
 void		free_env_list(t_env_list *env);
 
