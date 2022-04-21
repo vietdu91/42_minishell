@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/04 18:15:27 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:35:38 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void				ft_putstr(char *str, int fd);
 void				ft_putchar(char c, int fd);
 
 /*		UTILS_META.C	*/
+
 int					does_meta_exist(t_pars_node *node);
 int					is_full_meta(char *str);
 char				*new_content_first(t_pars_node *node, int *i);

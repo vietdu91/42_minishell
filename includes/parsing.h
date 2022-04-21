@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 10:33:04 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:34:46 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,12 @@ typedef struct s_args
 
 /*		CRYPTING_PARSER_QUOTES.C	*/
 
+void	delete_bool_quotes(int *i, char *str, int *quotes, char type_quote);
+int		prepare_crypt(int i, int *j, char *str, t_pars_node *parser);
 int		fill_crypt_tab(char *str, t_pars_node *parser);
 void	crypt_content(char *str, int size, t_pars_node *parser);
 void	decrypt_content(char *str, int size, t_pars_node *parser);
-int		encrypting(char *str, t_pars_node *parser);
+
 
 /*		EXPAND_PUT.C		*/
 
@@ -138,16 +140,20 @@ char	*check_put_content_of_expand(char *var, char *content, t_env *node);
 
 void	wid_with_dq(char **str, int len, t_pars_node *parser, \
 t_env_list *env);
-void	convert_expand_quotes(t_pars_node *parser);
 void	strjoin_c_content_exp(char **str, t_pars_node *parser);
 void	strjoin_content_exp(char **str, int len, t_pars_node *psr, \
 t_env_list *env);
+void	convert_expand_quotes(t_pars_node *parser);
 
-/*		EXPAND.C			*/
+/*		EXPAND_VARIABLE.C			*/
 
 void	count_the_len_of_variable(int *count, int *i, char *str);
 int		len_of_variable(char *str);
+void	found_variable(char **str);
 char	*check_variable(char **str, int len);
+
+/*		EXPAND.C			*/
+
 void	where_is_dollar(char **str, t_pars_node *parser, t_env_list *env);
 void	expand(char *str, t_pars_node *parser, t_env_list *env);
 
@@ -185,6 +191,7 @@ int		find_word(char **str, t_pars_list *parser);
 
 int		zap_spaces(char **line);
 int		parser(char **line, t_pars_list *psr, t_env_list *env, t_args *args);
+int		encrypting(char *str, t_pars_node *parser);
 int		parsing_maestro(t_args *args, char *line);
 
 #endif

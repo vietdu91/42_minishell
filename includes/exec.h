@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 10:31:03 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:25:06 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,83 +37,98 @@ typedef struct s_exec
 	t_args				*args;
 }	t_exec;
 
-/* 				COVERTER_FOR_PIPEX.C	*/
-
-char			**init_env_tab(t_env_list *l);
-char			**init_parse_to_tab(t_pars_list *l);
-char			**delimiters_to_tab(t_pars_list *l, int size);
-char			**content_to_d_tab(int iter, int *index, t_pars_node *cpy);
-
 /*				CMD_IS_PATH.C			*/
 
 char			*cut_path(char *str, char *no_space);
 int				cmd_is_path(char *array, t_pars_node *c);
 
+/* 				CONVERTER_FOR_PIPEX.C	*/
+
+void			str_to_content(char *str, char *content, int *i, char *j);
+char			*remove_quotes(char *str, char *content);
+char			*remove_quotes_delimiters(char *str);
+char			**delimiters_to_tab(t_pars_list *l, int size);
+char			**content_to_d_tab(int iter, int *index, t_pars_node *cpy);
+
 /*              DATA_EXEC.C             */
 
-int				options_maestro(t_args *args, t_pars_list *l);
+int				join_heredoc(char **heredoc, char *txt, char *del);
+int				read_heredoc(char **heredoc, char *del);
+int				size_d_tab(t_pars_list *l);
+void			check_cmds(t_pars_list *l);
+int				exec_maestro(t_args *args);
 
 /*				DUP_AND_CLOSE.C			*/
 
+int				close_maestro(int datas[3], t_pars_list *l, t_pars_node *cpy);
+int				datas_zero(int datas[3], t_pars_list *l);
 int				dup_maestro(int datas[3], t_pars_list *l, t_pars_node *cpy);
-
-/*				EXEC_MAESTRO.C			*/
-
-char			**init_env_tab(t_env_list *l);
-int				exec_maestro(t_args *args);
 
 /*				EXEC_MAP_UTILS.C		*/
 
+int				find_in(t_pars_list *l);
+int				find_out(t_pars_list *l);
+void			delete_content_useless_infiles(t_pars_list *l);
+int				size_2dtab(char **dtab);
 void			create_infiles_outfiles(t_args *args, int in_out[2], \
 				t_pars_node *cpy, char **fds_content);
-void			delete_content_useless_infiles(t_pars_list *l);
 
-/*				EXEC_MAP.C				*/
+/*				EXECUTION.C			*/
 
-int				exec(t_args *args, t_pars_list *l);
-
-/*				EXECUTIONS.C			*/
-
-int				loop_execution(t_args *args, t_pars_list *l);
+int				count_cmd(t_pars_list *l);
 int				pid_zero_execution(t_pars_node *cpy, t_args *args, int data);
+void			fork_execution(int datas[3], t_pars_node *i, t_pars_list *l, \
+				t_args *args);
+int				loop_execution(t_args *args, t_pars_list *l);
 
-/*				EXPAND.C				*/
+/*				EXPAND_HEREDOC.C				*/
 
+int				quotes_or_not(char *str);
+char			*send_variable(char *line, t_env_list *env);
+char			*split_to_join(char **d_tab);
 int				modify_heredoc(char **hdoc, char **limitator, t_env_list *env);
 
-/*				HEREDOCS.C				*/
+/*				HEREDOC.C				*/
 
-int				read_heredoc(char **heredoc, char *del);
 int				count_heredoc(t_pars_list *l);
 int				fill_d_tab_heredoc(t_args *args, int size, char **eof);
 
 /*				INF_OUT.C				*/
 
+char			**create_fd_tab(t_pars_node *inf, t_pars_node *out);
+char			**fill_fds(t_pars_node *cpy);
 int				inf_out_maestro(t_args *args, t_pars_list *l);
-
-/*				INIT_CMDS					*/
-
-t_cmds_list		*init_list(void);
 
 /*				LEAKS_EXEC.C				*/
 
 int				malloc_failed(char **env, int size);
 
+/*				OPTIONS_EXEC.C				*/
+
+int				count_cmds(t_pars_list *l);
+int				count_options(t_pars_node *cpy);
+int				*create_and_fill_options(t_pars_list *l, int size);
+char			**create_options_tab(t_pars_node *cpy, int limit);
+int				options_maestro(t_args *args, t_pars_list *l);
+
 /*				PATH_MANAGER.C				*/
 
 char			**check_errors(char *array, char *cmd);
 char			*return_path(char **to_try);
+void			if_no_cmd_is_path(char *path, char **to_try, t_pars_node *node);
 int				path_maestro(t_args *args);
 
 /*				ROAD_TO_BUILTINS.C			*/
 
 int				is_builtin(t_args *args);
+int				return_or_exit(int n);
 int				exec_builtin_1(t_args *args, int n);
 int				exec_builtin_2(t_args *args, int n);
+int				exec_builtin_3(t_args *args, int n);
 
 /*				UTILS_PATH.C				*/
 
 void			add_slash(char **to_try);
 int				add_cmd(char **to_try, char *cmd);
-int				cmd_is_path(char *array, t_pars_node *c);
+
 #endif

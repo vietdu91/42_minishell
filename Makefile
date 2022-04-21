@@ -31,13 +31,11 @@ SRCS		= 	main.c \
 				exec/converter_for_pipex.c \
 				exec/data_for_exec.c \
 				exec/dup_and_close.c \
-				exec/init_tab.c \
 				exec/exec_map_utils.c \
 				exec/execution.c \
 				exec/expand_heredoc.c \
 				exec/heredoc.c \
 				exec/inf_out.c \
-				exec/init_cmds.c \
 				exec/leaks_exec.c \
 				exec/options_exec.c \
 				exec/path_manager.c \
@@ -54,6 +52,8 @@ SRCS		= 	main.c \
 				memory/free_lists.c \
 				memory/init_parsing_list.c \
 				memory/initialisation.c \
+				memory/init_cmds.c \
+				memory/init_tab.c \
 				memory/initialisation_env.c \
 				memory/initialisation_no_env.c \
 				parsing/crypting_parser_quotes.c \
