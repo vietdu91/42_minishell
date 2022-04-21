@@ -6,13 +6,13 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:47:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 14:28:47 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:46:27 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	str_to_content(char *str, char *content, int *i, char *j)
+void	str_to_content(char *str, char *content, int *i, int *j)
 {
 	(*i)++;
 	while (str[*i] != '\"')

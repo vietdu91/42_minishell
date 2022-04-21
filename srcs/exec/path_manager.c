@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:17:41 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 12:23:40 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:49:18 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	path_maestro(t_args *args)
 	char		*path;
 	t_pars_node	*node;
 
+	path = NULL;
 	node = args->parser->head;
 	line_with_path = find_path(args->env_tab);
 	to_try = NULL;

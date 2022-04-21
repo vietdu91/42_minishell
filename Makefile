@@ -49,6 +49,7 @@ SRCS		= 	main.c \
 				lexer/lexer_maestro.c \
 				lexer/lexer_utils.c \
 				memory/free_box.c \
+				memory/free_nodes.c \
 				memory/free_lists.c \
 				memory/init_parsing_list.c \
 				memory/initialisation.c \
@@ -59,6 +60,7 @@ SRCS		= 	main.c \
 				parsing/crypting_parser_quotes.c \
 				parsing/expand_put.c \
 				parsing/expand_quotes.c \
+				parsing/expand_variable.c \
 				parsing/expand.c \
 				parsing/find_in_env.c \
 				parsing/parser_convert.c \

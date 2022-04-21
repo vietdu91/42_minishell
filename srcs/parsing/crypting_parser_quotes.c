@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 16:59:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 17:29:13 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:50:01 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	prepare_crypt(int i, int *j, char *str, t_pars_node *parser)
 		while (str[i++] != '\"')
 			if (is_meta(str[i]) && quotes == 1)
 				parser->index_crypted[(*j)++] = i;
-		delete_bool_quotes(i, str, quotes, '\"');
+		delete_bool_quotes(&i, str, &quotes, '\"');
 	}
 	else if (str[i] == '\'' && quotes == 0)
 	{
@@ -39,7 +39,7 @@ int	prepare_crypt(int i, int *j, char *str, t_pars_node *parser)
 		while (str[i++] != '\'')
 			if (is_meta(str[i]) && quotes == 1)
 				parser->index_crypted[(*j)++] = i;
-		delete_bool_quotes(i, str, quotes, '\'');
+		delete_bool_quotes(&i, str, &quotes, '\'');
 	}
 	else
 		i++;

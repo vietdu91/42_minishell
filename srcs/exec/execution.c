@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 15:17:37 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:48:28 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 	return (0);
 }
 
-void	fork_execution(int datas[3], t_pars_node *i, t_pars_list *l, \
+int	fork_execution(int datas[3], t_pars_node *i, t_pars_list *l, \
 		t_args *args)
 {
 	int			pid;
@@ -68,6 +68,7 @@ void	fork_execution(int datas[3], t_pars_node *i, t_pars_list *l, \
 	}
 	datas[0]++;
 	waitpid(0, NULL, 0);
+	return (0);
 }
 
 int	loop_execution(t_args *args, t_pars_list *l)

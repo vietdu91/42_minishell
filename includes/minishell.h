@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 14:55:25 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/11 01:31:59 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:54:21 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ tcsetattr - tcgetattr */
 # include <limits.h>
 
 # include "./parsing.h"
+# include "./exec.h"
+# include "./memory.h"
 # include "./bultin.h"
 # include "./checkers.h"
 # include "./fun.h"
 # include "./sig.h"
 # include "./utils.h"
 # include "./errors.h"
-# include "./memory.h"
 # include "./lexer.h"
-# include "./exec.h"
 
 # define PROMPT "\033[5;91mWELCOME TO (minis)HELL 😈 \e[0m\033[1;93m$> \e[0m"
 

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 11:25:58 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:47:54 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	join_heredoc(char **heredoc, char *txt, char *del)
 	txt = ft_strdup("");
 	if (!txt)
 		return (0);
+	return (0);
 }
 
 int	read_heredoc(char **heredoc, char *del)

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 19:25:06 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:48:47 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				cmd_is_path(char *array, t_pars_node *c);
 
 /* 				CONVERTER_FOR_PIPEX.C	*/
 
-void			str_to_content(char *str, char *content, int *i, char *j);
+void			str_to_content(char *str, char *content, int *i, int *j);
 char			*remove_quotes(char *str, char *content);
 char			*remove_quotes_delimiters(char *str);
 char			**delimiters_to_tab(t_pars_list *l, int size);
@@ -77,7 +77,7 @@ void			create_infiles_outfiles(t_args *args, int in_out[2], \
 
 int				count_cmd(t_pars_list *l);
 int				pid_zero_execution(t_pars_node *cpy, t_args *args, int data);
-void			fork_execution(int datas[3], t_pars_node *i, t_pars_list *l, \
+int				fork_execution(int datas[3], t_pars_node *i, t_pars_list *l, \
 				t_args *args);
 int				loop_execution(t_args *args, t_pars_list *l);
 

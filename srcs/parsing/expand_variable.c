@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 17:34:31 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 18:45:16 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:55:44 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*check_variable(char **str, int len)
 		if (**str == '$')
 		{
 			i = len_of_variable(*str);
-			found_variable(*str);
+			found_variable(str);
 			var = malloc(sizeof(char) * (i + 1));
 			ft_strncpy(var, *str, i);
 			while (i-- > 0)
