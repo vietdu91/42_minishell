@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 01:09:33 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 15:06:36 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/22 14:58:00 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ int	close_maestro(int datas[3], t_pars_list *l, t_pars_node *cpy)
 
 int	datas_zero(int datas[3], t_pars_list *l)
 {
-	if (datas[1] > 1)
+/*	if (datas[1] > 1)
 		if (dup2(l->pipe[1], STDOUT_FILENO) < 0)
-			return (-1);
+			return (-1);*/
+	(void)datas;
+	(void)l;
 	return (0);
 }
 

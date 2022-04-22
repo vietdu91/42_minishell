@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 19:48:28 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/22 15:00:26 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 }
 
 int	fork_execution(int datas[3], t_pars_node *i, t_pars_list *l, \
-		t_args *args)
+	t_args *args)
 {
 	int			pid;
 
@@ -82,19 +82,19 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[2] = 0;
 	while (i)
 	{
-		if (is_builtin(args) || (datas[1] > 1 && !is_builtin(args)))
+		if (i->type == CMD)
 		{
-			if (i->type == CMD)
+			if (is_builtin(args) || (datas[1] > 1 && !is_builtin(args)))
 				fork_execution(datas, i, l, args);
+			else
+			{
+				dup_maestro(datas, l, i);
+				exec_builtin_1(args, 1);
+				if (i->fds[1] > 0)
+					close(i->fds[1]);
+			}
+			unlink("/tmp/.zuzu");
 		}
-		else
-		{
-			dup_maestro(datas, l, i);
-			exec_builtin_1(args, 1);
-			if (i->fds[1] > 0)
-				close(i->fds[1]);
-		}
-		unlink("/tmp/.zuzu");
 		i = i->next;
 	}
 	return (0);
