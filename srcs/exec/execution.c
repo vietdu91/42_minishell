@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/22 15:00:26 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/23 21:08:58 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,20 @@ int	count_cmd(t_pars_list *l)
 
 int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 {
+	// ft_putstr(cpy->content, 1);
 	delete_content_useless_infiles(args->parser);
-	if (exec_builtin_1(args, data) < 0)
+	// ft_putstr("Fin de commande builtin \n", 1);
+	if (exec_builtin_1(args, cpy, data) < 0)
 	{
 		if (cpy->path)
+		{
+			ft_putstr("Fin de commande exec\n", 2);
 			execve(cpy->path, cpy->cmds, args->env_tab);
+			ft_putstr("Fin de commande exec 2\n", 2);
+		}
 	}
-	free_all(args);
-	exit(0);
+	// free_all(args);
+	// exit(0);
 	return (0);
 }
 
@@ -48,26 +54,54 @@ int	fork_execution(int datas[3], t_pars_node *i, t_pars_list *l, \
 {
 	int			pid;
 
-	if (datas[1] > 1 && pipe(l->pipe) < 0)
-		return (-1);
-	pid = fork();
-	if (pid == -1)
-		return (-1);
-	if (pid == 0)
-	{
-		dup_maestro(datas, l, i);
-		pid_zero_execution(i, args, datas[1]);
-	}
-	if (datas[0] > 1)
-		close(datas[2]);
+	pid = 0;
 	if (datas[1] > 1)
 	{
-		datas[2] = l->pipe[0];
-		datas[2]--;
-		close(l->pipe[1]);
+		if (pipe(l->pipe) < 0)
+			return (-1);
+		// printf("j'ai fait un pipe \n");
 	}
-	datas[0]++;
-	waitpid(0, NULL, 0);
+	else
+	{
+		// printf("je suis sorti\n");
+	}
+	// printf("datas[0] = %d && datas[1]%d\n", datas[0], datas[1]);
+	// printf("datas[0] == %d\n", datas[0]);
+	if (which_node(l, datas[0]))
+	{
+		pid = fork();
+		printf("fork 1\n");
+		if (pid == -1)
+			return (-1);
+		if (pid == 0)
+		{
+			dup_maestro(datas, l, i);
+			printf("coucou1\n");
+			pid_zero_execution(i, args, datas[1]);
+			printf("coucou2\n");
+			exit (0);
+		}
+		// return (0);
+	}
+	// else if ( (!which_node(l, datas[0]) && datas[1] > 1))
+	// {
+	// 	pid = fork();
+	// 	printf("fork 2\n");
+	// }
+	
+	{
+		if (datas[0] > 1)
+			close(datas[2]);
+		if (datas[1] > 1)
+		{
+			printf("quand datas[0] = %d l->pipe [0] %d\n", datas[0], l->pipe[0]);
+			datas[2] = l->pipe[0];
+			// datas[2]--;
+			close(l->pipe[1]);
+		}
+		datas[0]++;
+		waitpid(0, NULL, 0);
+	}
 	return (0);
 }
 
@@ -82,17 +116,12 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[2] = 0;
 	while (i)
 	{
+		printf("kontent = %s\n", i->content);
 		if (i->type == CMD)
 		{
-			if (is_builtin(args) || (datas[1] > 1 && !is_builtin(args)))
-				fork_execution(datas, i, l, args);
-			else
-			{
-				dup_maestro(datas, l, i);
-				exec_builtin_1(args, 1);
-				if (i->fds[1] > 0)
-					close(i->fds[1]);
-			}
+			datas[0]++;
+			fork_execution(datas, i, l, args);
+
 			unlink("/tmp/.zuzu");
 		}
 		i = i->next;

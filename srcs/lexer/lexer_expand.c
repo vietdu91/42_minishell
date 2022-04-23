@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/22 11:51:52 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/23 20:58:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ int	split_expand(t_pars_list *l, t_env_list *env)
  	node = l->head;
 	if (!node)
 		return (-1);
-	printf("node = %s\n", node->content);
+	// printf("node = %s\n", node->content);
  	while (node != l->tail)
 	{
 	    printf("node->content = %s\n", l->tail->content);

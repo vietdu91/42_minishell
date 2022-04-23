@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 19:48:47 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/23 16:51:45 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,14 @@ int				path_maestro(t_args *args);
 
 /*				ROAD_TO_BUILTINS.C			*/
 
-int				is_builtin(t_args *args);
+int				is_builtin(t_pars_node *node);
+int				which_node(t_pars_list *l, int n);
 int				return_or_exit(int n);
-int				exec_builtin_1(t_args *args, int n);
-int				exec_builtin_2(t_args *args, int n);
-int				exec_builtin_3(t_args *args, int n);
+int				exec_builtin_1(t_args *args, t_pars_node *node, int n);
+int				exec_builtin_2(t_args *args, t_pars_node *node, int n);
+int				exec_builtin_3(t_args *args, t_pars_node *node, int n);
+
+int				which_builtin(t_args *args, t_pars_list *l, int n);
 
 /*				UTILS_PATH.C				*/
 
