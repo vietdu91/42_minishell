@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_maestro.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 19:28:39 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/24 15:46:18 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ int	lexer_maestro(t_args *args)
 	node = args->parser->head;
 	while (node)
 	{
-		printf("CONTENT : %s\n", node->content);
-		printf("TYPE : %d\n\n", node->type);
+		// printf("CONTENT : %s\n", node->content);
+		// printf("TYPE : %d\n\n", node->type);
 		node = node->next;
 	}
 	if (syntax_error_meta(args) < -1 || forbidden_token(args->parser))

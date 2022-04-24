@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/23 16:51:45 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/24 16:50:48 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int				exec_maestro(t_args *args);
 
 /*				DUP_AND_CLOSE.C			*/
 
-int				close_maestro(int datas[3], t_pars_list *l, t_pars_node *cpy);
-int				datas_zero(int datas[3], t_pars_list *l);
-int				dup_maestro(int datas[3], t_pars_list *l, t_pars_node *cpy);
+int				close_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy);
+int				datas_zero(int datas[5], t_pars_list *l);
+int				dup_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy);
 
 /*				EXEC_MAP_UTILS.C		*/
 
@@ -77,7 +77,7 @@ void			create_infiles_outfiles(t_args *args, int in_out[2], \
 
 int				count_cmd(t_pars_list *l);
 int				pid_zero_execution(t_pars_node *cpy, t_args *args, int data);
-int				fork_execution(int datas[3], t_pars_node *i, t_pars_list *l, \
+int				fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 				t_args *args);
 int				loop_execution(t_args *args, t_pars_list *l);
 

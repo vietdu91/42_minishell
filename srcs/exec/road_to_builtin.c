@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/23 20:16:25 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/24 19:11:53 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_builtin(t_pars_node *node)
 		return (0);
 	else if (!ft_strcmp(node->content_exp_sans_q, "echo"))
 		return (0);
-	printf("%s n'est pas un builtin\n", node->content);
+	// printf("%s n'est pas un builtin\n", node->content);
 	return (1);
 }
 
@@ -63,12 +63,12 @@ int	return_or_exit(int n)
 {
 	if (n == 1)
 	{
-		printf("salida n = %d\n", n);
+		// printf("salida n = %d\n", n);
 		return (0);
 	}
 	else
 	{
-		ft_putstr("je suis le traitre\n", 1);
+		// ft_putstr("je suis le traitre\n", 1);
 		exit(0);
 	}
 	return (0);
@@ -94,6 +94,7 @@ int	exec_builtin_2(t_args *args, t_pars_node *node, int n)
 {
 	if (!ft_strcmp(node->content_exp_sans_q, "env"))
 	{
+		// printf("ENV SE LANCE\n");
 		display_env(node, args->env);
 		return (return_or_exit(n));
 	}
@@ -136,7 +137,7 @@ int	exec_builtin_1(t_args *args, t_pars_node *node, int n)
 			return (return_or_exit(n));
 		}
 	}
-	printf("on entre dans le exec builtin\n");
+	// printf("on entre dans le exec builtin\n");
 	return (exec_builtin_2(args, node,  n));
 }
 

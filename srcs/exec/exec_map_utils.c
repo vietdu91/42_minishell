@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_map_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 16:20:58 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 12:28:48 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/24 16:11:33 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	create_infiles_outfiles(t_args *args, int in_out[2], \
 		if (cpy->fds[0] > 0)
 			ft_putstr(args->hdocs[hdoc_number], cpy->fds[0]);
 		close(cpy->fds[0]);
+		cpy->fds[0] = open("/tmp/.zuzu", O_RDONLY | O_CREAT, 0664);
 	}
-	cpy->fds[0] = open("/tmp/.zuzu", O_RDONLY | O_CREAT, 0664);
 	if (in_out[1] == 1 && fds_content[1])
 		cpy->fds[1] = open(fds_content[1], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	else if (in_out[1] == 2 && fds_content[1])
