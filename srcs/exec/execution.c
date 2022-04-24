@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/22 15:00:26 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/24 10:12:44 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 	{
 		if (cpy->path)
 			execve(cpy->path, cpy->cmds, args->env_tab);
+		if (errno)
+		{
+			ft_putstr(strerror(errno), 2);
+			ft_putchar('\n', 2);
+		}
 	}
 	free_all(args);
 	exit(0);
@@ -82,7 +87,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[2] = 0;
 	while (i)
 	{
-		if (i->type == CMD)
+		if (i->type == CMD || !i->len)
 		{
 			if (is_builtin(args) || (datas[1] > 1 && !is_builtin(args)))
 				fork_execution(datas, i, l, args);

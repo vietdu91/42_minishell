@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:12:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 18:48:07 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/24 10:11:04 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	print_error_w_quote(char *sys, char *cmd, char *arg, char *error);
 /*		INVALID_OPTION.C	*/
 
 void	invalid_option(t_pars_node *node, char *cmd);
+int		get_error_code(void);
 
 #endif
