@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/24 19:15:23 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/24 20:12:45 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[4] = dup(1);
 	while (i)
 	{
-		if (i->type == CMD)
+		if (i->type == CMD || !i->len)
 		{
 			datas[0]++;
 			// printf("kontent = %s\n", i->content);

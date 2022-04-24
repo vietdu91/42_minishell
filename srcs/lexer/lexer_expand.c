@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/24 15:45:11 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/24 20:12:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ t_env_list *env)
 		return (-1);
 	while (split[i])
 	{
-		printf("SPLIT %d : %s\n", i, split[i]);
+	//	printf("SPLIT %d : %s\n", i, split[i]);
 		list_mid_parse(list, node2, split[i]);
 		expand(node2->content, node2, env);
 		convert_content_without_quotes(node2->content, node2);

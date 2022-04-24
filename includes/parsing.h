@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 19:34:46 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/24 09:41:13 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_pars_node
 	char				*content_exp_sans_q;
 	enum e_type			type;
 	int					*index_crypted;
+	int					len;
 	char				**cmds;
 	char				*path;
 	int					fds[2];
