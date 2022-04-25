@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_maestro.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/24 15:46:18 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/25 17:19:08 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,21 +92,28 @@ void	split_meta(t_pars_list *l)
 
 int	lexer_maestro(t_args *args)
 {
-	t_pars_node	*node;
+	// t_pars_node	*node;
 
 	if (!args->parser)
 		return (0);
 	split_meta(args->parser);
 	split_meta(args->parser);
 	logical_attribution(args->parser);
-	split_expand(args->parser, args->env);
+//	split_expand(args->parser, args->env);
 	cmd_attribution(args->parser);
-	node = args->parser->head;
-	while (node)
+	// node = args->parser->head;
+	// // while (node)
+	// // {
+	// // 	// printf("CONTENT : %s\n", node->content);
+	// // 	// printf("TYPE : %d\n\n", node->type);
+	// // 	node = node->next;
+	// // }
+	if (is_a_directory(args->parser->head->content_exp_sans_q))
 	{
-		// printf("CONTENT : %s\n", node->content);
-		// printf("TYPE : %d\n\n", node->type);
-		node = node->next;
+		print_error(BASH, NULL, \
+		args->parser->head->content_exp_sans_q, ERR_IS_DIR);
+		g_exit_status = 126;
+		return (-1);
 	}
 	if (syntax_error_meta(args) < -1 || forbidden_token(args->parser))
 		return (-1);

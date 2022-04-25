@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:12:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/24 10:11:04 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/25 13:54:45 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ERR_DIR "No such file or directory\n"
 # define ERR_HOME "HOME not set\n"
 # define ERR_ID "not a valid identifier\n"
+# define ERR_IS_DIR "Is a directory\n"
 # define ERR_MALLOC "Failed to allocate memory.\n"
 # define ERR_MANY_ARG "too many arguments\n"
 # define ERR_NOENV "No such environment\n"

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:17:41 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 19:49:18 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/25 14:09:14 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,13 @@ void	if_no_cmd_is_path(char *path, char **to_try, t_pars_node *node)
 	if (path == NULL)
 	{
 		node->path = NULL;
-		print_error(BASH, NULL, node->content_exp_sans_q, ERR_CMD);
-		g_exit_status = 127;
+		if (is_builtin(node) && !is_special(node->content_exp_sans_q[0]))
+		{
+			print_error(BASH, NULL, node->content_exp_sans_q, ERR_CMD);
+			g_exit_status = 127;
+		}
+		else if (!ft_strcmp("!", node->content_exp_sans_q))
+			g_exit_status = 1;
 	}
 	else
 		node->path = ft_strdup(path);

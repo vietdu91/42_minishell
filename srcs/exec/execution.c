@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/24 20:12:45 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/25 14:11:38 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 	if (which_node(l, datas[0]) || (!which_node(l, datas[0]) && datas[1] > 1))
 	{
 		pid = fork();
-		// printf("fork 1\n");
 		if (pid == -1)
 			return (-1);
 		if (pid == 0)
@@ -85,6 +84,7 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 			// printf("coucou1\n");
 			pid_zero_execution(i, args, datas[1]);
 			// printf("coucou2\n");
+			free_all(args);
 			exit (0);
 		}
 		// return (0);
@@ -134,7 +134,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 		if (i->type == CMD || !i->len)
 		{
 			datas[0]++;
-			// printf("kontent = %s\n", i->content);
+			//printf("kontent = %s\n", i->content);
 			fork_execution(datas, i, l, args);
 
 			unlink("/tmp/.zuzu");
