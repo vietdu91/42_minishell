@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/24 09:46:57 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/24 20:12:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int	loop_var(char *str, t_pars_list *l, t_env_list *env, t_pars_node *node)
 	}
 	datas[0] = 0;
 	datas[1] = 0;
-	printf("str = %s\n", str);
+	// printf("str = %s\n", str);
 	if (!is_charset('$', str))
 		return (0);
 	while(str[datas[0]])
@@ -187,10 +187,10 @@ int	split_expand(t_pars_list *l, t_env_list *env)
  	node = l->head;
 	if (!node)
 		return (-1);
-	printf("node = %s\n", node->content);
+	// printf("node = %s\n", node->content);
  	while (node != l->tail)
 	{
-	    printf("node->content = %s\n", l->tail->content);
+	    // printf("node->content = %s\n", l->tail->content);
 		if (!content_is_to_split(node->content))
 			nodes_added += loop_var(node->content, l, env, node);	
  		node = node->next;

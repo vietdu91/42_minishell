@@ -132,7 +132,7 @@ DEP		= $(OBJS:.o=.d)
 
 	# Flags #
 
-FLAGS		= 	-g -Wall -Werror -Wextra
+FLAGS		= 	-g -Wall -Werror -Wextra -g3
 READLINE	=	-lreadline
 
 	# Rules #
