@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 10:39:09 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/24 16:17:07 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	print_env(t_env *current)
 {
 	if (ft_strcmp(current->content, "\0"))
 	{
-		ft_putstr(current->line, STDIN_FILENO);
-		ft_putstr("\n", STDIN_FILENO);
+		ft_putstr(current->line, STDOUT_FILENO);
+		ft_putstr("\n", STDOUT_FILENO);
 	}
 }
 
