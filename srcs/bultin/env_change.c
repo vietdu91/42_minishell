@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:46:26 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 11:09:27 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/25 11:13:23 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int check)
 	set_new_content_in_export(node, var, args, check);
 	create_node_to_export_or_env(node, export);
 	sort_export(export);
-	display_export(export);
 	export->length++;
 }
 

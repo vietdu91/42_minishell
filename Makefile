@@ -20,6 +20,7 @@ SRCS		= 	main.c \
 				bultin/pwd.c \
 				bultin/pwd_change.c \
 				bultin/unset.c \
+				checkers/check_for_paths.c \
 				checkers/how_many.c \
 				checkers/is_unclosed.c \
 				checkers/is_alphanum.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/24 20:12:05 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/25 14:20:41 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,10 +138,7 @@ int	loop_var(char *str, t_pars_list *l, t_env_list *env, t_pars_node *node)
 
 	final = ft_strdup("");
 	if (!str)
-	{
-		printf("j'ai rien reçu\n");
 		return (-1);
-	}
 	datas[0] = 0;
 	datas[1] = 0;
 	// printf("str = %s\n", str);
