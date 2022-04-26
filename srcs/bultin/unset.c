@@ -24,6 +24,8 @@ t_env	*find_previous_node(t_env_list *env, char *var)
 	{
 		tmp = node;
 		node = node->next;
+		if (node == NULL)
+			return (NULL);
 		if (!ft_strcmp(node->variable, var))
 			return (tmp);
 	}
@@ -50,6 +52,8 @@ void	delete_var_list(t_env_list *env, char *var)
 			}
 			node = previous->next;
 			previous->next = previous->next->next;
+			if (previous->next == NULL)
+				env->tail = previous;
 			free_env_node(node);
 			return ;
 		}
@@ -97,4 +101,5 @@ void	unset_main(t_args *args, t_pars_node *parser)
 		}
 		node = node->next;
 	}
+	g_exit_status = 0;
 }
