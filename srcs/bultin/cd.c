@@ -68,5 +68,6 @@ void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 		error_because_lost_dir(oldpwd, node->content_exp_sans_q);
 	else
 		find_cd(args, env, oldpwd, node->content_exp_sans_q);
+	g_exit_status = 0;
 	return ;
 }

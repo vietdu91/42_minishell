@@ -79,7 +79,7 @@ void	exit_main(t_args *args, t_pars_node *parser)
 	exit_status = 0;
 	node = parser->next;
 	ft_putstr("exit\n", 1);
-	if (node)
+	if (node && (node->type == SIMPLE_ARG || node->type == OPTION))
 	{
 		if (check_only_digits(node->content_exp_sans_q))
 			error_numeric_exit(args, node->content_exp_sans_q);
