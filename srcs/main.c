@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/24 20:16:51 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/25 13:43:01 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	loop(t_args *args)
 		}
 		else
 		{
-			args->buffer = buffer_cleaner(args->buffer);
+		//	args->buffer = buffer_cleaner(args->buffer);
 			if (!check_unclosed(args))
 			{
 				parsing_maestro(args, args->buffer);
-				// display_parsing(args->parser);
+				//display_parsing(args->parser);
 				lexer_maestro(args);
 				//display_parsing(args->parser);
 				exec_maestro(args);
