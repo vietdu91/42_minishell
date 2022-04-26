@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/24 16:50:48 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/25 23:48:24 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char			**content_to_d_tab(int iter, int *index, t_pars_node *cpy);
 
 /*              DATA_EXEC.C             */
 
-int				join_heredoc(char **heredoc, char *txt, char *del);
+// int				join_heredoc(char **heredoc, char *txt, char *del);
 int				read_heredoc(char **heredoc, char *del);
 int				size_d_tab(t_pars_list *l);
 void			check_cmds(t_pars_list *l);

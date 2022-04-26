@@ -3,31 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   data_for_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 19:47:54 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/26 00:21:34 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	join_heredoc(char **heredoc, char *txt, char *del)
-{
-	if (ft_strncmp(txt, del, ft_strlen(txt) - 1) == 0)
-	{
-		free(txt);
-		return (1);
-	}
-	*heredoc = ft_strjoin(*heredoc, txt);
-	if (!(*heredoc))
-		return (0);
-	free(txt);
-	txt = ft_strdup("");
-	if (!txt)
-		return (0);
-	return (0);
-}
+// int	join_heredoc(char **heredoc, char *txt, char *del)
+// {
+
+// 	return (0);
+// }
 
 int	read_heredoc(char **heredoc, char *del)
 {
@@ -44,7 +33,22 @@ int	read_heredoc(char **heredoc, char *del)
 		buf[1] = 0;
 		txt = ft_strjoin(txt, buf);
 		if (strchr(txt, '\n'))
-			return (join_heredoc(heredoc, txt, del));
+		{
+			if (ft_strncmp(txt, del, ft_strlen(txt) - 1) == 0)
+			{
+				free(txt);
+				return (1);
+			}
+			// printf("join heredoc = %s\n", *heredoc);
+			*heredoc = ft_strjoin(*heredoc, txt);
+			// printf("join heredoc = %s\n", *heredoc);
+			if (!(*heredoc))
+				return (0);
+			free(txt);
+			txt = ft_strdup("");
+			if (!txt)
+				return (0);
+		}
 	}
 	free(txt);
 	return (0);
@@ -96,7 +100,7 @@ int	exec_maestro(t_args *args)
 	n_docs = count_heredoc(args->parser);
 	args->delimiters = delimiters_to_tab(args->parser, n_docs);
 	fill_d_tab_heredoc(args, n_docs, args->delimiters);
-	modify_heredoc(args->hdocs, args->delimiters, args->env);
+	// modify_heredoc(args->hdocs, args->delimiters, args->env);
 	options_maestro(args, l);
 	path_maestro(args);
 	inf_out_maestro(args, l);

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:53:09 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/04 18:15:42 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/26 00:22:14 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,5 @@ int	fill_d_tab_heredoc(t_args *args, int size, char **eof)
 	args->hdocs[i] = NULL;
 	return (1);
 }
+
+		// printf("hdoc =	fill_d_tab_heredoc %s\n", args->hdocs[i]);
