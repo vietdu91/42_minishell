@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   attribution_meta.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 15:27:21 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/26 23:41:38 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,18 @@ int	logical_attribution(t_pars_list *l)
 	while (i)
 	{
 		attribute_meta(i);
+		i = i->next;
+	}
+	i = l->head;
+	while (i)
+	{
+		if ( i->previous && (i->previous->type == OUTFILE \
+			|| i->previous->type == SUPER_OUTFILE))
+		{
+			if (i->content[0] == '-' && i->content[1] != 0)
+				i->type = OPTION;
+			printf("OPTION HERE i->type = %d\n", i->type);
+		}
 		i = i->next;
 	}
 	return (0);

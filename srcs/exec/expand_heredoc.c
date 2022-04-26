@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:27:18 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/26 16:58:34 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/26 17:17:16 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,8 @@ int	modify_heredoc(char **hdoc, char **limitator, t_env_list *env)
 		return (0);
 	while (hdoc[j])
 	{
-		// printf("hdoc[%d] == %s\n", j, hdoc[j]);	
 		j++;
 	}
-	return (0);
 	if (quotes_or_not(*limitator))
 		return (-1);
 	j = 0;
@@ -118,6 +116,7 @@ int	modify_heredoc(char **hdoc, char **limitator, t_env_list *env)
 	d_tab = ft_split(hdoc[j], '\n');
 	if (!d_tab)
 		return (-1);
+	// return (0);
 	free(hdoc[j]);
 	while (d_tab[++i])
 	{
