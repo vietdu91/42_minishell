@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   path_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:17:41 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/28 11:25:01 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/26 19:41:43 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-/*	int j = -1;
-	while (to_try[++j])
-		printf("int path maestro to_try[%d] = %s", j, to_try[j]);*/
 
 char	**check_errors(char *array, char *cmd)
 {

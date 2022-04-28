@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inf_out.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 15:19:12 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/26 17:35:11 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ int	inf_out_maestro(t_args *args, t_pars_list *l)
 		{
 			fds_content = fill_fds(i);
 			create_infiles_outfiles(args, in_out, i, fds_content);
+			if (fds_content)
+				free_d_tab(fds_content);
+			fds_content = NULL;
 		}
 		i = i->next;
 	}
-	if (fds_content)
-		free_d_tab(fds_content);
 	return (1);
 }

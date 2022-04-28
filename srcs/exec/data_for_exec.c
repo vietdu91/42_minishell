@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/26 00:21:34 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/26 18:23:18 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	read_heredoc(char **heredoc, char *del)
 		txt = ft_strjoin(txt, buf);
 		if (strchr(txt, '\n'))
 		{
-			if (ft_strncmp(txt, del, ft_strlen(txt) - 1) == 0)
+			if (!ft_strncmp(txt, del, (ft_strlen(txt) + 1)))
 			{
 				free(txt);
 				return (1);

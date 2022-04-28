@@ -1,68 +1,21 @@
-GJS_DEBUG_TOPICS=JS ERROR;JS LOG
-USER=emtran
-LANGUAGE=en
-SSH_AGENT_PID=206517
-XDG_SESSION_TYPE=x11
-SHLVL=1
-HOME=/mnt/nfs/homes/emtran
-DESKTOP_SESSION=ubuntu
-GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/code.desktop
-GTK_MODULES=gail:atk-bridge
-XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
-MANAGERPID=205991
-DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/40120/bus
-LIBVIRT_DEFAULT_URI=qemu:///system
-GIO_LAUNCHED_DESKTOP_FILE_PID=207161
-IM_CONFIG_PHASE=1
-MANDATORY_PATH=/usr/share/gconf/ubuntu.mandatory.path
-LOGNAME=emtran
-_=/mnt/nfs/homes/emtran/Desktop/42_minishell/./minishell
-JOURNAL_STREAM=9:729695
-DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
-XDG_SESSION_CLASS=user
-GNOME_DESKTOP_SESSION_ID=this-is-deprecated
-PATH=/goinfre/miniconda3/bin:/mnt/nfs/homes/emtran/.brew/bin:/mnt/nfs/homes/emtran/.brew/bin:/mnt/nfs/homes/emtran/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-GDM_LANG=en
-SESSION_MANAGER=local/e2r8p11.clusters.42paris.fr:@/tmp/.ICE-unix/206566,unix/e2r8p11.clusters.42paris.fr:/tmp/.ICE-unix/206566
-INVOCATION_ID=d0f030ae1e4a48e3aa8ad12368a7d7af
-XDG_RUNTIME_DIR=/run/user/40120
-XDG_MENU_PREFIX=gnome-
-XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session7
-DISPLAY=:0
-LANG=en_US.UTF-8
-XDG_CURRENT_DESKTOP=Unity
-XAUTHORITY=/mnt/nfs/homes/emtran/.Xauthority
-XDG_SESSION_DESKTOP=ubuntu
-XMODIFIERS=@im=ibus
-SSH_AUTH_SOCK=/run/user/40120/keyring/ssh
-XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/emtran
-SHELL=/bin/zsh
-KRB5CCNAME=FILE:/tmp/krb5cc_40120_CSh7HX
-QT_ACCESSIBILITY=1
-GDMSESSION=ubuntu
-DOCKER_HOST=unix:///run/user/40120/docker.sock
-GPG_AGENT_INFO=/run/user/40120/gnupg/S.gpg-agent:0:1
-GJS_DEBUG_OUTPUT=stderr
-QT_IM_MODULE=ibus
-PWD=/mnt/nfs/homes/emtran/Desktop/42_minishell
-XDG_DATA_DIRS=/usr/share/gnome:/usr/share/ubuntu:/mnt/nfs/homes/emtran/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
-XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
-CHROME_DESKTOP=code-url-handler.desktop
-ORIGINAL_XDG_CURRENT_DESKTOP=ubuntu:GNOME
-GDK_BACKEND=x11
-OLDPWD=/mnt/nfs/homes/emtran/Desktop/42_cub3D
-ZSH=/mnt/nfs/homes/emtran/.oh-my-zsh
-PAGER=less
-LESS=-R
-LSCOLORS=Gxfxcxdxbxegedabagacad
-TERM_PROGRAM=vscode
-TERM_PROGRAM_VERSION=1.66.2
-COLORTERM=truecolor
-VSCODE_GIT_IPC_HANDLE=/run/user/40120/vscode-git-30104de151.sock
-VSCODE_GIT_ASKPASS_NODE=/usr/share/code/code
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=--ms-enable-electron-run-as-node
-VSCODE_GIT_ASKPASS_MAIN=/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
-GIT_ASKPASS=/usr/share/code/resources/app/extensions/git/dist/askpass.sh
-TERM=xterm-256color
-LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
-[5;91mWELCOME TO (minis)HELL 😈 [0m[1;93m$> [0mexit
+total 344
+-rw-r--r--  1 dyoula 2021_paris      5 Apr 28 15:49 bonjour
+-rw-r--r--  1 dyoula 2021_paris    964 Apr 28 15:49 cc.c
+-rw-r--r--  1 dyoula 2021_paris      0 Apr 28 18:48 emp
+drwxr-xr-x  2 dyoula 2021_paris   4096 Apr 28 15:49 ERRORS
+drwxr-xr-x  2 dyoula 2021_paris   4096 Apr 28 15:49 includes
+-rw-r--r--  1 dyoula 2021_paris    188 Apr 28 15:49 inf
+-rw-r--r--  1 dyoula 2021_paris     64 Apr 28 15:49 koko
+-rw-r--r--  1 dyoula 2021_paris    145 Apr 28 15:51 l
+-rw-r--r--  1 dyoula 2021_paris    143 Apr 28 15:51 lo
+-rw-r--r--  1 dyoula 2021_paris      0 Apr 28 19:03 lol
+-rw-r--r--  1 dyoula 2021_paris  22399 Apr 28 15:49 Makefile
+-rwxr-xr-x  1 dyoula 2021_paris 224176 Apr 28 19:03 minishell
+-rw-r--r--  1 dyoula 2021_paris  34866 Apr 28 15:49 minishell_action.png
+-rw-r--r--  1 dyoula 2021_paris   7325 Apr 28 15:49 minishell_img.png
+-rw-r--r--  1 dyoula 2021_paris    147 Apr 28 15:51 o
+drwxr-xr-x 12 dyoula 2021_paris   4096 Apr 28 18:42 objs
+-rw-r--r--  1 dyoula 2021_paris     42 Apr 28 15:49 pwd
+-rw-r--r--  1 dyoula 2021_paris   2915 Apr 28 15:49 README.md
+drwxr-xr-x 12 dyoula 2021_paris   4096 Apr 28 15:49 srcs
+-rw-r--r--  1 dyoula 2021_paris    391 Apr 28 15:49 test.c
