@@ -56,6 +56,9 @@ void	change_pwd_env(char *newpwd, t_env_list *env)
 		{
 			free(node->content);
 			node->content = ft_strdup(newpwd);
+			free(node->content_trim);
+			node->content_trim = set_content_trim_env(node->content, ' ');
+			node->content_trim = remove_interior_spaces(node->content_trim);
 			free(node->line);
 			node->line = ft_strjoin(pwd, newpwd);
 			return ;
@@ -81,6 +84,9 @@ void	change_oldpwd_env(char *newpwd, t_env_list *env)
 		{
 			free(node->content);
 			node->content = ft_strdup(newpwd);
+			free(node->content_trim);
+			node->content_trim = set_content_trim_env(node->content, ' ');
+			node->content_trim = remove_interior_spaces(node->content_trim);
 			free(node->line);
 			node->line = ft_strjoin(oldpwd, newpwd);
 			return ;
@@ -106,6 +112,9 @@ void	change_pwd_export(char *newpwd, t_env_list *export)
 		{
 			free(node->content);
 			node->content = ft_strdup(newpwd);
+			free(node->content_trim);
+			node->content_trim = set_content_trim_env(node->content, ' ');
+			node->content_trim = remove_interior_spaces(node->content_trim);
 			free(node->line);
 			node->line = ft_strjoin(pwd, newpwd);
 			return ;
@@ -131,6 +140,9 @@ void	change_oldpwd_export(char *newpwd, t_env_list *export)
 		{
 			free(node->content);
 			node->content = ft_strdup(newpwd);
+			free(node->content_trim);
+			node->content_trim = set_content_trim_env(node->content, ' ');
+			node->content_trim = remove_interior_spaces(node->content_trim);
 			free(node->line);
 			node->line = ft_strjoin(oldpwd, newpwd);
 			return ;

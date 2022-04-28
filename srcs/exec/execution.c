@@ -46,8 +46,12 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 		if (cpy->path)
 		{
 			// ft_putstr("Fin de commande exec\n", 2);
-			execve(cpy->path, cpy->cmds, args->env_tab);
 			// ft_putstr("Fin de commande exec 2\n", 2);
+			if (execve(cpy->path, cpy->cmds, args->env_tab) == -1)
+			{
+				printf("ERRNO : %d\n", errno);
+				g_exit_status = errno;
+			}
 		}
 	}
 	// free_all(args);

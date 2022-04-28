@@ -56,7 +56,7 @@ void	loop(t_args *args)
 			if (!check_unclosed(args))
 			{
 				parsing_maestro(args, args->buffer);
-				// display_parsing(args->parser);
+				//display_parsing(args->parser);
 				lexer_maestro(args);
 				//display_parsing(args->parser);
 				exec_maestro(args);

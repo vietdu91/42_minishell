@@ -109,7 +109,6 @@ t_env_list *env)
 {
 	char	*var;
 	char	*content;
-
 	var = NULL;
 	content = NULL;
 	var = check_variable(str, len);

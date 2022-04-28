@@ -64,7 +64,8 @@ void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 		cd_home(args, env, oldpwd, &error);
 	else if (node->type == OPTION)
 		bad_cd(oldpwd, node, 1, &error);
-	else if (node->next)
+	else if (node->next && ((node->next->type == OPTION || \
+	node->next->type == SIMPLE_ARG)))
 		bad_cd(oldpwd, node, 2, &error);
 	else if (!ft_strcmp(node->content_exp_sans_q, "-"))
 		cd_moins(args, env, oldpwd, &error);
