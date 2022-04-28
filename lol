@@ -1,21 +1,21 @@
-total 344
--rw-r--r--  1 dyoula 2021_paris      5 Apr 28 15:49 bonjour
+total 348
+-rw-r--r--  1 dyoula 2021_paris    131 Apr 28 23:07 bonjour
 -rw-r--r--  1 dyoula 2021_paris    964 Apr 28 15:49 cc.c
--rw-r--r--  1 dyoula 2021_paris      0 Apr 28 18:48 emp
+-rw-r--r--  1 dyoula 2021_paris   1213 Apr 28 23:07 emp
 drwxr-xr-x  2 dyoula 2021_paris   4096 Apr 28 15:49 ERRORS
 drwxr-xr-x  2 dyoula 2021_paris   4096 Apr 28 15:49 includes
 -rw-r--r--  1 dyoula 2021_paris    188 Apr 28 15:49 inf
 -rw-r--r--  1 dyoula 2021_paris     64 Apr 28 15:49 koko
--rw-r--r--  1 dyoula 2021_paris    145 Apr 28 15:51 l
--rw-r--r--  1 dyoula 2021_paris    143 Apr 28 15:51 lo
--rw-r--r--  1 dyoula 2021_paris      0 Apr 28 19:03 lol
+-rw-r--r--  1 dyoula 2021_paris    145 Apr 28 23:07 l
+-rw-r--r--  1 dyoula 2021_paris    143 Apr 28 23:07 lo
+-rw-r--r--  1 dyoula 2021_paris      0 Apr 28 23:07 lol
 -rw-r--r--  1 dyoula 2021_paris  22399 Apr 28 15:49 Makefile
--rwxr-xr-x  1 dyoula 2021_paris 224176 Apr 28 19:03 minishell
+-rwxr-xr-x  1 dyoula 2021_paris 224424 Apr 28 23:07 minishell
 -rw-r--r--  1 dyoula 2021_paris  34866 Apr 28 15:49 minishell_action.png
 -rw-r--r--  1 dyoula 2021_paris   7325 Apr 28 15:49 minishell_img.png
--rw-r--r--  1 dyoula 2021_paris    147 Apr 28 15:51 o
-drwxr-xr-x 12 dyoula 2021_paris   4096 Apr 28 18:42 objs
+-rw-r--r--  1 dyoula 2021_paris    147 Apr 28 23:07 o
+drwxr-xr-x 12 dyoula 2021_paris   4096 Apr 28 23:07 objs
 -rw-r--r--  1 dyoula 2021_paris     42 Apr 28 15:49 pwd
 -rw-r--r--  1 dyoula 2021_paris   2915 Apr 28 15:49 README.md
-drwxr-xr-x 12 dyoula 2021_paris   4096 Apr 28 15:49 srcs
+drwxr-xr-x 12 dyoula 2021_paris   4096 Apr 28 23:05 srcs
 -rw-r--r--  1 dyoula 2021_paris    391 Apr 28 15:49 test.c
