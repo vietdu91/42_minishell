@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:32 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/26 18:35:10 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:58:54 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_pars_node *parser)
 		g_exit_status = 0;
 		return ;
 	}
-	while (node)
+	while (node && (node->type == SIMPLE_ARG || node->type == OPTION))
 	{
 		check = check_id_export(node->content_exp_sans_q);
 		if (node->type == OPTION)

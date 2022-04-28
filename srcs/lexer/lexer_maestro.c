@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/25 17:19:08 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/28 10:48:29 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,13 @@ int	lexer_maestro(t_args *args)
 	// // 	// printf("TYPE : %d\n\n", node->type);
 	// // 	node = node->next;
 	// // }
-	if (is_a_directory(args->parser->head->content_exp_sans_q))
-	{
-		print_error(BASH, NULL, \
-		args->parser->head->content_exp_sans_q, ERR_IS_DIR);
-		g_exit_status = 126;
-		return (-1);
-	}
+	// if (is_a_directory(args->parser->head->content_exp_sans_q))
+	// {
+	// 	print_error(BASH, NULL, \
+	// 	args->parser->head->content_exp_sans_q, ERR_IS_DIR);
+	// 	g_exit_status = 126;
+	// 	return (-1);
+	// }
 	if (syntax_error_meta(args) < -1 || forbidden_token(args->parser))
 		return (-1);
 	return (0);

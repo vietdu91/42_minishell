@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/22 14:35:17 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/28 12:35:41 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 /*		CD.C		*/
 
-void		find_cd(t_args *args, t_env_list *env, char *oldpwd, char *path);
-void		bad_cd(char *oldpwd, t_pars_node *node, int way);
+void		find_cd(t_args *args, char *oldpwd, char *path, bool *error);
+void		bad_cd(char *oldpwd, t_pars_node *node, int way, bool *error);
 void		cd_main(t_args *args, t_env_list *env, t_pars_node *parser);
 
 /*			CD_SPECIAL.C	*/
 
-void		error_because_lost_dir(char *oldpwd, char *command);
-void		cd_moins(t_args *args, t_env_list *env, char *oldpwd);
-void		cd_home(t_args *args, t_env_list *env, char *oldpwd);
+void		error_because_lost_dir(char *oldpwd, char *command, bool *error);
+void		cd_moins(t_args *args, t_env_list *env, char *oldpwd, bool *error);
+void		cd_home(t_args *args, t_env_list *env, char *oldpwd, bool *error);
 
 /*		ECHO.C		*/
 

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:17:41 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/25 14:09:14 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:25:01 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	*return_path(char **to_try)
 	int	i;
 
 	i = -1;
+	if (!to_try)
+		return (NULL);
 	while (to_try[++i])
 	{
 		if (!access(to_try[i], F_OK))
