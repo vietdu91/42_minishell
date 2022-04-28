@@ -6,96 +6,120 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:43:25 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/22 13:13:15 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/26 21:52:24 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../includes/minishell.h"
 
-int count_cmds(t_pars_list *l)
+int	count_cmds(t_pars_list *l)
 {
-    t_pars_node *node;
-    int         cmds;
+	t_pars_node	*node;
+	int			cmds;
 
-    cmds = 0;
-    node = l->head;
-    while (node)
-    {
-        if (node->type == CMD)
-            cmds++;
-        node = node->next;
-    }
-    return (cmds);
+	cmds = 0;
+	node = l->head;
+	if (!l || !node)
+		return (-1);
+	while (node)
+	{
+		if (node->type == CMD)
+			cmds++;
+		node = node->next;
+	}
+	// printf("nb cmds = %d\n", cmds);
+	return (cmds);
 }
 
 int	count_options(t_pars_node *cpy)
 {
-	int i;
+	int			i;
 	t_pars_node	*node;
 
 	i = 1;
 	if (!cpy->next)
 		return (i);
 	node = cpy->next;
-	while (node && (node->type == OPTION || node->type == SIMPLE_ARG))
+	while (node)
 	{
-		i++;
+		if ((node->type == OPTION || node->type == SIMPLE_ARG))
+			i++;
 		node = node->next;
 	}
+	// printf("nb option = %d\n", i);
 	return (i);
 }
 
-int *create_and_fill_options(t_pars_list *l, int size)
+int	*create_and_fill_options(t_pars_list *l, int size)
 {
-    int         *options;
-    t_pars_node *node;
-    int 		index;
+	int			*options;
+	t_pars_node	*node;
+	int			index;
 
 	index = 0;
-    node = l->head;
-    options = malloc(sizeof(int) * size);
-    if (!options)
-        return (NULL);
-    while (node)
-    {
-        if (node->type == CMD)
+	node = l->head;
+	options = malloc(sizeof(int) * size);
+	if (!options)
+		return (NULL);
+	while (node)
+	{
+		if (node->type == CMD)
 		{
-			options[index] = count_options(node); // good 
-			// printf("options[%d] == %d\n", index, options[index]);
+			options[index] = count_options(node);
 			index++;
 		}
 		node = node->next;
-    }
+	}
 	return (options);
 }
 
 char	**create_options_tab(t_pars_node *cpy, int limit)
 {
-	t_pars_node *i;
+	t_pars_node	*i;
 	int			count;
 	char		**cmds;
 
+	cmds = NULL;
 	cmds = malloc(sizeof(char *) * (limit + 1));
+	// printf("YO limit = %d\n", limit);
 	if (!cmds)
 	{
-		// printf("bug malloc create options tab \n");
 		return (NULL);
 	}
-	cmds[0] = ft_strdup(cpy->content); // good
+	cmds[0] = ft_strdup(cpy->content_exp_sans_q);
 	count = 1;
-	// printf("cmds[0] == %s\n", cmds[0]); // good 
+	// printf("hello cmds[0] = %s\n", cmds[0]);
 	i = cpy->next;
 	while (i && count < limit)
 	{
-		cmds[count] = ft_strdup(i->content);
-		if (!cmds[count])
-			malloc_failed(cmds, count);
-		// printf("cmds[%d] == %s\n" ,count, cmds[count]); // good
-		count++;
+		// printf("SALUT i->content = %s\n", i->content);
+		if (i->type == OPTION)
+		{
+			cmds[count] = ft_strdup(i->content_exp_sans_q);
+			if (!cmds[count])
+				malloc_failed(cmds, count);
+			count++;
+		}
+		i = i->next;
+	}
+	// printf("cmds[%d]%s\n", 1, cmds[count]);
+	i = cpy->next;
+	// printf("YO 2\n");
+	while (i && count < limit)
+	{
+		if (i->type == SIMPLE_ARG)
+		{
+			cmds[count] = ft_strdup(i->content_exp_sans_q);
+			if (!cmds[count])
+				malloc_failed(cmds, count);
+			count++;
+		}
 		i = i->next;
 	}
 	cmds[count] = NULL;
+	// int n = -1;
+	// while (cmds[++n])
+	// 	printf("cmds = %s\n", cmds[n]);
 	return (cmds);
 }
 
@@ -106,7 +130,8 @@ int	options_maestro(t_args *args, t_pars_list *l)
 	t_pars_node	*i;
 
 	(void)args;
-	options = create_and_fill_options(l, count_cmds(l)); // good
+	options = create_and_fill_options(l, count_cmds(l));
+	// printf("option[0] == %d\n", options[0]);
 	if (!options)
 		return (-1);
 	index = 0;
@@ -115,9 +140,7 @@ int	options_maestro(t_args *args, t_pars_list *l)
 	{
 		if (i->type == CMD)
 		{
-			i->cmds = create_options_tab(i, options[index]); // good 
-			// printf("content = %s\n", i->content);
-			// printf("cmds = %s\n", i->cmds[0]);
+			i->cmds = create_options_tab(i, options[index]);
 			if (!i->cmds)
 				return (-1);
 			index++;

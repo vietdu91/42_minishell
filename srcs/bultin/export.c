@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:32 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 18:53:48 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:58:54 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,41 @@ int	check_id_export(char *str)
 	return (1);
 }
 
+void	bad_id_export(t_pars_node *node)
+{
+	print_error_w_quote(BASH, CMD_EXPORT, node->content_exp_sans_q, \
+	ERR_ID);
+	g_exit_status = 1;
+}
+
 void	export_main(t_args *args, t_env_list *env, t_env_list *export, \
 t_pars_node *parser)
 {
 	t_pars_node	*node;
 	int			check;
+	bool		error;
 
 	check = 0;
+	error = FALSE;
 	node = parser->next;
-	if (!node)
+	if (!node || (node->type != SIMPLE_ARG && node->type != OPTION))
 	{
 		display_export(export);
+		g_exit_status = 0;
 		return ;
 	}
-	while (node)
+	while (node && (node->type == SIMPLE_ARG || node->type == OPTION))
 	{
 		check = check_id_export(node->content_exp_sans_q);
-		if (node->type == 20)
+		if (node->type == OPTION)
+		{
 			invalid_option(node, CMD_UNSET);
+			return ;
+		}
 		else if (!check)
 		{
-			print_error_w_quote(BASH, CMD_EXPORT, node->content_exp_sans_q, \
-			ERR_ID);
+			bad_id_export(node);
+			error = TRUE;
 			g_exit_status = 1;
 		}
 		else
@@ -86,4 +99,6 @@ t_pars_node *parser)
 		}
 		node = node->next;
 	}
+	if (error == FALSE)
+		g_exit_status = 0;
 }

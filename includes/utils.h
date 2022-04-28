@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/06 17:43:17 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:35:38 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int					add_node_after_current(char *content, t_pars_node *n, \
 
 /*		UTILS_MEMORY	*/
 
+void				*ft_memset(void *s, int a, int c);
 void				*ft_memcpy(void *dest, const void *src, size_t count);
 void				*ft_memcpy_with_one_char(void *dest, const char src, \
 size_t count);
@@ -79,6 +80,7 @@ void				ft_putstr(char *str, int fd);
 void				ft_putchar(char c, int fd);
 
 /*		UTILS_META.C	*/
+
 int					does_meta_exist(t_pars_node *node);
 int					is_full_meta(char *str);
 char				*new_content_first(t_pars_node *node, int *i);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 16:28:08 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/25 00:49:40 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 11:28:05 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,19 @@ void	add_slash(char **to_try)
 	}
 }
 
+/* char	**av;
+
+	printf("cmd add cmd = %s\n", cmd);
+	av = ft_split(cmd, ' ');
+	if (!av)
+	return (0);
+	
+	free_d_tab(av);*/
+
 int	add_cmd(char **to_try, char *cmd)
 {
 	int		i;
-	// char	**av;
 
-//	printf("cmd add cmd = %s\n", cmd);
-	// av = ft_split(cmd, ' ');
-	// if (!av)
-	// 	return (0);
 	i = -1;
 	while (to_try[++i])
 	{
@@ -45,6 +49,5 @@ int	add_cmd(char **to_try, char *cmd)
 		if (!to_try[i])
 			return (0);
 	}
-	// free_d_tab(av);
 	return (1);
 }

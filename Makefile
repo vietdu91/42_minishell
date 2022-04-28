@@ -20,6 +20,7 @@ SRCS		= 	main.c \
 				bultin/pwd.c \
 				bultin/pwd_change.c \
 				bultin/unset.c \
+				checkers/check_for_paths.c \
 				checkers/how_many.c \
 				checkers/is_unclosed.c \
 				checkers/is_alphanum.c \
@@ -27,16 +28,15 @@ SRCS		= 	main.c \
 				checkers/what_type.c \
 				errors/invalid.c \
 				errors/print_error.c \
-				exec/check_files.c \
 				exec/cmd_is_path.c \
 				exec/converter_for_pipex.c \
 				exec/data_for_exec.c \
 				exec/dup_and_close.c \
 				exec/exec_map_utils.c \
 				exec/execution.c \
+				exec/expand_heredoc.c \
 				exec/heredoc.c \
 				exec/inf_out.c \
-				exec/init_cmds.c \
 				exec/leaks_exec.c \
 				exec/options_exec.c \
 				exec/path_manager.c \
@@ -46,17 +46,22 @@ SRCS		= 	main.c \
 				fun/print_patience.c \
 				lexer/attribution_meta.c \
 				lexer/attribution_norm.c \
+				lexer/lexer_expand.c \
 				lexer/lexer_maestro.c \
 				lexer/lexer_utils.c \
 				memory/free_box.c \
+				memory/free_nodes.c \
 				memory/free_lists.c \
 				memory/init_parsing_list.c \
 				memory/initialisation.c \
+				memory/init_cmds.c \
+				memory/init_tab.c \
 				memory/initialisation_env.c \
 				memory/initialisation_no_env.c \
 				parsing/crypting_parser_quotes.c \
 				parsing/expand_put.c \
 				parsing/expand_quotes.c \
+				parsing/expand_variable.c \
 				parsing/expand.c \
 				parsing/find_in_env.c \
 				parsing/parser_convert.c \
@@ -128,7 +133,7 @@ DEP		= $(OBJS:.o=.d)
 
 	# Flags #
 
-FLAGS		= 	-g -Wall -Werror -Wextra
+FLAGS		= 	-g -Wall -Werror -Wextra -g3
 READLINE	=	-lreadline
 
 	# Rules #

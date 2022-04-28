@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:28:57 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/14 16:36:21 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/26 18:58:55 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,16 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 	i = 0;
 	if (n == 0)
-		return (0);
-	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n - 1)
+		return (-1);
+	while (s1[i] && s2[i] && i < n - 1)
+	{
+		if (s1[i] != s2[i])
+			return (-1);
 		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	}
+//	if (i != (unsigned int)ft_strlen((char *)s1) - 1)
+//		return (-1);
+	return (0);
 }
 
 char	*ft_strdup(char *str)
@@ -60,31 +66,6 @@ size_t	ft_strlcpy(char *dest, char *src, size_t size)
 	}
 	return (ft_strlen(src));
 }
-/*
-char	*join_char(char *str, char c)
-{
-	int		i;
-	int		len;
-	char	*joined;
-
-	i = -1;
-	if (str[0] != 0)
-		len = ft_strlen(str) + 1;
-	else
-		len = 1 + 1;
-	joined = malloc(sizeof(char) * (len + 1));
-	if (!joined)
-		return (NULL);
-	while (++i < (int)ft_strlen(str))
-	{
-		joined[i] = str[i];
-	}
-	joined[i] = c;
-	i++;
-	joined[i] = 0;
-	free(str);
-	return (joined);
-}*/
 
 size_t	ft_strlcpy_w_quotes(char *dest, char *src, size_t size)
 {

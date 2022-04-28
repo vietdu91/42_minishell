@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkers.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:37:14 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 02:05:46 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/25 13:52:55 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define SPACES " \f\r\t\v" // newline non inlus
 # define METACHAR "|&<>*"
 # define FORBIDDEN_TOKENS "< > << >> ; |"
+# define SPECIAL ":#!"
 
 // # define METACHAR "|&;()<>"
 
@@ -54,5 +55,10 @@ int	is_unclosed_parenth(char *str);
 /*		WHAT_TYPE.C				*/
 
 int	type_meta(int type);
+
+/*		CHECK_FOR_PATHS			*/
+
+int	is_special(char c);
+int	is_a_directory(char *str);
 
 #endif

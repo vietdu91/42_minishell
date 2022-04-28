@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:35:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 14:55:57 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:19:45 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*set_content_trim_env(char *str, char trim)
 		return (ft_strdup(""));
 	while (str[i] && str[i] == trim)
 		i++;
-	j = ft_strlen(str) - 1;
+	j = ft_strlen(str);
 	if (i == j)
 		len = 0;
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:22:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 18:47:59 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/25 13:50:50 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	pwd_main(t_pars_node *parser, t_args *args)
 	char		*pwd;
 
 	node = parser;
-	if (node->next && node->next->type == 20)
+	if (node->next && node->next->type == OPTION)
 	{
 		invalid_option(node->next, CMD_PWD);
 		return ;
@@ -26,8 +26,10 @@ void	pwd_main(t_pars_node *parser, t_args *args)
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
 		return ;
-	ft_putstr(pwd, 1);
-	ft_putchar('\n', 1);
+	// printf("stdin  = %d\n", STDOUT_FILENO);
+	ft_putstr(pwd, STDOUT_FILENO);
+	ft_putchar('\n', STDOUT_FILENO);
+	// printf("hola pwd \n");
 	change_pwd_env(pwd, args->env);
 	change_pwd_export(pwd, args->export);
 	g_exit_status = 0;

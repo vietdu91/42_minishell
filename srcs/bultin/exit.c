@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:10:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 14:56:57 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 10:40:18 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	error_numeric_exit(t_args *args,char *content)
+void	error_numeric_exit(t_args *args, char *content)
 {
 	ft_putstr("bash: exit: ", 2);
 	ft_putstr(content, 2);
@@ -41,7 +41,7 @@ int	check_len_llu_nb(char *content)
 	return (0);
 }
 
-void	say_hello_wave_goodbye(t_args *args,char *content, int neg, \
+void	say_hello_wave_goodbye(t_args *args, char *content, int neg, \
 unsigned long long exit_status)
 {
 	long long	new_exit_status;
@@ -79,7 +79,7 @@ void	exit_main(t_args *args, t_pars_node *parser)
 	exit_status = 0;
 	node = parser->next;
 	ft_putstr("exit\n", 1);
-	if (node)
+	if (node && (node->type == SIMPLE_ARG || node->type == OPTION))
 	{
 		if (check_only_digits(node->content_exp_sans_q))
 			error_numeric_exit(args, node->content_exp_sans_q);

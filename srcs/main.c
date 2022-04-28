@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/26 19:10:30 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/28 15:06:15 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	loop(t_args *args)
 	{
 		init_parsing_list(&args->parser);
 		args->buffer = readline(PROMPT);
-		// printf("main args->buffer = %s\n", args->buffer);
 		if (!args->buffer)
 		{
 			ft_putstr("exit\n", 1);
@@ -53,20 +52,17 @@ void	loop(t_args *args)
 		}
 		else
 		{
-			args->buffer = buffer_cleaner(args->buffer);
+		//	args->buffer = buffer_cleaner(args->buffer);
 			if (!check_unclosed(args))
 			{
 				parsing_maestro(args, args->buffer);
 				// display_parsing(args->parser);
 				lexer_maestro(args);
+				//display_parsing(args->parser);
 				exec_maestro(args);
-				// display_parsing(args->parser);
 			}
-			// waitpid(0, NULL, 0);
-			// printf("salut\n");
 			add_history(args->buffer);
 		}
-		//free_all(args);
 		if (args->parser)
 			free_pars_list(args->parser);
 		free(args->buffer);

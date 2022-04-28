@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:24:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 18:47:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/22 14:35:07 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ int	check_option(char *str)
 	return (0);
 }
 
+void	print_echo(int *ding_dong, t_pars_node *node)
+{
+	if (*ding_dong == 1)
+		ft_putchar(' ', 1);
+	if (node->content_exp[0] == '\0')
+		*ding_dong = 0;
+	else if (node->content_exp_sans_q[0] == '\0' && \
+	(!is_quote(node->content_exp[0]) && !is_quote(node->content_exp[1])))
+		*ding_dong = 0;
+	else
+		*ding_dong = 1;
+//	printf("ECHO : %s -- %d\n", node->content_exp_sans_q, ding_dong);
+	ft_putstr(node->content_exp_sans_q, 1);
+}
+
 void	echo_main(t_args *args, t_pars_node *parser)
 {
 	t_pars_node	*node;
@@ -55,16 +70,7 @@ void	echo_main(t_args *args, t_pars_node *parser)
 	}
 	while (node && !type_meta(node->type))
 	{
-		if (ding_dong == 1)
-			ft_putchar(' ', 1);
-		if (node->content_exp[0] == '\0')
-			ding_dong = 0;
-		else if (node->content_exp_sans_q[0] == '\0' && \
-		(!is_quote(node->content_exp[0]) && !is_quote(node->content_exp[1])))
-			ding_dong = 0;
-		else
-			ding_dong = 1;
-		ft_putstr(node->content_exp_sans_q, 1);
+		print_echo(&ding_dong, node);
 		node = node->next;
 	}
 	if (!option)

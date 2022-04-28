@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:12:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 18:48:07 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/25 13:54:45 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ERR_DIR "No such file or directory\n"
 # define ERR_HOME "HOME not set\n"
 # define ERR_ID "not a valid identifier\n"
+# define ERR_IS_DIR "Is a directory\n"
 # define ERR_MALLOC "Failed to allocate memory.\n"
 # define ERR_MANY_ARG "too many arguments\n"
 # define ERR_NOENV "No such environment\n"
@@ -44,5 +45,6 @@ void	print_error_w_quote(char *sys, char *cmd, char *arg, char *error);
 /*		INVALID_OPTION.C	*/
 
 void	invalid_option(t_pars_node *node, char *cmd);
+int		get_error_code(void);
 
 #endif

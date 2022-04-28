@@ -6,18 +6,17 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/26 17:12:05 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/26 17:35:11 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char **create_fd_tab(t_pars_node *inf, t_pars_node *out)
+char	**create_fd_tab(t_pars_node *inf, t_pars_node *out)
 {
-	char **fds;
+	char	**fds;
 
 	fds = NULL;
-	// printf("out = %s\n", out->content);
 	fds = malloc(sizeof(char *) * 3);
 	if (!fds)
 		return (NULL);
@@ -31,12 +30,12 @@ char **create_fd_tab(t_pars_node *inf, t_pars_node *out)
 	return (fds);
 }
 
-char **fill_fds(t_pars_node *cpy)
+char	**fill_fds(t_pars_node *cpy)
 {
-	t_pars_node *i;
-	t_pars_node *infile;
-	t_pars_node *outfile;
-	char **fds;
+	t_pars_node	*i;
+	t_pars_node	*infile;
+	t_pars_node	*outfile;
+	char		**fds;
 
 	infile = NULL;
 	outfile = NULL;
@@ -55,13 +54,13 @@ char **fill_fds(t_pars_node *cpy)
 	return (fds);
 }
 
-int inf_out_maestro(t_args *args, t_pars_list *l)
+int	inf_out_maestro(t_args *args, t_pars_list *l)
 {
 	t_pars_node	*i;
 	char		**fds_content;
 	int			in_out[2];
 
-	// gerer heredoc
+	fds_content = NULL;
 	in_out[0] = 0;
 	in_out[1] = 0;
 	i = l->head;
@@ -71,11 +70,11 @@ int inf_out_maestro(t_args *args, t_pars_list *l)
 		{
 			fds_content = fill_fds(i);
 			create_infiles_outfiles(args, in_out, i, fds_content);
-			// printf("infile = %d\n", i->fds[0]);
+			if (fds_content)
+				free_d_tab(fds_content);
+			fds_content = NULL;
 		}
 		i = i->next;
 	}
-	if (fds_content)
-		free_d_tab(fds_content);
 	return (1);
 }

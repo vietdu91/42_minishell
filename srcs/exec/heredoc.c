@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:53:09 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/13 02:37:48 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/26 00:22:14 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	fill_d_tab_heredoc(t_args *args, int size, char **eof)
 	if (!size)
 		return (0);
 	i = 0;
-	memset(&args->hdocs, 0, sizeof(args->hdocs));
+	ft_memset(&args->hdocs, 0, sizeof(args->hdocs));
 	args->hdocs = malloc(sizeof(char *) * (size + 1));
 	if (!args->hdocs)
 		return (-1);
@@ -52,3 +52,5 @@ int	fill_d_tab_heredoc(t_args *args, int size, char **eof)
 	args->hdocs[i] = NULL;
 	return (1);
 }
+
+		// printf("hdoc =	fill_d_tab_heredoc %s\n", args->hdocs[i]);

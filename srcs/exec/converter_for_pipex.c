@@ -3,65 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   converter_for_pipex.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:47:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/14 22:10:35 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/21 19:46:27 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	**init_env_tab(t_env_list *l)
+void	str_to_content(char *str, char *content, int *i, int *j)
 {
-	t_env	*node;
-	char	**env;
-	int		i;
-
-	node = l->head;
-	env = malloc(sizeof(char *) * (l->length + 1));
-	if (!env)
-		return (NULL);
-	i = 0;
-	while (node)
-	{
-		env[i] = ft_strdup(node->line);
-		if (!env[i])
-		{
-			malloc_failed(env, i);
-			return (NULL);
-		}
-		i++;
-		node = node->next;
-	}
-	env[i] = NULL;
-	return (env);
+	(*i)++;
+	while (str[*i] != '\"')
+		content[(*j)++] = str[(*i)++];
+	(*i)++;
 }
 
-char	**init_parse_to_tab(t_pars_list *l)
+char	*remove_quotes(char *str, char *content)
 {
-	int			i;
-	t_pars_node	*node;
-	char		**parse;
+	int		i;
+	int		j;
 
-	node = l->head;
-	parse = malloc(sizeof(char *) * (l->length + 1));
-	if (parse)
-		return (NULL);
 	i = 0;
-	while (node)
+	j = 0;
+	while (str[i])
 	{
-		parse[i] = ft_strdup(node->content);
-		if (!parse[i])
+		if (str[i] == '\"')
+			str_to_content(str, content, &i, &j);
+		else if (str[i] == '\'')
 		{
-			malloc_failed(parse, i);
-			return (NULL);
+			i++;
+			while (str[i] != '\'')
+				content[j++] = str[i++];
+			i++;
 		}
-		i++;
-		node = node->next;
+		else
+			content[j++] = str[i++];
 	}
-	parse[i] = NULL;
-	return (parse);
+	content[j] = 0;
+	return (content);
+}
+
+char	*remove_quotes_delimiters(char *str)
+{
+	int		size;
+	char	*content;
+
+	size = check_len_new_word(str);
+	content = malloc(sizeof(char) * (size + 1));
+	if (!content)
+		return (NULL);
+	content = remove_quotes(str, content);
+	return (content);
 }
 
 char	**delimiters_to_tab(t_pars_list *l, int size)
@@ -79,7 +73,7 @@ char	**delimiters_to_tab(t_pars_list *l, int size)
 	{
 		if (node->type == LIMITATOR)
 		{
-			delimiters[i] = ft_strdup(node->content);
+			delimiters[i] = ft_strdup(remove_quotes_delimiters(node->content));
 			if (!delimiters[i])
 			{
 				malloc_failed(delimiters, i);

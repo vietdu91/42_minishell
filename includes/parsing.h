@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 03:00:05 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/24 09:41:13 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ enum	e_type
 /*		||>		*/
 	WRONG_META, //20
 	OPTION, // 21
+	VAR, // 22
 };
 
 typedef struct s_pars_node
@@ -52,6 +53,7 @@ typedef struct s_pars_node
 	char				*content_exp_sans_q;
 	enum e_type			type;
 	int					*index_crypted;
+	int					len;
 	char				**cmds;
 	char				*path;
 	int					fds[2];
@@ -81,7 +83,6 @@ enum	e_var
 	HOME,
 	SHLVL,
 };
-/* maillons de la liste chainee */
 
 typedef struct s_env
 {
@@ -123,10 +124,12 @@ typedef struct s_args
 
 /*		CRYPTING_PARSER_QUOTES.C	*/
 
+void	delete_bool_quotes(int *i, char *str, int *quotes, char type_quote);
+int		prepare_crypt(int i, int *j, char *str, t_pars_node *parser);
 int		fill_crypt_tab(char *str, t_pars_node *parser);
 void	crypt_content(char *str, int size, t_pars_node *parser);
 void	decrypt_content(char *str, int size, t_pars_node *parser);
-int		encrypting(char *str, t_pars_node *parser);
+
 
 /*		EXPAND_PUT.C		*/
 
@@ -138,16 +141,20 @@ char	*check_put_content_of_expand(char *var, char *content, t_env *node);
 
 void	wid_with_dq(char **str, int len, t_pars_node *parser, \
 t_env_list *env);
-void	convert_expand_quotes(t_pars_node *parser);
 void	strjoin_c_content_exp(char **str, t_pars_node *parser);
 void	strjoin_content_exp(char **str, int len, t_pars_node *psr, \
 t_env_list *env);
+void	convert_expand_quotes(t_pars_node *parser);
 
-/*		EXPAND.C			*/
+/*		EXPAND_VARIABLE.C			*/
 
 void	count_the_len_of_variable(int *count, int *i, char *str);
 int		len_of_variable(char *str);
+void	found_variable(char **str);
 char	*check_variable(char **str, int len);
+
+/*		EXPAND.C			*/
+
 void	where_is_dollar(char **str, t_pars_node *parser, t_env_list *env);
 void	expand(char *str, t_pars_node *parser, t_env_list *env);
 
@@ -185,6 +192,7 @@ int		find_word(char **str, t_pars_list *parser);
 
 int		zap_spaces(char **line);
 int		parser(char **line, t_pars_list *psr, t_env_list *env, t_args *args);
+int		encrypting(char *str, t_pars_node *parser);
 int		parsing_maestro(t_args *args, char *line);
 
 #endif

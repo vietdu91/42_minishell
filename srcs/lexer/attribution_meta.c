@@ -6,15 +6,15 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/14 18:26:05 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/26 23:41:38 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
 int	attribution_metachar(t_pars_node *node)
 {
 	if (!ft_strcmp(node->content, "<"))
-
 		node->type = INPUT;
 	else if (!ft_strcmp(node->content, "<<"))
 		node->type = HEREDOC;
@@ -87,7 +87,8 @@ int	attribute_meta(t_pars_node *node)
 			return (0);
 		node->next->type = INFILE;
 	}
-	else if (!ft_strcmp(node->content, "<<") && apply_type(HEREDOC, node) && node->next)
+	else if (!ft_strcmp(node->content, "<<") && apply_type(HEREDOC, node) \
+	&& node->next)
 		norm_heredoc(node);
 	else if (!ft_strcmp(node->content, ">") && apply_type(OUTPUT, node) \
 	&& node->next != NULL)
@@ -109,11 +110,26 @@ int	attribute_meta(t_pars_node *node)
 int	logical_attribution(t_pars_list *l)
 {
 	t_pars_node	*i;
+	int 		file;
 
+	file = 0;
 	i = l->head;
 	while (i)
 	{
 		attribute_meta(i);
+		i = i->next;
+	}
+	i = l->head;
+	while (i)
+	{
+		if (i->type == PIPE)
+			file = 0;
+		if (i && (i->type == OUTFILE \
+			|| i->type == SUPER_OUTFILE))
+			file = 1;
+		if (file == 1 && i->content[0] == '-' && i->content[1] != 0)
+				i->type = OPTION;
+			// printf("OPTION HERE i->type = %d\n", i->type);
 		i = i->next;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/25 01:26:08 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/24 20:12:14 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_parsing_node(t_pars_node *node)
 	node->content_exp = NULL;
 	node->content_exp_sans_q = NULL;
 	node->type = 0;
+	node->len = 0;
 	node->index_crypted = 0;
 	node->cmds = NULL;
 	node->path = NULL;
@@ -52,6 +53,7 @@ t_pars_list	*list_end_parse(t_pars_list *list, char *content)
 		return (NULL);
 	init_parsing_node(node);
 	node->content = ft_strdup(content);
+	node->len = list->length;
 	node->next = NULL;
 	if (list->tail == NULL)
 	{
@@ -69,22 +71,51 @@ t_pars_list	*list_end_parse(t_pars_list *list, char *content)
 	return (list);
 }
 
+t_pars_list	*list_mid_parse(t_pars_list *list, t_pars_node *n, char *content)
+{
+	t_pars_node	*node;
+
+	if (!list || !n || !content)
+		return (NULL);
+	node = malloc(sizeof(t_pars_node));
+	if (!node)
+		return (NULL);
+	init_parsing_node(node);
+	node->content = ft_strdup(content);
+	if (n->next == NULL)
+	{
+		node->next = NULL;
+		list->tail = node;
+	}
+	else
+	{
+		node->next = n->next;
+		n->next->previous = node;
+	}
+	node->previous = n;
+	n->next = node;
+	list->length++;
+	return (list);
+}
+
 void	display_parsing(t_pars_list *parser)
 {
 	t_pars_node	*i;
+	int			j;
 
+	j = -1;
 	i = parser->head;
 	while (i)
 	{
 		if (i->type == CMD)
 		{
 			printf("Path = %s\n", i->path);
-			int j = -1;
 			while (i->cmds[++j])
 				printf("%s\n", i->cmds[j]);
 		}
 		printf("parsing = %s\n", i->content);
 		printf("len->content = %d\n", ft_strlen(i->content));
+		printf("id_node = %d\n", i->len);
 		printf("content_exp = %s\n", i->content_exp);
 		printf("content_exp_sans_quotes = %s\n", i->content_exp_sans_q);
 		printf("nw_content = %s\n", i->nw_content);
