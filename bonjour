@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 total 348
 -rw-r--r--  1 dyoula 2021_paris      0 Apr 28 23:07 bonjour
 -rw-r--r--  1 dyoula 2021_paris    964 Apr 28 15:49 cc.c
@@ -19,3 +20,21 @@ drwxr-xr-x 12 dyoula 2021_paris   4096 Apr 28 23:07 objs
 -rw-r--r--  1 dyoula 2021_paris   2915 Apr 28 15:49 README.md
 drwxr-xr-x 12 dyoula 2021_paris   4096 Apr 28 23:05 srcs
 -rw-r--r--  1 dyoula 2021_paris    391 Apr 28 15:49 test.c
+=======
+bonjour
+cc.c
+ERRORS
+includes
+inf
+koko
+lol
+Makefile
+minishell
+minishell_action.png
+minishell_img.png
+objs
+pwd
+README.md
+srcs
+test.c
+>>>>>>> 601f1ebfc4646039b1073d7d3a4246407c5d8989
