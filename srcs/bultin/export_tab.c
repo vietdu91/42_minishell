@@ -102,11 +102,16 @@ void	display_export(t_env_list *export)
 	current = export->head;
 	while (current)
 	{
-		printf("export %s", current->variable);
+		ft_putstr("export ", 1);
+		ft_putstr(current->variable, 1);
 		if (current->content)
 		{
 			if (ft_strcmp(current->content, "\0"))
-				printf("=\"%s\"", current->content);
+			{
+				ft_putstr("=\"", 1);
+				ft_putstr(current->content, 1);
+				ft_putstr("\"", 1);
+			}
 		}
 		printf("\n");
 		current = current->next;
