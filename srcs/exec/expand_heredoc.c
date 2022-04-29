@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:27:18 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/26 17:17:16 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/29 21:07:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	quotes_or_not(char *str)
 	i = -1;
 	while (str[++i])
 		if (is_quote(str[i]))
-			return (1);
+			return (-1);
 	return (0);
 }
 
@@ -60,24 +60,19 @@ char	*split_to_join(char **d_tab)
 	int		i;
 	int		j;
 	int		k;
-	
+
 	string = NULL;
-	cpy = ft_strdup("");
 	i = 0;
 	while (d_tab[i])
 	{
-		// printf("d_tab 0 : %s\n", d_tab[i]);
 		string = malloc(sizeof(char) * (ft_strlen(cpy) + ft_strlen(d_tab[i]) + 1));
 		j = 0;
 		while (cpy[j])
 			j++;
 		k = 0;
-		// printf("STRING 3 : %s\n", string);
 		while (d_tab[i][k])
 		{
 			string[j] = d_tab[i][k];
-			// printf("d_tab : %c\n", d_tab[i][k]);
-			// printf("lol : %c\n", string[j]);
 			j++;
 			k++;
 		}
@@ -109,7 +104,7 @@ int	modify_heredoc(char **hdoc, char **limitator, t_env_list *env)
 	{
 		j++;
 	}
-	if (quotes_or_not(*limitator))
+	if (quotes_or_not(*limitator) < 0)
 		return (-1);
 	j = 0;
 	d_tab = NULL;
