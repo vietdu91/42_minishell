@@ -6,48 +6,66 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:27:18 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/29 21:07:05 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/29 21:39:08 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+char	*strjoin_content_exp_hdoc(char **str, int len, char *flag, \
+t_env_list *env)
+{
+	char	*var;
+	char	*content;
+
+	var = NULL;
+	content = NULL;
+	var = check_variable(str, len);
+	content = put_content_of_expand(var, env);
+	flag = ft_strjoin(flag, content);
+	free(content);
+	free(var);
+	return (flag);
+}
+
 int	quotes_or_not(char *str)
 {
 	int	i;
 
+	// printf("STR : %s\n", str);
 	i = -1;
+	if (!str)
+		return (-1);
 	while (str[++i])
 		if (is_quote(str[i]))
-			return (-1);
+			return (1);
+	// printf("lol\n");
 	return (0);
 }
 
 char	*send_variable(char *line, t_env_list *env)
 {
-	char	*flag;
-	char	*var;
-	char	*content;
+	char	*cpy;
+	char	*flag; // variable a return
+	int		len;
+	int		i;
 
-	var = ft_strdup("");
-	content = ft_strdup("");
-	flag = ft_strdup("");
-	// printf("line : %s\n", line);
-	while (*line)
+	i = 0;
+	len = ft_strlen(line);
+	flag = NULL;
+	cpy = line;
+	while (*cpy)
 	{
-		if (line && *line == '$')
+		if (*cpy)
 		{
-			var = check_variable(&line, ft_strlen(line));
-			// printf("VAR : %s\n", var);
-			content = put_content_trim_of_expand(var, env);
-			// printf("CONTENT : %s\n", content);
-			flag = ft_strjoin(flag, content);
-			// printf("FLAG = %s\n", flag);
-			free(var);
-			free(content);
+			if (*cpy == '$')
+				flag = strjoin_content_exp_hdoc(&cpy, len, flag, env);
+			else
+			{
+				flag = ft_strjoin_one_c(flag, *cpy);
+				cpy++;
+			}
 		}
-		flag = ft_strjoin_one_c(flag, *line);
-		(line)++;
 	}
 	flag = ft_strjoin_one_c(flag, '\n');
 	return (flag);
@@ -63,29 +81,42 @@ char	*split_to_join(char **d_tab)
 
 	string = NULL;
 	i = 0;
+	k = 0;
 	while (d_tab[i])
 	{
-		string = malloc(sizeof(char) * (ft_strlen(cpy) + ft_strlen(d_tab[i]) + 1));
 		j = 0;
-		while (cpy[j])
-			j++;
+		while (d_tab[i][j++])
+		{
+			// printf("TOTAL : %d \n", k);
+			// printf("[i][j]%d\n", d_tab[i][j]);
+			k++;
+		}
+		i++;
+	}
+	string = malloc(sizeof(char) * (k + 1));
+	i = 0;
+	j = 0;
+	while (d_tab[i])
+	{
 		k = 0;
 		while (d_tab[i][k])
 		{
 			string[j] = d_tab[i][k];
+			// printf("d_tab : %c\n", d_tab[i][k]);
+			// printf("J : %d et String : %c\n", j, string[j]);
 			j++;
 			k++;
 		}
-		string[j] = '\0';
-		free(cpy);
-		cpy = ft_strdup(string);
-		free(string);
 		i++;
 	}
+		// printf("lol : %s\n", string);
+		string[j] = '\0';
+		cpy = ft_strdup(string);
+		free(string);
 	return (cpy);
 }
 
-int	modify_heredoc(char **hdoc, char **limitator, t_env_list *env)
+int	modify_heredoc(char **hdoc, char *limitator, t_env_list *env)
 {
 	// 1 splitter par les \n 
 	// checker chaque tab 
@@ -104,7 +135,7 @@ int	modify_heredoc(char **hdoc, char **limitator, t_env_list *env)
 	{
 		j++;
 	}
-	if (quotes_or_not(*limitator) < 0)
+	if (quotes_or_not(limitator))
 		return (-1);
 	j = 0;
 	d_tab = NULL;
@@ -116,9 +147,12 @@ int	modify_heredoc(char **hdoc, char **limitator, t_env_list *env)
 	while (d_tab[++i])
 	{
 		d_tab[i] = send_variable(d_tab[i], env);
-		// printf("DTAB[%d] : %s\n", i, d_tab[i]);
+		//printf("DTAB[%d] : %s\n", i, d_tab[i]);
 	}
+	hdoc[j] = NULL;
 	hdoc[j] = split_to_join(d_tab);
+	free_d_tab(d_tab);
+	d_tab = NULL;
 	// modifier strcmp 
 	return (0);
 }

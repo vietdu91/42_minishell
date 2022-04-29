@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_maestro.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/28 10:48:29 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/29 22:09:14 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,26 @@ void	split_meta(t_pars_list *l)
 	}
 }
 
+void	arg_attribution(t_pars_list *l)
+{
+	t_pars_node	*node;
+	int			cmds;
+
+	cmds = 0;
+	node = l->head;
+	while (node)
+	{
+		if (node->type == SUPER_OUTFILE || node->type == OUTFILE || node->type == HEREDOC \
+			|| node->type == LIMITATOR || node->type == INFILE)
+			cmds = 0;
+		if (cmds == 1 && node->type != OPTION)
+			node->type = SIMPLE_ARG;
+		if (node->type == CMD)
+			cmds = 1;
+		node = node->next;
+	}
+}
+
 // syntax error near unexpected token `<' trouver les token qui failent
 //  < > << >> ; | 
 // printf("args->next = %p", args->parser->tail);
@@ -101,6 +121,7 @@ int	lexer_maestro(t_args *args)
 	logical_attribution(args->parser);
 //	split_expand(args->parser, args->env);
 	cmd_attribution(args->parser);
+	arg_attribution(args->parser);
 	// node = args->parser->head;
 	// // while (node)
 	// // {
