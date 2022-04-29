@@ -98,9 +98,9 @@ int	exec_maestro(t_args *args)
 	l = args->parser;
 	args->env_tab = init_env_tab(args->env);
 	n_docs = count_heredoc(args->parser);
-	args->delimiters = delimiters_to_tab(args->parser, n_docs);
+	args->delimiters = delimiters_to_tab(args->parser, n_docs, args);
 	fill_d_tab_heredoc(args, n_docs, args->delimiters);
-	// modify_heredoc(args->hdocs, args->delimiters, args->env);
+	modify_heredoc(args->hdocs, args->del_for_split, args->env);
 	options_maestro(args, l);
 	path_maestro(args);
 	inf_out_maestro(args, l);

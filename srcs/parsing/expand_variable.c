@@ -78,7 +78,7 @@ char	*check_variable(char **str, int len)
 	i = 0;
 	j = 0;
 	var = NULL;
-	while (j++ < len)
+	while (**str && *str && j++ < len)
 	{
 		if (**str == '$')
 		{

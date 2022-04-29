@@ -52,5 +52,3 @@ int	fill_d_tab_heredoc(t_args *args, int size, char **eof)
 	args->hdocs[i] = NULL;
 	return (1);
 }
-
-		// printf("hdoc =	fill_d_tab_heredoc %s\n", args->hdocs[i]);

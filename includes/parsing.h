@@ -117,6 +117,7 @@ typedef struct s_args
 	char			**env_tab;
 	char			**hdocs;
 	char			**delimiters;
+	char			*del_for_split;
 	int				quote_parse;
 	int				nb_commands;
 	int				patience;

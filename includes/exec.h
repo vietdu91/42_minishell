@@ -47,7 +47,7 @@ int				cmd_is_path(char *array, t_pars_node *c);
 void			str_to_content(char *str, char *content, int *i, int *j);
 char			*remove_quotes(char *str, char *content);
 char			*remove_quotes_delimiters(char *str);
-char			**delimiters_to_tab(t_pars_list *l, int size);
+char			**delimiters_to_tab(t_pars_list *l, int size, t_args *args);
 char			**content_to_d_tab(int iter, int *index, t_pars_node *cpy);
 
 /*              DATA_EXEC.C             */
@@ -86,7 +86,7 @@ int				loop_execution(t_args *args, t_pars_list *l);
 int				quotes_or_not(char *str);
 char			*send_variable(char *line, t_env_list *env);
 char			*split_to_join(char **d_tab);
-int				modify_heredoc(char **hdoc, char **limitator, t_env_list *env);
+int				modify_heredoc(char **hdoc, char *limitator, t_env_list *env);
 
 /*				HEREDOC.C				*/
 
