@@ -38,6 +38,9 @@ void	reinit_in_out(int datas[5])
 
 int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 {
+	int		error;
+
+	error = 0;
 	// ft_putstr(cpy->content, 1);
 	delete_content_useless_infiles(args->parser);
 	// ft_putstr("Fin de commande builtin \n", 1);
@@ -47,11 +50,22 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 		{
 			// ft_putstr("Fin de commande exec\n", 2);
 			// ft_putstr("Fin de commande exec 2\n", 2);
-			if (execve(cpy->path, cpy->cmds, args->env_tab) == -1)
-			{
-				printf("ERRNO : %d\n", errno);
-				g_exit_status = errno;
-			}
+			// int i = 0;
+			// while (cpy->cmds[i])
+			// {
+			// 	printf("CMD %d : %s\n", i, cpy->cmds[i]);
+			// 	i++;
+			// }
+			execve(cpy->path, cpy->cmds, args->env_tab);
+			if (errno == 2)
+				error = 127;
+			if (errno == 13)
+				error = 126;
+			print_error(BASH, NULL, *cpy->cmds, strerror(errno));
+			ft_putchar('\n', 2);
+			g_exit_status = error ;
+			// printf("ERREUR %d\n", g_exit_status);
+			exit (error);
 		}
 	}
 	// free_all(args);
@@ -88,6 +102,7 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 			// printf("coucou1\n");
 			pid_zero_execution(i, args, datas[1]);
 			// printf("coucou2\n");
+		//	printf("ERREUR 2 %d\n", g_exit_status);
 			free_all(args);
 			exit (0);
 		}
@@ -100,6 +115,7 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 		pid_zero_execution(i, args, datas[1]);
 		//reinitialiser entree et sortie standard
 		// close_maestro();
+	//	printf("ERREUR 3 %d\n", g_exit_status);
 		reinit_in_out(datas);
 	}
 	// else if ( (!which_node(l, datas[0]) && datas[1] > 1))

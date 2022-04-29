@@ -29,7 +29,7 @@ void	display_env(t_pars_node *pars, t_env_list *env)
 	node = pars;
 	if (!env)
 		return ;
-	while (node)
+	while (node && (node->type == SIMPLE_ARG || node->type == OPTION))
 	{
 		if (node->type == OPTION)
 		{
