@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/30 17:50:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/30 17:58:29 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ void	arg_attribution(t_pars_list *l)
 	{
 		if (node->type != CMD && node->type != OPTION && node->type != SIMPLE_ARG)
 			cmds = 0;
-		if (cmds == 1 && node->type != OPTION)
+		if (cmds == 1 && node->type == EMPTY)
 			node->type = SIMPLE_ARG;
-		if (node->type == CMD)
+		if (node->type == CMD || node->type == PIPE)
 			cmds = 1;
 		node = node->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:43:25 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/26 21:52:24 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/30 18:04:10 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	count_options(t_pars_node *cpy)
 	if (!cpy->next)
 		return (i);
 	node = cpy->next;
-	while (node)
+	while (node && node->type != PIPE)
 	{
 		if ((node->type == OPTION || node->type == SIMPLE_ARG))
 			i++;
@@ -131,7 +131,7 @@ int	options_maestro(t_args *args, t_pars_list *l)
 
 	(void)args;
 	options = create_and_fill_options(l, count_cmds(l));
-	// printf("option[0] == %d\n", options[0]);
+	// printf("option[0] == %d\n", options[1]);
 	if (!options)
 		return (-1);
 	index = 0;
