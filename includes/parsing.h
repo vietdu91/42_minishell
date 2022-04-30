@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/24 09:41:13 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/29 22:41:10 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ int		prepare_crypt(int i, int *j, char *str, t_pars_node *parser);
 int		fill_crypt_tab(char *str, t_pars_node *parser);
 void	crypt_content(char *str, int size, t_pars_node *parser);
 void	decrypt_content(char *str, int size, t_pars_node *parser);
-
 
 /*		EXPAND_PUT.C		*/
 

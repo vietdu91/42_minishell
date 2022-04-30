@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/29 22:12:46 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/30 16:52:08 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	arg_attribution(t_pars_list *l)
 	while (node)
 	{
 		if (node->type == SUPER_OUTFILE || node->type == OUTFILE || node->type == HEREDOC \
-			|| node->type == LIMITATOR || node->type == INFILE)
+			|| node->type == LIMITATOR || node->type == INFILE || node->type == PIPE)
 			cmds = 0;
 		if (cmds == 1 && node->type != OPTION)
 			node->type = SIMPLE_ARG;
