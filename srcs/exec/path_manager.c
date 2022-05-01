@@ -49,14 +49,24 @@ void	if_no_cmd_is_path(char *path, char **to_try, t_pars_node *node)
 		node->path = NULL;
 		if (is_builtin(node) && !is_special(node->content_exp_sans_q[0]))
 		{
-			print_error(BASH, NULL, node->content_exp_sans_q, ERR_CMD);
-			g_exit_status = 127;
+			if (is_a_directory(node->content_exp_sans_q))
+			{
+				print_error(BASH, NULL, node->content_exp_sans_q, ERR_IS_DIR);				
+				g_exit_status = 126;
+			}
+			else
+			{
+				print_error(BASH, NULL, node->content_exp_sans_q, ERR_CMD);
+				g_exit_status = 127;
+			}
 		}
 		else if (!ft_strcmp("!", node->content_exp_sans_q))
 			g_exit_status = 1;
 	}
 	else
+	{
 		node->path = ft_strdup(path);
+	}
 }
 
 int	path_maestro(t_args *args)
@@ -75,7 +85,7 @@ int	path_maestro(t_args *args)
 		if (node->type == CMD)
 		{
 			to_try = check_errors(line_with_path, node->cmds[0]);
-			if (!cmd_is_path(node->content, node))
+			if (!cmd_is_path(node->content_exp_sans_q, node))
 				if_no_cmd_is_path(path, to_try, node);
 			free_d_tab(to_try);
 			to_try = NULL;

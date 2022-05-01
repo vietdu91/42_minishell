@@ -57,9 +57,9 @@ void	loop(t_args *args)
 			{
 				parsing_maestro(args, args->buffer);
 				//display_parsing(args->parser);
-				lexer_maestro(args);
+				if (!lexer_maestro(args))
+					exec_maestro(args);
 				//display_parsing(args->parser);
-				exec_maestro(args);
 			}
 			add_history(args->buffer);
 		}

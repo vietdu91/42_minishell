@@ -12,27 +12,23 @@
 
 #include "../../includes/minishell.h"
 
-// node = args->parser->head;
-// if (!ft_strcmp(node->content, "||"))
-// 	print_syntax_error(ERR_TOKEN, "||");
-// else if (!ft_strcmp(node->content, "|"))
-// 	print_syntax_error(ERR_TOKEN, "|");
-
 int	syntax_error_meta(t_args *args)
 {
 	t_pars_node	*i;
 
 	i = args->parser->head;
+	if (check_enum(i->type))
+		return (print_syntax_error_meta(i->content_exp_sans_q));
 	while (i && i->next)
 	{
-		if (check_enum(i->type) && check_enum(i->next->type))
-		{
-			print_syntax_error(ERR_TOKEN, i->next->content);
-			g_exit_status = 2;
-			return (-1);
-		}
+		if (i->type == WRONG_META)
+			return (print_syntax_error_meta(i->content_exp_sans_q));
+		else if (check_enum(i->type) && check_enum(i->next->type))
+			return (print_syntax_error_meta(i->next->content_exp_sans_q));
 		i = i->next;
 	}
+	if (check_enum(i->type))
+		return (print_syntax_error_meta(i->content_exp_sans_q));
 	return (1);
 }
 
@@ -115,12 +111,12 @@ int	lexer_maestro(t_args *args)
 
 	if (!args->parser)
 		return (0);
-	split_meta(args->parser);
-	split_meta(args->parser);
+//	split_meta(args->parser);
+//	split_meta(args->parser);
 	logical_attribution(args->parser);
 //	split_expand(args->parser, args->env);
 	cmd_attribution(args->parser);
-	arg_attribution(args->parser); // if bug search here 
+//	arg_attribution(args->parser); // if bug search here 
 	// node = args->parser->head;
 	// // while (node)
 	// // {
@@ -135,7 +131,7 @@ int	lexer_maestro(t_args *args)
 	// 	g_exit_status = 126;
 	// 	return (-1);
 	// }
-	if (syntax_error_meta(args) < -1 || forbidden_token(args->parser))
+	if (syntax_error_meta(args) < 0 || forbidden_token(args->parser))
 		return (-1);
 	return (0);
 }

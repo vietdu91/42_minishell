@@ -15,7 +15,7 @@
 void	count_the_len_of_variable(int *count, int *i, char *str)
 {
 	if (str[*i + 1] == '$' || str[*i + 1] == '\0' || is_quote(str[*i + 1]) \
-	|| !is_alphanum(str[*i + 1]))
+	|| (!is_alphanum(str[*i + 1]) && str[*i + 1] != '_'))
 	{
 		(*count)++;
 		if (str[*i + 1] != '\0')
@@ -63,7 +63,8 @@ void	found_variable(char **str)
 	if (*(*str + 1) == '?')
 		(*str)++;
 	else if (*(*str + 1) != '$' && ft_strcmp("$", *str) \
-	&& !is_quote(*(*str + 1)) && (is_alphanum(*(*str + 1)) == 1))
+	&& !is_quote(*(*str + 1)) && ((is_alphanum(*(*str + 1)) == 1)
+	|| *(*str + 1) == '_'))
 		(*str)++;
 	else if (is_quote(*(*str + 1)) && is_quote(*(*str + 2)))
 		(*str)++;
