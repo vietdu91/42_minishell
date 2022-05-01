@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/30 17:58:29 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/01 14:21:55 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	lexer_maestro(t_args *args)
 	// // }
 	// if (is_a_directory(args->parser->head->content_exp_sans_q))
 	// {
-	// 	print_error(BASH, NULL, \
+	// 	print_error(BASH, NULL, 
 	// 	args->parser->head->content_exp_sans_q, ERR_IS_DIR);
 	// 	g_exit_status = 126;
 	// 	return (-1);

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/26 17:35:11 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/01 14:36:20 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**fill_fds(t_pars_node *cpy)
 			outfile = i;
 		i = i->next;
 	}
-	fds = create_fd_tab(infile, outfile);
+	fds = create_fd_tab(infile, outfile); // char **
 	return (fds);
 }
 
@@ -68,7 +68,7 @@ int	inf_out_maestro(t_args *args, t_pars_list *l)
 	{
 		if (i->type == CMD)
 		{
-			fds_content = fill_fds(i);
+			fds_content = fill_fds(i); /// char **
 			create_infiles_outfiles(args, in_out, i, fds_content);
 			if (fds_content)
 				free_d_tab(fds_content);

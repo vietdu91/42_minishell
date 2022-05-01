@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:27:18 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/29 21:39:08 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/01 14:21:39 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	*send_variable(char *line, t_env_list *env)
 	len = ft_strlen(line);
 	flag = NULL;
 	cpy = line;
+	(void)i;
 	while (*cpy)
 	{
 		if (*cpy)
