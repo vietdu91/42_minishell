@@ -17,6 +17,8 @@ int	syntax_error_meta(t_args *args)
 	t_pars_node	*i;
 
 	i = args->parser->head;
+	if (!i)
+		return (-1);
 	if (check_enum(i->type))
 		return (print_syntax_error_meta(i->content_exp_sans_q));
 	while (i && i->next)
@@ -32,17 +34,19 @@ int	syntax_error_meta(t_args *args)
 	return (1);
 }
 
-void	cmd_or_option_or_arg(t_pars_node *i, int cmd)
+void	cmd_or_option_or_arg(t_pars_node *i, int *cmd)
 {
 	if (i->previous && i->previous->type == CMD)
-		cmd = 1;
+		*cmd = 1;
+	//printf("cmd vaut 1 : %d\n", cmd);
 	if (i->type >= SIMPLE_ARG && i->type < OPTION)
-		cmd = 0;
+		*cmd = 0;
 	if (i->previous && (i->previous->type == CMD \
 	|| i->previous->type == OPTION) && i->content[0] == '-' \
 		&& i->content[1] != 0)
 		i->type = OPTION;
-	if (i->type != OPTION && cmd == 1)
+	//printf("cmd vaut 2 : %d\n", cmd);
+	if (i->type != OPTION && *cmd == 1)
 		i->type = SIMPLE_ARG;
 }
 
@@ -62,7 +66,9 @@ void	cmd_attribution(t_pars_list *l)
 	i = i->next;
 	while (i)
 	{
-		cmd_or_option_or_arg(i, cmd);
+	//	printf("CMD INITIAL : %d\n",cmd);
+		cmd_or_option_or_arg(i, &cmd);
+	//	printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		i = i->next;
 	}
 }
