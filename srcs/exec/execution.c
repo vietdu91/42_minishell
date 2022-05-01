@@ -103,8 +103,6 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 			pid_zero_execution(i, args, datas[1]);
 			// printf("coucou2\n");
 			//printf("ERREUR 2 %d\n", g_exit_status);
-		//	signal(SIGINT, &signal_ctlr_c);
-		//	signal(SIGQUIT, SIG_IGN);
 			free_all(args);
 			exit (g_exit_status);
 		}
@@ -133,8 +131,12 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 			datas[2] = l->pipe[0];
 			close(l->pipe[1]);
 		}
+		ignore_signals();
 		if ((0 < waitpid(0, &status, 0) && (WIFEXITED(status))))
 			g_exit_status = WEXITSTATUS(status);
+		if (WIFSIGNALED(status))
+			handle_status(WTERMSIG(status));
+		recover_signals();
 		// ft_putstr("hehehe\n", 2);
 	}
 	return (0);
