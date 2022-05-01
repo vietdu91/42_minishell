@@ -14,11 +14,11 @@
 
 int	check_enum(int n)
 {
-	const int	meta[] = {11, 13, 15, 17};
+	const int	meta[] = {6, 11, 13, 15, 17, 20};
 	int			i;
 
 	i = -1;
-	while (++i < 4)
+	while (++i < 6)
 		if (meta[i] == n)
 			return (1);
 	return (0);

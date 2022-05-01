@@ -28,16 +28,25 @@ int	is_special(char c)
 
 int	is_a_directory(char *str)
 {
-	int	a;
+	DIR	*fd;
 
-	a = -1;
-	// printf("STR : %s\n", str);
-	if (str[0] == '\0')
-		return (0);
-	while (str[++a] != '\0')
+	fd = opendir(str);
+	if (fd || errno == 13)
 	{
-		if (str[a] != '.' && str[a] != '/')
-			return (0);
+		if (fd)
+			closedir(fd);
+		return (1);
 	}
-	return (1);
+	return (0);
+}
+
+int	is_a_special_directory(char *str)
+{
+	int ret;
+
+	ret = 0;
+	ret = chdir(str);
+	if (!ret)
+		return (1);
+	return (0);
 }

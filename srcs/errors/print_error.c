@@ -30,8 +30,15 @@ void	intersection_of_errors(int a, t_args *args)
 
 void	print_syntax_error(char *msg_error, char *sign)
 {
+	int	i;
+
+	i = 0;
 	ft_putstr(msg_error, 2);
-	ft_putstr(sign, 2);
+	while (sign[i] && i < 2)
+	{
+		ft_putchar(sign[i], 2);
+		i++;
+	}
 	ft_putstr("'\n", 2);
 }
 

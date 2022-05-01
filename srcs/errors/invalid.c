@@ -23,3 +23,9 @@ void	invalid_option(t_pars_node *node, char *cmd)
 	free(option);
 }
 
+int	print_syntax_error_meta(char *sign)
+{
+	print_syntax_error(ERR_TOKEN, sign);
+	g_exit_status = 2;
+	return (-1);
+}

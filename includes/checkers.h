@@ -17,7 +17,7 @@
 # define LOW_ALPHA "abcdefghijklmnopqrstuvwxyz"
 # define UPP_ALPHA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # define SPACES " \f\r\t\v" // newline non inlus
-# define METACHAR "|&<>*"
+# define METACHAR "|&<>"
 # define FORBIDDEN_TOKENS "< > << >> ; |"
 # define SPECIAL ":#!"
 
@@ -60,5 +60,6 @@ int	type_meta(int type);
 
 int	is_special(char c);
 int	is_a_directory(char *str);
+int	is_a_special_directory(char *str);
 
 #endif
