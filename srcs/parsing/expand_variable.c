@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 17:34:31 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 19:55:44 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:00:48 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*check_variable(char **str, int len)
 	i = 0;
 	j = 0;
 	var = NULL;
-	while (j++ < len)
+	while (**str && *str && j++ < len)
 	{
 		if (**str == '$')
 		{

@@ -48,6 +48,7 @@ void	init_and_set_all(t_args *args, char **envp)
 	args->env_tab = NULL;
 	args->hdocs = NULL;
 	args->delimiters = NULL;
+	args->del_for_split = NULL;
 	init_struct(args);
 	set_all(args, envp);
 }

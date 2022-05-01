@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_trim.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 14:04:58 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/11 17:54:13 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:06:30 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ t_env_list *env)
 {
 	char	*var;
 	char	*content;
-
 	var = NULL;
 	content = NULL;
 	var = check_variable(str, len);

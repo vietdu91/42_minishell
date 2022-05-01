@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:12:23 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/15 18:14:15 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:59:04 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_env	*find_previous_node(t_env_list *env, char *var)
 	{
 		tmp = node;
 		node = node->next;
+		if (node == NULL)
+			return (NULL);
 		if (!ft_strcmp(node->variable, var))
 			return (tmp);
 	}
@@ -50,6 +52,8 @@ void	delete_var_list(t_env_list *env, char *var)
 			}
 			node = previous->next;
 			previous->next = previous->next->next;
+			if (previous->next == NULL)
+				env->tail = previous;
 			free_env_node(node);
 			return ;
 		}
@@ -78,17 +82,23 @@ int	check_id_unset(char *str)
 void	unset_main(t_args *args, t_pars_node *parser)
 {
 	t_pars_node	*node;
+	bool		error;
 
 	node = parser->next;
-	while (node)
+	error = FALSE;
+	while (node && (node->type == SIMPLE_ARG || node->type == OPTION))
 	{
 		if (node->type == OPTION)
+		{
 			invalid_option(node, CMD_UNSET);
+			error = TRUE;
+		}
 		else if (check_id_unset(node->content_exp_sans_q))
 		{
 			print_error_w_quote(BASH, CMD_UNSET, node->content_exp_sans_q, \
 			ERR_ID);
 			g_exit_status = 1;
+			error = TRUE;
 		}
 		else
 		{
@@ -97,4 +107,6 @@ void	unset_main(t_args *args, t_pars_node *parser)
 		}
 		node = node->next;
 	}
+	if (error == FALSE)
+		g_exit_status = 0;
 }

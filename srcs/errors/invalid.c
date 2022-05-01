@@ -23,11 +23,3 @@ void	invalid_option(t_pars_node *node, char *cmd)
 	free(option);
 }
 
-int	get_error_code(void)
-{
-	if (errno == 2)
-		return (127);
-	if (errno == 13)
-		return (126);
-	return (1);
-}

@@ -1,9 +1,10 @@
-on entre dans le exec builtin
+bonjour
 cc.c
 ERRORS
 includes
 inf
 koko
+l
 lo
 lol
 Makefile
@@ -11,6 +12,7 @@ minishell
 minishell_action.png
 minishell_img.png
 objs
+po
 prout
 pwd
 README.md

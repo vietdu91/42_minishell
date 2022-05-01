@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_maestro.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/25 17:19:08 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/01 14:21:55 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,25 @@ void	split_meta(t_pars_list *l)
 	}
 }
 
+void	arg_attribution(t_pars_list *l)
+{
+	t_pars_node	*node;
+	int			cmds;
+
+	cmds = 0;
+	node = l->head;
+	while (node)
+	{
+		if (node->type != CMD && node->type != OPTION && node->type != SIMPLE_ARG)
+			cmds = 0;
+		if (cmds == 1 && node->type == EMPTY)
+			node->type = SIMPLE_ARG;
+		if (node->type == CMD || node->type == PIPE)
+			cmds = 1;
+		node = node->next;
+	}
+}
+
 // syntax error near unexpected token `<' trouver les token qui failent
 //  < > << >> ; | 
 // printf("args->next = %p", args->parser->tail);
@@ -101,6 +120,7 @@ int	lexer_maestro(t_args *args)
 	logical_attribution(args->parser);
 //	split_expand(args->parser, args->env);
 	cmd_attribution(args->parser);
+	arg_attribution(args->parser); // if bug search here 
 	// node = args->parser->head;
 	// // while (node)
 	// // {
@@ -108,13 +128,13 @@ int	lexer_maestro(t_args *args)
 	// // 	// printf("TYPE : %d\n\n", node->type);
 	// // 	node = node->next;
 	// // }
-	if (is_a_directory(args->parser->head->content_exp_sans_q))
-	{
-		print_error(BASH, NULL, \
-		args->parser->head->content_exp_sans_q, ERR_IS_DIR);
-		g_exit_status = 126;
-		return (-1);
-	}
+	// if (is_a_directory(args->parser->head->content_exp_sans_q))
+	// {
+	// 	print_error(BASH, NULL, 
+	// 	args->parser->head->content_exp_sans_q, ERR_IS_DIR);
+	// 	g_exit_status = 126;
+	// 	return (-1);
+	// }
 	if (syntax_error_meta(args) < -1 || forbidden_token(args->parser))
 		return (-1);
 	return (0);

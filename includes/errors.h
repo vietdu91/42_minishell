@@ -45,6 +45,5 @@ void	print_error_w_quote(char *sys, char *cmd, char *arg, char *error);
 /*		INVALID_OPTION.C	*/
 
 void	invalid_option(t_pars_node *node, char *cmd);
-int		get_error_code(void);
 
 #endif

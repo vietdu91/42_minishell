@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_change.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:26:54 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 14:59:28 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:34:37 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	update_env(char *pwd, char *oldpwd, t_args *args)
 	}
 	if (oldpwd)
 	{
-		printf("OLDPWD : %s\n", oldpwd);
+//		printf("OLDPWD : %s\n", oldpwd);
 		change_oldpwd_env(oldpwd, args->env);
 		change_oldpwd_export(oldpwd, args->export);
 	}
 	if (pwd && find_content_in_env("PWD", args->env))
 	{
-		printf("PWD : %s\n", pwd);
+//		printf("PWD : %s\n", pwd);
 		change_pwd_env(pwd, args->env);
 		change_pwd_export(pwd, args->export);
 	}
@@ -56,12 +56,16 @@ void	change_pwd_env(char *newpwd, t_env_list *env)
 		{
 			free(node->content);
 			node->content = ft_strdup(newpwd);
+			free(node->content_trim);
+			node->content_trim = set_content_trim_env(node->content, ' ');
+			node->content_trim = remove_interior_spaces(node->content_trim);
 			free(node->line);
 			node->line = ft_strjoin(pwd, newpwd);
 			return ;
 		}
 		node = node->next;
 	}
+	free(pwd);
 }
 
 void	change_oldpwd_env(char *newpwd, t_env_list *env)
@@ -80,12 +84,16 @@ void	change_oldpwd_env(char *newpwd, t_env_list *env)
 		{
 			free(node->content);
 			node->content = ft_strdup(newpwd);
+			free(node->content_trim);
+			node->content_trim = set_content_trim_env(node->content, ' ');
+			node->content_trim = remove_interior_spaces(node->content_trim);
 			free(node->line);
 			node->line = ft_strjoin(oldpwd, newpwd);
 			return ;
 		}
 		node = node->next;
 	}
+	free(oldpwd);
 }
 
 void	change_pwd_export(char *newpwd, t_env_list *export)
@@ -104,12 +112,16 @@ void	change_pwd_export(char *newpwd, t_env_list *export)
 		{
 			free(node->content);
 			node->content = ft_strdup(newpwd);
+			free(node->content_trim);
+			node->content_trim = set_content_trim_env(node->content, ' ');
+			node->content_trim = remove_interior_spaces(node->content_trim);
 			free(node->line);
 			node->line = ft_strjoin(pwd, newpwd);
 			return ;
 		}
 		node = node->next;
 	}
+	free(pwd);
 }
 
 void	change_oldpwd_export(char *newpwd, t_env_list *export)
@@ -128,10 +140,14 @@ void	change_oldpwd_export(char *newpwd, t_env_list *export)
 		{
 			free(node->content);
 			node->content = ft_strdup(newpwd);
+			free(node->content_trim);
+			node->content_trim = set_content_trim_env(node->content, ' ');
+			node->content_trim = remove_interior_spaces(node->content_trim);
 			free(node->line);
 			node->line = ft_strjoin(oldpwd, newpwd);
 			return ;
 		}
 		node = node->next;
 	}
+	free(oldpwd);
 }

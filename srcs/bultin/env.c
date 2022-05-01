@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/25 10:52:39 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/26 18:32:57 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_env(t_env *current)
 {
-	if (ft_strcmp(current->content, "\0"))
+	if (ft_strcmp(current->line, "\0"))
 	{
 		ft_putstr(current->line, STDOUT_FILENO);
 		ft_putstr("\n", STDOUT_FILENO);
@@ -29,7 +29,7 @@ void	display_env(t_pars_node *pars, t_env_list *env)
 	node = pars;
 	if (!env)
 		return ;
-	while (node)
+	while (node && (node->type == SIMPLE_ARG || node->type == OPTION))
 	{
 		if (node->type == OPTION)
 		{

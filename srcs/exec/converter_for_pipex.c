@@ -58,7 +58,7 @@ char	*remove_quotes_delimiters(char *str)
 	return (content);
 }
 
-char	**delimiters_to_tab(t_pars_list *l, int size)
+char	**delimiters_to_tab(t_pars_list *l, int size, t_args *args)
 {
 	int			i;
 	t_pars_node	*node;
@@ -73,6 +73,7 @@ char	**delimiters_to_tab(t_pars_list *l, int size)
 	{
 		if (node->type == LIMITATOR)
 		{
+			args->del_for_split = node->content;
 			delimiters[i] = ft_strdup(remove_quotes_delimiters(node->content));
 			if (!delimiters[i])
 			{

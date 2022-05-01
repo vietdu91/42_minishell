@@ -6,17 +6,11 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/26 14:54:25 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/01 14:20:58 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-// int	join_heredoc(char **heredoc, char *txt, char *del)
-// {
-
-// 	return (0);
-// }
 
 int	read_heredoc(char **heredoc, char *del)
 {
@@ -34,14 +28,12 @@ int	read_heredoc(char **heredoc, char *del)
 		txt = ft_strjoin(txt, buf);
 		if (strchr(txt, '\n'))
 		{
-			if (ft_strncmp(txt, del, ft_strlen(txt) - 1) == 0)
+			if (!ft_strncmp(txt, del, (ft_strlen(txt) + 1)))
 			{
 				free(txt);
 				return (1);
 			}
-			// printf("join heredoc = %s\n", *heredoc);
 			*heredoc = ft_strjoin(*heredoc, txt);
-			// printf("join heredoc = %s\n", *heredoc);
 			if (!(*heredoc))
 				return (0);
 			free(txt);
@@ -98,9 +90,9 @@ int	exec_maestro(t_args *args)
 	l = args->parser;
 	args->env_tab = init_env_tab(args->env);
 	n_docs = count_heredoc(args->parser);
-	args->delimiters = delimiters_to_tab(args->parser, n_docs);
+	args->delimiters = delimiters_to_tab(args->parser, n_docs, args);
 	fill_d_tab_heredoc(args, n_docs, args->delimiters);
-	// modify_heredoc(args->hdocs, args->delimiters, args->env);
+	modify_heredoc(args->hdocs, args->del_for_split, args->env);
 	options_maestro(args, l);
 	path_maestro(args);
 	inf_out_maestro(args, l);
