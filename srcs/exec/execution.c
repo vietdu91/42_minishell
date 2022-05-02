@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/25 14:11:38 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/02 13:37:09 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,10 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 				error = 126;
 			print_error(BASH, NULL, *cpy->cmds, strerror(errno));
 			ft_putchar('\n', 2);
-			g_exit_status = error ;
-			// printf("ERREUR %d\n", g_exit_status);
+			free_all(args);
 			exit (error);
 		}
 	}
-	// free_all(args);
 	// exit(0);
 	return (0);
 }
@@ -77,8 +75,10 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 	t_args *args)
 {
 	int			pid;
+	int			status;
 
 	pid = 0;
+	status = 0;
 	if (datas[1] > 1)
 	{
 		if (pipe(l->pipe) < 0)
@@ -99,18 +99,17 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 		if (pid == 0)
 		{
 			dup_maestro(datas, l, i);
-			// printf("coucou1\n");
+			//printf("coucou1\n");
 			pid_zero_execution(i, args, datas[1]);
 			// printf("coucou2\n");
-		//	printf("ERREUR 2 %d\n", g_exit_status);
+			//printf("ERREUR 2 %d\n", g_exit_status);
 			free_all(args);
-			exit (0);
+			exit (g_exit_status);
 		}
 		// return (0);
 	}
 	else
 	{
-		// printf("yo\n");
 		dup_maestro(datas, l, i);
 		pid_zero_execution(i, args, datas[1]);
 		//reinitialiser entree et sortie standard
@@ -132,7 +131,12 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 			datas[2] = l->pipe[0];
 			close(l->pipe[1]);
 		}
-		waitpid(0, NULL, 0);
+		ignore_signals();
+		if ((0 < waitpid(0, &status, 0) && (WIFEXITED(status))))
+			g_exit_status = WEXITSTATUS(status);
+		if (WIFSIGNALED(status))
+			handle_status(WTERMSIG(status));
+		recover_signals();
 		// ft_putstr("hehehe\n", 2);
 	}
 	return (0);

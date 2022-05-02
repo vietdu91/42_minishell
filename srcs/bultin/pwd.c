@@ -12,6 +12,14 @@
 
 #include "../../includes/minishell.h"
 
+void	error_because_lost_dir_pwd(char *pwd)
+{
+	ft_putstr("pwd: error retrieving current directory: ", 2);
+	ft_putstr("getcwd: cannot access parent directories: ", 2);
+	perror(pwd);
+	g_exit_status = 1;
+}
+
 void	pwd_main(t_pars_node *parser, t_args *args)
 {
 	t_pars_node	*node;
@@ -25,11 +33,12 @@ void	pwd_main(t_pars_node *parser, t_args *args)
 	}
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
+	{
+		error_because_lost_dir_pwd(pwd);
 		return ;
-	// printf("stdin  = %d\n", STDOUT_FILENO);
+	}
 	ft_putstr(pwd, STDOUT_FILENO);
 	ft_putchar('\n', STDOUT_FILENO);
-	// printf("hola pwd \n");
 	change_pwd_env(pwd, args->env);
 	change_pwd_export(pwd, args->export);
 	g_exit_status = 0;

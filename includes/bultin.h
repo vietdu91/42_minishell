@@ -100,6 +100,7 @@ t_env_list *env);
 
 /*		PWD.C		*/
 
+void    	error_because_lost_dir_pwd(char *pwd);
 void		pwd_main(t_pars_node *parser, t_args *args);
 
 /*				PWD_CHANGE.C		*/

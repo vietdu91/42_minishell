@@ -17,7 +17,7 @@ void	wid_with_dq(char **str, int len, t_pars_node *parser, t_env_list *env)
 	strjoin_c_content_exp(str, parser);
 	while (**str != '\"')
 	{
-		if (**str == '$' && *(*str + 1) != '"')
+		if (**str == '$' && (*(*str + 1) != '"' && is_alphanum(*(*str + 1))))
 			strjoin_content_exp(str, len, parser, env);
 		else
 			strjoin_c_content_exp(str, parser);

@@ -40,3 +40,23 @@ SEGFAULT sur lexer quand il y a des metas espaces a la suite : < < < < <
 +++++
 
 lexer considere "exit -666" que le -666 est une option (type 20) alors que cela ne devrait pas
+
+
+void	cmd_or_option_or_arg(t_pars_node *i, int *cmd)
+{
+	if (i->previous && i->previous->type == CMD)
+		*cmd = 1;
+	printf("cmd vaut 1 : %d\n", *cmd);
+	if (*cmd == 0 && i->type == EMPTY)
+		i->type = CMD;
+	if (i->previous && (i->previous->type == CMD \
+	|| i->previous->type == OPTION) && i->content[0] == '-' \
+		&& i->content[1] != 0)
+		i->type = OPTION;
+	if (i->type == EMPTY && *cmd == 1)
+		i->type = SIMPLE_ARG;
+	printf("cmd vaut 2 : %d\n", *cmd);
+	//if (i->type >= SIMPLE_ARG && i->type < OPTION)
+	if (i->type == PIPE)
+		*cmd = 0;
+}

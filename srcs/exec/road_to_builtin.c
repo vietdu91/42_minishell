@@ -6,7 +6,11 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/04/30 20:29:11 by dyoula           ###   ########.fr       */
+=======
+/*   Updated: 2022/05/02 13:36:43 by emtran           ###   ########.fr       */
+>>>>>>> 0468e16501ba3bec7e5ef723fc55cca8389e47c5
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +74,7 @@ int	return_or_exit(int n)
 	}
 	else
 	{
-		// ft_putstr("je suis le traitre\n", 1);
+		//ft_putstr("je suis le traitre\n", 1);
 		exit(0);
 	}
 	return (0);

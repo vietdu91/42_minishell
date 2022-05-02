@@ -3,52 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_maestro.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/04/30 20:27:44 by dyoula           ###   ########.fr       */
+=======
+/*   Updated: 2022/05/02 15:09:54 by emtran           ###   ########.fr       */
+>>>>>>> 0468e16501ba3bec7e5ef723fc55cca8389e47c5
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-// node = args->parser->head;
-// if (!ft_strcmp(node->content, "||"))
-// 	print_syntax_error(ERR_TOKEN, "||");
-// else if (!ft_strcmp(node->content, "|"))
-// 	print_syntax_error(ERR_TOKEN, "|");
 
 int	syntax_error_meta(t_args *args)
 {
 	t_pars_node	*i;
 
 	i = args->parser->head;
+	if (!i)
+		return (-1);
+	if (is_pipe_or_wrong(i->type))
+		return (print_syntax_error_meta(i->content_exp_sans_q));
 	while (i && i->next)
 	{
-		if (check_enum(i->type) && check_enum(i->next->type))
-		{
-			print_syntax_error(ERR_TOKEN, i->next->content);
-			g_exit_status = 2;
-			return (-1);
-		}
+		if (i->type == WRONG_META)
+			return (print_syntax_error_meta(i->content_exp_sans_q));
+		else if (check_enum(i->type) && check_enum(i->next->type))
+			return (print_syntax_error_meta(i->next->content_exp_sans_q));
 		i = i->next;
 	}
+	if (check_enum(i->type))
+		return (print_syntax_error_meta(i->content_exp_sans_q));
 	return (1);
 }
 
-void	cmd_or_option_or_arg(t_pars_node *i, int cmd)
+void	cmd_or_option_or_arg(t_pars_node *i, int *cmd)
 {
 	if (i->previous && i->previous->type == CMD)
-		cmd = 1;
+		*cmd = 1;
+	//printf("cmd vaut 1 : %d\n", cmd);
 	if (i->type >= SIMPLE_ARG && i->type < OPTION)
-		cmd = 0;
+		*cmd = 0;
 	if (i->previous && (i->previous->type == CMD \
 	|| i->previous->type == OPTION) && i->content[0] == '-' \
 		&& i->content[1] != 0)
 		i->type = OPTION;
-	if (i->type != OPTION && cmd == 1)
+	//printf("cmd vaut 2 : %d\n", cmd);
+	if (i->type != OPTION && *cmd == 1)
 		i->type = SIMPLE_ARG;
 }
+
+// void	cmd_or_option_or_arg(t_pars_node *i, int *cmd)
+// {
+// 	if (i->previous && i->previous->type == CMD)
+// 		*cmd = 1;
+// 	printf("cmd vaut 1 : %d\n", *cmd);
+// 	if (*cmd == 0 && i->type == EMPTY)
+// 		i->type = CMD;
+// 	if (i->previous && (i->previous->type == CMD \
+// 	|| i->previous->type == OPTION) && i->content[0] == '-' \
+// 		&& i->content[1] != 0)
+// 		i->type = OPTION;
+// 	if (i->type == EMPTY && *cmd == 1)
+// 		i->type = SIMPLE_ARG;
+// 	printf("cmd vaut 2 : %d\n", *cmd);
+// 	//if (i->type >= SIMPLE_ARG && i->type < OPTION)
+// 	if (i->type == PIPE)
+// 		*cmd = 0;
+// }
 
 void	cmd_attribution(t_pars_list *l)
 {
@@ -66,7 +89,9 @@ void	cmd_attribution(t_pars_list *l)
 	i = i->next;
 	while (i)
 	{
-		cmd_or_option_or_arg(i, cmd);
+	//	printf("CMD INITIAL : %d\n",cmd);
+		cmd_or_option_or_arg(i, &cmd);
+	//	printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		i = i->next;
 	}
 }
@@ -115,13 +140,13 @@ int	lexer_maestro(t_args *args)
 
 	if (!args->parser)
 		return (0);
-	split_meta(args->parser);
-	split_meta(args->parser);
+//	split_meta(args->parser);
+//	split_meta(args->parser);
 	logical_attribution(args->parser);
 	split_expand(args->parser, args->env);
 	// exit(0);
 	cmd_attribution(args->parser);
-	arg_attribution(args->parser); // if bug search here 
+//	arg_attribution(args->parser); // if bug search here 
 	// node = args->parser->head;
 	// // while (node)
 	// // {
@@ -131,12 +156,12 @@ int	lexer_maestro(t_args *args)
 	// // }
 	// if (is_a_directory(args->parser->head->content_exp_sans_q))
 	// {
-	// 	print_error(BASH, NULL, \
+	// 	print_error(BASH, NULL, 
 	// 	args->parser->head->content_exp_sans_q, ERR_IS_DIR);
 	// 	g_exit_status = 126;
 	// 	return (-1);
 	// }
-	if (syntax_error_meta(args) < -1 || forbidden_token(args->parser))
+	if (syntax_error_meta(args) < 0 || forbidden_token(args->parser))
 		return (-1);
 	return (0);
 }

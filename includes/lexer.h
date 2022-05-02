@@ -38,7 +38,7 @@ int		split_expand(t_pars_list *l, t_env_list *env);
 /*		LEXER_MAESTRO		*/
 
 int		syntax_error_meta(t_args *args);
-void	cmd_or_option_or_arg(t_pars_node *i, int cmd);
+void	cmd_or_option_or_arg(t_pars_node *i, int *cmd);
 void	cmd_attribution(t_pars_list *l);
 void	split_meta(t_pars_list *l);
 int		lexer_maestro(t_args *args);

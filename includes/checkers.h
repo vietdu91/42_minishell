@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 13:37:14 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/25 13:52:55 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/02 12:21:47 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define LOW_ALPHA "abcdefghijklmnopqrstuvwxyz"
 # define UPP_ALPHA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # define SPACES " \f\r\t\v" // newline non inlus
-# define METACHAR "|&<>*"
+# define METACHAR "|&<>"
 # define FORBIDDEN_TOKENS "< > << >> ; |"
 # define SPECIAL ":#!"
 
@@ -55,10 +55,12 @@ int	is_unclosed_parenth(char *str);
 /*		WHAT_TYPE.C				*/
 
 int	type_meta(int type);
+int	is_pipe_or_wrong(int type);
 
 /*		CHECK_FOR_PATHS			*/
 
 int	is_special(char c);
 int	is_a_directory(char *str);
+int	is_a_special_directory(char *str);
 
 #endif

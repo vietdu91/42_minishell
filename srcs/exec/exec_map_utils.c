@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 16:20:58 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/25 14:17:26 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/01 15:10:23 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ void	delete_content_useless_infiles(t_pars_list *l)
 	while (i && i->type != PIPE)
 	{
 		fd = -1;
-		if ((i->type == OUTFILE || i->type == SUPER_OUTFILE) && last == 1)
-			last--;
-		if (i->type == OUTFILE || i->type == SUPER_OUTFILE)
+		if ((i->type == OUTFILE || i->type == SUPER_OUTFILE) && last == 0)
 		{
 			fd = open(i->content, O_TRUNC);
 			write(fd, "\0", 1);
 			close(fd);
 		}
+		if ((i->type == OUTFILE || i->type == SUPER_OUTFILE) && last == 1)
+			last--;
 		i = i->previous;
 	}
 }
@@ -101,8 +101,16 @@ void	create_infiles_outfiles(t_args *args, int in_out[2], \
 		cpy->fds[0] = open("/tmp/.zuzu", O_RDONLY | O_CREAT, 0664);
 	}
 	if (in_out[1] == 1 && fds_content[1])
+	{
 		cpy->fds[1] = open(fds_content[1], O_WRONLY | O_CREAT | O_TRUNC, 0664);
+		printf("1\n");
+	}
 	else if (in_out[1] == 2 && fds_content[1])
-		cpy->fds[1] = open(fds_content[1], O_WRONLY | O_CREAT | O_APPEND, 0664);
+	{
+		cpy->fds[1] = open(fds_content[1], O_WRONLY | O_CREAT | O_APPEND, 0664);	
+		printf("fds content = %s\n", fds_content[1]);
+	}
+	if (cpy->fds[0] == -1 || cpy->fds[1] == -1)
+		free_all(args);
 	return ;
 }

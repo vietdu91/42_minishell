@@ -107,6 +107,7 @@ char	**create_options_tab(t_pars_node *cpy, int limit)
 	// printf("YO 2\n");
 	while (i && count < limit)
 	{
+//		printf("ARG : %s == %d\n", i->content, i->type);
 		if (i->type == SIMPLE_ARG)
 		{
 			cmds[count] = ft_strdup(i->content_exp_sans_q);

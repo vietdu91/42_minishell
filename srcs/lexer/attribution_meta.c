@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   attribution_meta.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/29 21:53:27 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/02 15:10:37 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	attribution_metachar(t_pars_node *node)
 		node->type = SUPER_OUTPUT;
 	else if (!ft_strcmp(node->content, "|"))
 		node->type = PIPE;
-	else if (!ft_strcmp(node->content, "||"))
-		node->type = DOUBLE_PIPE;
-	else if (!ft_strcmp(node->content, "&&"))
-		node->type = LOGICAL_AND;
-	else if (!ft_strcmp(node->content, "*"))
-		node->type = ASTERISQUE;
+//	else if (!ft_strcmp(node->content, "||"))
+//		node->type = DOUBLE_PIPE;
+//	else if (!ft_strcmp(node->content, "&&"))
+//		node->type = LOGICAL_AND;
+//	else if (!ft_strcmp(node->content, "*"))
+//		node->type = ASTERISQUE;
 	else if (!ft_strcmp(node->content, ";"))
 		node->type = CONTINUE;
 	return (0);
@@ -49,12 +49,12 @@ int	find_if_error(t_pars_node *node)
 			return (1);
 		else if (!ft_strcmp(node->content, "|"))
 			return (1);
-		else if (!ft_strcmp(node->content, "||"))
-			return (1);
-		else if (!ft_strcmp(node->content, "&&"))
-			return (1);
-		else if (!ft_strcmp(node->content, "*"))
-			return (1);
+//		else if (!ft_strcmp(node->content, "||"))
+//			return (1);
+//		else if (!ft_strcmp(node->content, "&&"))
+//			return (1);
+//		else if (!ft_strcmp(node->content, "*"))
+//			return (1);
 		else if (!ft_strcmp(node->content, ";"))
 			return (1);
 		else
@@ -98,10 +98,10 @@ int	attribute_meta(t_pars_node *node)
 		node->next->type = SUPER_OUTFILE;
 	else if (!ft_strcmp(node->content, "|") && apply_type(PIPE, node))
 		apply_cmd(node, PIPE);
-	else if (!ft_strcmp(node->content, "||") && apply_type(DOUBLE_PIPE, node))
-		apply_cmd(node, DOUBLE_PIPE);
-	else if (!ft_strcmp(node->content, "&&") && apply_type(LOGICAL_AND, node))
-		apply_cmd(node, LOGICAL_AND);
+//	else if (!ft_strcmp(node->content, "||") && apply_type(DOUBLE_PIPE, node))
+//		apply_cmd(node, DOUBLE_PIPE);
+//	else if (!ft_strcmp(node->content, "&&") && apply_type(LOGICAL_AND, node))
+//		apply_cmd(node, LOGICAL_AND);
 	else if (is_full_meta(node->content) && !does_meta_exist(node))
 		node->type = WRONG_META;
 	return (0);
@@ -117,6 +117,7 @@ int	logical_attribution(t_pars_list *l)
 	while (i)
 	{
 		attribute_meta(i);
+	//	printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		i = i->next;
 	}
 	i = l->head;

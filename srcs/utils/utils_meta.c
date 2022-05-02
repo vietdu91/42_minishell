@@ -65,12 +65,12 @@ int	does_meta_exist(t_pars_node *node)
 		return (1);
 	else if (!ft_strcmp(node->content, "|"))
 		return (1);
-	else if (!ft_strcmp(node->content, "||"))
-		return (1);
-	else if (!ft_strcmp(node->content, "&&"))
-		return (1);
-	else if (!ft_strcmp(node->content, "*"))
-		return (1);
+//	else if (!ft_strcmp(node->content, "||"))
+//		return (1);
+//	else if (!ft_strcmp(node->content, "&&"))
+//		return (1);
+//	else if (!ft_strcmp(node->content, "*"))
+//		return (1);
 	else if (!ft_strcmp(node->content, ";"))
 		return (1);
 	return (0);

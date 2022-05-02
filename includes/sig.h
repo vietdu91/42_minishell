@@ -16,5 +16,8 @@
 /*		SIGNAL.C		*/
 
 void	signal_ctlr_c(int signal);
+void	ignore_signals(void);
+void	recover_signals(void);
+void	handle_status(int sig);
 
 #endif

@@ -1,0 +1,24 @@
+total 364
+drwxr-xr-x  9 emtran 2021_paris   4096 May  2 11:53 .
+drwxr-xr-x 10 emtran 2021_paris   4096 Mar  7 13:44 ..
+-rw-r--r--  1 emtran 2021_paris      8 May  2 11:47 bonjour
+-rw-r--r--  1 emtran 2021_paris    964 Feb 28 11:16 cc.c
+drwxr-xr-x  2 emtran 2021_paris   4096 May  2 11:53 dossier
+drwxr-xr-x  2 emtran 2021_paris   4096 Feb 15 14:19 ERRORS
+drwxr-xr-x  8 emtran 2021_paris   4096 May  2 11:42 .git
+-rw-r--r--  1 emtran 2021_paris      0 Jan 22  1970 hola
+drwxr-xr-x  2 emtran 2021_paris   4096 May  2 11:42 includes
+-rw-r--r--  1 emtran 2021_paris    316 May  2 11:42 lola
+-rw-r--r--  1 emtran 2021_paris    140 May  2 11:42 lp
+-rw-r--r--  1 emtran 2021_paris  22304 May  2 11:42 Makefile
+----------  1 emtran 2021_paris 227232 May  2 11:44 minishell
+-rw-r--r--  1 emtran 2021_paris  34866 Feb 20 11:25 minishell_action.png
+-rw-r--r--  1 emtran 2021_paris   7325 Feb 20 11:18 minishell_img.png
+-rw-r--r--  1 emtran 2021_paris      5 May  2 11:47 .nfs0000000003150ee600000010
+-rw-r--r--  1 emtran 2021_paris      8 May  2 11:48 .nfs00000000031515cc00000011
+drwxr-xr-x 12 emtran 2021_paris   4096 May  2 11:44 objs
+-rw-r--r--  1 emtran 2021_paris   2915 Feb 28 11:16 README.md
+drwxr-xr-x 12 emtran 2021_paris   4096 May  2 11:42 srcs
+-rw-r--r--  1 emtran 2021_paris    391 Feb  6 09:47 test.c
+drwxr-xr-x  2 emtran 2021_paris   4096 Mar  3 11:01 .vscode
+-rw-r--r--  1 emtran 2021_paris     12 Apr 26 16:51 .zuzu
