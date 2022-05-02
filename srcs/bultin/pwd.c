@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:22:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/25 13:50:50 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/02 18:11:23 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ void	pwd_main(t_pars_node *parser, t_args *args)
 	char		*pwd;
 
 	node = parser;
-	if (node->next && node->next->type == OPTION)
+	while (node)
 	{
-		invalid_option(node->next, CMD_PWD);
-		return ;
+		if (node && node->type == OPTION)
+		{
+			invalid_option(node, CMD_PWD);
+			return ;
+		}
+		node = node->next;
 	}
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)

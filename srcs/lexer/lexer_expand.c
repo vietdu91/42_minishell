@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/30 20:32:07 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/02 22:09:56 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ int	split_expand(t_pars_list *l, t_env_list *env)
  	node = l->head;
 	if (!node)
 		return (-1);
-	printf("salut\n");
+	// printf("salut\n");
 	// printf("node = %s\n", node->content);
  	while (node)
 	{
