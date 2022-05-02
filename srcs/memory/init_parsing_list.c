@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/24 20:12:14 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/30 20:25:46 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,12 @@ t_pars_list	*list_mid_parse(t_pars_list *list, t_pars_node *n, char *content)
 	}
 	else
 	{
-		node->next = n->next;
 		n->next->previous = node;
+		if (n->next)
+			node->next = n->next;
 	}
-	node->previous = n;
 	n->next = node;
+	node->previous = n;
 	list->length++;
 	return (list);
 }

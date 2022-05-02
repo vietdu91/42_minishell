@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/26 20:01:58 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/04/30 20:32:07 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,27 @@
 // 	// faire le truc pour spliter
 // else
 
-int	content_is_to_split(char *content)
-{
-	int	quote;
-	int	i;
+// int	content_is_to_split(char *content)
+// {
+// 	int	quote;
+// 	int	i;
 
-	i = 0;
-	quote = 0;
-	while (content[i] && content[i] != '\'' && content[i] != '\"')
-		i++;
-	while (content[i])
-	{
-		if (content[i] == '\'' && quote == 0)
-			quote = content[i];
-		if (content[i] == '"' && quote == 0)
-			quote = content[i];
-		if (content[i] == quote && quote != 0)
-			return (1);
-		i++;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	quote = 0;
+// 	while (content[i] && content[i] != '\'' && content[i] != '\"')
+// 		i++;
+// 	while (content[i])
+// 	{
+// 		if (content[i] == '\'' && quote == 0)
+// 			quote = content[i];
+// 		if (content[i] == '"' && quote == 0)
+// 			quote = content[i];
+// 		if (content[i] == quote && quote != 0)
+// 			return (1);
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 /*LOL="	  hibou   bubble	tea"
 cat $LOL"$LOL"
@@ -144,17 +144,17 @@ int	loop_var(char *str, t_pars_list *l, t_env_list *env, t_pars_node *node)
 	// printf("str = %s\n", str);
 	if (!is_charset('$', str))
 		return (0);
-	while(str[datas[0]])
+	while(datas[0] < ft_strlen(str))
 	{
 		// on va return le content du var
-		
 		// je guette si elle est a split
 		//  si elle n'a pas de quotes
 		// printf("prims = %s\n", str + datas[0]);
 		var = return_var(str + datas[0], env, datas);
-		// printf("salut len = %d && datas[0] = %d\n", ft_strlen(str), datas[0]);
+		printf("var = %s\n", var);
+		printf("salut len = %d && datas[0] = %d\n", ft_strlen(str), datas[0]);
 		final = ft_strjoin(final, var);
-		// printf("FINAL : %s\n", final);
+		printf("FINAL : %s\n", final);
 		if (datas[0] == ft_strlen(str))
 			break ;
 		// var = Content on va l'utiliser pour en faire un node.
@@ -170,7 +170,15 @@ int	loop_var(char *str, t_pars_list *l, t_env_list *env, t_pars_node *node)
 	}
 	// printf("j'ai encore rien crée\n");
 	// doit return le nombre de nodes crées.
+	// return (0);
 	return (split_to_node(final, l, node, env));
+}
+
+int	first_is_space(char c)
+{
+	if (c == 32 || (c >= 9 && c <= 13))
+		return (-1);
+	return (0);
 }
 
 int	split_expand(t_pars_list *l, t_env_list *env)
@@ -184,12 +192,23 @@ int	split_expand(t_pars_list *l, t_env_list *env)
  	node = l->head;
 	if (!node)
 		return (-1);
+	printf("salut\n");
 	// printf("node = %s\n", node->content);
- 	while (node != l->tail)
+ 	while (node)
 	{
-	    // printf("node->content = %s\n", l->tail->content);
-		if (!content_is_to_split(node->content))
-			nodes_added += loop_var(node->content, l, env, node);	
+		// printf("bonjour salut\n");
+		// printf("node->content = %s\n", node->content);
+		if (!quotes_or_not(node->content) && is_charset('$', node->content))
+		{
+			loop_var(node->content, l, env, node);
+			// if (!content_is_to_split(node->content))
+			// 	nodes_added += loop_var(node->content, l, env, node);
+			// split la variable 
+			// nommer les nodes 
+			// set as option
+			// if (first_is_space(node->content[0]))
+		}
+			// printf("node->content = %s\n", l->tail->content);
  		node = node->next;
 	}
 // //	i = -1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   road_to_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/25 13:42:39 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/30 20:29:11 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	is_builtin(t_pars_node *node)
 {
+	if (!node || !node->content_exp_sans_q)
+		return (-1);
 	if (!ft_strcmp(node->content_exp_sans_q, "env"))
 		return (0);
 	else if (!ft_strcmp(node->content_exp_sans_q, "pwd"))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 18:46:36 by emtran           ###   ########.fr       */
+/*   Updated: 2022/04/30 20:30:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_strcmp(char *str1, char *str2)
 	int	i;
 
 	i = 0;
+	if (!str1 || !str2)
+		return (-1);
 	while (str1[i] && str2[i] && str1[i] == str2[i])
 		i++;
 	if (str1[i] == 0 && str2[i] == 0)
