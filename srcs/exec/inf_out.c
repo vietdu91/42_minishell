@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inf_out.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/01 14:36:20 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/02 18:00:46 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	inf_out_maestro(t_args *args, t_pars_list *l)
 		{
 			fds_content = fill_fds(i); /// char **
 			create_infiles_outfiles(args, in_out, i, fds_content);
+		//	printf("outfile  %s\n", fds_content[1]);
 			if (fds_content)
 				free_d_tab(fds_content);
 			fds_content = NULL;

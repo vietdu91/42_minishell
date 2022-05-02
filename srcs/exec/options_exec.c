@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   options_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:43:25 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/30 18:04:10 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/02 18:55:06 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ char	**create_options_tab(t_pars_node *cpy, int limit)
 //		printf("ARG : %s == %d\n", i->content, i->type);
 		if (i->type == SIMPLE_ARG)
 		{
+		//	printf("salut %s\n", i->content_exp_sans_q);
 			cmds[count] = ft_strdup(i->content_exp_sans_q);
 			if (!cmds[count])
 				malloc_failed(cmds, count);
@@ -132,7 +133,7 @@ int	options_maestro(t_args *args, t_pars_list *l)
 
 	(void)args;
 	options = create_and_fill_options(l, count_cmds(l));
-	// printf("option[0] == %d\n", options[1]);
+	//printf("option[0] == %d\n", options[1]);
 	if (!options)
 		return (-1);
 	index = 0;

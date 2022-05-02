@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/02 13:37:09 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/02 19:24:05 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 
 	error = 0;
 	// ft_putstr(cpy->content, 1);
-	delete_content_useless_infiles(args->parser);
+	// delete_content_useless_infiles(args->parser);
 	// ft_putstr("Fin de commande builtin \n", 1);
 	if (exec_builtin_1(args, cpy, data) < 0)
 	{
@@ -159,8 +159,10 @@ int	loop_execution(t_args *args, t_pars_list *l)
 		{
 			datas[0]++;
 			//printf("kontent = %s\n", i->content);
+			// int j = -1;
+			// while (i->cmds[++j])
+			// 	printf("%s\n", i->cmds[j]);
 			fork_execution(datas, i, l, args);
-
 			unlink("/tmp/.zuzu");
 		}
 		i = i->next;

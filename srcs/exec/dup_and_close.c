@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dup_and_close.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 01:09:33 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/01 14:40:54 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/02 19:11:20 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ int	dup_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy)
 			return (-1);
 	}
 	if (cpy->fds[1] > 0)
+	{
 		if (dup2(cpy->fds[1], STDOUT_FILENO) < 0)
 			return (-1);
+	}
 	if (datas[0] == 1)
 		return (datas_zero(datas, l));
 	else if (datas[0] == datas[1])
@@ -53,14 +55,15 @@ int	dup_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy)
 		if (cpy->fds[1] > 0)
 			close(cpy->fds[1]);
 	}
-	else
 	{
 		if (cpy->fds[0] == 0)
 			if (dup2(datas[2], STDIN_FILENO) < 0)
 				return (-1);
 		if (cpy->fds[1] == 0)
+		{
 			if (dup2(l->pipe[1], STDOUT_FILENO) < 0)
 				return (-1);
+		}
 	}
 	return (0);
 }

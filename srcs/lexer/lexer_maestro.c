@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/02 15:09:54 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/02 18:50:57 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,40 +34,39 @@ int	syntax_error_meta(t_args *args)
 	return (1);
 }
 
-void	cmd_or_option_or_arg(t_pars_node *i, int *cmd)
-{
-	if (i->previous && i->previous->type == CMD)
-		*cmd = 1;
-	//printf("cmd vaut 1 : %d\n", cmd);
-	if (i->type >= SIMPLE_ARG && i->type < OPTION)
-		*cmd = 0;
-	if (i->previous && (i->previous->type == CMD \
-	|| i->previous->type == OPTION) && i->content[0] == '-' \
-		&& i->content[1] != 0)
-		i->type = OPTION;
-	//printf("cmd vaut 2 : %d\n", cmd);
-	if (i->type != OPTION && *cmd == 1)
-		i->type = SIMPLE_ARG;
-}
-
 // void	cmd_or_option_or_arg(t_pars_node *i, int *cmd)
 // {
 // 	if (i->previous && i->previous->type == CMD)
 // 		*cmd = 1;
-// 	printf("cmd vaut 1 : %d\n", *cmd);
-// 	if (*cmd == 0 && i->type == EMPTY)
-// 		i->type = CMD;
+// 	//printf("cmd vaut 1 : %d\n", cmd);
+// 	if (i->type >= SIMPLE_ARG && i->type < OPTION)
+// 		*cmd = 0;
 // 	if (i->previous && (i->previous->type == CMD \
 // 	|| i->previous->type == OPTION) && i->content[0] == '-' \
 // 		&& i->content[1] != 0)
 // 		i->type = OPTION;
-// 	if (i->type == EMPTY && *cmd == 1)
+// 	//printf("cmd vaut 2 : %d\n", cmd);
+// 	if (i->type != OPTION && *cmd == 1)
 // 		i->type = SIMPLE_ARG;
-// 	printf("cmd vaut 2 : %d\n", *cmd);
-// 	//if (i->type >= SIMPLE_ARG && i->type < OPTION)
-// 	if (i->type == PIPE)
-// 		*cmd = 0;
 // }
+
+void	cmd_or_option_or_arg(t_pars_node *i, int *cmd)
+{
+	if (i->previous && i->previous->type == CMD)
+		*cmd = 1;
+	if (i->type == EMPTY && *cmd == 1)
+		i->type = SIMPLE_ARG;
+	if (*cmd == 0 && i->type == EMPTY)
+		i->type = CMD;
+	if (i->previous && (i->previous->type == CMD \
+	|| i->previous->type == OPTION) && i->content[0] == '-' \
+		&& i->content[1] != 0)
+		i->type = OPTION;
+//	printf("cmd vaut 2 : %d\n", *cmd);
+	//if (i->type >= SIMPLE_ARG && i->type < OPTION)
+	if (i->type == PIPE)
+		*cmd = 0;
+}
 
 void	cmd_attribution(t_pars_list *l)
 {
@@ -80,14 +79,15 @@ void	cmd_attribution(t_pars_list *l)
 		return ;
 	if (i->type == 0)
 		i->type = CMD;
+//	printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 	if (i && i->next == NULL)
 		return ;
 	i = i->next;
 	while (i)
 	{
-	//	printf("CMD INITIAL : %d\n",cmd);
+		//printf("CMD INITIAL : %d\n",cmd);
 		cmd_or_option_or_arg(i, &cmd);
-	//	printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
+//		printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		i = i->next;
 	}
 }

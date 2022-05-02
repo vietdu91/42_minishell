@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/02 15:10:37 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/02 18:48:07 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,9 @@ int	attribute_meta(t_pars_node *node)
 	else if (!ft_strcmp(node->content, ">>") && apply_type(SUPER_OUTPUT, node) \
 	&& node->next)
 		node->next->type = SUPER_OUTFILE;
-	else if (!ft_strcmp(node->content, "|") && apply_type(PIPE, node))
-		apply_cmd(node, PIPE);
+	else if (!ft_strcmp(node->content, "|"))
+		apply_type(PIPE, node);
+//		apply_cmd(node, PIPE);
 //	else if (!ft_strcmp(node->content, "||") && apply_type(DOUBLE_PIPE, node))
 //		apply_cmd(node, DOUBLE_PIPE);
 //	else if (!ft_strcmp(node->content, "&&") && apply_type(LOGICAL_AND, node))
@@ -117,12 +118,12 @@ int	logical_attribution(t_pars_list *l)
 	while (i)
 	{
 		attribute_meta(i);
-	//	printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		i = i->next;
 	}
 	i = l->head;
 	while (i)
 	{
+	//	printf("OPTION HERE i->type = %d\n", i->type);
 		if (i->type == PIPE)
 			file = 0;
 		if (i && (i->type == OUTFILE \
@@ -130,7 +131,6 @@ int	logical_attribution(t_pars_list *l)
 			file = 1;
 		if (file == 1 && i->content[0] == '-' && i->content[1] != 0)
 				i->type = OPTION;
-			// printf("OPTION HERE i->type = %d\n", i->type);
 		i = i->next;
 	}
 	return (0);

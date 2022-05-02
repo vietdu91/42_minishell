@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_map_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 16:20:58 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/01 15:10:23 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/02 18:02:33 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,12 @@ void	create_infiles_outfiles(t_args *args, int in_out[2], \
 	if (in_out[1] == 1 && fds_content[1])
 	{
 		cpy->fds[1] = open(fds_content[1], O_WRONLY | O_CREAT | O_TRUNC, 0664);
-		printf("1\n");
+	//	printf("1\n");
 	}
 	else if (in_out[1] == 2 && fds_content[1])
 	{
 		cpy->fds[1] = open(fds_content[1], O_WRONLY | O_CREAT | O_APPEND, 0664);	
-		printf("fds content = %s\n", fds_content[1]);
+	//	printf("fds content = %s\n", fds_content[1]);
 	}
 	if (cpy->fds[0] == -1 || cpy->fds[1] == -1)
 		free_all(args);

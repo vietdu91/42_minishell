@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:24:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/22 14:35:07 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/02 19:20:53 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	print_echo(int *ding_dong, t_pars_node *node)
 		*ding_dong = 0;
 	else
 		*ding_dong = 1;
-//	printf("ECHO : %s -- %d\n", node->content_exp_sans_q, ding_dong);
 	ft_putstr(node->content_exp_sans_q, 1);
 }
 
@@ -59,18 +58,18 @@ void	echo_main(t_args *args, t_pars_node *parser)
 	(void) args;
 	ding_dong = 0;
 	option = 0;
-	node = parser->next;
+	node = parser;
 	while (node)
 	{
 		if (!check_option(node->content_exp_sans_q))
 			option = 1;
-		else
-			break ;
 		node = node->next;
 	}
-	while (node && !type_meta(node->type))
+	node = parser;
+	while (node)
 	{
-		print_echo(&ding_dong, node);
+		if (node->type == SIMPLE_ARG)
+			print_echo(&ding_dong, node);
 		node = node->next;
 	}
 	if (!option)
