@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_maestro.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/01 14:21:55 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/02 15:09:54 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	syntax_error_meta(t_args *args)
 	i = args->parser->head;
 	if (!i)
 		return (-1);
-	if (check_enum(i->type))
+	if (is_pipe_or_wrong(i->type))
 		return (print_syntax_error_meta(i->content_exp_sans_q));
 	while (i && i->next)
 	{
@@ -49,6 +49,25 @@ void	cmd_or_option_or_arg(t_pars_node *i, int *cmd)
 	if (i->type != OPTION && *cmd == 1)
 		i->type = SIMPLE_ARG;
 }
+
+// void	cmd_or_option_or_arg(t_pars_node *i, int *cmd)
+// {
+// 	if (i->previous && i->previous->type == CMD)
+// 		*cmd = 1;
+// 	printf("cmd vaut 1 : %d\n", *cmd);
+// 	if (*cmd == 0 && i->type == EMPTY)
+// 		i->type = CMD;
+// 	if (i->previous && (i->previous->type == CMD \
+// 	|| i->previous->type == OPTION) && i->content[0] == '-' \
+// 		&& i->content[1] != 0)
+// 		i->type = OPTION;
+// 	if (i->type == EMPTY && *cmd == 1)
+// 		i->type = SIMPLE_ARG;
+// 	printf("cmd vaut 2 : %d\n", *cmd);
+// 	//if (i->type >= SIMPLE_ARG && i->type < OPTION)
+// 	if (i->type == PIPE)
+// 		*cmd = 0;
+// }
 
 void	cmd_attribution(t_pars_list *l)
 {

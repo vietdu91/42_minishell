@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/25 13:42:39 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/02 13:36:43 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	return_or_exit(int n)
 	}
 	else
 	{
-		// ft_putstr("je suis le traitre\n", 1);
+		//ft_putstr("je suis le traitre\n", 1);
 		exit(0);
 	}
 	return (0);

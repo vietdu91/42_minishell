@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   attribution_meta.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/29 21:53:27 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/02 15:10:37 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int	logical_attribution(t_pars_list *l)
 	while (i)
 	{
 		attribute_meta(i);
+	//	printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		i = i->next;
 	}
 	i = l->head;
