@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/02 13:37:09 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/02 19:13:06 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,11 @@ int	loop_execution(t_args *args, t_pars_list *l)
 			datas[0]++;
 			//printf("kontent = %s\n", i->content);
 			fork_execution(datas, i, l, args);
-
+			if (datas[1] == 1)
+			{
+				close_maestro(datas, l, i);
+			}
+			reinit_in_out(datas);
 			unlink("/tmp/.zuzu");
 		}
 		i = i->next;
