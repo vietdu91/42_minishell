@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 15:40:50 by emtran            #+#    #+#             */
-/*   Updated: 2022/02/14 16:35:58 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/03 19:42:23 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 /*		SIGNAL.C		*/
 
 void	signal_ctlr_c(int signal);
-void	ignore_signals(void);
-void	recover_signals(void);
-void	handle_status(int sig);
+void	signal_exec(int signal);
+void	signal_segfault(int signal);
+void	signal_ignore(int signal);
+void	signal_heredoc(int signal);
 
 #endif
