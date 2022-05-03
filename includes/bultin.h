@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/28 12:35:41 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/03 17:11:18 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void		change_oldpwd_export(char *newpwd, t_env_list *export);
 t_env		*find_previous_node(t_env_list *env, char *var);
 void		delete_var_list(t_env_list *env, char *var);
 int			check_id_unset(char *str);
+void		make_unset(t_args *args, t_pars_node *node, bool *error);
 void		unset_main(t_args *args, t_pars_node *parser);
 
 #endif
