@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:24:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/02 19:20:53 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/03 15:21:13 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void	echo_main(t_args *args, t_pars_node *parser)
 	(void) args;
 	ding_dong = 0;
 	option = 0;
-	node = parser;
+	node = parser->next;
 	while (node)
 	{
 		if (!check_option(node->content_exp_sans_q))
 			option = 1;
 		node = node->next;
 	}
-	node = parser;
+	node = parser->next;
 	while (node)
 	{
 		if (node->type == SIMPLE_ARG)

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/02 19:11:59 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/03 15:31:39 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 	node = parser;
 	error = FALSE;
 	oldpwd = getcwd(NULL, 0);
-	while (node)
+	while (node && node->type != PIPE)
 	{
 		if (node->type == SIMPLE_ARG)
 		{

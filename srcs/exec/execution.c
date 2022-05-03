@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/02 23:01:42 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/03 15:25:08 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 	// ft_putstr(cpy->content, 1);
 	// delete_content_useless_infiles(args->parser);
 	// ft_putstr("Fin de commande builtin \n", 1);
+//	ft_putnbr(exec_builtin_1(args, cpy, data), 2);
+//	ft_putstr("\n\n\n", 2);
 	if (exec_builtin_1(args, cpy, data) < 0)
 	{
 		if (cpy->path)
@@ -67,7 +69,6 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 			exit (error);
 		}
 	}
-	// exit(0);
 	return (0);
 }
 
@@ -96,6 +97,7 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 			pid_zero_execution(i, args, datas[1]);
 			// printf("coucou2\n");
 			//printf("ERREUR 2 %d\n", g_exit_status);
+			ft_putstr("LOL\n", 2);
 			free_all(args);
 			exit (g_exit_status);
 		}

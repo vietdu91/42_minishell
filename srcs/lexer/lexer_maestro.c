@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_maestro.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/02 19:39:07 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/03 15:30:08 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	cmd_attribution(t_pars_list *l)
 	{
 		//printf("CMD INITIAL : %d\n",cmd);
 		cmd_or_option_or_arg(i, &cmd);
-	//	printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
+		printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		i = i->next;
 	}
 }
@@ -139,7 +139,7 @@ int	lexer_maestro(t_args *args)
 //	split_meta(args->parser);
 //	split_meta(args->parser);
 	logical_attribution(args->parser);
-	split_expand(args->parser, args->env);
+//	split_expand(args->parser, args->env);
 	// exit(0);
 	cmd_attribution(args->parser);
 //	arg_attribution(args->parser); // if bug search here 
