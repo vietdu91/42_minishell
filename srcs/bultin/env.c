@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/26 18:32:57 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/03 17:12:14 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	display_env(t_pars_node *pars, t_env_list *env)
 	node = pars;
 	if (!env)
 		return ;
-	while (node && (node->type == SIMPLE_ARG || node->type == OPTION))
+	while (node && node->type != PIPE)
 	{
 		if (node->type == OPTION)
 		{

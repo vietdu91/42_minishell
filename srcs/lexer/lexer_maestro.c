@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/03 15:47:32 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/03 18:01:06 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	cmd_attribution(t_pars_list *l)
 	{
 		//printf("CMD INITIAL : %d\n",cmd);
 		cmd_or_option_or_arg(i, &cmd);
-		printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
+		//printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		i = i->next;
 	}
 }

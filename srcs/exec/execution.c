@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/03 15:36:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/03 19:42:53 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,8 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 	t_args *args)
 {
 	int			pid;
-	// int			status;
 
 	pid = 0;
-	// status = 0;
 	if (datas[1] > 1)
 	{
 		if (pipe(l->pipe) < 0)
@@ -117,12 +115,10 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 			datas[2] = l->pipe[0];
 			close(l->pipe[1]);
 		}
-		ignore_signals();
 		// if ((0 < waitpid(0, &status, 0) && (WIFEXITED(status))))
 		// 	g_exit_status = WEXITSTATUS(status);
 		// if (WIFSIGNALED(status))
 		// 	handle_status(WTERMSIG(status));
-		recover_signals();
 		// ft_putstr("hehehe\n", 2);
 	}
 	return (0);
@@ -145,10 +141,12 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	int			datas[5];
 	t_pars_node	*i;
 	int			j;
+	int			status;
 
 
 	j = 0;
 	i = l->head;
+	status = 0;
 	datas[0] = 0;
 	datas[1] = count_cmd(l);
 	datas[2] = 0;
@@ -160,14 +158,14 @@ int	loop_execution(t_args *args, t_pars_list *l)
 		{
 			datas[0]++;
 			//printf("kontent = %s\n", i->content);
-			int j = -1;
-			while (i->cmds[++j])
-				printf("%s\n", i->cmds[j]);
+			// int j = -1;
+			// while (i->cmds[++j])
+			// 	printf("kontent %s\n", i->cmds[j]);
 			fork_execution(datas, i, l, args);
-			if (datas[1] == datas[0])
-			{
-				close_maestro(datas, l, i);
-			}
+			// if (datas[1] == datas[0])
+			// {
+			// 	close_maestro(datas, l, i);
+			// }
 			if (datas[1] == 1)
 				reinit_in_out(datas);
 			if (i->fds[0] > 0)
@@ -186,7 +184,8 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	}
 	while (j < l->length)
 	{
-		waitpid(0, NULL, 0);
+		if ((0 < waitpid(0, &status, 0) && (WIFEXITED(status))))
+			g_exit_status = WEXITSTATUS(status);
 		j++;
 	}	
 	close(datas[3]);

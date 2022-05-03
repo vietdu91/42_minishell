@@ -6,6 +6,7 @@ hello
 hola
 hola1
 hola2
+ignorereadline
 includes
 lol
 lola
@@ -16,9 +17,10 @@ minishell
 minishell_action.png
 minishell_img.png
 objs
-prout
 README.md
 soundous
 srcs
 test.c
+v
+vv
 yolo

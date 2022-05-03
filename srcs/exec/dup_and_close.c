@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 01:09:33 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/03 15:44:14 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/03 19:41:54 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ int	close_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy)
 	return (0);
 }
 
-int	datas_zero(int datas[5], t_pars_list *l)
+int	datas_zero(int datas[5], t_pars_list *l, t_pars_node *cpy)
 {
+	ft_putstr("YOLO\n", 2);
 	if (datas[1] > 1)
 	{
 		close(l->pipe[0]);
-		if (dup2(l->pipe[1], STDOUT_FILENO) < 0)
+		if (cpy->fds[1] == 0 && dup2(l->pipe[1], STDOUT_FILENO) < 0)
 			return (-1);
 		close(l->pipe[1]);
 	}
@@ -40,35 +41,8 @@ int	datas_zero(int datas[5], t_pars_list *l)
 
 int	dup_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy)
 {
-	if (datas[0] == 1)
-		return (datas_zero(datas, l));
-	else if (datas[0] == datas[1])
-	{
-		close(l->pipe[1]);
-		close(l->pipe[0]);
-		// close(datas[2]);
-		// close(datas[2]);
-		if (dup2(datas[2], STDIN_FILENO) < 0)
-			return (-1);
-		if (cpy->fds[1] > 0)
-			close(cpy->fds[1]);
-	}
-	else
-	{
-		close(l->pipe[0]);
-		if (cpy->fds[0] == 0)
-			if (dup2(datas[2], STDIN_FILENO) < 0)
-				return (-1);
-		if (cpy->fds[1] == 0)
-		{
-			if (dup2(l->pipe[1], STDOUT_FILENO) < 0)
-				return (-1);
-		}
-		close(datas[2]);
-	}
 	if (cpy->fds[0] > 0)
 	{
-		printf("hola\n");
 		if (datas[0] == 1)
 		{
 			close(l->pipe[0]);
@@ -89,6 +63,33 @@ int	dup_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy)
 		if (dup2(cpy->fds[1], STDOUT_FILENO) < 0)
 			return (-1);
 		close(cpy->fds[1]);
+	}
+	if (datas[0] == 1)
+		return (datas_zero(datas, l, cpy));
+	else if (datas[0] == datas[1])
+	{
+		close(l->pipe[1]);
+		close(l->pipe[0]);
+		// close(datas[2]);
+		// close(datas[2]);
+		if (dup2(datas[2], STDIN_FILENO) < 0)
+			return (-1);
+		close(datas[2]);
+		if (cpy->fds[1] > 0)
+			close(cpy->fds[1]);
+	}
+	else
+	{
+		close(l->pipe[0]);
+		if (cpy->fds[0] == 0)
+			if (dup2(datas[2], STDIN_FILENO) < 0)
+				return (-1);
+		if (cpy->fds[1] == 0)
+		{
+			if (dup2(l->pipe[1], STDOUT_FILENO) < 0)
+				return (-1);
+		}
+		close(datas[2]);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:32 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/28 11:58:54 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/03 16:56:33 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,37 +67,51 @@ t_pars_node *parser)
 	t_pars_node	*node;
 	int			check;
 	bool		error;
+	bool		export_alone;
 
 	check = 0;
 	error = FALSE;
+	export_alone = TRUE;
 	node = parser->next;
-	if (!node || (node->type != SIMPLE_ARG && node->type != OPTION))
+	if (!node)
 	{
 		display_export(export);
 		g_exit_status = 0;
 		return ;
 	}
-	while (node && (node->type == SIMPLE_ARG || node->type == OPTION))
+	while (node && node->type != PIPE)
 	{
 		check = check_id_export(node->content_exp_sans_q);
 		if (node->type == OPTION)
 		{
+			export_alone = FALSE;
 			invalid_option(node, CMD_UNSET);
 			return ;
 		}
-		else if (!check)
+		else if (node->type == SIMPLE_ARG || node->type == OPTION)
 		{
-			bad_id_export(node);
-			error = TRUE;
-			g_exit_status = 1;
-		}
-		else
-		{
-			export_var_to_export(args, export, node->content_exp_sans_q, check);
-			if (check == 1)
-				export_var_to_env(args, env, node->content_exp_sans_q, check);
+			export_alone = FALSE;
+			if (!check)
+			{
+				bad_id_export(node);
+				error = TRUE;
+				g_exit_status = 1;
+			}
+			else
+			{
+				export_var_to_export(args, export, node->content_exp_sans_q, \
+				check);
+				if (check == 1)
+					export_var_to_env(args, env, node->content_exp_sans_q, \
+					check);
+			}
 		}
 		node = node->next;
+	}
+	if (export_alone == TRUE)
+	{
+		display_export(export);
+		g_exit_status = 0;
 	}
 	if (error == FALSE)
 		g_exit_status = 0;

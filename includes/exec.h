@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/25 23:48:24 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/03 19:10:31 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int				exec_maestro(t_args *args);
 /*				DUP_AND_CLOSE.C			*/
 
 int				close_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy);
-int				datas_zero(int datas[5], t_pars_list *l);
+int				datas_zero(int datas[5], t_pars_list *l, t_pars_node *cpy);
 int				dup_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy);
 
 /*				EXEC_MAP_UTILS.C		*/
