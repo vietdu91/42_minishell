@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:12:23 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/03 17:11:42 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/05 14:41:44 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,9 @@ void	unset_main(t_args *args, t_pars_node *parser)
 			invalid_option(node, CMD_UNSET);
 			error = TRUE;
 		}
+		node = node->next;
 	}
+	node = parser->next;
 	while (node && node->type != PIPE && \
 	(node->type == SIMPLE_ARG || node->type == OPTION))
 	{

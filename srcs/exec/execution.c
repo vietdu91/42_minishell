@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/03 20:45:27 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/05 15:57:24 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,19 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 	// ft_putstr("Fin de commande builtin \n", 1);
 //	ft_putnbr(exec_builtin_1(args, cpy, data), 2);
 //	ft_putstr("\n\n\n", 2);
+	// int i = 0;
+	// while (cpy->cmds[i])
+	// {
+	// 	printf("CMD %d : %s\n", i, cpy->cmds[i]);
+	// 	i++;
+	// }
 	if (exec_builtin_1(args, cpy, data) < 0)
 	{
+		//ft_putstr("LOL\n", 2);
 		if (cpy->path)
 		{
 			// ft_putstr("Fin de commande exec\n", 2);
-			// ft_putstr("Fin de commande exec 2\n", 2);
-			// int i = 0;
-			// while (cpy->cmds[i])
-			// {
-			// 	printf("CMD %d : %s\n", i, cpy->cmds[i]);
-			// 	i++;
-			// }
+			//ft_putstr("Fin de commande exec 2\n", 2);
 			execve(cpy->path, cpy->cmds, args->env_tab);
 			if (errno == 2)
 				error = 127;
@@ -90,12 +91,12 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 			return (-1);
 		if (pid == 0)
 		{
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
+		//	signal(SIGINT, SIG_DFL);
+		//	signal(SIGQUIT, SIG_DFL);
 			dup_maestro(datas, l, i);
 			//printf("coucou1\n");
 			pid_zero_execution(i, args, datas[1]);
-			// printf("coucou2\n");
+			//printf("coucou2\n");
 			//printf("ERREUR 2 %d\n", g_exit_status);
 			//ft_putstr("LOL\n", 2);
 			free_all(args);
@@ -106,6 +107,7 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 	{
 		dup_maestro(datas, l, i);
 		pid_zero_execution(i, args, datas[1]);
+	//	ft_putstr("LOL\n", 2);
 		reinit_in_out(datas);
 	}
 	{

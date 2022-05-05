@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/03 21:16:13 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/05 13:15:39 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@ int	read_heredoc(char **heredoc, char *del)
 	while (read(0, buf, 1) > 0)
 	{
 		//signal(SIGINT, &signal_heredoc);
-		//signal(SIGQUIT, &signal_exec);
+	//	signal(SIGQUIT, &signal_exec);
 		buf[1] = 0;
 		txt = ft_strjoin(txt, buf);
-		if (strchr(txt, '\n'))
+		//printf("TXT : %s\n", txt);
+	//	fflush(stdout);
+		// printf("TXT : %d\n", txt[0]);
+		// fflush(stdout);
+		if (ft_strchr(txt, '\n'))
 		{
 			if (!ft_strncmp(txt, del, (ft_strlen(txt) + 1)))
 			{
@@ -94,7 +98,7 @@ int	exec_maestro(t_args *args)
 	n_docs = count_heredoc(args->parser);
 	args->delimiters = delimiters_to_tab(args->parser, n_docs, args);
 	fill_d_tab_heredoc(args, n_docs, args->delimiters);
-	modify_heredoc(args->hdocs, args->del_for_split, args->env);
+//	modify_heredoc(args->hdocs, args->del_for_split, args->env);
 	options_maestro(args, l);
 	path_maestro(args);
 	inf_out_maestro(args, l);

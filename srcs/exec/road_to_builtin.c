@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/03 12:18:42 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/05 14:25:38 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,17 @@ int	which_node(t_pars_list *l, int n)
 	return (0);
 }
 
-int	return_or_exit(int n)
+int	return_or_exit(int n, t_args *args)
 {
 	if (n == 1)
 	{
-		// printf("salida n = %d\n", n);
+		//printf("salida n = %d\n", n);
 		return (0);
 	}
 	else
 	{
 		//ft_putstr("je suis le traitre\n", 1);
+		free_all(args);
 		exit(0);
 	}
 	return (0);
@@ -81,13 +82,13 @@ int	exec_builtin_3(t_args *args, t_pars_node *node, int n)
 	if (!ft_strcmp(node->content_exp_sans_q, "scare_me"))
 	{
 		print_scare_me();
-		return (return_or_exit(n));
+		return (return_or_exit(n, args));
 	}
 	else if (!ft_strcmp(node->content_exp_sans_q, \
 	"patience_is_a_virtue"))
 	{
 		print_patience(args);
-		return (return_or_exit(n));
+		return (return_or_exit(n, args));
 	}
 	return (-1);
 }
@@ -98,18 +99,18 @@ int	exec_builtin_2(t_args *args, t_pars_node *node, int n)
 	{
 		// printf("ENV SE LANCE\n");
 		display_env(node, args->env);
-		return (return_or_exit(n));
+		return (return_or_exit(n, args));
 	}
 	else if (!ft_strcmp(node->content_exp_sans_q, "pwd"))
 	{
 		// printf("n ======= %d\n", n);
 		pwd_main(node, args);
-		return (return_or_exit(n));
+		return (return_or_exit(n, args));
 	}
 	else if (!ft_strcmp(node->content_exp_sans_q, "unset"))
 	{
 		unset_main(args, node);
-		return (return_or_exit(n));
+		return (return_or_exit(n, args));
 	}
 	return (exec_builtin_3(args, node, n));
 }
@@ -121,26 +122,26 @@ int	exec_builtin_1(t_args *args, t_pars_node *node, int n)
 		if (!ft_strcmp(node->content_exp_sans_q, "cd"))
 		{
 			cd_main(args, args->env, node);
-			return (return_or_exit(n));
+			return (return_or_exit(n, args));
 		}
 		else if (!ft_strcmp(node->content_exp_sans_q, "export"))
 		{
 			export_main(args, args->env, args->export, node);
-			return (return_or_exit(n));
+			return (return_or_exit(n, args));
 		}
 		else if (!ft_strcmp(node->content_exp_sans_q, "exit"))
 		{
 			exit_main(args, node);
-			return (return_or_exit(n));
+			return (return_or_exit(n, args));
 		}
 		else if (!ft_strcmp(node->content_exp_sans_q, "echo"))
 		{
 			echo_main(args, node);
-			return (return_or_exit(n));
+			return (return_or_exit(n, args));
 		}
 	}
 	// printf("on entre dans le exec builtin\n");
-	return (exec_builtin_2(args, node,  n));
+	return (exec_builtin_2(args, node, n));
 }
 
 // int	which_builtin(t_args *args, t_pars_node *node, int n)

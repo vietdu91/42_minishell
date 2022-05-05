@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 14:55:02 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 20:01:49 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/05 12:57:52 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,20 @@ char	*ft_substr(char *s, int start, int len)
 		str[i++] = s[start++];
 	str[i] = '\0';
 	return (str);
+}
+
+char	*ft_strchr(const char *str, int ch)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == (char)ch)
+			return ((char *)str + i);
+		i++;
+	}
+	if (str[i] == (char)ch && str[i] == '\0')
+		return ((char *)str + i);
+	return (0);
 }

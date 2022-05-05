@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/25 23:48:24 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/05 14:24:54 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int				path_maestro(t_args *args);
 
 int				is_builtin(t_pars_node *node);
 int				which_node(t_pars_list *l, int n);
-int				return_or_exit(int n);
+int				return_or_exit(int n, t_args *args);
 int				exec_builtin_1(t_args *args, t_pars_node *node, int n);
 int				exec_builtin_2(t_args *args, t_pars_node *node, int n);
 int				exec_builtin_3(t_args *args, t_pars_node *node, int n);
