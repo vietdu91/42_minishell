@@ -74,9 +74,9 @@ void			create_infiles_outfiles(t_args *args, int in_out[2], \
 				t_pars_node *cpy, char **fds_content);
 
 /*				EXECUTION.C			*/
-
+void			reinit_in_out(int datas[5]);
 int				count_cmd(t_pars_list *l);
-int				pid_zero_execution(t_pars_node *cpy, t_args *args, int data);
+int				pid_zero_execution(t_pars_node *cpy, t_args *args, int data, int datas[5]);
 int				fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 				t_args *args);
 int				loop_execution(t_args *args, t_pars_list *l);
@@ -122,10 +122,10 @@ int				path_maestro(t_args *args);
 
 int				is_builtin(t_pars_node *node);
 int				which_node(t_pars_list *l, int n);
-int				return_or_exit(int n, t_args *args);
-int				exec_builtin_1(t_args *args, t_pars_node *node, int n);
-int				exec_builtin_2(t_args *args, t_pars_node *node, int n);
-int				exec_builtin_3(t_args *args, t_pars_node *node, int n);
+int				return_or_exit(int n, t_args *args, int dats[5]);
+int				exec_builtin_1(t_args *args, t_pars_node *node, int n, int datas[5]);
+int				exec_builtin_2(t_args *args, t_pars_node *node, int n, int datas[5]);
+int				exec_builtin_3(t_args *args, t_pars_node *node, int n, int datas[5]);
 
 int				which_builtin(t_args *args, t_pars_list *l, int n);
 

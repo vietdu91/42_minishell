@@ -33,6 +33,7 @@ int	datas_zero(int datas[5], t_pars_list *l)
 		close(l->pipe[0]);
 		if (dup2(l->pipe[1], STDOUT_FILENO) < 0)
 			return (-1);
+		close(datas[2]);
 		close(l->pipe[1]);
 	}
 	return (0);
@@ -60,27 +61,33 @@ int	dup_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy)
 		return (datas_zero(datas, l));
 	else if (datas[0] == datas[1])
 	{
-		close(l->pipe[1]);
-		close(l->pipe[0]);
 		// close(datas[2]);
 		// close(datas[2]);
 		if (dup2(datas[2], STDIN_FILENO) < 0)
 			return (-1);
 		if (cpy->fds[1] > 0)
 			close(cpy->fds[1]);
+		close(l->pipe[1]);
+		close(l->pipe[0]);
 	}
 	else
 	{
-		close(l->pipe[0]);
 		if (cpy->fds[0] == 0)
+		{
 			if (dup2(datas[2], STDIN_FILENO) < 0)
 				return (-1);
+			close(datas[2]);
+		}
 		if (cpy->fds[1] == 0)
 		{
 			if (dup2(l->pipe[1], STDOUT_FILENO) < 0)
 				return (-1);
+			close(l->pipe[1]);
 		}
-		close(datas[2]);
+		// if (datas[2] > 0)
+		// {
+		// 	ft_putstr("DATAS[2]\n", 2);
+		// }
 	}
 	return (0);
 }

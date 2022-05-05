@@ -36,7 +36,7 @@ void	reinit_in_out(int datas[5])
 	dup2(datas[4], STDOUT_FILENO);
 }
 
-int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
+int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data, int datas[5])
 {
 	int		error;
 
@@ -52,7 +52,7 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 	// 	printf("CMD %d : %s\n", i, cpy->cmds[i]);
 	// 	i++;
 	// }
-	if (exec_builtin_1(args, cpy, data) < 0)
+	if (exec_builtin_1(args, cpy, data, datas) < 0)
 	{
 		//ft_putstr("LOL\n", 2);
 		if (cpy->path)
@@ -95,7 +95,7 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 		//	signal(SIGQUIT, SIG_DFL);
 			dup_maestro(datas, l, i);
 			//printf("coucou1\n");
-			pid_zero_execution(i, args, datas[1]);
+			pid_zero_execution(i, args, datas[1], datas);
 			//printf("coucou2\n");
 			//printf("ERREUR 2 %d\n", g_exit_status);
 			//ft_putstr("LOL\n", 2);
@@ -106,7 +106,7 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 	else
 	{
 		dup_maestro(datas, l, i);
-		pid_zero_execution(i, args, datas[1]);
+		pid_zero_execution(i, args, datas[1], datas);
 	//	ft_putstr("LOL\n", 2);
 		reinit_in_out(datas);
 	}
@@ -139,6 +139,24 @@ int	mega_closer(t_pars_list *l)
 	}
 	return (0);
 }
+
+// void	restore_fd(int val)
+// {
+// 	static int	fd_in = -1;
+// 	static int	fd_out = -1;
+
+// 	if (val)
+// 	{
+// 		fd_in = dup(STDIN_FILENO);
+// 		...
+// 	}
+// 	else{
+// 		dup2(STDIN_FILENO, fd_in);
+// 		...//
+// 		close(fd_in);
+// 		close(fd_out);
+// 	}
+// }
 
 int	loop_execution(t_args *args, t_pars_list *l)
 {
@@ -185,6 +203,8 @@ int	loop_execution(t_args *args, t_pars_list *l)
 			unlink("/tmp/.zuzu");
 			if (i->previous && l->pipe[1] > 0 &&  i->previous->type == PIPE)
 				close(l->pipe[1]);
+			close(datas[3]);
+			close(datas[4]);
 		}
 		i = i->next;
 	}
@@ -198,6 +218,8 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	close(datas[4]);
 	if (l->pipe[0] > 0)
 		close(l->pipe[0]);
+	if (l->pipe[1] > 0)
+		close(l->pipe[1]);
 	reinit_in_out(datas);
 	// close(0);
 	// close(1);
