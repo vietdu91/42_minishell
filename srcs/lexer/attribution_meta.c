@@ -80,7 +80,7 @@ int	check_if_meta(t_pars_list *l)
 int	attribute_meta(t_pars_node *node)
 {
 	if (!ft_strcmp(node->content, "<") && apply_type(INPUT, node) \
-		&& node->previous)
+	&& node->previous)
 	{
 		node->previous->type = CMD;
 		if (!node->next)

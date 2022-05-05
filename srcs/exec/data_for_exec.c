@@ -16,12 +16,15 @@ int	read_heredoc(char **heredoc, char *del)
 {
 	char		buf[2];
 	char		*txt;
+	char		*new_deal;
 
 	buf[0] = 0;
 	*heredoc = ft_strdup("");
 	txt = ft_strdup("");
 	if (!txt || !(*heredoc))
 		return (0);
+	new_deal = NULL;	
+	new_deal = ft_strjoin_one_c_sans_free(del, '\n');
 	while (read(0, buf, 1) > 0)
 	{
 		//signal(SIGINT, &signal_heredoc);
@@ -34,9 +37,10 @@ int	read_heredoc(char **heredoc, char *del)
 		// fflush(stdout);
 		if (ft_strchr(txt, '\n'))
 		{
-			if (!ft_strncmp(txt, del, (ft_strlen(txt) + 1)))
+			if (!ft_strcmp(txt, new_deal))
 			{
 				free(txt);
+				free(new_deal);
 				return (1);
 			}
 			*heredoc = ft_strjoin(*heredoc, txt);
@@ -45,9 +49,13 @@ int	read_heredoc(char **heredoc, char *del)
 			free(txt);
 			txt = ft_strdup("");
 			if (!txt)
+			{
+				free(new_deal);
 				return (0);
+			}
 		}
 	}
+	free(new_deal);
 	free(txt);
 	return (0);
 }
@@ -98,7 +106,7 @@ int	exec_maestro(t_args *args)
 	n_docs = count_heredoc(args->parser);
 	args->delimiters = delimiters_to_tab(args->parser, n_docs, args);
 	fill_d_tab_heredoc(args, n_docs, args->delimiters);
-//	modify_heredoc(args->hdocs, args->del_for_split, args->env);
+	modify_heredoc(args->hdocs, args->del_for_split, args->env);
 	options_maestro(args, l);
 	path_maestro(args);
 	inf_out_maestro(args, l);

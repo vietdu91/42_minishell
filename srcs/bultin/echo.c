@@ -66,7 +66,7 @@ void	echo_main(t_args *args, t_pars_node *parser)
 		node = node->next;
 	}
 	node = parser;
-	while (node)
+	while (node && node->type != PIPE)
 	{
 		if (node->type == SIMPLE_ARG)
 			print_echo(&ding_dong, node);

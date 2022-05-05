@@ -44,8 +44,6 @@ void	free_builtins(t_builtin *builtin)
 		free(builtin);
 }
 
-// if (args->hdocs)
-// 	free_d_tab(args->hdocs);
 
 void	free_args(t_args *args)
 {
@@ -53,6 +51,8 @@ void	free_args(t_args *args)
 		free_d_tab(args->env_tab);
 	if (args->delimiters)
 		free_d_tab(args->delimiters);
+	if (args->del_for_split)
+		free(args->del_for_split);
 	ft_memset(&args, 0, sizeof(args));
 }
 
@@ -62,6 +62,8 @@ void	free_all(t_args *args)
 		return ;
 	if (args->buffer)
 		free(args->buffer);
+	if (args->hdocs)
+		free_d_tab(args->hdocs);
 	free_builtins(args->builtin);
 	free_env_list(args->env);
 	free_env_list(args->export);

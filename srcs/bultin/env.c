@@ -16,8 +16,8 @@ void	print_env(t_env *current)
 {
 	if (ft_strcmp(current->line, "\0"))
 	{
-		ft_putstr(current->line, STDOUT_FILENO);
-		ft_putstr("\n", STDOUT_FILENO);
+		ft_putstr(current->line, 1);
+		ft_putstr("\n", 1);
 	}
 }
 
