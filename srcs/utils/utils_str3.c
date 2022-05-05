@@ -69,3 +69,22 @@ char	*ft_strchr(const char *str, int ch)
 		return ((char *)str + i);
 	return (0);
 }
+
+char	*ft_strjoin_one_c_sans_free(char *s1, char s2)
+{
+	unsigned int	len_1;
+	char			*str;
+
+	if (s2 != 0)
+	{
+		len_1 = ft_strlen(s1);
+		str = (char *)malloc(sizeof(char) * (len_1 + 1 + 1));
+		if (!str)
+			return (0);
+		ft_memcpy(str, s1, len_1);
+		ft_memcpy_with_one_char(str + len_1, s2, 1 + 1);
+		str[len_1 + 1] = '\0';
+		return (str);
+	}
+	return (s1);
+}

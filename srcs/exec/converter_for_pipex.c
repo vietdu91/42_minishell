@@ -51,6 +51,7 @@ char	*remove_quotes_delimiters(char *str)
 	char	*content;
 
 	size = check_len_new_word(str);
+	content = NULL;
 	content = malloc(sizeof(char) * (size + 1));
 	if (!content)
 		return (NULL);
@@ -73,8 +74,8 @@ char	**delimiters_to_tab(t_pars_list *l, int size, t_args *args)
 	{
 		if (node->type == LIMITATOR)
 		{
-			args->del_for_split = node->content;
-			delimiters[i] = ft_strdup(remove_quotes_delimiters(node->content));
+			args->del_for_split = ft_strdup(node->content);
+			delimiters[i] = remove_quotes_delimiters(node->content);
 			if (!delimiters[i])
 			{
 				malloc_failed(delimiters, i);

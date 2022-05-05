@@ -86,8 +86,8 @@ void	cmd_attribution(t_pars_list *l)
 	while (i)
 	{
 		//printf("CMD INITIAL : %d\n",cmd);
+	//	printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		cmd_or_option_or_arg(i, &cmd);
-		// printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		i = i->next;
 	}
 }
