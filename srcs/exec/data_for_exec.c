@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_for_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/01 14:20:58 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/03 21:16:13 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	read_heredoc(char **heredoc, char *del)
 		return (0);
 	while (read(0, buf, 1) > 0)
 	{
+		//signal(SIGINT, &signal_heredoc);
+		//signal(SIGQUIT, &signal_exec);
 		buf[1] = 0;
 		txt = ft_strjoin(txt, buf);
 		if (strchr(txt, '\n'))

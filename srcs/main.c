@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/03 17:51:32 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/03 19:50:34 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,16 @@ int	main(int argc, char **argv, char **envp)
 
 	(void) argc;
 	(void) argv;
+	signal(SIGTERM, SIG_IGN);
+	signal(SIGSEGV, &signal_segfault);
+	signal(SIGINT, &signal_ctlr_c);
+	signal(SIGQUIT, SIG_IGN);
 	print_demon();
 	args = NULL;
 	args = malloc(sizeof(t_args));
 	if (!args)
 		intersection_of_errors(2, args);
 	init_and_set_all(args, envp);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, &signal_ctlr_c);
 	loop(args);
 	free_all(args);
 	return (0);
