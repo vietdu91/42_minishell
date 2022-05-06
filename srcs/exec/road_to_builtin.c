@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/05 14:25:38 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:53:13 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	return_or_exit(int n, t_args *args, int datas[5])
 {
 	// close(0);
 	// close(1);
-	ft_putstr("salut\n", 2);
+	//ft_putstr("salut\n", 2);
 	close(datas[2]);
 	if (datas[1] > 1)
 	{
@@ -143,7 +143,7 @@ int	exec_builtin_1(t_args *args, t_pars_node *node, int n, int datas[5])
 		}
 		else if (!ft_strcmp(node->content_exp_sans_q, "export"))
 		{
-			export_main(args, args->env, args->export, node);
+			export_main(args, node, args->export);
 			return (return_or_exit(n, args, datas));
 		}
 		else if (!ft_strcmp(node->content_exp_sans_q, "exit"))

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/03 17:11:18 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:53:03 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 void		find_cd(t_args *args, char *oldpwd, char *path, bool *error);
 void		bad_cd(char *oldpwd, t_pars_node *node, int way, bool *error);
+int			check_nb_simple_args(t_pars_node *node);
+void		cd_third_main(t_args *args, t_pars_node *node, char *oldpwd, \
+bool *error);
 void		cd_main(t_args *args, t_env_list *env, t_pars_node *parser);
 
 /*			CD_SPECIAL.C	*/
@@ -68,8 +71,9 @@ void		exit_main(t_args *args, t_pars_node *parser);
 void		get_export(t_args *args);
 int			check_id_export(char *str);
 void		bad_id_export(t_pars_node *node);
-void		export_main(t_args *args, t_env_list *env, t_env_list *export, \
-t_pars_node *parser);
+void		export_second_main(t_args *args, t_pars_node *node, \
+bool *export_alone, bool *error);
+void		export_main(t_args *args, t_pars_node *parser, t_env_list *export);
 
 /*				EXPORT_CHANGE.C		*/
 
@@ -93,14 +97,15 @@ void		display_export(t_env_list *export);
 int			check_len_interior_spaces(char *str);
 char		*remove_interior_spaces(char *str);
 char		*check_put_content_trim_of_expand(char *var, char *content, \
-t_env *node);
-char		*put_content_trim_of_expand(char *var, t_env_list *env);
+t_env *node, t_pars_node *pars);
+char		*put_content_trim_of_expand(char *var, t_env_list *env, \
+t_pars_node *pars);
 void		strjoin_content_trim_exp(char **str, int len, t_pars_node *psr, \
 t_env_list *env);
 
 /*		PWD.C		*/
 
-void    	error_because_lost_dir_pwd(char *pwd);
+void		error_because_lost_dir_pwd(char *pwd);
 void		pwd_main(t_pars_node *parser, t_args *args);
 
 /*				PWD_CHANGE.C		*/

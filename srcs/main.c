@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/05 11:36:35 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/06 19:37:14 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	loop(t_args *args)
 		signal(SIGSEGV, &signal_segfault);
 		signal(SIGINT, &signal_ctlr_c);
 		signal(SIGQUIT, SIG_IGN);
+		signal(SIGPIPE, SIG_IGN);
 		init_parsing_list(&args->parser);
 		args->buffer = readline(PROMPT);
 		if (!args->buffer)

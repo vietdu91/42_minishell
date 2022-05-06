@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:27:18 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/01 14:21:39 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/06 14:56:34 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_env_list *env)
 	var = NULL;
 	content = NULL;
 	var = check_variable(str, len);
-	content = put_content_of_expand(var, env);
+	content = put_content_of_expand_sans_check(var, env);
 	flag = ft_strjoin(flag, content);
 	free(content);
 	free(var);

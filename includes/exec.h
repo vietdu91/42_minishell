@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/05 14:24:54 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:12:50 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void			create_infiles_outfiles(t_args *args, int in_out[2], \
 /*				EXECUTION.C			*/
 void			reinit_in_out(int datas[5]);
 int				count_cmd(t_pars_list *l);
-int				pid_zero_execution(t_pars_node *cpy, t_args *args, int data, int datas[5]);
+int				pid_zero_execution(t_pars_node *cpy, t_args *args, \
+				int data, int datas[5]);
 int				fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 				t_args *args);
 int				loop_execution(t_args *args, t_pars_list *l);
@@ -123,10 +124,12 @@ int				path_maestro(t_args *args);
 int				is_builtin(t_pars_node *node);
 int				which_node(t_pars_list *l, int n);
 int				return_or_exit(int n, t_args *args, int dats[5]);
-int				exec_builtin_1(t_args *args, t_pars_node *node, int n, int datas[5]);
-int				exec_builtin_2(t_args *args, t_pars_node *node, int n, int datas[5]);
-int				exec_builtin_3(t_args *args, t_pars_node *node, int n, int datas[5]);
-
+int				exec_builtin_1(t_args *args, t_pars_node *node, int n, \
+				int datas[5]);
+int				exec_builtin_2(t_args *args, t_pars_node *node, int n, \
+				int datas[5]);
+int				exec_builtin_3(t_args *args, t_pars_node *node, int n, \
+				int datas[5]);
 int				which_builtin(t_args *args, t_pars_list *l, int n);
 
 /*				UTILS_PATH.C				*/

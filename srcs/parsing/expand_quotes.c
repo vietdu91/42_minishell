@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 18:08:53 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/28 11:02:59 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/06 16:47:23 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_env_list *env)
 	var = NULL;
 	content = NULL;
 	var = check_variable(str, len);
-	content = put_content_of_expand(var, env);
+	content = put_content_of_expand(var, env, psr);
 	psr->content_exp = ft_strjoin(psr->content_exp, content);
 	free(content);
 	free(var);

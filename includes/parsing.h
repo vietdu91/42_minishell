@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/29 22:41:10 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:16:19 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,29 @@
 
 enum	e_type
 {
-	EMPTY,	// 0
-	ERROR,	// 1
-	CMP,	// 2
-	CMD,	// 3
-	OPTION_CMD, // 4
-	SIMPLE_ARG,	// 5
-	PIPE,	// 6
-	DOUBLE_PIPE,	// 7
-	LOGICAL_AND,	// 8
-	ASTERISQUE,		// 9
-	CONTINUE,		// 10
-/*		<		*/
-	INPUT,	// 11
-	INFILE,	// 12
-/*		>		*/
-	OUTPUT,	// 13
-	OUTFILE,	// 14
-/*		>>		*/
-	SUPER_OUTPUT,	// 15
-	SUPER_OUTFILE,	// 16
-/*		<<		*/
-	HEREDOC,	// 17
-	LIMITATOR,	// 18
-	FAKE_HEREDOCS, // 19
-/*		||>		*/
-	WRONG_META, //20
-	OPTION, // 21
-	VAR, // 22
+	EMPTY,
+	ERROR,
+	CMP,
+	CMD,
+	OPTION_CMD,
+	SIMPLE_ARG,
+	PIPE,
+	DOUBLE_PIPE,
+	LOGICAL_AND,
+	ASTERISQUE,
+	CONTINUE,
+	INPUT,
+	INFILE,
+	OUTPUT,
+	OUTFILE,
+	SUPER_OUTPUT,
+	SUPER_OUTFILE,
+	HEREDOC,
+	LIMITATOR,
+	FAKE_HEREDOCS,
+	WRONG_META,
+	OPTION,
+	VAR,
 };
 
 typedef struct s_pars_node
@@ -52,6 +47,7 @@ typedef struct s_pars_node
 	char				*content_exp;
 	char				*content_exp_sans_q;
 	enum e_type			type;
+	bool				check_in;
 	int					*index_crypted;
 	int					len;
 	char				**cmds;
@@ -134,8 +130,12 @@ void	decrypt_content(char *str, int size, t_pars_node *parser);
 /*		EXPAND_PUT.C		*/
 
 void	put_content_exp_sans_q(t_pars_node *node, int *i, int *j, char quote);
-char	*put_content_of_expand(char *var, t_env_list *env);
-char	*check_put_content_of_expand(char *var, char *content, t_env *node);
+char	*put_content_of_expand(char *var, t_env_list *env, t_pars_node *node);
+char	*check_put_content_of_expand(char *var, char *content, t_env *node, \
+t_pars_node *pars);
+char	*check_put_content_of_expand_sans_check(char *var, char *content, \
+t_env *node);
+char	*put_content_of_expand_sans_check(char *var, t_env_list *env);
 
 /*		EXPAND_QUOTES.C		*/
 
@@ -164,6 +164,11 @@ char	*find_path(char **envp);
 char	*find_pwd(char **envp);
 char	*find_oldpwd(char **envp);
 char	*find_home(char **envp);
+
+/*		PARSER_CHECK_QUOTES	*/
+
+char	*check_quotes_in_content(char *content, t_pars_node *node);
+char	*decheck_quotes_in_content(char *content);
 
 /*		PARSER_CONVERT.C		*/
 

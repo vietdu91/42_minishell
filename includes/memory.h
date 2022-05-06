@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:55:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 19:45:06 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:13:06 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@ void		get_env_if_no_env(t_args *args);
 void		set_all(t_args *args, char **envp);
 void		init_struct(t_args *args);
 void		init_and_set_all(t_args *args, char **envp);
-
 
 #endif

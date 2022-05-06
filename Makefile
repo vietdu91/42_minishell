@@ -64,6 +64,7 @@ SRCS		= 	main.c \
 				parsing/expand_variable.c \
 				parsing/expand.c \
 				parsing/find_in_env.c \
+				parsing/parser_check_quotes.c \
 				parsing/parser_convert.c \
 				parsing/parser_quotes.c \
 				parsing/parser_words.c \

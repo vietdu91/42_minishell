@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:12:01 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/25 13:54:45 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:13:21 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void	print_error_w_quote(char *sys, char *cmd, char *arg, char *error);
 /*		INVALID_OPTION.C	*/
 
 void	invalid_option(t_pars_node *node, char *cmd);
-int	    print_syntax_error_meta(char *sign);
+int		print_syntax_error_meta(char *sign);
 
 #endif
