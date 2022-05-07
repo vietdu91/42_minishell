@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 15:39:17 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/03 21:14:57 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/05 11:46:39 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ void	signal_heredoc(int signal)
 		write(1, "\n", 1);
 		rl_replace_line("", 0);
 	//	close(STDIN_FILENO);
-		return ;
+	}
+	if (signal == SIGQUIT)
+	{
+		ft_putstr("Quit (core dumped)\n", 1);
+		g_exit_status = 131;
+		close(STDIN_FILENO);
 	}
 }

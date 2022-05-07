@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/03 21:21:20 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/07 20:12:11 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	reinit_in_out(int datas[5])
 	dup2(datas[4], STDOUT_FILENO);
 }
 
-int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
+int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data, int datas[5])
 {
 	int		error;
 
@@ -46,18 +46,19 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data)
 	// ft_putstr("Fin de commande builtin \n", 1);
 //	ft_putnbr(exec_builtin_1(args, cpy, data), 2);
 //	ft_putstr("\n\n\n", 2);
-	if (exec_builtin_1(args, cpy, data) < 0)
+	// int i = 0;
+	// while (cpy->cmds[i])
+	// {
+	// 	printf("CMD %d : %s\n", i, cpy->cmds[i]);
+	// 	i++;
+	// }
+	if (exec_builtin_1(args, cpy, data, datas) < 0)
 	{
+		//ft_putstr("LOL\n", 2);
 		if (cpy->path)
 		{
 			// ft_putstr("Fin de commande exec\n", 2);
-			// ft_putstr("Fin de commande exec 2\n", 2);
-			// int i = 0;
-			// while (cpy->cmds[i])
-			// {
-			// 	printf("CMD %d : %s\n", i, cpy->cmds[i]);
-			// 	i++;
-			// }
+			//ft_putstr("Fin de commande exec 2\n", 2);
 			execve(cpy->path, cpy->cmds, args->env_tab);
 			if (errno == 2)
 				error = 127;
@@ -90,12 +91,12 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 			return (-1);
 		if (pid == 0)
 		{
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
+		//	signal(SIGINT, SIG_DFL);
+		//	signal(SIGQUIT, SIG_DFL);
 			dup_maestro(datas, l, i);
 			//printf("coucou1\n");
-			pid_zero_execution(i, args, datas[1]);
-			// printf("coucou2\n");
+			pid_zero_execution(i, args, datas[1], datas);
+			//printf("coucou2\n");
 			//printf("ERREUR 2 %d\n", g_exit_status);
 			//ft_putstr("LOL\n", 2);
 			free_all(args);
@@ -105,7 +106,8 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 	else
 	{
 		dup_maestro(datas, l, i);
-		pid_zero_execution(i, args, datas[1]);
+		pid_zero_execution(i, args, datas[1], datas);
+	//	ft_putstr("LOL\n", 2);
 		reinit_in_out(datas);
 	}
 	{
@@ -138,6 +140,24 @@ int	mega_closer(t_pars_list *l)
 	return (0);
 }
 
+// void	restore_fd(int val)
+// {
+// 	static int	fd_in = -1;
+// 	static int	fd_out = -1;
+
+// 	if (val)
+// 	{
+// 		fd_in = dup(STDIN_FILENO);
+// 		...
+// 	}
+// 	else{
+// 		dup2(STDIN_FILENO, fd_in);
+// 		...//
+// 		close(fd_in);
+// 		close(fd_out);
+// 	}
+// }
+
 int	loop_execution(t_args *args, t_pars_list *l)
 {
 	int			datas[5];
@@ -154,6 +174,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[2] = 0;
 	datas[3] = dup(0);
 	datas[4] = dup(1);
+	printf("%d\n", datas[4]);
 	signal(SIGINT, &signal_ignore);
 	signal(SIGQUIT, &signal_ignore);
 	while (i)
@@ -176,13 +197,12 @@ int	loop_execution(t_args *args, t_pars_list *l)
 				close(i->fds[0]);
 			if (i->fds[1] > 0)
 				close(i->fds[1]);
-			// close(datas[3]);
-			// close(datas[4]);
-			// if (datas[0] > 1)
-			// 	close(l->pipe[1]);
-			unlink("/tmp/.zuzu");
+			if (datas[0] > 1)
+				close(l->pipe[1]);
 			if (i->previous && l->pipe[1] > 0 &&  i->previous->type == PIPE)
 				close(l->pipe[1]);
+			// close(datas[3]); // je fais bugger le multipipe 
+			// close(datas[4]); // je fais bugger le multipipe 
 		}
 		i = i->next;
 	}
@@ -192,12 +212,15 @@ int	loop_execution(t_args *args, t_pars_list *l)
 			g_exit_status = WEXITSTATUS(status);
 		j++;
 	}	
+	unlink("/tmp/.zuzu");
 	close(datas[3]);
 	close(datas[4]);
 	if (l->pipe[0] > 0)
 		close(l->pipe[0]);
+	if (l->pipe[1] > 0)
+		close(l->pipe[1]);
 	reinit_in_out(datas);
-	// close(0);
-	// close(1);
+	// close(0); // je fais exit le programme 
+	// close(1); // je cree une boucle infinie 
 	return (0);
 }

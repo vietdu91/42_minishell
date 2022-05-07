@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/03 19:50:34 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/05 11:36:35 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ void	loop(t_args *args)
 {
 	while (1)
 	{
+		signal(SIGTERM, SIG_IGN);
+		signal(SIGSEGV, &signal_segfault);
+		signal(SIGINT, &signal_ctlr_c);
+		signal(SIGQUIT, SIG_IGN);
 		init_parsing_list(&args->parser);
 		args->buffer = readline(PROMPT);
 		if (!args->buffer)
@@ -75,10 +79,6 @@ int	main(int argc, char **argv, char **envp)
 
 	(void) argc;
 	(void) argv;
-	signal(SIGTERM, SIG_IGN);
-	signal(SIGSEGV, &signal_segfault);
-	signal(SIGINT, &signal_ctlr_c);
-	signal(SIGQUIT, SIG_IGN);
 	print_demon();
 	args = NULL;
 	args = malloc(sizeof(t_args));

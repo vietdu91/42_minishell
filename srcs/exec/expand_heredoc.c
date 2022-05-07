@@ -32,7 +32,7 @@ int	quotes_or_not(char *str)
 {
 	int	i;
 
-	// printf("STR : %s\n", str);
+//	printf("STR : %s\n", str);
 	i = -1;
 	if (!str)
 		return (-1);
@@ -68,6 +68,7 @@ char	*send_variable(char *line, t_env_list *env)
 			}
 		}
 	}
+	free(line);
 	flag = ft_strjoin_one_c(flag, '\n');
 	return (flag);
 }
@@ -130,7 +131,7 @@ int	modify_heredoc(char **hdoc, char *limitator, t_env_list *env)
 	j = 0;
 	i = -1;
 	// find which is the good limitator
-	if (!hdoc)
+	if (!hdoc || !limitator)
 		return (0);
 	while (hdoc[j])
 	{
@@ -146,14 +147,10 @@ int	modify_heredoc(char **hdoc, char *limitator, t_env_list *env)
 	// return (0);
 	free(hdoc[j]);
 	while (d_tab[++i])
-	{
 		d_tab[i] = send_variable(d_tab[i], env);
-		//printf("DTAB[%d] : %s\n", i, d_tab[i]);
-	}
 	hdoc[j] = NULL;
 	hdoc[j] = split_to_join(d_tab);
 	free_d_tab(d_tab);
 	d_tab = NULL;
-	// modifier strcmp 
 	return (0);
 }

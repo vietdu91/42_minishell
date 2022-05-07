@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/03 18:01:06 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/05 22:56:12 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	cmd_attribution(t_pars_list *l)
 		return ;
 	if (i->type == 0)
 		i->type = CMD;
-	printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
+	// printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 	if (i && i->next == NULL)
 		return ;
 	i = i->next;

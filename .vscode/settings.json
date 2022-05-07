@@ -5,7 +5,9 @@
 		"string_view": "c",
 		"initializer_list": "c",
 		"ranges": "c",
-		"utility": "c"
+		"utility": "c",
+		"*.tcc": "c",
+		"fstream": "c"
 	},
 	"42header.email": "dyoula@student.42.fr",
 	"42header.username": "dyoula"

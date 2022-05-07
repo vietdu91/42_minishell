@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:44:03 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 19:35:38 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/05 12:58:09 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ size_t				ft_strlcpy(char *dest, char *src, size_t size);
 char				*join_char(char *str, char c);
 size_t				ft_strlcpy_w_quotes(char *dest, char *src, size_t size);
 char				*ft_strjoin_one_c(char *s1, char s2);
+char				*ft_strjoin_one_c_sans_free(char *s1, char s2);
 void				ft_strncpy(char *dest, char *src, int n);
 char				*ft_substr(char *s, int start, int len);
+char				*ft_strchr(const char *str, int ch);
 
 /* 		UTILS_WRITE 	*/
 

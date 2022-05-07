@@ -1,16 +1,13 @@
+a.out
 bonjour
+bonjour monsieur
 cc.c
 dossier
 ERRORS
-hello
-hola
-hola1
-hola2
 ignorereadline
 includes
+inf
 lol
-lola
-lp
 Makefile
 mdr
 minishell
@@ -23,4 +20,4 @@ srcs
 test.c
 v
 vv
-yolo
+wc

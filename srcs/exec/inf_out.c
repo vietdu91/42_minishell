@@ -22,10 +22,10 @@ char	**create_fd_tab(t_pars_node *inf, t_pars_node *out)
 		return (NULL);
 	fds[0] = NULL;
 	if (inf)
-		fds[0] = ft_strdup(inf->content);
+		fds[0] = ft_strdup(inf->content_exp_sans_q);
 	fds[1] = NULL;
 	if (out)
-		fds[1] = ft_strdup(out->content);
+		fds[1] = ft_strdup(out->content_exp_sans_q);
 	fds[2] = NULL;
 	return (fds);
 }

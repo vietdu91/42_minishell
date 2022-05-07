@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:22:49 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/03 17:04:17 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/06 16:47:20 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	pwd_main(t_pars_node *parser, t_args *args)
 		error_because_lost_dir_pwd(pwd);
 		return ;
 	}
-	ft_putstr(pwd, 1);
-	ft_putchar('\n', 1);
+	ft_putstr(pwd, STDOUT_FILENO);
+	ft_putchar('\n', STDOUT_FILENO);
 	change_pwd_env(pwd, args->env);
 	change_pwd_export(pwd, args->export);
 	g_exit_status = 0;
