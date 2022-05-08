@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_convert.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:45:46 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/02 15:53:51 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/08 19:35:17 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char *content)
 int	check_len_nw_word_in_quotes(char quote, char *str, int *pos, int count)
 {
 	(*pos)++;
-//	printf("STR : %s\n", str);
 	while (str[*pos] != quote)
 	{
 		(*pos)++;

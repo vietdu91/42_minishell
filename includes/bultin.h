@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bultin.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/03 17:11:18 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/08 19:38:17 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_env_list *env);
 
 /*		PWD.C		*/
 
-void    	error_because_lost_dir_pwd(char *pwd);
+void		error_because_lost_dir_pwd(char *pwd);
 void		pwd_main(t_pars_node *parser, t_args *args);
 
 /*				PWD_CHANGE.C		*/

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/06 19:06:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/08 23:31:18 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	is_builtin(t_pars_node *node)
 		return (0);
 	else if (!ft_strcmp(node->content_exp_sans_q, "echo"))
 		return (0);
-	// printf("%s n'est pas un builtin\n", node->content);
 	return (1);
 }
 
@@ -79,7 +78,7 @@ int	return_or_exit(int n, t_args *args, int datas[5])
 		close(args->parser->pipe[0]);
 	if ( args->parser->pipe[1])
 		close(args->parser->pipe[1]);
-	reinit_in_out(datas);
+	reset_in_out(datas, args->parser);
 	if (n == 1)
 	{
 		// ft_putstr("rien a faire ici \n", 2);
@@ -108,6 +107,11 @@ int	exec_builtin_3(t_args *args, t_pars_node *node, int n, int datas[5])
 		print_patience(args);
 		return (return_or_exit(n, args, datas));
 	}
+	else if (!ft_strcmp(node->content_exp_sans_q, "echo"))
+	{
+		echo_main(args, node);
+		return (return_or_exit(n, args, datas));
+	}
 	return (-1);
 }
 
@@ -115,13 +119,11 @@ int	exec_builtin_2(t_args *args, t_pars_node *node, int n, int datas[5])
 {
 	if (!ft_strcmp(node->content_exp_sans_q, "env"))
 	{
-		// printf("ENV SE LANCE\n");
 		display_env(node, args->env);
 		return (return_or_exit(n, args, datas));
 	}
 	else if (!ft_strcmp(node->content_exp_sans_q, "pwd"))
 	{
-		// printf("n ======= %d\n", n);
 		pwd_main(node, args);
 		return (return_or_exit(n, args, datas));
 	}
@@ -152,12 +154,6 @@ int	exec_builtin_1(t_args *args, t_pars_node *node, int n, int datas[5])
 			exit_main(args, node);
 			return (return_or_exit(n, args, datas));
 		}
-		else if (!ft_strcmp(node->content_exp_sans_q, "echo"))
-		{
-			echo_main(args, node);
-			return (return_or_exit(n, args, datas));
-		}
 	}
-	// printf("on entre dans le exec builtin\n");
 	return (exec_builtin_2(args, node, n, datas));
 }

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/07 20:12:11 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/08 23:32:22 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,17 @@ int	count_cmd(t_pars_list *l)
 	return (cmd);
 }
 
-void	reinit_in_out(int datas[5])
+int	reset_in_out(int datas[5], t_pars_list *l)
 {
+	// if (dup2(datas[3], STDIN_FILENO) < 0 || dup2(datas[4], STDOUT_FILENO) < 0)
+	// {
+	// 	close_maestro(datas, l);
+	// 	return (-1);
+	// }
+	(void)l;
 	dup2(datas[3], STDIN_FILENO);
 	dup2(datas[4], STDOUT_FILENO);
+	return (0);
 }
 
 int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data, int datas[5])
@@ -94,11 +101,7 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 		//	signal(SIGINT, SIG_DFL);
 		//	signal(SIGQUIT, SIG_DFL);
 			dup_maestro(datas, l, i);
-			//printf("coucou1\n");
 			pid_zero_execution(i, args, datas[1], datas);
-			//printf("coucou2\n");
-			//printf("ERREUR 2 %d\n", g_exit_status);
-			//ft_putstr("LOL\n", 2);
 			free_all(args);
 			exit (g_exit_status);
 		}
@@ -107,8 +110,7 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 	{
 		dup_maestro(datas, l, i);
 		pid_zero_execution(i, args, datas[1], datas);
-	//	ft_putstr("LOL\n", 2);
-		reinit_in_out(datas);
+		// reset_in_out(datas, l);
 	}
 	{
 		if (datas[0] > 1)
@@ -128,17 +130,17 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 	return (0);
 }
 
-int	mega_closer(t_pars_list *l)
-{
-	t_pars_node	*i;
+// int	mega_closer(t_pars_list *l)
+// {
+// 	t_pars_node	*i;
 
-	i = l->head;
-	while (i)
-	{
-		i = i->next;
-	}
-	return (0);
-}
+// 	i = l->head;
+// 	while (i)
+// 	{
+// 		i = i->next;
+// 	}
+// 	return (0);
+// }
 
 // void	restore_fd(int val)
 // {
@@ -182,7 +184,6 @@ int	loop_execution(t_args *args, t_pars_list *l)
 		if (i->type == CMD || !i->len)
 		{
 			datas[0]++;
-			//printf("kontent = %s\n", i->content);
 			// int j = -1;
 			// while (i->cmds[++j])
 			// 	printf("kontent %s\n", i->cmds[j]);
@@ -191,8 +192,8 @@ int	loop_execution(t_args *args, t_pars_list *l)
 			// {
 			// 	close_maestro(datas, l, i);
 			// }
-			if (datas[1] == 1)
-				reinit_in_out(datas);
+			// if (datas[1] == 1)
+			// 	reset_in_out(datas, l);
 			if (i->fds[0] > 0)
 				close(i->fds[0]);
 			if (i->fds[1] > 0)
@@ -201,6 +202,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 				close(l->pipe[1]);
 			if (i->previous && l->pipe[1] > 0 &&  i->previous->type == PIPE)
 				close(l->pipe[1]);
+			// printf("kontent = %s\n", i->content);
 			// close(datas[3]); // je fais bugger le multipipe 
 			// close(datas[4]); // je fais bugger le multipipe 
 		}
@@ -219,7 +221,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 		close(l->pipe[0]);
 	if (l->pipe[1] > 0)
 		close(l->pipe[1]);
-	reinit_in_out(datas);
+	// reset_in_out(datas, l);
 	// close(0); // je fais exit le programme 
 	// close(1); // je cree une boucle infinie 
 	return (0);
