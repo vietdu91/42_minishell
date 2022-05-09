@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/08 23:32:22 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/09 19:11:57 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,36 +130,6 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 	return (0);
 }
 
-// int	mega_closer(t_pars_list *l)
-// {
-// 	t_pars_node	*i;
-
-// 	i = l->head;
-// 	while (i)
-// 	{
-// 		i = i->next;
-// 	}
-// 	return (0);
-// }
-
-// void	restore_fd(int val)
-// {
-// 	static int	fd_in = -1;
-// 	static int	fd_out = -1;
-
-// 	if (val)
-// 	{
-// 		fd_in = dup(STDIN_FILENO);
-// 		...
-// 	}
-// 	else{
-// 		dup2(STDIN_FILENO, fd_in);
-// 		...//
-// 		close(fd_in);
-// 		close(fd_out);
-// 	}
-// }
-
 int	loop_execution(t_args *args, t_pars_list *l)
 {
 	int			datas[5];
@@ -184,9 +154,6 @@ int	loop_execution(t_args *args, t_pars_list *l)
 		if (i->type == CMD || !i->len)
 		{
 			datas[0]++;
-			// int j = -1;
-			// while (i->cmds[++j])
-			// 	printf("kontent %s\n", i->cmds[j]);
 			fork_execution(datas, i, l, args);
 			// if (datas[1] == datas[0])
 			// {
@@ -226,3 +193,46 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	// close(1); // je cree une boucle infinie 
 	return (0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// int	mega_closer(t_pars_list *l)
+// {
+// 	t_pars_node	*i;
+
+// 	i = l->head;
+// 	while (i)
+// 	{
+// 		i = i->next;
+// 	}
+// 	return (0);
+// }
+
+// void	restore_fd(int val)
+// {
+// 	static int	fd_in = -1;
+// 	static int	fd_out = -1;
+
+// 	if (val)
+// 	{
+// 		fd_in = dup(STDIN_FILENO);
+// 		...
+// 	}
+// 	else{
+// 		dup2(STDIN_FILENO, fd_in);
+// 		...//
+// 		close(fd_in);
+// 		close(fd_out);
+// 	}
+// }

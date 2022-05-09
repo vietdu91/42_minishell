@@ -68,11 +68,4 @@ VSCODE_GIT_ASKPASS_NODE=/usr/share/code/code
 VSCODE_GIT_ASKPASS_EXTRA_ARGS=--ms-enable-electron-run-as-node
 VSCODE_GIT_ASKPASS_MAIN=/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
 GIT_ASKPASS=/usr/share/code/resources/app/extensions/git/dist/askpass.sh
-[5;91mWELCOME TO (minis)HELL 😈 [0m[1;93m$> [0m
-[5;91mWELCOME TO (minis)HELL 😈 [0m[1;93m$> [0m
-[5;91mWELCOME TO (minis)HELL 😈 [0m[1;93m$> [0m
-[5;91mWELCOME TO (minis)HELL 😈 [0m[1;93m$> [0m
-[5;91mWELCOME TO (minis)HELL 😈 [0m[1;93m$> [0m
-[5;91mWELCOME TO (minis)HELL 😈 [0m[1;93m$> [0m
-[5;91mWELCOME TO (minis)HELL 😈 [0m[1;93m$> [0m^C
-[5;91mWELCOME TO (minis)HELL 😈 [0m[1;93m$> [0m
+[5;91mWELCOME TO (minis)HELL 😈 [0m[1;93m$> [0mexit
