@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 01:09:33 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/08 22:31:51 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/09 17:39:34 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,17 @@ int	datas_zero(int datas[5], t_pars_list *l, t_pars_node *cpy)
 	}
 	else
 	{
-		if (datas[2] > 0)
-			close(datas[2]);
 		ft_putstr("erreur 2\n", 2);
-		close(l->pipe[0]);
-		close(l->pipe[1]);
+		if (datas[1] > 1)
+		{
+			if (datas[1])
+			{
+				close(l->pipe[0]);
+				if (datas[2] > 0)
+					close(datas[2]);
+				close(l->pipe[1]);
+			}
+		}
 		close(datas[3]);
 		close(datas[4]);
 	}
@@ -71,40 +77,40 @@ int	datas_zero(int datas[5], t_pars_list *l, t_pars_node *cpy)
 
 int	dup_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy)
 {
-	// if (cpy->fds[0] > 0)
-	// {
-	// 	printf("salut\n");
-	// 	printf("out %d\n", cpy->fds[0]);
-	// 	if (datas[0] == 1)
-	// 	{
-	// 		// close(l->pipe[0]);
-	// 		// close(l->pipe[1]);
-	// 	}
-	// 	if (dup2(cpy->fds[0], STDIN_FILENO) < 0)
-	// 	{
-	// 		close_maestro(datas, l);
-	// 		return (-1);
-	// 	}
-	// 	close(cpy->fds[0]);
-	// 	close(datas[3]);
-	// }
-	// if (cpy->fds[1] > 0)
-	// {
-	// 	printf("FILHO DE PUTa\n");
-	// 	if (datas[0] == 1)
-	// 	{
-	// 		close(l->pipe[0]);
-	// 		close(l->pipe[1]);
-	// 		close(datas[4]);
-	// 	}
-	// 	// close(l->pipe[1]);
-	// 	if (dup2(cpy->fds[1], STDOUT_FILENO) < 0)
-	// 	{
-	// 		close_maestro(datas, l);
-	// 		return (-1);
-	// 	}
-	// 	close(cpy->fds[1]);
-	// }
+	if (cpy->fds[0] > 0)
+	{
+		printf("salut\n");
+		printf("out %d\n", cpy->fds[0]);
+		if (datas[0] == 1)
+		{
+			// close(l->pipe[0]);
+			// close(l->pipe[1]);
+		}
+		if (dup2(cpy->fds[0], STDIN_FILENO) < 0)
+		{
+			close_maestro(datas, l);
+			return (-1);
+		}
+		close(cpy->fds[0]);
+		close(datas[3]);
+	}
+	if (cpy->fds[1] > 0)
+	{
+		printf("FILHO DE PUTa\n");
+		if (datas[0] == 1)
+		{
+			close(l->pipe[0]);
+			close(l->pipe[1]);
+			close(datas[4]);
+		}
+		// close(l->pipe[1]);
+		if (dup2(cpy->fds[1], STDOUT_FILENO) < 0)
+		{
+			close_maestro(datas, l);
+			return (-1);
+		}
+		close(cpy->fds[1]);
+	}
 	if (datas[0] == 1)
 		return (datas_zero(datas, l, cpy));
 	else if (datas[0] == datas[1] && datas[1] > 1)
