@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 19:50:38 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 16:28:05 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:03:53 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,6 @@ int	is_forbidden(t_pars_node *node)
 		return (1);
 	return (0);
 }
-
-//	ft_putstr("syntax error near unexpected token '", 2);
-//	ft_putstr(i->next->content, 2);
-//	ft_putstr("'\n", 2);
 
 int	forbidden_token(t_pars_list *l)
 {

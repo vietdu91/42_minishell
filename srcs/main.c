@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:33:20 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/06 19:37:14 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:33:54 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,7 @@ void	loop(t_args *args)
 {
 	while (1)
 	{
-		signal(SIGTERM, SIG_IGN);
-		signal(SIGSEGV, &signal_segfault);
-		signal(SIGINT, &signal_ctlr_c);
-		signal(SIGQUIT, SIG_IGN);
-		signal(SIGPIPE, SIG_IGN);
+		all_ignore();
 		init_parsing_list(&args->parser);
 		args->buffer = readline(PROMPT);
 		if (!args->buffer)
@@ -57,11 +53,10 @@ void	loop(t_args *args)
 		}
 		else
 		{
-		//	args->buffer = buffer_cleaner(args->buffer);
 			if (!check_unclosed(args))
 			{
 				parsing_maestro(args, args->buffer);
-				// display_parsing(args->parser);
+				display_parsing(args->parser);
 				if (!lexer_maestro(args))
 					exec_maestro(args);
 				//display_parsing(args->parser);

@@ -70,6 +70,7 @@ SRCS		= 	main.c \
 				parsing/parser_words.c \
 				parsing/parser.c \
 				parsing/line_to_linked_list.c \
+				signal/handlers.c \
 				signal/signal.c \
 				utils/utils_digits.c \
 				utils/utils_gnl.c \

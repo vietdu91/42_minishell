@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:28:57 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/26 18:58:55 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:08:42 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 			return (-1);
 		i++;
 	}
-//	if (i != (unsigned int)ft_strlen((char *)s1) - 1)
-//		return (-1);
 	return (0);
 }
 

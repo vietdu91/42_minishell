@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/06 17:41:37 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:27:40 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,6 @@ void	find_cd(t_args *args, char *oldpwd, char *path, bool *error)
 	}
 	free(pwd);
 	free(oldpwd);
-	return ;
-}
-
-void	bad_cd(char *oldpwd, t_pars_node *node, int way, bool *error)
-{
-	free(oldpwd);
-	if (way == 1)
-		invalid_option(node, CMD_CD);
-	else if (way == 2)
-	{
-		print_error(BASH, CMD_CD, NULL, ERR_MANY_ARG);
-		g_exit_status = 1;
-	}
-	*error = TRUE;
 	return ;
 }
 
@@ -82,6 +68,32 @@ bool *error)
 		find_cd(args, oldpwd, node->content_exp_sans_q, error);
 }
 
+int	cd_second_main(t_args *args, t_pars_node *node, char *oldpwd, \
+int *nb_single_args)
+{
+	bool		error;
+
+	error = FALSE;
+	if (node->type == OPTION)
+	{
+		bad_cd(oldpwd, node, 1, &error);
+		return (0);
+	}
+	else if (node->type == SIMPLE_ARG)
+	{
+		if (*nb_single_args > 1)
+		{
+			bad_cd(oldpwd, node, 2, &error);
+			return (0);
+		}
+		else
+			cd_third_main(args, node, oldpwd, &error);
+		if (error == FALSE)
+			g_exit_status = 0;
+	}
+	return (1);
+}
+
 void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 {
 	t_pars_node	*node;
@@ -96,23 +108,8 @@ void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 	node = parser->next;
 	while (node && node->type != PIPE)
 	{
-		if (node->type == OPTION)
-		{
-			bad_cd(oldpwd, node, 1, &error);
+		if (!cd_second_main(args, node, oldpwd, &nb_simple_args))
 			return ;
-		}
-		else if (node->type == SIMPLE_ARG)
-		{
-			if (nb_simple_args > 1)
-			{
-				bad_cd(oldpwd, node, 2, &error);
-				return ;
-			}
-			else
-				cd_third_main(args, node, oldpwd, &error);
-			if (error == FALSE)
-				g_exit_status = 0;
-		}
 		node = node->next;
 	}
 	if (!nb_simple_args)

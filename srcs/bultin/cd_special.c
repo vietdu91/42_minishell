@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:46:57 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/28 12:35:33 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:27:35 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,19 @@ void	cd_home(t_args *args, t_env_list *env, char *oldpwd, bool *error)
 	}
 	home = find_content_in_env("HOME", env);
 	find_cd(args, oldpwd, home, error);
+	return ;
+}
+
+void	bad_cd(char *oldpwd, t_pars_node *node, int way, bool *error)
+{
+	free(oldpwd);
+	if (way == 1)
+		invalid_option(node, CMD_CD);
+	else if (way == 2)
+	{
+		print_error(BASH, CMD_CD, NULL, ERR_MANY_ARG);
+		g_exit_status = 1;
+	}
+	*error = TRUE;
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:57:13 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 17:07:21 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:06:29 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	free_builtins(t_builtin *builtin)
 	if (builtin)
 		free(builtin);
 }
-
 
 void	free_args(t_args *args)
 {

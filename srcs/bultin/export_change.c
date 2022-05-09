@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_change.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 12:38:42 by emtran            #+#    #+#             */
-/*   Updated: 2022/03/25 14:58:12 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:01:13 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,11 @@ int check)
 		node = node->next;
 	}
 	free(variable);
+}
+
+void	bad_id_export(t_pars_node *node)
+{
+	print_error_w_quote(BASH, CMD_EXPORT, node->content_exp_sans_q, \
+	ERR_ID);
+	g_exit_status = 1;
 }

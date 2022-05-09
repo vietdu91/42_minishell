@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 13:49:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/25 15:19:48 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:01:37 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	is_a_directory(char *str)
 
 int	is_a_special_directory(char *str)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	ret = chdir(str);

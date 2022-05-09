@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:45:37 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/06 17:53:03 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:29:05 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 /*		CD.C		*/
 
 void		find_cd(t_args *args, char *oldpwd, char *path, bool *error);
-void		bad_cd(char *oldpwd, t_pars_node *node, int way, bool *error);
 int			check_nb_simple_args(t_pars_node *node);
 void		cd_third_main(t_args *args, t_pars_node *node, char *oldpwd, \
-bool *error);
+			bool *error);
+int			cd_second_main(t_args *args, t_pars_node *node, char *oldpwd, \
+			int *nb_single_args);
 void		cd_main(t_args *args, t_env_list *env, t_pars_node *parser);
 
 /*			CD_SPECIAL.C	*/
@@ -27,6 +28,7 @@ void		cd_main(t_args *args, t_env_list *env, t_pars_node *parser);
 void		error_because_lost_dir(char *oldpwd, char *command, bool *error);
 void		cd_moins(t_args *args, t_env_list *env, char *oldpwd, bool *error);
 void		cd_home(t_args *args, t_env_list *env, char *oldpwd, bool *error);
+void		bad_cd(char *oldpwd, t_pars_node *node, int way, bool *error);
 
 /*		ECHO.C		*/
 
@@ -46,9 +48,9 @@ char		*find_content_in_env(char *var, t_env_list *env);
 t_env_list	*add_var_to_env(t_env_list *env, char *content, t_args *args);
 void		create_node_to_export_or_env(t_env *node, t_env_list *list);
 void		export_var_to_export(t_args *args, t_env_list *export, char *var, \
-int check);
+			int check);
 void		export_var_to_env(t_args *args, t_env_list *env, char *var, \
-int check);
+			int check);
 
 /*				ENV_SET.C	*/
 
@@ -63,26 +65,28 @@ int			set_id_env(char *str);
 void		error_numeric_exit(t_args *args, char *content);
 int			check_len_llu_nb(char *content);
 void		say_hello_wave_goodbye(t_args *args, char *content, int neg, \
-unsigned long long exit_status);
+			unsigned long long exit_status);
 void		exit_main(t_args *args, t_pars_node *parser);
 
 /*		EXPORT.C		*/
 
 void		get_export(t_args *args);
 int			check_id_export(char *str);
-void		bad_id_export(t_pars_node *node);
+void		export_third_main(t_args *args, t_pars_node *node, int *check, \
+			bool *error);
 void		export_second_main(t_args *args, t_pars_node *node, \
-bool *export_alone, bool *error);
+			bool *export_alone, bool *error);
 void		export_main(t_args *args, t_pars_node *parser, t_env_list *export);
 
 /*				EXPORT_CHANGE.C		*/
 
 int			check_existing_var(t_env_list *env, char *var);
 void		set_new_content_in_export(t_env *node, char *content, t_args *args, \
-int check);
+			int check);
 void		replace_existing_var(t_args *args, t_env_list *env, char *var);
 void		replace_existing_var_exp(t_args *args, t_env_list *export, \
-char *var, int check);
+			char *var, int check);
+void		bad_id_export(t_pars_node *node);
 
 /*				EXPORT_TAB.C		*/
 
@@ -97,11 +101,11 @@ void		display_export(t_env_list *export);
 int			check_len_interior_spaces(char *str);
 char		*remove_interior_spaces(char *str);
 char		*check_put_content_trim_of_expand(char *var, char *content, \
-t_env *node, t_pars_node *pars);
+			t_env *node, t_pars_node *pars);
 char		*put_content_trim_of_expand(char *var, t_env_list *env, \
-t_pars_node *pars);
+			t_pars_node *pars);
 void		strjoin_content_trim_exp(char **str, int len, t_pars_node *psr, \
-t_env_list *env);
+			t_env_list *env);
 
 /*		PWD.C		*/
 

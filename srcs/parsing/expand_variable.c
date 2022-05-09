@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 17:34:31 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/28 11:00:48 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:07:30 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	found_variable(char **str)
 	if (*(*str + 1) == '?')
 		(*str)++;
 	else if (*(*str + 1) != '$' && ft_strcmp("$", *str) \
-	&& !is_quote(*(*str + 1)) && ((is_alphanum(*(*str + 1)) == 1)
+	&& !is_quote(*(*str + 1)) && ((is_alphanum(*(*str + 1)) == 1) \
 	|| *(*str + 1) == '_'))
 		(*str)++;
 	else if (is_quote(*(*str + 1)) && is_quote(*(*str + 2)))
