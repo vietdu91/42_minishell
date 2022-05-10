@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_maestro.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/10 13:17:45 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/10 14:03:48 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,12 @@ void	cmd_attribution(t_pars_list *l)
 		return ;
 	if (i->type == 0)
 		i->type = CMD;
-	printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 	if (i && i->next == NULL)
 		return ;
 	i = i->next;
 	while (i)
 	{
-		printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		cmd_or_option_or_arg(i, &cmd);
-		//printf("JE SUIS %s et je suis de type %d\n", i->content, i->type);
 		i = i->next;
 	}
 }
@@ -91,12 +88,8 @@ int	lexer_maestro(t_args *args)
 {
 	if (!args->parser)
 		return (0);
-//	split_meta(args->parser);
-//	split_meta(args->parser);
 	logical_attribution(args->parser);
-//	split_expand(args->parser, args->env);
 	cmd_attribution(args->parser);
-//	arg_attribution(args->parser); // if bug search here 
 	if (syntax_error_meta(args) < 0 || forbidden_token(args->parser))
 		return (-1);
 	return (0);

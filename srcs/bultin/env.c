@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:59:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/08 23:27:52 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/10 14:05:15 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	print_env(t_env *current)
 {
 	if (ft_strcmp(current->line, "\0"))
 	{
-		// ft_putnbr(STDOUT_FILENO, 2);
-		// ft_putchar('\n', 2);
 		ft_putstr(current->line, STDOUT_FILENO);
 		ft_putstr("\n", STDOUT_FILENO);
 	}

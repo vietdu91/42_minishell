@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/10 13:12:08 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/10 13:59:07 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[2] = 0;
 	datas[3] = dup(0);
 	datas[4] = dup(1);
-	printf("%d\n", datas[4]);
+	// printf("%d\n", datas[4]);
 	signal(SIGINT, &signal_ignore);
 	signal(SIGQUIT, &signal_ignore);
 	while (i)

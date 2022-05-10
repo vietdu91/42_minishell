@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/10 13:18:09 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/10 14:03:04 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void			create_infiles_outfiles(t_args *args, int in_out[2], \
 				t_pars_node *cpy, char **fds_content);
 
 /*				EXECUTION.C			*/
-int			reset_in_out(int datas[5], t_pars_list *l);
+int				reset_in_out(int datas[5], t_pars_list *l);
 int				count_cmd(t_pars_list *l);
 int				pid_zero_execution(t_pars_node *cpy, \
 				t_args *args, int data, int datas[5]);
