@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/30 20:25:46 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/06 14:35:44 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_parsing_node(t_pars_node *node)
 	node->content_exp = NULL;
 	node->content_exp_sans_q = NULL;
 	node->type = 0;
+	node->check_in = FALSE;
 	node->len = 0;
 	node->index_crypted = 0;
 	node->cmds = NULL;

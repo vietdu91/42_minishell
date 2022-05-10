@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:23:04 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/02 18:38:19 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:05:17 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,24 @@ int	apply_type(int type, t_pars_node *node)
 {
 	node->type = type;
 	return (1);
+}
+
+void	arg_attribution(t_pars_list *l)
+{
+	t_pars_node	*node;
+	int			cmds;
+
+	cmds = 0;
+	node = l->head;
+	while (node)
+	{
+		if (node->type != CMD && node->type != OPTION && \
+		node->type != SIMPLE_ARG)
+			cmds = 0;
+		if (cmds == 1 && node->type == EMPTY)
+			node->type = SIMPLE_ARG;
+		if (node->type == CMD || node->type == PIPE)
+			cmds = 1;
+		node = node->next;
+	}
 }

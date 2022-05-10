@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:53:59 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/02 18:48:07 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 16:12:49 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ int	attribution_metachar(t_pars_node *node)
 		node->type = SUPER_OUTPUT;
 	else if (!ft_strcmp(node->content, "|"))
 		node->type = PIPE;
-//	else if (!ft_strcmp(node->content, "||"))
-//		node->type = DOUBLE_PIPE;
-//	else if (!ft_strcmp(node->content, "&&"))
-//		node->type = LOGICAL_AND;
-//	else if (!ft_strcmp(node->content, "*"))
-//		node->type = ASTERISQUE;
 	else if (!ft_strcmp(node->content, ";"))
 		node->type = CONTINUE;
 	return (0);
@@ -49,12 +43,6 @@ int	find_if_error(t_pars_node *node)
 			return (1);
 		else if (!ft_strcmp(node->content, "|"))
 			return (1);
-//		else if (!ft_strcmp(node->content, "||"))
-//			return (1);
-//		else if (!ft_strcmp(node->content, "&&"))
-//			return (1);
-//		else if (!ft_strcmp(node->content, "*"))
-//			return (1);
 		else if (!ft_strcmp(node->content, ";"))
 			return (1);
 		else
@@ -79,10 +67,8 @@ int	check_if_meta(t_pars_list *l)
 
 int	attribute_meta(t_pars_node *node)
 {
-	if (!ft_strcmp(node->content, "<") && apply_type(INPUT, node) \
-	&& node->previous)
+	if (!ft_strcmp(node->content, "<") && apply_type(INPUT, node))
 	{
-		node->previous->type = CMD;
 		if (!node->next)
 			return (0);
 		node->next->type = INFILE;
@@ -98,11 +84,6 @@ int	attribute_meta(t_pars_node *node)
 		node->next->type = SUPER_OUTFILE;
 	else if (!ft_strcmp(node->content, "|"))
 		apply_type(PIPE, node);
-//		apply_cmd(node, PIPE);
-//	else if (!ft_strcmp(node->content, "||") && apply_type(DOUBLE_PIPE, node))
-//		apply_cmd(node, DOUBLE_PIPE);
-//	else if (!ft_strcmp(node->content, "&&") && apply_type(LOGICAL_AND, node))
-//		apply_cmd(node, LOGICAL_AND);
 	else if (is_full_meta(node->content) && !does_meta_exist(node))
 		node->type = WRONG_META;
 	return (0);
@@ -111,7 +92,7 @@ int	attribute_meta(t_pars_node *node)
 int	logical_attribution(t_pars_list *l)
 {
 	t_pars_node	*i;
-	int 		file;
+	int			file;
 
 	file = 0;
 	i = l->head;
@@ -123,7 +104,6 @@ int	logical_attribution(t_pars_list *l)
 	i = l->head;
 	while (i)
 	{
-	//	printf("OPTION HERE i->type = %d\n", i->type);
 		if (i->type == PIPE)
 			file = 0;
 		if (i && (i->type == OUTFILE \

@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:41:56 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/21 17:34:55 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/06 16:47:38 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,11 @@ void	expand(char *str, t_pars_node *parser, t_env_list *env)
 	cpy = &str;
 	where_is_dollar(cpy, parser, env);
 	convert_expand_quotes(parser);
+	if (parser->check_in == TRUE)
+	{
+		parser->content_exp = decheck_quotes_in_content(parser->content_exp);
+		parser->content_exp_sans_q = \
+		decheck_quotes_in_content(parser->content_exp_sans_q);
+	}
 	return ;
 }

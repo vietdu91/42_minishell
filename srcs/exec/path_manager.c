@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:17:41 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/29 21:24:44 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:31:39 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	if_no_cmd_is_path(char *path, char **to_try, t_pars_node *node)
 		{
 			if (is_a_directory(node->content_exp_sans_q))
 			{
-				print_error(BASH, NULL, node->content_exp_sans_q, ERR_IS_DIR);				
+				print_error(BASH, NULL, node->content_exp_sans_q, \
+				ERR_IS_DIR);
 				g_exit_status = 126;
 			}
 			else
@@ -64,9 +65,7 @@ void	if_no_cmd_is_path(char *path, char **to_try, t_pars_node *node)
 			g_exit_status = 1;
 	}
 	else
-	{
 		node->path = ft_strdup(path);
-	}
 }
 
 int	path_maestro(t_args *args)

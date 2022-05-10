@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/08 23:31:18 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/10 13:17:29 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int	exec_builtin_1(t_args *args, t_pars_node *node, int n, int datas[5])
 		}
 		else if (!ft_strcmp(node->content_exp_sans_q, "export"))
 		{
-			export_main(args, args->env, args->export, node);
+			export_main(args, node, args->export);
 			return (return_or_exit(n, args, datas));
 		}
 		else if (!ft_strcmp(node->content_exp_sans_q, "exit"))

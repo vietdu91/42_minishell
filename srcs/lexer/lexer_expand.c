@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/02 22:09:56 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/06 14:57:23 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*return_var(char *str, t_env_list *env, int datas[2])
 			datas[0] += i;
 			var = check_variable(&str, ft_strlen(str));
 			datas[0] += ft_strlen(var);
-			content = put_content_of_expand(var, env);
+			content = put_content_of_expand_sans_check(var, env);
 			free(var);
 			return (content);
 		}

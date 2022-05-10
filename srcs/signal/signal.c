@@ -6,78 +6,17 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 15:39:17 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/05 11:46:39 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 10:54:07 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	signal_ctlr_c(int signal)
+void	all_ignore(void)
 {
-	if (signal == SIGINT)
-	{
-		ft_putstr("\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-		g_exit_status = 130;
-	}
-}
-
-void	signal_exec(int signal)
-{
-	if (signal == SIGINT)
-	{
-		ft_putstr("\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		g_exit_status = 130;
-	}
-	else if (signal == SIGQUIT)
-	{
-		ft_putstr("Quit (core dumped)\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		g_exit_status = 131;
-	}
-}
-
-void	signal_segfault(int signal)
-{
-	if (signal == SIGSEGV)
-	{
-		ft_putstr("Segmentation fault (core dumped)\n", 1);
-		g_exit_status = 139;
-	}
-}
-
-void	signal_ignore(int signal)
-{
-	if (signal == SIGINT)
-	{
-		ft_putchar('\n', 1);
-		g_exit_status = 130;
-	}
-	if (signal == SIGQUIT)
-	{
-		ft_putstr("Quit (core dumped)\n", 1);
-		g_exit_status = 131;
-	}
-}
-
-void	signal_heredoc(int signal)
-{
-	if (signal == SIGINT)
-	{
-		g_exit_status = 130;
-		write(1, "\n", 1);
-		rl_replace_line("", 0);
-	//	close(STDIN_FILENO);
-	}
-	if (signal == SIGQUIT)
-	{
-		ft_putstr("Quit (core dumped)\n", 1);
-		g_exit_status = 131;
-		close(STDIN_FILENO);
-	}
+	signal(SIGTERM, SIG_IGN);
+	signal(SIGSEGV, &signal_segfault);
+	signal(SIGINT, &signal_ctlr_c);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGPIPE, SIG_IGN);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_meta.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 23:25:18 by dyoula            #+#    #+#             */
-/*   Updated: 2022/03/03 11:43:52 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:08:36 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,6 @@ int	does_meta_exist(t_pars_node *node)
 		return (1);
 	else if (!ft_strcmp(node->content, "|"))
 		return (1);
-//	else if (!ft_strcmp(node->content, "||"))
-//		return (1);
-//	else if (!ft_strcmp(node->content, "&&"))
-//		return (1);
-//	else if (!ft_strcmp(node->content, "*"))
-//		return (1);
 	else if (!ft_strcmp(node->content, ";"))
 		return (1);
 	return (0);

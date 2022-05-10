@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:26:54 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/28 11:34:37 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:16:59 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,11 @@ void	update_env(char *pwd, char *oldpwd, t_args *args)
 	}
 	if (oldpwd)
 	{
-//		printf("OLDPWD : %s\n", oldpwd);
 		change_oldpwd_env(oldpwd, args->env);
 		change_oldpwd_export(oldpwd, args->export);
 	}
 	if (pwd && find_content_in_env("PWD", args->env))
 	{
-//		printf("PWD : %s\n", pwd);
 		change_pwd_env(pwd, args->env);
 		change_pwd_export(pwd, args->export);
 	}

@@ -64,11 +64,13 @@ SRCS		= 	main.c \
 				parsing/expand_variable.c \
 				parsing/expand.c \
 				parsing/find_in_env.c \
+				parsing/parser_check_quotes.c \
 				parsing/parser_convert.c \
 				parsing/parser_quotes.c \
 				parsing/parser_words.c \
 				parsing/parser.c \
 				parsing/line_to_linked_list.c \
+				signal/handlers.c \
 				signal/signal.c \
 				utils/utils_digits.c \
 				utils/utils_gnl.c \

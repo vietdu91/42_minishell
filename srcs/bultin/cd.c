@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:23:08 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/03 17:36:51 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:27:40 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,63 @@ void	find_cd(t_args *args, char *oldpwd, char *path, bool *error)
 	return ;
 }
 
-void	bad_cd(char *oldpwd, t_pars_node *node, int way, bool *error)
+int	check_nb_simple_args(t_pars_node *parser)
 {
-	free(oldpwd);
-	if (way == 1)
-		invalid_option(node, CMD_CD);
-	else if (way == 2)
+	t_pars_node	*node;
+	int			i;
+
+	i = 0;
+	node = parser->next;
+	while (node && node->type != PIPE)
 	{
-		print_error(BASH, CMD_CD, NULL, ERR_MANY_ARG);
-		g_exit_status = 1;
+		if (node->type == SIMPLE_ARG)
+			i++;
+		node = node->next;
 	}
-	*error = TRUE;
-	return ;
+	return (i);
+}
+
+void	cd_third_main(t_args *args, t_pars_node *node, char *oldpwd, \
+bool *error)
+{
+	if (!node || !ft_strcmp(node->content_exp_sans_q, "~") || \
+	!ft_strcmp(node->content_exp_sans_q, "") || \
+	(node->type != OPTION && node->type != SIMPLE_ARG))
+		cd_home(args, args->env, oldpwd, error);
+	else if (!ft_strcmp(node->content_exp_sans_q, "-"))
+		cd_moins(args, args->env, oldpwd, error);
+	else if (!oldpwd && (!ft_strcmp(node->content_exp_sans_q, ".") \
+	|| !ft_strcmp(node->content_exp_sans_q, "..")))
+		error_because_lost_dir(oldpwd, node->content_exp_sans_q, \
+		error);
+	else
+		find_cd(args, oldpwd, node->content_exp_sans_q, error);
+}
+
+int	cd_second_main(t_args *args, t_pars_node *node, char *oldpwd, \
+int *nb_single_args)
+{
+	bool		error;
+
+	error = FALSE;
+	if (node->type == OPTION)
+	{
+		bad_cd(oldpwd, node, 1, &error);
+		return (0);
+	}
+	else if (node->type == SIMPLE_ARG)
+	{
+		if (*nb_single_args > 1)
+		{
+			bad_cd(oldpwd, node, 2, &error);
+			return (0);
+		}
+		else
+			cd_third_main(args, node, oldpwd, &error);
+		if (error == FALSE)
+			g_exit_status = 0;
+	}
+	return (1);
 }
 
 void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
@@ -56,49 +101,15 @@ void	cd_main(t_args *args, t_env_list *env, t_pars_node *parser)
 	bool		error;
 	int			nb_simple_args;
 
-	node = parser->next;
 	error = FALSE;
 	nb_simple_args = 0;
 	oldpwd = getcwd(NULL, 0);
-	while (node && node->type != PIPE)
-	{
-		if (node->type == SIMPLE_ARG)
-			nb_simple_args++;
-		node = node->next;
-	}
+	nb_simple_args = check_nb_simple_args(parser);
 	node = parser->next;
 	while (node && node->type != PIPE)
 	{
-		if (node->type == OPTION)
-		{
-			bad_cd(oldpwd, node, 1, &error);
+		if (!cd_second_main(args, node, oldpwd, &nb_simple_args))
 			return ;
-		}
-		else if (node->type == SIMPLE_ARG)
-		{
-			if (nb_simple_args > 1)
-			{
-				bad_cd(oldpwd, node, 2, &error);
-				return ;
-			}
-			else
-			{
-				if (!node || !ft_strcmp(node->content_exp_sans_q, "~") || \
-				!ft_strcmp(node->content_exp_sans_q, "") || \
-				(node->type != OPTION && node->type != SIMPLE_ARG))
-					cd_home(args, env, oldpwd, &error);
-				else if (!ft_strcmp(node->content_exp_sans_q, "-"))
-					cd_moins(args, env, oldpwd, &error);
-				else if (!oldpwd && (!ft_strcmp(node->content_exp_sans_q, ".") \
-				|| !ft_strcmp(node->content_exp_sans_q, "..")))
-					error_because_lost_dir(oldpwd, node->content_exp_sans_q, \
-					&error);
-				else
-					find_cd(args, oldpwd, node->content_exp_sans_q, &error);
-			}
-			if (error == FALSE)
-				g_exit_status = 0;
-		}
 		node = node->next;
 	}
 	if (!nb_simple_args)
