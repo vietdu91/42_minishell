@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/09 19:11:57 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/10 13:12:08 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 		if (pipe(l->pipe) < 0)
 			return (-1);
 	}
-	if (which_node(l, datas[0]) || (!which_node(l, datas[0]) && datas[1] > 1))
+	if (which_node(l, datas[0]) || (!which_node(l, datas[0])))
 	{
 		pid = fork();
 		if (pid == -1)
