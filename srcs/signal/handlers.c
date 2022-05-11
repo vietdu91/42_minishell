@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 10:14:59 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/09 10:15:54 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/10 14:05:04 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,7 @@ void	signal_heredoc(int signal)
 	if (signal == SIGINT)
 	{
 		g_exit_status = 130;
-		write(1, "\n", 1);
-		rl_replace_line("", 0);
-	//	close(STDIN_FILENO);
+		close(STDIN_FILENO);
 	}
 	if (signal == SIGQUIT)
 	{

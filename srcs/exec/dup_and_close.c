@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 01:09:33 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/09 19:07:57 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/10 19:42:34 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,58 +38,20 @@ int	datas_zero(int datas[5], t_pars_list *l, t_pars_node *cpy)
 	if (datas[1] > 1)
 	{
 		if (cpy->fds[0] > 0 && dup2(cpy->fds[0], STDIN_FILENO) < 0)
-		{
-			close_maestro(datas, l);
-			return (-1);
-		}
+			return (return_datas_zero_fail(datas, l));
 		if (cpy->fds[1] > 0 && dup2(cpy->fds[1], STDOUT_FILENO) < 0)
-		{
-			close_maestro(datas, l);
-			return (-1);
-		}
+			return (return_datas_zero_fail(datas, l));
 		else if (cpy->fds[1] < 1 && dup2(l->pipe[1], STDOUT_FILENO) < 0)
-		{
-			// ft_putstr("erreur 2\n", 2);
-			close_maestro(datas, l);
-			return (-1);
-		}
+			return (return_datas_zero_fail(datas, l));
 		close(l->pipe[0]);
 		if (datas[2] > 0)
-			close(datas[2]); // empeche decrire dans l'entree standard
-		// close(l->pipe[1]); // bad file descriptor 
+			close(datas[2]);
 		close(datas[3]);
 		close(datas[4]);
 	}
 	else
-	{
-		if (cpy->fds[0] > 0 && dup2(cpy->fds[0], STDIN_FILENO) < 0)
-		{
-			close_maestro(datas, l);
-			return (-1);
-		}
-		if (cpy->fds[1] > 0 && dup2(cpy->fds[1], STDOUT_FILENO) < 0)
-		{
-			close_maestro(datas, l);
-			return (-1);
-		}
-		else if (l->pipe[1] > 0 && dup2(l->pipe[1], STDOUT_FILENO) < 0)
-		{
-			close_maestro(datas, l);
-			return (-1);
-		}
-		if (datas[1] > 1)
-		{
-			if (datas[1])
-			{
-				close(l->pipe[0]);
-				if (datas[2] > 0)
-					close(datas[2]);
-				close(l->pipe[1]);
-			}
-		}
-		close(datas[3]);
-		close(datas[4]);
-	}
+		if (datas_zero_part2(cpy, datas, l) == -1)
+			return (return_datas_zero_fail(datas, l));
 	return (0);
 }
 
@@ -124,39 +86,16 @@ int	datas_end(int datas[5], t_pars_list *l, t_pars_node *cpy)
 int	datas_middle(int datas[5], t_pars_list *l, t_pars_node *cpy)
 {
 	if (cpy->fds[0] > 0 && dup2(cpy->fds[0], STDIN_FILENO) < 0)
-	{
-		close_maestro(datas, l);
-		return (-1);
-	}
+		return_datas_zero_fail(datas, l);
 	else
 	{
 		if (dup2(datas[2], STDIN_FILENO) < 0)
-		{
-			close_maestro(datas, l);
-			return (-1);
-		}
+			return (return_datas_zero_fail(datas, l));
 		close(datas[2]);
 		close(l->pipe[0]);
 	}
-	if (cpy->fds[1] > 0 && dup2(cpy->fds[1], STDOUT_FILENO) < 0)
-	{
-		close_maestro(datas, l);
-		return (-1);
-		close(l->pipe[0]);
-		close(l->pipe[1]);
-		close(datas[2]);
-	}
-	else
-	{
-		if (dup2(l->pipe[1], STDOUT_FILENO) < 0)
-		{
-			close_maestro(datas, l);
-			return (-1);
-		}
-		close(l->pipe[1]);
-		close(datas[3]);
-		close(datas[4]);
-	}
+	if (datas_middle_part_2(cpy, datas, l) < 0)
+		return_datas_zero_fail(datas, l);
 	return (0);
 }
 
@@ -170,66 +109,3 @@ int	dup_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy)
 		datas_middle(datas, l, cpy);
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// if (cpy->fds[0] > 0)
-	// {
-	// 	if (datas[0] == 1)
-	// 	{
-	// 		// close(l->pipe[0]);
-	// 		// close(l->pipe[1]);
-	// 	}
-	// 	if (dup2(cpy->fds[0], STDIN_FILENO) < 0)
-	// 	{
-	// 		close_maestro(datas, l);
-	// 		return (-1);
-	// 	}
-	// 	close(cpy->fds[0]);
-	// 	close(datas[3]);
-	// }
-	// if (cpy->fds[1] > 0)
-	// {
-	// 	printf("FILHO DE PUTa\n");
-	// 	if (datas[0] == 1)
-	// 	{
-	// 		close(l->pipe[0]);
-	// 		close(l->pipe[1]);
-	// 		close(datas[4]);
-	// 	}
-	// 	// close(l->pipe[1]);
-	// 	if (dup2(cpy->fds[1], STDOUT_FILENO) < 0)
-	// 	{
-	// 		close_maestro(datas, l);
-	// 		return (-1);
-	// 	}
-	// 	close(cpy->fds[1]);
-	// }

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:15:47 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/06 17:08:42 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/10 14:04:18 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,5 @@ void	ft_putstr(char *str, int fd)
 
 void	ft_putchar(char c, int fd)
 {
-	// ft_putnbr(fd, 2);
-	// ft_putstr("\n", 2);
 	write(fd, &c, 1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   converter_for_pipex.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:47:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 19:46:27 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/10 16:16:41 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,8 @@ char	**delimiters_to_tab(t_pars_list *l, int size, t_args *args)
 		{
 			args->del_for_split = ft_strdup(node->content);
 			delimiters[i] = remove_quotes_delimiters(node->content);
-			if (!delimiters[i])
-			{
-				malloc_failed(delimiters, i);
+			if (return_delimiter_to_tab(delimiters, i))
 				return (NULL);
-			}
 			i++;
 		}
 		node = node->next;
