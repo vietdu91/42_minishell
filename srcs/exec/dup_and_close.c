@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 01:09:33 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/10 19:42:34 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/14 19:28:43 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,31 @@ int	close_maestro(int datas[5], t_pars_list *l)
 	return (0);
 }
 
+	void	print_fd(int datas[5], t_pars_list *l)
+{
+	ft_putstr("datas[2] == ", 2);
+	ft_putnbr(datas[2], 2);
+	ft_putstr("\n", 2);
+	ft_putstr("datas[3] == ", 2);
+	ft_putnbr(datas[3], 2);
+	ft_putstr("\n", 2);
+	ft_putstr("datas[4] == ", 2);
+	ft_putnbr(datas[4], 2);
+	ft_putstr("\n", 2);
+	ft_putstr("pipe[0] == ", 2);
+	ft_putnbr(l->pipe[0], 2);
+	ft_putstr("\n", 2);
+	ft_putstr("pipe[1] == ", 2);
+	ft_putnbr(l->pipe[1], 2);
+	ft_putstr("\n", 2);
+	// ft_putnbr(datas[2], 2);
+	// ft_putnbr(datas[2], 2);
+}
+
 int	datas_zero(int datas[5], t_pars_list *l, t_pars_node *cpy)
 {
+	ft_putstr("zero\n", 2);
+	print_fd(datas, l);
 	if (datas[1] > 1)
 	{
 		if (cpy->fds[0] > 0 && dup2(cpy->fds[0], STDIN_FILENO) < 0)
@@ -57,6 +80,8 @@ int	datas_zero(int datas[5], t_pars_list *l, t_pars_node *cpy)
 
 int	datas_end(int datas[5], t_pars_list *l, t_pars_node *cpy)
 {
+	ft_putstr("end\n", 2);
+	print_fd(datas, l);
 	if (cpy->fds[0] > 0 && dup2(cpy->fds[0], STDIN_FILENO) < 0)
 	{
 		close_maestro(datas, l);
@@ -85,6 +110,8 @@ int	datas_end(int datas[5], t_pars_list *l, t_pars_node *cpy)
 
 int	datas_middle(int datas[5], t_pars_list *l, t_pars_node *cpy)
 {
+	ft_putstr("middle\n", 2);
+	print_fd(datas, l);
 	if (cpy->fds[0] > 0 && dup2(cpy->fds[0], STDIN_FILENO) < 0)
 		return_datas_zero_fail(datas, l);
 	else
