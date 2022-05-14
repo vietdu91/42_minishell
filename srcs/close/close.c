@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:41:31 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/10 22:52:41 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/14 20:18:12 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ int	close_loop_execution_parent(int j, t_pars_list *l, int datas[5])
 		close(l->pipe[0]);
 	if (l->pipe[1] > 0)
 		close(l->pipe[1]);
+	ft_putstr("parent datas[2] == ", 2);
+	ft_putnbr(datas[2], 2);
+	ft_putstr("\n", 2);
+	ft_putstr("parent datas[3] == ", 2);
+	ft_putnbr(datas[3], 2);
+	ft_putstr("\n", 2);
+	ft_putstr("parent datas[4] == ", 2);
+	ft_putnbr(datas[4], 2);
+	ft_putstr("\n", 2);
+	ft_putstr("parent pipe[0] == ", 2);
+	ft_putnbr(l->pipe[0], 2);
+	ft_putstr("\n", 2);
+	ft_putstr("parent pipe[1] == ", 2);
+	ft_putnbr(l->pipe[1], 2);
+	ft_putstr("\n", 2);
 	return (0);
 }
 
