@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 10:14:59 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/10 14:05:04 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/11 21:24:56 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	signal_heredoc(int signal)
 	if (signal == SIGINT)
 	{
 		g_exit_status = 130;
-		close(STDIN_FILENO);
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
 	}
 	if (signal == SIGQUIT)
 	{

@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/10 14:14:30 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/11 22:53:16 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,7 @@ int	split_expand(t_pars_list *l, t_env_list *env)
 	while (node)
 	{
 		if (!quotes_or_not(node->content) && is_charset('$', node->content))
-		{
 			loop_var(node->content, l, env, node);
-		}
 		node = node->next;
 	}
 	return (nodes_added);

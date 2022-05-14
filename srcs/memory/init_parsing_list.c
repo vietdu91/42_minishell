@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/06 14:35:44 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/11 21:33:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_pars_list	*list_mid_parse(t_pars_list *list, t_pars_node *n, char *content)
 	return (list);
 }
 
-void	display_parsing(t_pars_list *parser)
+void	rsing(t_pars_list *parser)
 {
 	t_pars_node	*i;
 	int			j;
