@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 01:13:19 by dyoula            #+#    #+#             */
-/*   Updated: 2022/04/21 15:19:24 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/10 18:46:59 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-	// list->head = NULL;
-	// list->tail = NULL;
-	// list->length = 0;
 
 t_cmds_list	*init_list(void)
 {

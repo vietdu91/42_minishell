@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 14:55:02 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/05 12:57:52 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/10 19:32:54 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	is_builtin(t_pars_node *node)
+{
+	if (!node || !node->content_exp_sans_q)
+		return (-1);
+	if (!ft_strcmp(node->content_exp_sans_q, "env"))
+		return (0);
+	else if (!ft_strcmp(node->content_exp_sans_q, "pwd"))
+		return (0);
+	else if (!ft_strcmp(node->content_exp_sans_q, "unset"))
+		return (0);
+	else if (!ft_strcmp(node->content_exp_sans_q, "scare_me"))
+		return (0);
+	else if (!ft_strcmp(node->content_exp_sans_q, \
+	"patience_is_a_virtue"))
+		return (0);
+	else if (!ft_strcmp(node->content_exp_sans_q, "cd"))
+		return (0);
+	else if (!ft_strcmp(node->content_exp_sans_q, "export"))
+		return (0);
+	else if (!ft_strcmp(node->content_exp_sans_q, "exit"))
+		return (0);
+	else if (!ft_strcmp(node->content_exp_sans_q, "echo"))
+		return (0);
+	return (1);
+}
 
 void	ft_strncpy(char *dest, char *src, int n)
 {

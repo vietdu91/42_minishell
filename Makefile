@@ -20,6 +20,7 @@ SRCS		= 	main.c \
 				bultin/pwd.c \
 				bultin/pwd_change.c \
 				bultin/unset.c \
+				close/close.c \
 				checkers/check_for_paths.c \
 				checkers/how_many.c \
 				checkers/is_unclosed.c \
@@ -30,11 +31,16 @@ SRCS		= 	main.c \
 				errors/print_error.c \
 				exec/cmd_is_path.c \
 				exec/converter_for_pipex.c \
+				exec/converter_for_pipex_norm.c \
 				exec/data_for_exec.c \
+				exec/data_for_exec_norm.c \
 				exec/dup_and_close.c \
+				exec/dup_and_close_norm.c \
 				exec/exec_map_utils.c \
 				exec/execution.c \
+				exec/execution_norm.c \
 				exec/expand_heredoc.c \
+				exec/expand_heredoc_norm.c \
 				exec/heredoc.c \
 				exec/inf_out.c \
 				exec/leaks_exec.c \

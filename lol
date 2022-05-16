@@ -1,0 +1,23 @@
+a.out
+bonjour
+bonjour monsieur
+cc.c
+ERRORS
+ignorereadline
+includes
+inf
+lol
+Makefile
+mdr
+minishell
+minishell_action.png
+minishell_img.png
+objs
+README.md
+srcs
+tamere
+test.c
+v
+vc
+vv
+wc

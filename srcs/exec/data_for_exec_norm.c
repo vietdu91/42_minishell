@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_write.c                                      :+:      :+:    :+:   */
+/*   data_for_exec_norm.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 15:15:47 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/11 21:24:37 by dyoula           ###   ########.fr       */
+/*   Created: 2022/05/10 16:34:12 by dyoula            #+#    #+#             */
+/*   Updated: 2022/05/10 18:55:19 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_putnbr(int nb, int fd)
+int	boucle_heredoc(char buf[2], char *txt, char *new_deal, char **heredoc)
 {
-	if (nb < 0)
+	buf[1] = 0;
+	txt = ft_strjoin(txt, buf);
+	if (ft_strchr(txt, '\n'))
 	{
-		ft_putchar('-', fd);
-		nb *= -1;
+		if (!ft_strcmp(txt, new_deal))
+			return (free_txt_ndeal(new_deal, txt, 1));
+		*heredoc = ft_strjoin(*heredoc, txt);
+		if (!(*heredoc))
+			return (0);
+		free(txt);
+		txt = ft_strdup("");
+		if (!txt)
+			return (free_txt_ndeal(new_deal, txt, 2));
 	}
-	if (nb >= 10)
-		ft_putnbr(nb / 10, fd);
-	ft_putchar(nb % 10 + 48, fd);
-}
-
-void	ft_putstr(char *str, int fd)
-{
-	while (*str)
-		ft_putchar(*(str++), fd);
-}
-
-void	ft_putchar(char c, int fd)
-{
-	write(fd, &c, 1);
+	return (2);
 }

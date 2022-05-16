@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/10 14:03:04 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/11 21:25:39 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,15 @@ char			*remove_quotes_delimiters(char *str);
 char			**delimiters_to_tab(t_pars_list *l, int size, t_args *args);
 char			**content_to_d_tab(int iter, int *index, t_pars_node *cpy);
 
+/*				CONVERTER_FOR_PIPEX_NORM.C			*/
+int				return_delimiter_to_tab(char **delimiters, int i);
+
 /*              DATA_EXEC.C             */
+int				boucle_heredoc(char buf[2], char *txt, char *new_deal, \
+				char **heredoc);
 
 // int				join_heredoc(char **heredoc, char *txt, char *del);
+int				free_txt_ndeal(char *new_deal, char *txt, int n);
 int				read_heredoc(char **heredoc, char *del);
 int				size_d_tab(t_pars_list *l);
 void			check_cmds(t_pars_list *l);
@@ -64,6 +70,12 @@ int				close_maestro(int datas[5], t_pars_list *l);
 int				datas_zero(int datas[5], t_pars_list *l, t_pars_node *cpy);
 int				dup_maestro(int datas[5], t_pars_list *l, t_pars_node *cpy);
 
+/*				DUP_AND_CLOSE_NORM.C	*/
+int				datas_middle_part_2(t_pars_node *cpy, \
+				int datas[5], t_pars_list *l);
+int				datas_zero_part2(t_pars_node *cpy, int datas[5], \
+				t_pars_list *l);
+
 /*				EXEC_MAP_UTILS.C		*/
 
 int				find_in(t_pars_list *l);
@@ -74,13 +86,16 @@ void			create_infiles_outfiles(t_args *args, int in_out[2], \
 				t_pars_node *cpy, char **fds_content);
 
 /*				EXECUTION.C			*/
-int				reset_in_out(int datas[5], t_pars_list *l);
+int				reset_in_out(int datas[5], t_pars_list *l, int n);
 int				count_cmd(t_pars_list *l);
 int				pid_zero_execution(t_pars_node *cpy, \
 				t_args *args, int data, int datas[5]);
 int				fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 				t_args *args);
 int				loop_execution(t_args *args, t_pars_list *l);
+
+/*				EXECUTION_NORM.C				*/
+void			dup_pid(t_pars_node *i, t_args *args, int datas[5], int n);
 
 /*				EXPAND_HEREDOC.C				*/
 
@@ -89,12 +104,15 @@ char			*send_variable(char *line, t_env_list *env);
 char			*split_to_join(char **d_tab);
 int				modify_heredoc(char **hdoc, char *limitator, t_env_list *env);
 
-/*				HEREDOC.C				*/
+/*				EXPAND_HEREDOC_NORM.C			*/
+char			*size_and_malloc(char **d_tab);
+
+/*				HEREDOC.C						*/
 
 int				count_heredoc(t_pars_list *l);
 int				fill_d_tab_heredoc(t_args *args, int size, char **eof);
 
-/*				INF_OUT.C				*/
+/*				INF_OUT.C						*/
 
 char			**create_fd_tab(t_pars_node *inf, t_pars_node *out);
 char			**fill_fds(t_pars_node *cpy);

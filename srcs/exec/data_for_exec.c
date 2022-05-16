@@ -3,20 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   data_for_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/10 17:01:46 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/16 10:46:06 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	free_txt_ndeal(char *new_deal, char *txt, int n)
+{
+	if (n == 1)
+	{
+		free(txt);
+		free(new_deal);
+		return (1);
+	}
+	else if (n == 2)
+	{
+		free(new_deal);
+		return (0);
+	}
+	return (-1);
+}
 
 int	read_heredoc(char **heredoc, char *del)
 {
 	char		buf[2];
 	char		*txt;
 	char		*new_deal;
+	int			ret;
 
 	buf[0] = 0;
 	*heredoc = ft_strdup("");
@@ -27,6 +44,7 @@ int	read_heredoc(char **heredoc, char *del)
 	new_deal = ft_strjoin_one_c_sans_free(del, '\n');
 	while (read(0, buf, 1) > 0)
 	{
+<<<<<<< HEAD
 		buf[1] = 0;
 		txt = ft_strjoin(txt, buf);
 		if (ft_strchr(txt, '\n'))
@@ -48,9 +66,13 @@ int	read_heredoc(char **heredoc, char *del)
 				return (0);
 			}
 		}
+=======
+		ret = boucle_heredoc(buf, txt, new_deal, heredoc);
+		if (ret < 2)
+			return (ret);
+>>>>>>> 2a6e702ac503d7c01754340cfffa337f7298d47f
 	}
-	free(new_deal);
-	free(txt);
+	free_txt_ndeal(new_deal, txt, 1);
 	return (0);
 }
 
@@ -87,8 +109,6 @@ void	check_cmds(t_pars_list *l)
 		node = node->next;
 	}
 }
-
-// acces au eof via le parser Trouver le bon limitator.
 
 int	exec_maestro(t_args *args)
 {

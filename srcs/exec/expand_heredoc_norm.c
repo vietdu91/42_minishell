@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_write.c                                      :+:      :+:    :+:   */
+/*   expand_heredoc_norm.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 15:15:47 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/11 21:24:37 by dyoula           ###   ########.fr       */
+/*   Created: 2022/05/10 20:20:00 by dyoula            #+#    #+#             */
+/*   Updated: 2022/05/10 20:26:55 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_putnbr(int nb, int fd)
+char	*size_and_malloc(char **d_tab)
 {
-	if (nb < 0)
+	char	*string;
+	int		i;
+	int		j;
+	int		k;
+
+	string = NULL;
+	i = -1;
+	k = 0;
+	while (d_tab[++i])
 	{
-		ft_putchar('-', fd);
-		nb *= -1;
+		j = 0;
+		while (d_tab[i][j++])
+			k++;
 	}
-	if (nb >= 10)
-		ft_putnbr(nb / 10, fd);
-	ft_putchar(nb % 10 + 48, fd);
-}
-
-void	ft_putstr(char *str, int fd)
-{
-	while (*str)
-		ft_putchar(*(str++), fd);
-}
-
-void	ft_putchar(char c, int fd)
-{
-	write(fd, &c, 1);
+	string = malloc(sizeof(char) * (k + 1));
+	if (!string)
+		return (NULL);
+	return (string);
 }

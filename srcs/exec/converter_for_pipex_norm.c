@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_write.c                                      :+:      :+:    :+:   */
+/*   converter_for_pipex_norm.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 15:15:47 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/11 21:24:37 by dyoula           ###   ########.fr       */
+/*   Created: 2022/05/10 16:09:56 by dyoula            #+#    #+#             */
+/*   Updated: 2022/05/10 16:13:31 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_putnbr(int nb, int fd)
+int	return_delimiter_to_tab(char **delimiters, int i)
 {
-	if (nb < 0)
+	if (!delimiters[i])
 	{
-		ft_putchar('-', fd);
-		nb *= -1;
+		malloc_failed(delimiters, i);
+		return (1);
 	}
-	if (nb >= 10)
-		ft_putnbr(nb / 10, fd);
-	ft_putchar(nb % 10 + 48, fd);
-}
-
-void	ft_putstr(char *str, int fd)
-{
-	while (*str)
-		ft_putchar(*(str++), fd);
-}
-
-void	ft_putchar(char c, int fd)
-{
-	write(fd, &c, 1);
+	return (0);
 }

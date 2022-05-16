@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_write.c                                      :+:      :+:    :+:   */
+/*   close.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 15:15:47 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/11 21:24:37 by dyoula           ###   ########.fr       */
+/*   Created: 2022/05/10 14:50:29 by dyoula            #+#    #+#             */
+/*   Updated: 2022/05/10 16:22:40 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#ifndef CLOSE_H
+# define CLOSE_H
 
-void	ft_putnbr(int nb, int fd)
-{
-	if (nb < 0)
-	{
-		ft_putchar('-', fd);
-		nb *= -1;
-	}
-	if (nb >= 10)
-		ft_putnbr(nb / 10, fd);
-	ft_putchar(nb % 10 + 48, fd);
-}
+int	close_loop_execution(t_pars_node *i, t_pars_list *l, int datas[5]);
+int	close_loop_execution_parent(int j, t_pars_list *l, int datas[5]);
+int	return_datas_zero_fail(int datas[5], t_pars_list *l);
 
-void	ft_putstr(char *str, int fd)
-{
-	while (*str)
-		ft_putchar(*(str++), fd);
-}
-
-void	ft_putchar(char c, int fd)
-{
-	write(fd, &c, 1);
-}
+#endif

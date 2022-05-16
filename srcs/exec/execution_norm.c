@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_write.c                                      :+:      :+:    :+:   */
+/*   execution_norm.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 15:15:47 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/11 21:24:37 by dyoula           ###   ########.fr       */
+/*   Created: 2022/05/10 19:58:09 by dyoula            #+#    #+#             */
+/*   Updated: 2022/05/10 20:03:37 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_putnbr(int nb, int fd)
+void	dup_pid(t_pars_node *i, t_args *args, int datas[5], int n)
 {
-	if (nb < 0)
+	dup_maestro(datas, args->parser, i);
+	pid_zero_execution(i, args, datas[1], datas);
+	if (n == 1)
 	{
-		ft_putchar('-', fd);
-		nb *= -1;
+		free_all(args);
+		exit (g_exit_status);
 	}
-	if (nb >= 10)
-		ft_putnbr(nb / 10, fd);
-	ft_putchar(nb % 10 + 48, fd);
-}
-
-void	ft_putstr(char *str, int fd)
-{
-	while (*str)
-		ft_putchar(*(str++), fd);
-}
-
-void	ft_putchar(char c, int fd)
-{
-	write(fd, &c, 1);
 }

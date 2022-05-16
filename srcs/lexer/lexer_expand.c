@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:03:17 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/10 14:07:49 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/11 22:53:16 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,7 @@ int	loop_var(char *str, t_pars_list *l, t_env_list *env, t_pars_node *node)
 	while (datas[0] < ft_strlen(str))
 	{
 		var = return_var(str + datas[0], env, datas);
-		printf("var = %s\n", var);
-		printf("salut len = %d && datas[0] = %d\n", ft_strlen(str), datas[0]);
 		final = ft_strjoin(final, var);
-		printf("FINAL : %s\n", final);
 		if (datas[0] == ft_strlen(str))
 			break ;
 	}
@@ -110,9 +107,7 @@ int	split_expand(t_pars_list *l, t_env_list *env)
 	while (node)
 	{
 		if (!quotes_or_not(node->content) && is_charset('$', node->content))
-		{
 			loop_var(node->content, l, env, node);
-		}
 		node = node->next;
 	}
 	return (nodes_added);
