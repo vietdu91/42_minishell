@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:24:10 by emtran            #+#    #+#             */
-/*   Updated: 2022/04/29 22:41:10 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 22:52:54 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ typedef struct s_args
 }	t_args;
 
 /*		CRYPTING_PARSER_QUOTES.C	*/
-
+void	ft_close(int fd, char *loc);
 void	delete_bool_quotes(int *i, char *str, int *quotes, char type_quote);
 int		prepare_crypt(int i, int *j, char *str, t_pars_node *parser);
 int		fill_crypt_tab(char *str, t_pars_node *parser);

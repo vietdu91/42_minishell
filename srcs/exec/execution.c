@@ -6,11 +6,17 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/09 19:11:57 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 23:37:42 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	ft_close(int fd, char *loc)
+{
+	dprintf(2, "salut je close %d grace a %s\n", fd, loc);
+	close(fd);
+}
 
 int	count_cmd(t_pars_list *l)
 {
@@ -59,6 +65,7 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data, int datas[5])
 	// 	printf("CMD %d : %s\n", i, cpy->cmds[i]);
 	// 	i++;
 	// }
+	dprintf(2, "salut datas[2] = %d, catas[3] = %d, catas[3] = %d, l->pipe[0] == %d, l->pipe[1] = %d\n", datas[2], datas[3], datas[4], args->parser->pipe[0], args->parser->pipe[1]);
 	if (exec_builtin_1(args, cpy, data, datas) < 0)
 	{
 		//ft_putstr("LOL\n", 2);
@@ -114,12 +121,12 @@ int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 	}
 	{
 		if (datas[0] > 1)
-			close(datas[2]);
+			ft_close(datas[2], "reset in out part 2  \n");
 		if (datas[1] > 1)
 		{
 			// printf("quand datas[0] = %d l->pipe [0] %d\n", datas[0], l->pipe[0]);
 			datas[2] = l->pipe[0];
-			close(l->pipe[1]);
+			ft_close(l->pipe[1], "reset in out part 2 \n");
 		}
 		// if ((0 < waitpid(0, &status, 0) && (WIFEXITED(status))))
 		// 	g_exit_status = WEXITSTATUS(status);
@@ -147,8 +154,8 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[3] = dup(0);
 	datas[4] = dup(1);
 	printf("%d\n", datas[4]);
-	signal(SIGINT, &signal_ignore);
-	signal(SIGQUIT, &signal_ignore);
+	// signal(SIGINT, &signal_ignore);
+	// signal(SIGQUIT, &signal_ignore);
 	while (i)
 	{
 		if (i->type == CMD || !i->len)
@@ -162,16 +169,16 @@ int	loop_execution(t_args *args, t_pars_list *l)
 			// if (datas[1] == 1)
 			// 	reset_in_out(datas, l);
 			if (i->fds[0] > 0)
-				close(i->fds[0]);
+				ft_close(i->fds[0], "after else parent \n");
 			if (i->fds[1] > 0)
-				close(i->fds[1]);
+				ft_close(i->fds[1], "after else parent \n");
 			if (datas[0] > 1)
-				close(l->pipe[1]);
+				ft_close(l->pipe[1], "after else parent \n");
 			if (i->previous && l->pipe[1] > 0 &&  i->previous->type == PIPE)
-				close(l->pipe[1]);
+				ft_close(l->pipe[1], "after else parent \n");
 			// printf("kontent = %s\n", i->content);
-			// close(datas[3]); // je fais bugger le multipipe 
-			// close(datas[4]); // je fais bugger le multipipe 
+			// ft_close(datas[3]); // je fais bugger le multipipe 
+			// ft_close(datas[4]); // je fais bugger le multipipe 
 		}
 		i = i->next;
 	}
@@ -182,12 +189,12 @@ int	loop_execution(t_args *args, t_pars_list *l)
 		j++;
 	}	
 	unlink("/tmp/.zuzu");
-	close(datas[3]);
-	close(datas[4]);
+	ft_close(datas[3], "after unlink\n");
+	ft_close(datas[4], "after unlink\n");
 	if (l->pipe[0] > 0)
-		close(l->pipe[0]);
+		ft_close(l->pipe[0], "after unlink\n");
 	if (l->pipe[1] > 0)
-		close(l->pipe[1]);
+		ft_close(l->pipe[1], "after unlink\n");
 	// reset_in_out(datas, l);
 	// close(0); // je fais exit le programme 
 	// close(1); // je cree une boucle infinie 

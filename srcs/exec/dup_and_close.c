@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 01:09:33 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/09 19:07:57 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 22:57:29 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int	datas_zero(int datas[5], t_pars_list *l, t_pars_node *cpy)
 			close_maestro(datas, l);
 			return (-1);
 		}
-		close(l->pipe[0]);
+		ft_close(l->pipe[0], "datas zero \n");
 		if (datas[2] > 0)
-			close(datas[2]); // empeche decrire dans l'entree standard
-		// close(l->pipe[1]); // bad file descriptor 
-		close(datas[3]);
-		close(datas[4]);
+			ft_close(datas[2], "datas zero \n"); // empeche decrire dans l'entree standa, "datas zero \n"rd
+		// ft_close(l->pipe[1]); // bad file descripto, "datas zero \n"r 
+		ft_close(datas[3], "datas zero \n");
+		ft_close(datas[4], "datas zero \n");
 	}
 	else
 	{
@@ -111,13 +111,13 @@ int	datas_end(int datas[5], t_pars_list *l, t_pars_node *cpy)
 		return (-1);
 	}
 	if (datas[2] > 0)
-		close(datas[2]);
+		ft_close(datas[2], "datas end close \n");
 	if (cpy->fds[1] > 0)
-		close(cpy->fds[1]);
-	close(l->pipe[1]);
-	close(l->pipe[0]);
-	close(datas[3]);
-	close(datas[4]);
+		ft_close(cpy->fds[1], "datas end close \n");
+	ft_close(l->pipe[1], "datas end close \n");
+	ft_close(l->pipe[0], "datas end close \n");
+	ft_close(datas[3], "datas end close \n");
+	ft_close(datas[4], "datas end close \n");
 	return (0);
 }
 
@@ -135,8 +135,8 @@ int	datas_middle(int datas[5], t_pars_list *l, t_pars_node *cpy)
 			close_maestro(datas, l);
 			return (-1);
 		}
-		close(datas[2]);
-		close(l->pipe[0]);
+		ft_close(datas[2], "middle close \n");
+		ft_close(l->pipe[0], "middle close \n");
 	}
 	if (cpy->fds[1] > 0 && dup2(cpy->fds[1], STDOUT_FILENO) < 0)
 	{
