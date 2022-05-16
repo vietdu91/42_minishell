@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/16 16:26:05 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 21:50:07 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	reset_in_out(int datas[5], t_pars_list *l, int n)
 	else if (n == 2)
 	{
 		if (datas[0] > 1)
-			close(datas[2]);
+			ft_close(datas[2], l->pid + 1000000);
 		if (datas[1] > 1)
 		{
 			datas[2] = l->pipe[0];
-			close(l->pipe[1]);
+			ft_close(l->pipe[1], l->pid + 2000000);
 		}
 	}
 	return (0);
@@ -76,21 +76,27 @@ int	pid_zero_execution(t_pars_node *cpy, t_args *args, int data, int datas[5])
 int	fork_execution(int datas[5], t_pars_node *i, t_pars_list *l, \
 	t_args *args)
 {
-	int			pid;
-
-	pid = 0;
+	l->pid = 0;
 	if (datas[1] > 1)
 	{
 		if (pipe(l->pipe) < 0)
 			return (-1);
+		ft_putstr("Open fd ", 2);
+		ft_putnbr(l->pipe[0], 2);
+		ft_putstr(" et ", 2);
+		ft_putnbr(l->pipe[1], 2);
+		ft_putstr("\n", 2);
 	}
 	if (which_node(l, datas[0]) || (!which_node(l, datas[0])))
 	{
-		pid = fork();
-		if (pid == -1)
+		l->pid = fork();
+		if (l->pid == -1)
 			return (-1);
-		if (pid == 0)
+		if (l->pid == 0)
+		{
+			ft_putstr("New pid\n", 2);
 			dup_pid(i, args, datas, 1);
+		}
 	}
 	else
 		dup_pid(i, args, datas, 0);
@@ -112,13 +118,15 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[3] = dup(0);
 	datas[4] = dup(1);
 	printf("datas[2] = %d\n", datas[2]);
-	signal(SIGINT, &signal_ignore);
-	signal(SIGQUIT, &signal_ignore);
+	// signal(SIGINT, &signal_ignore);
+	// signal(SIGQUIT, &signal_ignore);
 	while (i)
 	{
 		if (i->type == CMD || !i->len)
 		{
 			datas[0]++;
+			printf("CONTENT : %s - TYPE : %d - LEN : %d\n", i->content, i->type, i->len);			
+			printf("1   HELLOOOO %d\n", i->fds[1]);
 			if ((is_builtin(i) || (!is_builtin(i) && datas[1] > 1)))
 				fork_execution(datas, i, l, args);
 			else

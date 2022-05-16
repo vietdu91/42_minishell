@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:53:10 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/11 21:33:19 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 20:51:04 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	init_parsing_list(t_pars_list **parser)
 	(*parser)->length = 0;
 	(*parser)->pipe[0] = 0;
 	(*parser)->pipe[1] = 0;
+	(*parser)->pid = 0;
 	return (1);
 }
 
@@ -54,7 +55,6 @@ t_pars_list	*list_end_parse(t_pars_list *list, char *content)
 		return (NULL);
 	init_parsing_node(node);
 	node->content = ft_strdup(content);
-	node->len = list->length;
 	node->next = NULL;
 	if (list->tail == NULL)
 	{
@@ -69,6 +69,7 @@ t_pars_list	*list_end_parse(t_pars_list *list, char *content)
 		list->tail = node;
 	}
 	list->length++;
+	node->len = list->length;
 	return (list);
 }
 

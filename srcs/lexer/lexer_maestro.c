@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:33:43 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/11 21:55:31 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 21:53:46 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ int	lexer_maestro(t_args *args)
 	t_pars_node	*node;
 
 	node = args->parser->head;
-	while (node)
-	{
-		printf(" %s, %d\n", node->content, node->type);
-		node = node->next;
-	}
+	// while (node)
+	// {
+	// 	printf(" %s, %d\n", node->content, node->type);
+	// 	node = node->next;
+	// }
 	if (syntax_error_meta(args) < 0 || forbidden_token(args->parser))
 		return (-1);
 	return (0);

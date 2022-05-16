@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/11 21:25:39 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 17:36:52 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_exec
 }	t_exec;
 
 /*				CMD_IS_PATH.C			*/
-
+void			ft_close(int fd, int pid);
 char			*cut_path(char *str, char *no_space);
 int				cmd_is_path(char *array, t_pars_node *c);
 

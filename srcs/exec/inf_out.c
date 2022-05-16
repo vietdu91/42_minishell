@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/11 23:48:40 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 21:51:50 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ char	**fill_fds(t_pars_node *cpy)
 	infile = NULL;
 	outfile = NULL;
 	i = cpy;
-	while (i)
+	while (i && i->type != PIPE)
 	{
 		if (i->type == INFILE)
 			infile = i;
+		if (i->type == OUTFILE)
+			outfile = i;
 		i = i->previous;
 	}
 	i = cpy;
@@ -57,13 +59,7 @@ char	**fill_fds(t_pars_node *cpy)
 			outfile = i;
 		i = i->next;
 	}
-	// printf("%s\n", infile->content);
 	fds = create_fd_tab(infile, outfile);
-	int	f;
-
-	f = -1;
-	while (fds[++f])
-		printf("fds = %s\n", fds[f]);
 	return (fds);
 }
 

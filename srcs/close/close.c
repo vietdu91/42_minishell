@@ -6,22 +6,33 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:41:31 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/14 20:18:12 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 21:41:14 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stdio.h>
+
+void	ft_close(int fd, int pid)
+{
+	dprintf(2, "pid = %d\nClose fd %d\n", pid, fd);
+	close(fd);
+}
 
 int	close_loop_execution(t_pars_node *i, t_pars_list *l, int datas[5])
 {
+	dprintf(2, "close_loop: i->fds: %d, %d, l->pipe: %d, %d, datas: %d\n", i->fds[0], i->fds[1], l->pipe[0], l->pipe[1], datas[2]);
 	if (i->fds[0] > 0)
-		close(i->fds[0]);
+		ft_close(i->fds[0], l->pid + 3000000);
 	if (i->fds[1] > 0)
-		close(i->fds[1]);
+		ft_close(i->fds[1], l->pid + 4000000);
+	// if (l->pipe[1])
+	// if (!i->next)
+	// 	ft_close(datas[2], l->pid + 6000000);
 	if (datas[0] > 1)
-		close(l->pipe[1]);
+		ft_close(l->pipe[1], l->pid + 5000000);
 	if (i->previous && l->pipe[1] > 0 && i->previous->type == PIPE)
-		close(l->pipe[1]);
+		ft_close(l->pipe[1], l->pid + 6000000);
 	return (0);
 }
 
@@ -30,34 +41,34 @@ int	close_loop_execution_parent(int j, t_pars_list *l, int datas[5])
 	int			status;
 
 	status = 0;
-	while (j < l->length)
+	while (j < datas[1])
 	{
 		if ((0 < waitpid(0, &status, 0) && (WIFEXITED(status))))
 			g_exit_status = WEXITSTATUS(status);
 		j++;
 	}	
 	unlink("/tmp/.zuzu");
-	close(datas[3]);
-	close(datas[4]);
+	ft_close(datas[3], l->pid); // idem
+	ft_close(datas[4], l->pid);
 	if (l->pipe[0] > 0)
-		close(l->pipe[0]);
+		ft_close(l->pipe[0], l->pid);
 	if (l->pipe[1] > 0)
-		close(l->pipe[1]);
-	ft_putstr("parent datas[2] == ", 2);
-	ft_putnbr(datas[2], 2);
-	ft_putstr("\n", 2);
-	ft_putstr("parent datas[3] == ", 2);
-	ft_putnbr(datas[3], 2);
-	ft_putstr("\n", 2);
-	ft_putstr("parent datas[4] == ", 2);
-	ft_putnbr(datas[4], 2);
-	ft_putstr("\n", 2);
-	ft_putstr("parent pipe[0] == ", 2);
-	ft_putnbr(l->pipe[0], 2);
-	ft_putstr("\n", 2);
-	ft_putstr("parent pipe[1] == ", 2);
-	ft_putnbr(l->pipe[1], 2);
-	ft_putstr("\n", 2);
+		ft_close(l->pipe[1], l->pid);
+	// ft_putstr("parent datas[2] == ", 2);
+	// ft_putnbr(datas[2], 2);
+	// ft_putstr("\n", 2);
+	// ft_putstr("parent datas[3] == ", 2);
+	// ft_putnbr(datas[3], 2);
+	// ft_putstr("\n", 2);
+	// ft_putstr("parent datas[4] == ", 2);
+	// ft_putnbr(datas[4], 2);
+	// ft_putstr("\n", 2);
+	// ft_putstr("parent pipe[0] == ", 2);
+	// ft_putnbr(l->pipe[0], 2);
+	// ft_putstr("\n", 2);
+	// ft_putstr("parent pipe[1] == ", 2);
+	// ft_putnbr(l->pipe[1], 2);
+	// ft_putstr("\n", 2);
 	return (0);
 }
 
