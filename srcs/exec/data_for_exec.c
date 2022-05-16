@@ -6,7 +6,7 @@
 /*   By: emtran <emtran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/05 13:15:39 by emtran           ###   ########.fr       */
+/*   Updated: 2022/05/10 17:01:46 by emtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,12 @@ int	read_heredoc(char **heredoc, char *del)
 	txt = ft_strdup("");
 	if (!txt || !(*heredoc))
 		return (0);
-	new_deal = NULL;	
+	new_deal = NULL;
 	new_deal = ft_strjoin_one_c_sans_free(del, '\n');
 	while (read(0, buf, 1) > 0)
 	{
-		//signal(SIGINT, &signal_heredoc);
-	//	signal(SIGQUIT, &signal_exec);
 		buf[1] = 0;
 		txt = ft_strjoin(txt, buf);
-		//printf("TXT : %s\n", txt);
-	//	fflush(stdout);
-		// printf("TXT : %d\n", txt[0]);
-		// fflush(stdout);
 		if (ft_strchr(txt, '\n'))
 		{
 			if (!ft_strcmp(txt, new_deal))
