@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 16:20:58 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/16 20:19:01 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 23:13:13 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	delete_content_useless_infiles(t_pars_list *l)
 		{
 			fd = open(i->content, O_TRUNC);
 			write(fd, "\0", 1);
-			ft_close(fd, l->pid);
+			ft_close(fd, "delete useless");
 		}
 		if ((i->type == OUTFILE || i->type == SUPER_OUTFILE) && last == 1)
 			last--;

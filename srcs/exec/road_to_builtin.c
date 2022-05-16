@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/16 17:47:01 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 23:14:25 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ int	which_node(t_pars_list *l, int n)
 	return (0);
 }
 
-int	return_or_exit(int n, t_args *args, int datas[5])
+int	return_or_exit(int n, t_args *args, int datas[5]) // idem
 {
 	if (datas[2] > 0)
-		ft_close(datas[2], args->parser->pid);
+		ft_close(datas[2], "return or exit \n");
 	if (datas[1] > 1)
 	{
-		ft_close(0, args->parser->pid);
-		ft_close(1, args->parser->pid);
-		ft_close(datas[3], args->parser->pid);
+		ft_close(0, "return or exit \n");
+		ft_close(1, "return or exit \n");
+		ft_close(datas[3], "return or exit \n");
 	}
-	ft_close(datas[4], args->parser->pid);
+	ft_close(datas[4], "return or exit \n");
 	if (args->parser->pipe[0])
-		ft_close(args->parser->pipe[0], args->parser->pid);
+		ft_close(args->parser->pipe[0], "return or exit \n");
 	if (args->parser->pipe[1])
-		ft_close(args->parser->pipe[1], args->parser->pid);
+		ft_close(args->parser->pipe[1], "return or exit \n");
 	reset_in_out(datas, args->parser, 1);
 	if (n == 1)
 		return (0);
