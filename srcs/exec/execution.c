@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/11 21:26:27 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 16:26:05 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int	loop_execution(t_args *args, t_pars_list *l)
 	datas[2] = 0;
 	datas[3] = dup(0);
 	datas[4] = dup(1);
+	printf("datas[2] = %d\n", datas[2]);
 	signal(SIGINT, &signal_ignore);
 	signal(SIGQUIT, &signal_ignore);
 	while (i)
@@ -118,7 +119,10 @@ int	loop_execution(t_args *args, t_pars_list *l)
 		if (i->type == CMD || !i->len)
 		{
 			datas[0]++;
-			fork_execution(datas, i, l, args);
+			if ((is_builtin(i) || (!is_builtin(i) && datas[1] > 1)))
+				fork_execution(datas, i, l, args);
+			else
+				dup_pid(i, args, datas, 0);
 			close_loop_execution(i, l, datas);
 		}
 		i = i->next;
