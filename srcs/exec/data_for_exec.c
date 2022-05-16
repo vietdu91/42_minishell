@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:58:40 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/16 10:46:06 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/16 10:47:15 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,33 +44,9 @@ int	read_heredoc(char **heredoc, char *del)
 	new_deal = ft_strjoin_one_c_sans_free(del, '\n');
 	while (read(0, buf, 1) > 0)
 	{
-<<<<<<< HEAD
-		buf[1] = 0;
-		txt = ft_strjoin(txt, buf);
-		if (ft_strchr(txt, '\n'))
-		{
-			if (!ft_strcmp(txt, new_deal))
-			{
-				free(txt);
-				free(new_deal);
-				return (1);
-			}
-			*heredoc = ft_strjoin(*heredoc, txt);
-			if (!(*heredoc))
-				return (0);
-			free(txt);
-			txt = ft_strdup("");
-			if (!txt)
-			{
-				free(new_deal);
-				return (0);
-			}
-		}
-=======
 		ret = boucle_heredoc(buf, txt, new_deal, heredoc);
 		if (ret < 2)
 			return (ret);
->>>>>>> 2a6e702ac503d7c01754340cfffa337f7298d47f
 	}
 	free_txt_ndeal(new_deal, txt, 1);
 	return (0);
