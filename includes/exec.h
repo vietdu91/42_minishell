@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/17 15:15:35 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 19:21:34 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char			**content_to_d_tab(int iter, int *index, t_pars_node *cpy);
 int				return_delimiter_to_tab(char **delimiters, int i);
 
 /*              DATA_EXEC.C             */
-int				boucle_heredoc(char buf[2], char *txt, char *new_deal, \
+int				boucle_heredoc(char buf[2], char **txt, char *new_deal, \
 				char **heredoc);
 
 // int				join_heredoc(char **heredoc, char *txt, char *del);

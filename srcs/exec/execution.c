@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:48:16 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/17 16:06:27 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 20:11:59 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,26 @@ int	loop_execution(t_args *args, t_pars_list *l)
 		if (i->type == CMD || !i->len)
 		{
 			datas[0]++;
+			if (!is_builtin(i) && (i->fds[0] > 0 || i->fds[1] > 0) && datas[1] > 1)
+			{
+				if (i->fds[0] > 0)
+					close(i->fds[0]);
+				if (i->fds[0] > 0)
+					close(i->fds[1]);
+				exec_builtin_1(args, i, datas[1], datas);
+				close_loop_execution(i, l, datas);
+				i = i->next;
+				continue ;
+			}
 			if ((is_builtin(i) || is_builtin(i) == -10 || (!is_builtin(i) && datas[1] > 1)))
+			{
+				dprintf(2, "Salut \n");
 				fork_execution(datas, i, l, args);
+			}		
 			else
+			{
 				dup_pid(i, args, datas, 0);
+			}
 			if (datas[1] == 1 && !is_builtin(i))
 			{
 				dup2(datas[3], STDIN_FILENO);

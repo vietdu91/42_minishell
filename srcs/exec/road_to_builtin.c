@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 23:02:36 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/16 23:14:25 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 20:01:42 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	which_node(t_pars_list *l, int n)
 	return (0);
 }
 
-int	return_or_exit(int n, t_args *args, int datas[5]) // idem
+int	return_or_exit(int n, t_args *args, int datas[5])
 {
 	if (datas[2] > 0)
 		ft_close(datas[2], "return or exit \n");

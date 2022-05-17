@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 16:20:58 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/17 16:37:44 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 20:03:14 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,5 @@ void	create_infiles_outfiles(t_args *args, int in_out[2], \
 		cpy->fds[1] = open(fds_content[1], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	else if (in_out[1] == 2 && fds_content[1])
 		cpy->fds[1] = open(fds_content[1], O_WRONLY | O_CREAT | O_APPEND, 0664);
-	if (cpy->fds[0] == -1 || cpy->fds[1] == -1)
-		free_all(args);
 	return ;
 }
