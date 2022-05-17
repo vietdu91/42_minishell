@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/17 15:14:52 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 16:39:54 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,18 @@ char	**create_fd_tab(t_pars_node *inf, t_pars_node *out)
 	fds = malloc(sizeof(char *) * 3);
 	if (!fds)
 		return (NULL);
-	fds[0] = NULL;
+	fds[0] = ft_strdup("");
 	if (inf)
+	{
+		free(fds[0]);
 		fds[0] = ft_strdup(inf->content_exp_sans_q);
-	fds[1] = NULL;
+	}
+	fds[1] = ft_strdup("");
 	if (out)
+	{
+		free(fds[1]);
 		fds[1] = ft_strdup(out->content_exp_sans_q);
+	}
 	fds[2] = NULL;
 	return (fds);
 }

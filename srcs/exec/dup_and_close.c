@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 01:09:33 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/17 15:19:17 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 16:44:21 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	close_maestro(int datas[5], t_pars_list *l)
 
 int	datas_zero(int datas[5], t_pars_list *l, t_pars_node *cpy)
 {
+
 	if (datas[1] > 1)
 	{
 		// dprintf(2, "dup2 cpy->fds: %d, %d, l->pipe: %d, %d, datas[2,3, 4]: %d, %d, %d\n", cpy->fds[0], cpy->fds[1], l->pipe[0], l->pipe[1], datas[2],datas[3], datas[4]);
@@ -75,6 +76,10 @@ int	datas_zero(int datas[5], t_pars_list *l, t_pars_node *cpy)
 		// ft_close(l->pipe[1], l->pid - 1);
 		if (datas[2] > 0)
 			ft_close(datas[2], "zero \n");
+		if (cpy->fds[0] > 0)
+			ft_close(cpy->fds[0], "zero\n");
+		if (cpy->fds[1] > 0)
+			ft_close(cpy->fds[1], "zero\n");
 		ft_close(datas[3], "zero \n");
 		ft_close(datas[4], "zero \n");
 	}

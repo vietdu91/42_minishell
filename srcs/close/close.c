@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:41:31 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/17 15:47:55 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 16:48:57 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	ft_close(int fd, char *str)
 {
-	dprintf(2, "fd = %d %s\n", fd, str);
+	(void)str;
+	// dprintf(2, "fd = %d %s\n", fd, str);
 	close(fd);
 }
 
