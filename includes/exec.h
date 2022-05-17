@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 09:25:05 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/16 23:06:14 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 15:15:35 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int				fill_d_tab_heredoc(t_args *args, int size, char **eof);
 /*				INF_OUT.C						*/
 
 char			**create_fd_tab(t_pars_node *inf, t_pars_node *out);
+int				file_create_loop(t_pars_list *l);
 char			**fill_fds(t_pars_node *cpy);
 int				inf_out_maestro(t_args *args, t_pars_list *l);
 

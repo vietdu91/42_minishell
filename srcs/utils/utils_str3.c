@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 14:55:02 by emtran            #+#    #+#             */
-/*   Updated: 2022/05/10 19:32:54 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 16:04:56 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	is_builtin(t_pars_node *node)
 	if (!node || !node->content_exp_sans_q)
 		return (-1);
 	if (!ft_strcmp(node->content_exp_sans_q, "env"))
-		return (0);
+		return (-10);
 	else if (!ft_strcmp(node->content_exp_sans_q, "pwd"))
-		return (0);
+		return (-10);
 	else if (!ft_strcmp(node->content_exp_sans_q, "unset"))
 		return (0);
 	else if (!ft_strcmp(node->content_exp_sans_q, "scare_me"))
-		return (0);
+		return (-10);
 	else if (!ft_strcmp(node->content_exp_sans_q, \
 	"patience_is_a_virtue"))
 		return (0);
@@ -34,7 +34,7 @@ int	is_builtin(t_pars_node *node)
 	else if (!ft_strcmp(node->content_exp_sans_q, "exit"))
 		return (0);
 	else if (!ft_strcmp(node->content_exp_sans_q, "echo"))
-		return (0);
+		return (-10);
 	return (1);
 }
 

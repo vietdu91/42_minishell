@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:29:23 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/16 21:59:37 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 15:14:52 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,25 @@ char	**create_fd_tab(t_pars_node *inf, t_pars_node *out)
 		fds[1] = ft_strdup(out->content_exp_sans_q);
 	fds[2] = NULL;
 	return (fds);
+}
+
+int	file_create_loop(t_pars_list *l)
+{
+	t_pars_node	*i;
+	int			fd;
+
+	i = l->head;
+	while (i)
+	{
+		fd = -1;
+		if (i->type == INFILE || i->type == SUPER_OUTFILE)
+		{
+			fd = open(i->content, O_WRONLY | O_CREAT, 0664);
+			close(fd);
+		}
+		i = i->next;
+	}
+	return (0);
 }
 
 char	**fill_fds(t_pars_node *cpy)

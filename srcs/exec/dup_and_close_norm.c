@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 18:09:58 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/16 23:12:52 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 16:00:58 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ int	datas_zero_part2(t_pars_node *cpy, int datas[5], t_pars_list *l)
 {
 	if (cpy->fds[0] > 0 && dup2(cpy->fds[0], STDIN_FILENO) < 0)
 		return (-1);
-	// dprintf(2, "cpy->fds[1] = %d\n", cpy->fds[1]);
+	dprintf(2, "cpy->fds[1] = %d\n", cpy->fds[1]);
 	if (cpy->fds[1] > 0 && dup2(cpy->fds[1], STDOUT_FILENO) < 0)
-	{
 		return (-1);
-	}
 	else if (l->pipe[1] > 0 && dup2(l->pipe[1], STDOUT_FILENO) < 0)
 		return (-1);
 	if (datas[1] > 1)
@@ -54,7 +52,11 @@ int	datas_zero_part2(t_pars_node *cpy, int datas[5], t_pars_list *l)
 			ft_close(l->pipe[1], "zero part 2\n");
 		}
 	}
-	// ft_close(datas[3], l->pid);
-	// ft_close(datas[4], l->pid);
+	if (cpy->fds[0] > 1)
+		close(cpy->fds[0]);
+	if (cpy->fds[1] > 1)
+		ft_close(cpy->fds[1], "zero part 2\n");
+	ft_close(datas[3], "3 zero part 2\n");
+	ft_close(datas[4], "4 zero part 2\n");
 	return (0);
 }

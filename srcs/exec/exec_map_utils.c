@@ -6,7 +6,7 @@
 /*   By: dyoula <dyoula@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 16:20:58 by dyoula            #+#    #+#             */
-/*   Updated: 2022/05/16 23:13:13 by dyoula           ###   ########.fr       */
+/*   Updated: 2022/05/17 15:19:04 by dyoula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,15 @@ void	delete_content_useless_infiles(t_pars_list *l)
 
 	last = 1;
 	i = l->tail;
-	while (i && i->type != PIPE)
+	while (i)
 	{
 		fd = -1;
+		if (i->type == PIPE)
+			last = 1;
 		if ((i->type == OUTFILE || i->type == SUPER_OUTFILE) && last == 0)
 		{
-			fd = open(i->content, O_TRUNC);
-			write(fd, "\0", 1);
+			unlink(i->content);
+			fd = open(i->content, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 			ft_close(fd, "delete useless");
 		}
 		if ((i->type == OUTFILE || i->type == SUPER_OUTFILE) && last == 1)
